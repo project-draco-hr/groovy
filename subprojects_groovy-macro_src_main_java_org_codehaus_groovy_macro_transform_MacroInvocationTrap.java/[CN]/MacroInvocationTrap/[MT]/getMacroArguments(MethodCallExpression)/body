@@ -1,0 +1,17 @@
+{
+  Expression macroCallArguments=call.getArguments();
+  if (macroCallArguments == null) {
+    addError("Call should have arguments",call);
+    return null;
+  }
+  if (!(macroCallArguments instanceof TupleExpression)) {
+    addError("Call should have TupleExpression as arguments",macroCallArguments);
+    return null;
+  }
+  TupleExpression tupleArguments=(TupleExpression)macroCallArguments;
+  if (tupleArguments.getExpressions() == null) {
+    addError("Call arguments should have expressions",tupleArguments);
+    return null;
+  }
+  return tupleArguments;
+}

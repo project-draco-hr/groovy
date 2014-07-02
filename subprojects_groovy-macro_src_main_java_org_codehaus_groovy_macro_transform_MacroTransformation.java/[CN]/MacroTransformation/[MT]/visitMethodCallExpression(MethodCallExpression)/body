@@ -1,0 +1,4 @@
+{
+  transformer.visitMethodCallExpression(call);
+  super.visitMethodCallExpression(call);
+}

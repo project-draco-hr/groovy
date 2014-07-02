@@ -1,0 +1,9 @@
+{
+  try {
+    return ClosureUtils.convertClosureToSource(source,expression);
+  }
+ catch (  Exception e) {
+    addError(e.getMessage(),expression);
+  }
+  return null;
+}

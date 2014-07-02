@@ -1,0 +1,7 @@
+{
+  int result=startLine;
+  result=31 * result + startColumn;
+  result=31 * result + endLine;
+  result=31 * result + endColumn;
+  return result;
+}

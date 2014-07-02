@@ -1,0 +1,10 @@
+{
+  if (this == o)   return true;
+  if (o == null || getClass() != o.getClass())   return false;
+  MacroSubstitutionKey that=(MacroSubstitutionKey)o;
+  if (endColumn != that.endColumn)   return false;
+  if (endLine != that.endLine)   return false;
+  if (startColumn != that.startColumn)   return false;
+  if (startLine != that.startLine)   return false;
+  return true;
+}
