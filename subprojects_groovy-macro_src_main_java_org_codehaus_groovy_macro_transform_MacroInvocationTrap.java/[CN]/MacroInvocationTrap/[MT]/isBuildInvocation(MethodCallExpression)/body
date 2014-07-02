@@ -1,3 +1,0 @@
-{
-  return isBuildInvocation(call,MacroTransformation.MACRO_METHOD);
-}

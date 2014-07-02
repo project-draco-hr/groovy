@@ -1,0 +1,15 @@
+{
+  this.source=source;
+  transformer=new MacroInvocationTrap(source.getSource(),source);
+  for (  ASTNode node : nodes) {
+    if (node instanceof ClassNode) {
+      visitClass((ClassNode)node);
+    }
+ else     if (node instanceof ModuleNode) {
+      ModuleNode moduleNode=(ModuleNode)node;
+      for (      ClassNode classNode : moduleNode.getClasses()) {
+        visitClass(classNode);
+      }
+    }
+  }
+}
