@@ -1,0 +1,4 @@
+Object self
+CompilePhase compilePhase
+boolean asIs
+Closure cl
