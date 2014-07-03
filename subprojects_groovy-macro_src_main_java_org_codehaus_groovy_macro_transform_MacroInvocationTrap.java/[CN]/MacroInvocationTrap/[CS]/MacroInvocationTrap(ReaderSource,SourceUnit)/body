@@ -1,6 +1,3 @@
 {
-  if (source == null)   throw new IllegalArgumentException("Null: source");
-  if (sourceUnit == null)   throw new IllegalArgumentException("Null: sourceUnit");
-  this.source=source;
-  this.sourceUnit=sourceUnit;
+  super(source,sourceUnit);
 }

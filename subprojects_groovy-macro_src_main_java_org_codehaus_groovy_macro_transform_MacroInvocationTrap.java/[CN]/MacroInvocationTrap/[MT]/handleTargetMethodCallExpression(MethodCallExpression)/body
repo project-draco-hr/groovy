@@ -1,13 +1,11 @@
 {
-  if (!isBuildInvocation(macroCall,MacroTransformation.MACRO_METHOD)) {
-    return;
-  }
   final ClosureExpression closureExpression=getClosureArgument(macroCall);
   if (closureExpression == null) {
-    return;
+    return true;
   }
   if (closureExpression.getParameters() != null && closureExpression.getParameters().length > 0) {
     addError("Macro closure arguments are not allowed",closureExpression);
+    return true;
   }
   final MapExpression mapExpression=new MapExpression();
   (new CodeVisitorSupport(){
@@ -24,24 +22,24 @@
     }
   }
 ).visitClosureExpression(closureExpression);
-  String source=convertClosureToSource(this.source,closureExpression);
+  String source=convertClosureToSource(closureExpression);
   BlockStatement closureBlock=(BlockStatement)closureExpression.getCode();
   Boolean asIs=false;
   TupleExpression macroArguments=getMacroArguments(macroCall);
   if (macroArguments == null) {
-    return;
+    return true;
   }
   List<Expression> macroArgumentsExpressions=macroArguments.getExpressions();
   if (macroArgumentsExpressions.size() > 1) {
     Expression firstArgument=macroArgumentsExpressions.get(0);
     if (!(firstArgument instanceof ConstantExpression)) {
       addError("AsIs argument value should be constant(true or false)",firstArgument);
-      return;
+      return true;
     }
     ConstantExpression asIsConstantExpression=(ConstantExpression)firstArgument;
     if (!(asIsConstantExpression.getValue() instanceof Boolean)) {
       addError("AsIs argument value should be boolean",asIsConstantExpression);
-      return;
+      return true;
     }
     asIs=(Boolean)asIsConstantExpression.getValue();
   }
@@ -55,4 +53,5 @@
   macroCall.setSpreadSafe(false);
   macroCall.setSafe(false);
   macroCall.setImplicitThis(false);
+  return true;
 }

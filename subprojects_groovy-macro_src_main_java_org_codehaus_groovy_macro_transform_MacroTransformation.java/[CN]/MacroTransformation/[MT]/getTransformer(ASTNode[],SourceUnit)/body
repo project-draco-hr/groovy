@@ -1,0 +1,3 @@
+{
+  return new MacroInvocationTrap(sourceUnit.getSource(),sourceUnit);
+}
