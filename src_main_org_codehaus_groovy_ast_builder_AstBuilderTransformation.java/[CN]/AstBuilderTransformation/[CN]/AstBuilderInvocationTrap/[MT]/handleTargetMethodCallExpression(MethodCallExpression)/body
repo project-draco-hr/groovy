@@ -1,0 +1,12 @@
+{
+  ClosureExpression closureExpression=getClosureArgument(call);
+  List<Expression> otherArgs=getNonClosureArguments(call);
+  String source=convertClosureToSource(closureExpression);
+  otherArgs.add(new ConstantExpression(source));
+  call.setArguments(new ArgumentListExpression(otherArgs));
+  call.setMethod(new ConstantExpression("buildFromBlock"));
+  call.setSpreadSafe(false);
+  call.setSafe(false);
+  call.setImplicitThis(false);
+  return false;
+}

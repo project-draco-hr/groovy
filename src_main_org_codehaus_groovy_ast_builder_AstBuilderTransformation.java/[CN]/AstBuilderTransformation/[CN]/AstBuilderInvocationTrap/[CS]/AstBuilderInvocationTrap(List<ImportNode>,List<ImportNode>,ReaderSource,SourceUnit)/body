@@ -1,8 +1,5 @@
 {
-  if (source == null)   throw new IllegalArgumentException("Null: source");
-  if (sourceUnit == null)   throw new IllegalArgumentException("Null: sourceUnit");
-  this.source=source;
-  this.sourceUnit=sourceUnit;
+  super(source,sourceUnit);
   factoryTargets.add("org.codehaus.groovy.ast.builder.AstBuilder");
   if (imports != null) {
     for (    ImportNode importStatement : imports) {
