@@ -1,0 +1,9 @@
+{
+  if (node != null) {
+    pushContext(node);
+  }
+  super.visitPackage(node);
+  if (node != null) {
+    popContext();
+  }
+}

@@ -1,0 +1,9 @@
+{
+  TreeContext treeContext=treeContextStack.pop();
+  List<TreeContextAction> actions=treeContext.getOnPopHandlers();
+  for (  TreeContextAction contextAction : actions) {
+    contextAction.call(treeContext);
+  }
+  lastContext=treeContext;
+  return treeContext;
+}

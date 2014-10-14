@@ -1,0 +1,3 @@
+{
+  onPopHandlers.add(action);
+}

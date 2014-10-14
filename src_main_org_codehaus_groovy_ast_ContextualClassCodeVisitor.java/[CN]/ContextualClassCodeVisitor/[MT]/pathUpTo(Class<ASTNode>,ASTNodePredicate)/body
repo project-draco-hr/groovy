@@ -1,0 +1,29 @@
+{
+  List<TreeContext> path=new LinkedList<TreeContext>();
+  TreeContext current=lastContext;
+  boolean found=false;
+  while (current != null && !found) {
+    path.add(current);
+    ASTNode currentNode=current.node;
+    if (node == null) {
+      if (predicate.matches(currentNode)) {
+        found=true;
+      }
+    }
+ else {
+      if (predicate == null) {
+        if (currentNode == null || node == currentNode.getClass()) {
+          found=true;
+        }
+      }
+ else {
+        found=currentNode != null && node == currentNode.getClass() && predicate.matches(currentNode);
+      }
+    }
+    current=current.parent;
+  }
+  if (found) {
+    return path;
+  }
+  return Collections.emptyList();
+}

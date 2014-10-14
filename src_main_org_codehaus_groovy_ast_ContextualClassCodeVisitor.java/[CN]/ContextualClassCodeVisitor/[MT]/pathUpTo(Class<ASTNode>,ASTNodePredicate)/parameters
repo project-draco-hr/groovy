@@ -1,0 +1,2 @@
+Class<ASTNode> node
+ASTNodePredicate predicate

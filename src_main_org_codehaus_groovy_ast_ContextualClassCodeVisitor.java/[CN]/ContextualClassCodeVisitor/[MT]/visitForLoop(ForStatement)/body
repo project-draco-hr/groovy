@@ -1,0 +1,5 @@
+{
+  pushContext(forLoop);
+  super.visitForLoop(forLoop);
+  popContext();
+}

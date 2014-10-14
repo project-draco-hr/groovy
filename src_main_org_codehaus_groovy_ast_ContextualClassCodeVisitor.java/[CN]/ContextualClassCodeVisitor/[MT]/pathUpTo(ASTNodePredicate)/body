@@ -1,0 +1,3 @@
+{
+  return pathUpTo(null,predicate);
+}

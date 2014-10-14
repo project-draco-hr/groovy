@@ -1,0 +1,6 @@
+{
+  final StringBuilder sb=new StringBuilder("TreeContext{");
+  sb.append("node=").append(node != null ? node.getClass().getSimpleName() : "undefined");
+  sb.append('}');
+  return sb.toString();
+}

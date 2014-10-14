@@ -1,0 +1,5 @@
+{
+  pushContext(call);
+  super.visitConstructorCallExpression(call);
+  popContext();
+}

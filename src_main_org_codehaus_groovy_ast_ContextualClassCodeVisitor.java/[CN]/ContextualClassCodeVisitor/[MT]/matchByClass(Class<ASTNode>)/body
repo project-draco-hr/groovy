@@ -1,0 +1,7 @@
+{
+  ArrayList<ASTNodePredicate> result=new ArrayList<ASTNodePredicate>(classes.length);
+  for (  final Class<ASTNode> astNodeClass : classes) {
+    result.add(new MatchByClass(astNodeClass));
+  }
+  return result;
+}

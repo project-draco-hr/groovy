@@ -1,0 +1,5 @@
+{
+  pushContext(expression);
+  super.visitNotExpression(expression);
+  popContext();
+}

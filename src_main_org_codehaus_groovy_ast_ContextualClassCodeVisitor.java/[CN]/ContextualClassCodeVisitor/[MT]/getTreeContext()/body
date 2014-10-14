@@ -1,0 +1,3 @@
+{
+  return treeContextStack.isEmpty() ? null : treeContextStack.peek();
+}

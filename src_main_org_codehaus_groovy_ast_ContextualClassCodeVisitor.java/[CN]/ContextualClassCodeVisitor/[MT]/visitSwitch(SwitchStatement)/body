@@ -1,0 +1,5 @@
+{
+  pushContext(statement);
+  super.visitSwitch(statement);
+  popContext();
+}

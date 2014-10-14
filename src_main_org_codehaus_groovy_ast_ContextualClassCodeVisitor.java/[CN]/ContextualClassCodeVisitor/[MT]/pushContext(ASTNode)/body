@@ -1,0 +1,3 @@
+{
+  pushContext(getTreeContext().fork(node));
+}

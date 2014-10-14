@@ -1,0 +1,5 @@
+{
+  pushContext(expression);
+  super.visitMapExpression(expression);
+  popContext();
+}

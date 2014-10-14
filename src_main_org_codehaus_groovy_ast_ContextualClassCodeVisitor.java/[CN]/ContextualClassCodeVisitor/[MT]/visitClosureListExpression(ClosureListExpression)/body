@@ -1,0 +1,5 @@
+{
+  pushContext(cle);
+  super.visitClosureListExpression(cle);
+  popContext();
+}

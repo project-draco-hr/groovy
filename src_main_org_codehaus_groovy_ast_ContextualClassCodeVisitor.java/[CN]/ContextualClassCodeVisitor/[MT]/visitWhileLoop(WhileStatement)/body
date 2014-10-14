@@ -1,0 +1,5 @@
+{
+  pushContext(loop);
+  super.visitWhileLoop(loop);
+  popContext();
+}

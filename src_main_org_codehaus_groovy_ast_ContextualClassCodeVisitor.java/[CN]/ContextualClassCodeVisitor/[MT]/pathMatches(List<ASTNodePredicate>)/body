@@ -1,0 +1,15 @@
+{
+  List<TreeContext> path=new LinkedList<TreeContext>();
+  TreeContext current=lastContext.parent;
+  for (  ASTNodePredicate predicate : predicates) {
+    path.add(current);
+    if (current == null || !predicate.matches(current.node)) {
+      return Collections.emptyList();
+    }
+    current=current.parent;
+  }
+  if (!path.isEmpty()) {
+    path.add(0,lastContext);
+  }
+  return path;
+}
