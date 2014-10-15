@@ -1,0 +1,7 @@
+{
+  List<?> list=userdata.get(TreeContextKey.expression_replacement);
+  if (list.size() == 1) {
+    return (Expression)list.get(0);
+  }
+  return null;
+}
