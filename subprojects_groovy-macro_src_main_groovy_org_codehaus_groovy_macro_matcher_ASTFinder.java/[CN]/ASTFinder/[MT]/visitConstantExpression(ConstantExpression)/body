@@ -1,0 +1,4 @@
+{
+  super.visitConstantExpression(expression);
+  tryFind(ConstantExpression.class,expression);
+}

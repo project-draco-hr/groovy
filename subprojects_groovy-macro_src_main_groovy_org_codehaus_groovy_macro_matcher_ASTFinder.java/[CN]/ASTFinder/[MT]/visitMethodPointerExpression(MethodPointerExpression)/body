@@ -1,0 +1,4 @@
+{
+  super.visitMethodPointerExpression(expression);
+  tryFind(MethodPointerExpression.class,expression);
+}

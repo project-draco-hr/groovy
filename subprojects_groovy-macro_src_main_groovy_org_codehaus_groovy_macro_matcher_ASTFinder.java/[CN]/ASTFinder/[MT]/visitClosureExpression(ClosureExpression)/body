@@ -1,0 +1,4 @@
+{
+  super.visitClosureExpression(expression);
+  tryFind(ClosureExpression.class,expression);
+}

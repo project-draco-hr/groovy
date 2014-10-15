@@ -1,3 +1,0 @@
-{
-  return cloneWithDelegate(predicate,node).call();
-}

@@ -1,0 +1,4 @@
+{
+  super.visitMethodCallExpression(call);
+  tryFind(MethodCallExpression.class,call);
+}

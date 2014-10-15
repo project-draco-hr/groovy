@@ -1,0 +1,4 @@
+{
+  super.visitGStringExpression(expression);
+  tryFind(GStringExpression.class,expression);
+}

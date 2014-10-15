@@ -1,0 +1,4 @@
+{
+  super.visitPackage(node);
+  tryFind(PackageNode.class,node);
+}

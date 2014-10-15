@@ -1,0 +1,4 @@
+{
+  super.visitPropertyExpression(expression);
+  tryFind(PropertyExpression.class,expression);
+}

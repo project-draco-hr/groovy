@@ -1,0 +1,4 @@
+{
+  super.visitConstructorOrMethod(node,isConstructor);
+  tryFind(MethodNode.class,node);
+}

@@ -1,0 +1,4 @@
+{
+  super.visitClass(node);
+  tryFind(ClassNode.class,node);
+}

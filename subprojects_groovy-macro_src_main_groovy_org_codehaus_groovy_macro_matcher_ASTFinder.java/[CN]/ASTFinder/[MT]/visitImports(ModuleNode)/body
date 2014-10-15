@@ -1,0 +1,4 @@
+{
+  super.visitImports(node);
+  tryFind(ModuleNode.class,node);
+}

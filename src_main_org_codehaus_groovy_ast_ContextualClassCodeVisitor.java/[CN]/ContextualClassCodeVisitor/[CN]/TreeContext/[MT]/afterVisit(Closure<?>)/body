@@ -1,4 +1,0 @@
-{
-  Closure<?> clone=cloneWithDelegate(action,this);
-  afterVisit(DefaultGroovyMethods.asType(clone,TreeContextAction.class));
-}
