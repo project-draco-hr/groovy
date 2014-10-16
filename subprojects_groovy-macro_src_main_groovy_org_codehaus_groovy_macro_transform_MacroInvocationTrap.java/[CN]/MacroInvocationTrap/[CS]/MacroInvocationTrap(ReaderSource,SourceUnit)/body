@@ -1,4 +1,5 @@
 {
   super(source,sourceUnit);
   this.readerSource=source;
+  this.sourceUnit=sourceUnit;
 }

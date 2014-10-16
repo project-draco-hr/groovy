@@ -13,6 +13,13 @@
         macroCall.setSafe(false);
         macroCall.setImplicitThis(false);
         call.putNodeMetaData(MacroTransformation.class,macroCall);
+        List<ClassNode> classes=sourceUnit.getAST().getClasses();
+        for (Iterator<ClassNode> iterator=classes.iterator(); iterator.hasNext(); ) {
+          final ClassNode aClass=iterator.next();
+          if (aClass == type || type == aClass.getOuterClass()) {
+            iterator.remove();
+          }
+        }
       }
  catch (      Exception e) {
         e.printStackTrace();

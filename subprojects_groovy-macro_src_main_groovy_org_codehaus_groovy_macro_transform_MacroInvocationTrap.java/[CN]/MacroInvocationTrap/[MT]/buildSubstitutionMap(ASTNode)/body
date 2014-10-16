@@ -1,4 +1,5 @@
 {
+  final Map<MacroSubstitutionKey,ClosureExpression> map=new HashMap<MacroSubstitutionKey,ClosureExpression>();
   final MapExpression mapExpression=new MapExpression();
   ClassCodeVisitorSupport visitor=new ClassCodeVisitorSupport(){
     @Override protected SourceUnit getSourceUnit(){
@@ -19,8 +20,12 @@
         if (substitutionClosureExpression == null) {
           return;
         }
+        Statement code=substitutionClosureExpression.getCode();
+        if (code instanceof BlockStatement) {
+          ((BlockStatement)code).setVariableScope(null);
+        }
         MacroSubstitutionKey key=new MacroSubstitutionKey(call,expr.getLineNumber(),expr.getColumnNumber());
-        mapExpression.addMapEntryExpression(key.toConstructorCallExpression(),substitutionClosureExpression);
+        map.put(key,substitutionClosureExpression);
       }
     }
   }
@@ -30,6 +35,9 @@
   }
  else {
     expr.visit(visitor);
+  }
+  for (  Map.Entry<MacroSubstitutionKey,ClosureExpression> entry : map.entrySet()) {
+    mapExpression.addMapEntryExpression(entry.getKey().toConstructorCallExpression(),entry.getValue());
   }
   return mapExpression;
 }
