@@ -1,0 +1,4 @@
+{
+  super.visitSynchronizedStatement(statement);
+  trn.visitSynchronizedStatement(statement);
+}

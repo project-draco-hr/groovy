@@ -7,21 +7,7 @@
     addError("Macro closure arguments are not allowed",closureExpression);
     return true;
   }
-  final MapExpression mapExpression=new MapExpression();
-  (new CodeVisitorSupport(){
-    @Override public void visitMethodCallExpression(    MethodCallExpression call){
-      super.visitMethodCallExpression(call);
-      if (isBuildInvocation(call,MacroTransformation.DOLLAR_VALUE)) {
-        ClosureExpression substitutionClosureExpression=getClosureArgument(call);
-        if (substitutionClosureExpression == null) {
-          return;
-        }
-        MacroSubstitutionKey key=new MacroSubstitutionKey(call,closureExpression.getLineNumber(),closureExpression.getColumnNumber());
-        mapExpression.addMapEntryExpression(key.toConstructorCallExpression(),substitutionClosureExpression);
-      }
-    }
-  }
-).visitClosureExpression(closureExpression);
+  final MapExpression mapExpression=buildSubstitutionMap(closureExpression);
   String source=convertClosureToSource(closureExpression);
   BlockStatement closureBlock=(BlockStatement)closureExpression.getCode();
   Boolean asIs=false;

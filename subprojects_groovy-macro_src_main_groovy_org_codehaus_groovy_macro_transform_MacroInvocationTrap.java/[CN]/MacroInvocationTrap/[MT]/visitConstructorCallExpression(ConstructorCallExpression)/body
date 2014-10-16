@@ -1,0 +1,24 @@
+{
+  ClassNode type=call.getType();
+  if (type instanceof InnerClassNode) {
+    if (((InnerClassNode)type).isAnonymous() && MACROCLASS_TYPE.getNameWithoutPackage().equals(type.getSuperClass().getNameWithoutPackage())) {
+      try {
+        String source=convertInnerClassToSource(type);
+        List<Expression> macroArgumentsExpressions=new LinkedList<Expression>();
+        macroArgumentsExpressions.add(new ConstantExpression(source));
+        macroArgumentsExpressions.add(buildSubstitutionMap(type));
+        macroArgumentsExpressions.add(new ClassExpression(ClassHelper.make(ClassNode.class)));
+        MethodCallExpression macroCall=new MethodCallExpression(new PropertyExpression(new ClassExpression(ClassHelper.makeWithoutCaching(MacroBuilder.class,false)),"INSTANCE"),MacroTransformation.MACRO_METHOD,new ArgumentListExpression(macroArgumentsExpressions));
+        macroCall.setSpreadSafe(false);
+        macroCall.setSafe(false);
+        macroCall.setImplicitThis(false);
+        call.putNodeMetaData(MacroTransformation.class,macroCall);
+      }
+ catch (      Exception e) {
+        e.printStackTrace();
+      }
+      return;
+    }
+  }
+  super.visitConstructorCallExpression(call);
+}

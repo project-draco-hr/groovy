@@ -1,0 +1,4 @@
+{
+  super.visitNotExpression(expression);
+  trn.visitNotExpression(expression);
+}

@@ -1,0 +1,4 @@
+{
+  super.visitConstantExpression(expression);
+  trn.visitConstantExpression(expression);
+}

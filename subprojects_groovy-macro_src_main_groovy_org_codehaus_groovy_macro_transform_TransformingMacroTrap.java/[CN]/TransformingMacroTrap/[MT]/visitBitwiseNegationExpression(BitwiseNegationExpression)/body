@@ -1,0 +1,4 @@
+{
+  super.visitBitwiseNegationExpression(expression);
+  trn.visitBitwiseNegationExpression(expression);
+}

@@ -1,0 +1,4 @@
+{
+  super.visitThrowStatement(statement);
+  trn.visitThrowStatement(statement);
+}

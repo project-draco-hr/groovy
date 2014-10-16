@@ -1,0 +1,4 @@
+{
+  super.visitPropertyExpression(expression);
+  trn.visitPropertyExpression(expression);
+}

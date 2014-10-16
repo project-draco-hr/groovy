@@ -1,0 +1,4 @@
+{
+  super.visitAssertStatement(statement);
+  trn.visitAssertStatement(statement);
+}

@@ -1,3 +1,18 @@
 {
-  return new MacroInvocationTrap(sourceUnit.getSource(),sourceUnit);
+  final ClassCodeExpressionTransformer trn=new ClassCodeExpressionTransformer(){
+    @Override protected SourceUnit getSourceUnit(){
+      return sourceUnit;
+    }
+    @Override public Expression transform(    final Expression exp){
+      if (exp instanceof ConstructorCallExpression) {
+        MethodCallExpression call=exp.getNodeMetaData(MacroTransformation.class);
+        if (call != null) {
+          return call;
+        }
+      }
+      return super.transform(exp);
+    }
+  }
+;
+  return new TransformingMacroTrap(sourceUnit,trn);
 }

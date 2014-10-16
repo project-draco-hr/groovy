@@ -1,0 +1,5 @@
+{
+  String source=GeneralUtils.convertASTToSource(readerSource,type);
+  source=source.substring(source.indexOf('{') + 1,source.lastIndexOf('}') - 1);
+  return source;
+}

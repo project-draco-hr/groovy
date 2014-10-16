@@ -1,0 +1,35 @@
+{
+  final MapExpression mapExpression=new MapExpression();
+  ClassCodeVisitorSupport visitor=new ClassCodeVisitorSupport(){
+    @Override protected SourceUnit getSourceUnit(){
+      return null;
+    }
+    @Override public void visitClass(    final ClassNode node){
+      super.visitClass(node);
+      Iterator<InnerClassNode> it=node.getInnerClasses();
+      while (it.hasNext()) {
+        InnerClassNode next=it.next();
+        visitClass(next);
+      }
+    }
+    @Override public void visitMethodCallExpression(    MethodCallExpression call){
+      super.visitMethodCallExpression(call);
+      if (isBuildInvocation(call,MacroTransformation.DOLLAR_VALUE)) {
+        ClosureExpression substitutionClosureExpression=getClosureArgument(call);
+        if (substitutionClosureExpression == null) {
+          return;
+        }
+        MacroSubstitutionKey key=new MacroSubstitutionKey(call,expr.getLineNumber(),expr.getColumnNumber());
+        mapExpression.addMapEntryExpression(key.toConstructorCallExpression(),substitutionClosureExpression);
+      }
+    }
+  }
+;
+  if (expr instanceof ClassNode) {
+    visitor.visitClass((ClassNode)expr);
+  }
+ else {
+    expr.visit(visitor);
+  }
+  return mapExpression;
+}

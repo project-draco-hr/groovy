@@ -1,0 +1,4 @@
+{
+  super.visitSpreadMapExpression(expression);
+  trn.visitSpreadMapExpression(expression);
+}

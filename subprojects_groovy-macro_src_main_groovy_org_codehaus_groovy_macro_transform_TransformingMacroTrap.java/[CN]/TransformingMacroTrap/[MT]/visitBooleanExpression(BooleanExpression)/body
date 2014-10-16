@@ -1,0 +1,4 @@
+{
+  super.visitBooleanExpression(expression);
+  trn.visitBooleanExpression(expression);
+}
