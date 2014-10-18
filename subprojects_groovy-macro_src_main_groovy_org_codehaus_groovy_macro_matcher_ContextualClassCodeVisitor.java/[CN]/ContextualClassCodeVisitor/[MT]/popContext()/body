@@ -22,7 +22,6 @@
       }
     }
 ;
-    parentNode.visit(trn);
   }
   return treeContext;
 }

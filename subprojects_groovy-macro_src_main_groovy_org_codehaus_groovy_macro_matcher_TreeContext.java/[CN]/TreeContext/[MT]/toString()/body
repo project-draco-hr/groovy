@@ -1,12 +1,12 @@
 {
   final StringBuilder sb=new StringBuilder("TreeContext{");
-  sb.append("node=").append(node != null ? node.getClass().getSimpleName() : "undefined");
+  sb.append("node=").append(dumpNode());
   TreeContext p=parent;
   if (p != null) {
     sb.append(", path=");
   }
   while (p != null) {
-    sb.append(p.node != null ? p.node.getClass().getSimpleName() : "undefined");
+    sb.append(p.dumpNode());
     sb.append("<-");
     p=p.parent;
   }
