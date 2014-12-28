@@ -5,9 +5,6 @@
     if (property.isStatic() || excludes.contains(propertyName) || !includes.isEmpty() && !includes.contains(propertyName))     continue;
     properties.add(property);
   }
-  for (  String name : includes) {
-    checkKnownProperty(annotation,name,properties);
-  }
   for (  PropertyNode pNode : properties) {
     checkComparable(pNode);
   }

@@ -1,0 +1,8 @@
+{
+  List<FieldNode> fList=getInstanceNonPropertyFields(cNode);
+  List<String> result=new ArrayList<String>(fList.size());
+  for (  FieldNode fNode : fList) {
+    result.add(fNode.getName());
+  }
+  return result;
+}

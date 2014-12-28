@@ -1,0 +1,8 @@
+{
+  List<PropertyNode> pList=getInstanceProperties(cNode);
+  List<String> result=new ArrayList<String>(pList.size());
+  for (  PropertyNode pNode : pList) {
+    result.add(pNode.getName());
+  }
+  return result;
+}
