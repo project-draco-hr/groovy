@@ -1,0 +1,6 @@
+ClassNode cNode
+List<String> propertyNameList
+String listName
+AnnotationNode anno
+String typeName
+boolean includeFields

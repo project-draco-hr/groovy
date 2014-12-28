@@ -1,0 +1,25 @@
+{
+  if (propertyNameList == null || propertyNameList.isEmpty()) {
+    return true;
+  }
+  final List<String> pNames=getInstancePropertyNames(cNode);
+  boolean result=true;
+  if (includeFields) {
+    final List<String> fNames=getInstanceNonPropertyFieldNames(cNode);
+    for (    String pName : propertyNameList) {
+      if (!pNames.contains(pName) && !fNames.contains(pName)) {
+        addError("Error during " + typeName + " processing: '"+ listName+ "' property or field '"+ pName+ "' does not exist.",anno);
+        result=false;
+      }
+    }
+  }
+ else {
+    for (    String pName : propertyNameList) {
+      if (!pNames.contains(pName)) {
+        addError("Error during " + typeName + " processing: '"+ listName+ "' property '"+ pName+ "' does not exist.",anno);
+        result=false;
+      }
+    }
+  }
+  return result;
+}
