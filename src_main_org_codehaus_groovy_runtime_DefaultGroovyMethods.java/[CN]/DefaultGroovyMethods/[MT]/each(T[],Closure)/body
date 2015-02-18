@@ -1,0 +1,6 @@
+{
+  for (  T item : self) {
+    closure.call(item);
+  }
+  return self;
+}

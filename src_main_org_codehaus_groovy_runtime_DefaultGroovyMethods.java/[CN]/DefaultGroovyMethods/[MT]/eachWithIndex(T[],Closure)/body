@@ -1,0 +1,10 @@
+{
+  final Object[] args=new Object[2];
+  int counter=0;
+  for (  T item : self) {
+    args[0]=item;
+    args[1]=counter++;
+    closure.call(args);
+  }
+  return self;
+}

@@ -4,7 +4,10 @@
     char[] chars=new char[1];
     while ((c=self.read()) != -1) {
       chars[0]=(char)c;
-      writer.write((String)closure.call(new String(chars)));
+      Object o=closure.call(new String(chars));
+      if (o != null) {
+        writer.write(o.toString());
+      }
     }
     writer.flush();
     Writer temp2=writer;
