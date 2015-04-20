@@ -1,0 +1,10 @@
+{
+  for (  PropertyNode pNode : cNode.getProperties()) {
+    if (includeStatic || !pNode.isStatic()) {
+      if (!names.contains(pNode.getName())) {
+        result.add(pNode);
+        names.add(pNode.getName());
+      }
+    }
+  }
+}

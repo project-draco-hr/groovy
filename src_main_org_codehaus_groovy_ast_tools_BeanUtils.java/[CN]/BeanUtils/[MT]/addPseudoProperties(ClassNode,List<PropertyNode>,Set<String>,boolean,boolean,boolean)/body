@@ -1,0 +1,45 @@
+{
+  if (!includePseudoGetters)   return;
+  List<MethodNode> methods=cNode.getAllDeclaredMethods();
+  ClassNode node=cNode.getSuperClass();
+  if (includeSuperProperties) {
+    while (node != null) {
+      for (      MethodNode next : node.getAllDeclaredMethods()) {
+        if (!next.isPrivate()) {
+          methods.add(next);
+        }
+      }
+      node=node.getSuperClass();
+    }
+  }
+  for (  MethodNode mNode : methods) {
+    if (!includeStatic && mNode.isStatic())     continue;
+    String name=mNode.getName();
+    if ((name.length() <= 3 && !name.startsWith(IS_PREFIX)) || name.equals("getClass") || name.equals("getMetaClass")|| name.equals("getDeclaringClass")) {
+      continue;
+    }
+    if (mNode.getDeclaringClass() != cNode && mNode.isPrivate()) {
+      continue;
+    }
+    int paramCount=mNode.getParameters().length;
+    ClassNode returnType=mNode.getReturnType();
+    if (paramCount == 0) {
+      if (name.startsWith(GET_PREFIX)) {
+        String propName=decapitalize(name.substring(3));
+        if (!names.contains(propName)) {
+          result.add(new PropertyNode(propName,mNode.getModifiers(),returnType,cNode,null,mNode.getCode(),null));
+          names.add(propName);
+        }
+      }
+ else {
+        if (name.startsWith(IS_PREFIX) && returnType.equals(ClassHelper.boolean_TYPE)) {
+          String propName=decapitalize(name.substring(2));
+          if (!names.contains(propName)) {
+            names.add(propName);
+            result.add(new PropertyNode(propName,mNode.getModifiers(),returnType,cNode,null,mNode.getCode(),null));
+          }
+        }
+      }
+    }
+  }
+}

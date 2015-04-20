@@ -7,4 +7,5 @@ boolean includeNames
 boolean ignoreNulls
 boolean includePackage
 boolean includeSuperProperties
+boolean allProperties
 BlockStatement body

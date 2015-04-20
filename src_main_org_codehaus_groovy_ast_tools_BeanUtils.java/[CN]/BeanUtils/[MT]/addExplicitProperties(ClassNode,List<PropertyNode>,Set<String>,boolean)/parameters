@@ -1,0 +1,4 @@
+ClassNode cNode
+List<PropertyNode> result
+Set<String> names
+boolean includeStatic

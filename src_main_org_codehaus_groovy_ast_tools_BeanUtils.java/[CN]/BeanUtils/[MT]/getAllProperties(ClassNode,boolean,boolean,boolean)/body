@@ -1,0 +1,12 @@
+{
+  ClassNode node=type;
+  List<PropertyNode> result=new ArrayList<PropertyNode>();
+  Set<String> names=new HashSet<String>();
+  while (node != null) {
+    addExplicitProperties(node,result,names,includeStatic);
+    if (!includeSuperProperties)     break;
+    node=node.getSuperClass();
+  }
+  addPseudoProperties(type,result,names,includeStatic,includePseudoGetters,includeSuperProperties);
+  return result;
+}
