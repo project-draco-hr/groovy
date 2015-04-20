@@ -1,0 +1,3 @@
+{
+  testPropertiesFromGetterSetter("GeneratePropertyFromGetSet","_public_get_private_set shouldnt be present","<a href=\"#_public_get_private_set\">_public_get_private_set</a>",false);
+}

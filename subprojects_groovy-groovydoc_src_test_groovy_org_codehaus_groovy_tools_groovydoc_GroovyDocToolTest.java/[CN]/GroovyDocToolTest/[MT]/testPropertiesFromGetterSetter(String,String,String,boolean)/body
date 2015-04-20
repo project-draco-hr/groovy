@@ -1,0 +1,12 @@
+{
+  htmlTool=makeHtmltool(new ArrayList<LinkArgument>(),new Properties());
+  List<String> srcList=new ArrayList<String>();
+  String base="org/codehaus/groovy/tools/groovydoc/testfiles/";
+  srcList.add(base + fileName + ".groovy");
+  htmlTool.add(srcList);
+  MockOutputTool output=new MockOutputTool();
+  htmlTool.renderToOutput(output,MOCK_DIR);
+  String exampleClass=output.getText(MOCK_DIR + "/" + base+ fileName+ ".html");
+  if (isTrue)   assertTrue(assertMessage,exampleClass.contains(expected));
+ else   assertFalse(assertMessage,exampleClass.contains(expected));
+}

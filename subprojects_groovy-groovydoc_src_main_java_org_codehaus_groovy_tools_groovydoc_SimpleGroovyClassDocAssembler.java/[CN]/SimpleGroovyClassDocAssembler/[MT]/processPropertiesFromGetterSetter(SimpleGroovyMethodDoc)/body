@@ -1,0 +1,34 @@
+{
+  String methodName=currentMethodDoc.name();
+  SimpleGroovyClassDoc classDoc=getCurrentClassDoc();
+  GroovyMethodDoc methods[]=classDoc.methods();
+  String setOrGet=methodName.substring(0,Math.min(methodName.length(),3));
+  if (setOrGet.equals("set") || setOrGet.equals("get") || setOrGet.contains("is")) {
+    String expectedMethod=null;
+    if (setOrGet.equals("set") && (currentMethodDoc.parameters().length >= 1 && !currentMethodDoc.parameters()[0].typeName().equals("boolean")))     expectedMethod="get" + methodName.substring(3);
+ else     if (setOrGet.equals("get") && !currentMethodDoc.returnType().typeName().equals("boolean"))     expectedMethod="set" + methodName.substring(3);
+ else     if (setOrGet.contains("is"))     expectedMethod="set" + methodName.substring(2);
+ else     expectedMethod="is" + methodName.substring(3);
+    for (    GroovyMethodDoc methodDoc : methods) {
+      if (methodDoc.name().equals(expectedMethod)) {
+        String fieldName=null;
+        if (expectedMethod.contains("set") && methodName.substring(0,2).equals("is"))         fieldName=methodName.substring(2);
+ else         fieldName=methodName.substring(3);
+        fieldName=fieldName.substring(0,1).toLowerCase() + fieldName.substring(1);
+        SimpleGroovyFieldDoc currentFieldDoc=new SimpleGroovyFieldDoc(fieldName,classDoc);
+        if (expectedMethod.contains("set") && methodDoc.parameters().length >= 1) {
+          String typeName=methodDoc.parameters()[0].typeName();
+          currentFieldDoc.setType(new SimpleGroovyType(typeName));
+        }
+ else {
+          currentFieldDoc.setType(methodDoc.returnType());
+        }
+        if (methodDoc.isPublic() && currentMethodDoc.isPublic()) {
+          classDoc.addProperty(currentFieldDoc);
+          break;
+        }
+ else         continue;
+      }
+    }
+  }
+}

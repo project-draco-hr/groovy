@@ -1,0 +1,3 @@
+{
+  testPropertiesFromGetterSetter("GeneratePropertyFromGetSet","testBoolean properties should be there","<a href=\"#testBoolean\">testBoolean</a>",true);
+}

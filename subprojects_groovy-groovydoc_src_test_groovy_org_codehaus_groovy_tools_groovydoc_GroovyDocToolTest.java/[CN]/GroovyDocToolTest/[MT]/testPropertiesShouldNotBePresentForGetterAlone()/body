@@ -1,0 +1,3 @@
+{
+  testPropertiesFromGetterSetter("GeneratePropertyFromGetSet","shouldNotBePresent properties shouldnt be there","<a href=\"#shouldNotBePresent\">shouldNotBePresent</a>",false);
+}

@@ -1,0 +1,3 @@
+{
+  testPropertiesFromGetterSetter("GeneratePropertyFromGetSet","int properties should be there","<a href=\"#int\">int</a>",true);
+}
