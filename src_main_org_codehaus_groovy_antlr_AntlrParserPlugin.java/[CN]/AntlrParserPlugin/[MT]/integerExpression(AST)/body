@@ -1,6 +1,6 @@
 {
   String text=node.getText();
-  Object number=Numbers.parseInteger(text);
+  Object number=Numbers.parseInteger(node,text);
   boolean keepPrimitive=number instanceof Integer || number instanceof Long;
   ConstantExpression constantExpression=new ConstantExpression(number,keepPrimitive);
   configureAST(constantExpression,node);

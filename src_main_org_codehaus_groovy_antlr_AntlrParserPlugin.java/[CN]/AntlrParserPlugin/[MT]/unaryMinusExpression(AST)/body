@@ -11,7 +11,7 @@ return constantExpression;
 case NUM_BIG_INT:
 case NUM_INT:
 case NUM_LONG:
-ConstantExpression constantLongExpression=new ConstantExpression(Numbers.parseInteger("-" + text));
+ConstantExpression constantLongExpression=new ConstantExpression(Numbers.parseInteger(unaryMinusExpr,"-" + text));
 configureAST(constantLongExpression,unaryMinusExpr);
 return constantLongExpression;
 default :
