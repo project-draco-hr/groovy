@@ -17,7 +17,5 @@
       return method;
     }
   }
-synchronized (aMethod.cachedClass) {
-    return aMethod;
-  }
+  return aMethod;
 }
