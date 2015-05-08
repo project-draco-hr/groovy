@@ -1,0 +1,3 @@
+ClassNode annotatedNode
+Expression receiver
+PropertyNode pNode

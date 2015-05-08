@@ -1,0 +1,12 @@
+{
+  ClassNode owner=pNode.getDeclaringClass();
+  if (annotatedNode.equals(owner)) {
+    String getterName="get" + MetaClassHelper.capitalize(pNode.getName());
+    boolean existingExplicitGetter=annotatedNode.getMethod(getterName,Parameter.EMPTY_ARRAY) != null;
+    if (ClassHelper.boolean_TYPE.equals(pNode.getOriginType()) && !existingExplicitGetter) {
+      getterName="is" + MetaClassHelper.capitalize(pNode.getName());
+    }
+    return callX(receiver,getterName);
+  }
+  return propX(receiver,pNode.getName());
+}

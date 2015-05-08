@@ -1,0 +1,3 @@
+{
+  return eqX(getterThisX(annotatedNode,pNode),getterX(other.getOriginType(),other,pNode));
+}

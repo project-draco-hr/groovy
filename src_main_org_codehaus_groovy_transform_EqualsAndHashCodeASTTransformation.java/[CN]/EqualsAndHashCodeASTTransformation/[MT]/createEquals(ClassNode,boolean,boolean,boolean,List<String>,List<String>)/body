@@ -24,10 +24,10 @@
     if (shouldSkip(pNode.getName(),excludes,includes))     continue;
     boolean canBeSelf=StaticTypeCheckingSupport.implementsInterfaceOrIsSubclassOf(pNode.getOriginType(),cNode);
     if (!canBeSelf) {
-      body.addStatement(ifS(notX(hasEqualPropertyX(pNode,otherTyped)),returnS(constX(Boolean.FALSE,true))));
+      body.addStatement(ifS(notX(hasEqualPropertyX(otherTyped.getOriginType(),pNode,otherTyped)),returnS(constX(Boolean.FALSE,true))));
     }
  else {
-      body.addStatement(ifS(notX(hasSamePropertyX(pNode,otherTyped)),ifElseS(differentSelfRecursivePropertyX(pNode,otherTyped),returnS(constX(Boolean.FALSE,true)),ifS(notX(bothSelfRecursivePropertyX(pNode,otherTyped)),ifS(notX(hasEqualPropertyX(pNode,otherTyped)),returnS(constX(Boolean.FALSE,true)))))));
+      body.addStatement(ifS(notX(hasSamePropertyX(pNode,otherTyped)),ifElseS(differentSelfRecursivePropertyX(pNode,otherTyped),returnS(constX(Boolean.FALSE,true)),ifS(notX(bothSelfRecursivePropertyX(pNode,otherTyped)),ifS(notX(hasEqualPropertyX(otherTyped.getOriginType(),pNode,otherTyped)),returnS(constX(Boolean.FALSE,true)))))));
     }
   }
   List<FieldNode> fList=new ArrayList<FieldNode>();
