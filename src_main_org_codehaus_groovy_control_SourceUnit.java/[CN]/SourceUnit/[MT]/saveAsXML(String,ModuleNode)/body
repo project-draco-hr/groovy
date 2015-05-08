@@ -1,5 +1,5 @@
 {
-  XStream xstream=new XStream();
+  XStream xstream=new XStream(new StaxDriver());
   try {
     xstream.toXML(ast,new FileWriter(name + ".xml"));
     System.out.println("Written AST to " + name + ".xml");
