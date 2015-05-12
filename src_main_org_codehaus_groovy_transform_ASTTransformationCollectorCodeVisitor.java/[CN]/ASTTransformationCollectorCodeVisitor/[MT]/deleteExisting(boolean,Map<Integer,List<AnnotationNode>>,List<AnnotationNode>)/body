@@ -1,0 +1,18 @@
+{
+  for (  AnnotationNode replacement : replacements) {
+    for (    Integer key : existingMap.keySet()) {
+      List<AnnotationNode> annotationNodes=new ArrayList<AnnotationNode>(existingMap.get(key));
+      Iterator<AnnotationNode> iterator=annotationNodes.iterator();
+      while (iterator.hasNext()) {
+        AnnotationNode existing=iterator.next();
+        if (replacement.getClassNode().getName().equals(existing.getClassNode().getName())) {
+          if (mergeParams) {
+            mergeParameters(replacement,existing);
+          }
+          iterator.remove();
+        }
+      }
+      existingMap.put(key,annotationNodes);
+    }
+  }
+}

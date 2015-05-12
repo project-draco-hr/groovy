@@ -1,0 +1,3 @@
+boolean mergeParams
+Map<Integer,List<AnnotationNode>> existingMap
+List<AnnotationNode> replacements

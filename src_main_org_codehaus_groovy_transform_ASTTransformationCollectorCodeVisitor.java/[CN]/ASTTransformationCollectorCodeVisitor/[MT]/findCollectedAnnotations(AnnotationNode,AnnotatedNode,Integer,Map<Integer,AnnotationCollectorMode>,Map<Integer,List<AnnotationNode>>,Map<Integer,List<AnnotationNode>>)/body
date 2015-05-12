@@ -1,8 +1,12 @@
 {
   ClassNode classNode=aliasNode.getClassNode();
-  boolean ret=false;
   for (  AnnotationNode annotation : classNode.getAnnotations()) {
     if (annotation.getClassNode().getName().equals(AnnotationCollector.class.getName())) {
+      AnnotationCollectorMode mode=getMode(annotation);
+      if (mode == null) {
+        mode=AnnotationCollectorMode.DUPLICATE;
+      }
+      modes.put(index,mode);
       Expression processorExp=annotation.getMember("processor");
       AnnotationCollectorTransform act=null;
       assertStringConstant(processorExp);
@@ -24,9 +28,13 @@ catch (          IllegalAccessException e) {
  else {
         act=new AnnotationCollectorTransform();
       }
-      if (act != null)       collected.addAll(act.visit(annotation,aliasNode,origin,source));
-      ret=true;
+      if (act != null) {
+        replacements.put(index,act.visit(annotation,aliasNode,origin,source));
+        return;
+      }
     }
   }
-  return ret;
+  if (!replacements.containsKey(index)) {
+    existing.put(index,Collections.singletonList(aliasNode));
+  }
 }

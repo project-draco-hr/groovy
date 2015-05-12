@@ -1,0 +1,17 @@
+{
+switch (mode) {
+case PREFER_COLLECTOR:
+    deleteExisting(false,existing,replacements);
+  break;
+case PREFER_COLLECTOR_MERGED:
+deleteExisting(true,existing,replacements);
+break;
+case PREFER_EXPLICIT:
+deleteReplacement(false,existing,replacements);
+break;
+case PREFER_EXPLICIT_MERGED:
+deleteReplacement(true,existing,replacements);
+break;
+default :
+}
+}

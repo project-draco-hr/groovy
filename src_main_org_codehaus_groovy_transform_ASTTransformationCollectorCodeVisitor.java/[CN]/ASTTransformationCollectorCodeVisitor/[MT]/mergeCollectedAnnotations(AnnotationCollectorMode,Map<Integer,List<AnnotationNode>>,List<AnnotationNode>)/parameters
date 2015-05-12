@@ -1,0 +1,3 @@
+AnnotationCollectorMode mode
+Map<Integer,List<AnnotationNode>> existing
+List<AnnotationNode> replacements

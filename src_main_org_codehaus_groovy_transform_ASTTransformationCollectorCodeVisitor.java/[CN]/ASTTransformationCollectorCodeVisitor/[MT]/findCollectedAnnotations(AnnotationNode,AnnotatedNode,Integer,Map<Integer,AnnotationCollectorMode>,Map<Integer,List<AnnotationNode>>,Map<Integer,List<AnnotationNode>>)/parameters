@@ -1,0 +1,6 @@
+AnnotationNode aliasNode
+AnnotatedNode origin
+Integer index
+Map<Integer,AnnotationCollectorMode> modes
+Map<Integer,List<AnnotationNode>> existing
+Map<Integer,List<AnnotationNode>> replacements

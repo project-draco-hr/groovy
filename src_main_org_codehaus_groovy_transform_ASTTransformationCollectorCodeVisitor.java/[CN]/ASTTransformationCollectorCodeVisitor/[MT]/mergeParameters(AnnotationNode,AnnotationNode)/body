@@ -1,0 +1,7 @@
+{
+  for (  String name : from.getMembers().keySet()) {
+    if (to.getMember(name) == null) {
+      to.setMember(name,from.getMember(name));
+    }
+  }
+}

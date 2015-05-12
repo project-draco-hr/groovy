@@ -1,0 +1,20 @@
+{
+  Iterator<AnnotationNode> nodeIterator=replacements.iterator();
+  while (nodeIterator.hasNext()) {
+    boolean remove=false;
+    AnnotationNode replacement=nodeIterator.next();
+    for (    Integer key : existingMap.keySet()) {
+      for (      AnnotationNode existing : existingMap.get(key)) {
+        if (replacement.getClassNode().getName().equals(existing.getClassNode().getName())) {
+          if (mergeParams) {
+            mergeParameters(existing,replacement);
+          }
+          remove=true;
+        }
+      }
+    }
+    if (remove) {
+      nodeIterator.remove();
+    }
+  }
+}

@@ -1,11 +1,23 @@
 {
   super.visitAnnotations(node);
-  List<AnnotationNode> collected=new ArrayList<AnnotationNode>();
-  for (Iterator<AnnotationNode> it=node.getAnnotations().iterator(); it.hasNext(); ) {
-    AnnotationNode annotation=it.next();
-    if (addCollectedAnnotations(collected,annotation,node))     it.remove();
+  Map<Integer,List<AnnotationNode>> existing=new TreeMap<Integer,List<AnnotationNode>>();
+  Map<Integer,List<AnnotationNode>> replacements=new LinkedHashMap<Integer,List<AnnotationNode>>();
+  Map<Integer,AnnotationCollectorMode> modes=new LinkedHashMap<Integer,AnnotationCollectorMode>();
+  int index=0;
+  for (  AnnotationNode annotation : node.getAnnotations()) {
+    findCollectedAnnotations(annotation,node,index,modes,existing,replacements);
+    index++;
   }
-  node.getAnnotations().addAll(collected);
+  for (  Integer replacementIndex : replacements.keySet()) {
+    mergeCollectedAnnotations(modes.get(replacementIndex),existing,replacements.get(replacementIndex));
+    existing.put(replacementIndex,replacements.get(replacementIndex));
+  }
+  List<AnnotationNode> mergedList=new ArrayList<AnnotationNode>();
+  for (  List<AnnotationNode> next : existing.values()) {
+    mergedList.addAll(next);
+  }
+  node.getAnnotations().clear();
+  node.getAnnotations().addAll(mergedList);
   for (  AnnotationNode annotation : node.getAnnotations()) {
     Annotation transformClassAnnotation=getTransformClassAnnotation(annotation.getClassNode());
     if (transformClassAnnotation == null) {
