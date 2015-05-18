@@ -1,5 +1,0 @@
-{
-  Parameter param=new Parameter(fNode.getType(),name);
-  param.setInitialExpression(providedOrDefaultInitialValue(fNode));
-  return param;
-}

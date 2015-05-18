@@ -1,0 +1,4 @@
+FieldNode fNode
+String name
+boolean defaults
+AbstractASTTransformation xform

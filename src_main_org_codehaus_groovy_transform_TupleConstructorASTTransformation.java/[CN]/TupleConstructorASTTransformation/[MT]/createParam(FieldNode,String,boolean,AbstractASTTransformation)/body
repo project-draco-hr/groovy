@@ -1,0 +1,12 @@
+{
+  Parameter param=new Parameter(fNode.getType(),name);
+  if (defaults) {
+    param.setInitialExpression(providedOrDefaultInitialValue(fNode));
+  }
+ else {
+    if (fNode.getInitialExpression() != null) {
+      xform.addError("Error during " + MY_TYPE_NAME + " processing, default value processing disabled but default value found for '"+ fNode.getName()+ "'",fNode);
+    }
+  }
+  return param;
+}
