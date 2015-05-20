@@ -1,0 +1,10 @@
+ClassNode cNode
+boolean includeFields
+boolean includeProperties
+boolean includeSuperProperties
+boolean useSetters
+List<String> excludes
+List<String> includes
+ClosureExpression pre
+ClosureExpression post
+SourceUnit source

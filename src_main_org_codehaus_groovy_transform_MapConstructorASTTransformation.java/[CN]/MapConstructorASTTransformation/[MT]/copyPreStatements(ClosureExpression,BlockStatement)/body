@@ -1,0 +1,22 @@
+{
+  Statement preCode=pre.getCode();
+  if (preCode instanceof BlockStatement) {
+    BlockStatement block=(BlockStatement)preCode;
+    List<Statement> statements=block.getStatements();
+    for (int i=0; i < statements.size(); i++) {
+      Statement statement=statements.get(i);
+      if (i == 0 && statement instanceof ExpressionStatement) {
+        ExpressionStatement es=(ExpressionStatement)statement;
+        Expression preExp=es.getExpression();
+        if (preExp instanceof MethodCallExpression) {
+          MethodCallExpression mce=(MethodCallExpression)preExp;
+          String name=mce.getMethodAsString();
+          if ("super".equals(name)) {
+            es.setExpression(new ConstructorCallExpression(ClassNode.SUPER,mce.getArguments()));
+          }
+        }
+      }
+      body.addStatement(statement);
+    }
+  }
+}

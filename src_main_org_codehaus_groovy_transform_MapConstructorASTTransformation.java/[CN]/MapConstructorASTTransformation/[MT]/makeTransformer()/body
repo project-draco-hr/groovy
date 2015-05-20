@@ -1,0 +1,23 @@
+{
+  return new ClassCodeExpressionTransformer(){
+    @Override public Expression transform(    Expression exp){
+      if (exp instanceof ClosureExpression) {
+        ClosureExpression ce=(ClosureExpression)exp;
+        ce.getCode().visit(this);
+      }
+ else       if (exp instanceof VariableExpression) {
+        VariableExpression ve=(VariableExpression)exp;
+        if (ve.getName().equals("args") && ve.getAccessedVariable() instanceof DynamicVariable) {
+          VariableExpression newVe=new VariableExpression(new Parameter(MAP_TYPE,"args"));
+          newVe.setSourcePosition(ve);
+          return newVe;
+        }
+      }
+      return exp.transformExpression(this);
+    }
+    @Override protected SourceUnit getSourceUnit(){
+      return null;
+    }
+  }
+;
+}

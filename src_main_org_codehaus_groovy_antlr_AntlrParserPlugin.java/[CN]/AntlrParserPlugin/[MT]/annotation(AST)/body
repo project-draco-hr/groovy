@@ -1,4 +1,5 @@
 {
+  annotationBeingDef=true;
   AST node=annotationNode.getFirstChild();
   String name=qualifiedName(node);
   AnnotationNode annotatedNode=new AnnotationNode(ClassHelper.make(name));
@@ -18,5 +19,6 @@
       break;
     }
   }
+  annotationBeingDef=false;
   return annotatedNode;
 }

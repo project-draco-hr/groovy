@@ -1,0 +1,38 @@
+{
+  List<ConstructorNode> constructors=cNode.getDeclaredConstructors();
+  boolean foundEmpty=constructors.size() == 1 && constructors.get(0).getFirstStatement() == null;
+  if (foundEmpty)   constructors.remove(0);
+  List<FieldNode> superList=new ArrayList<FieldNode>();
+  if (includeSuperProperties) {
+    superList.addAll(getSuperPropertyFields(cNode.getSuperClass()));
+  }
+  List<FieldNode> list=new ArrayList<FieldNode>();
+  if (includeProperties) {
+    list.addAll(getInstancePropertyFields(cNode));
+  }
+  if (includeFields) {
+    list.addAll(getInstanceNonPropertyFields(cNode));
+  }
+  Parameter map=param(MAP_TYPE,"args");
+  final BlockStatement body=new BlockStatement();
+  ClassCodeExpressionTransformer transformer=makeTransformer();
+  if (pre != null) {
+    ClosureExpression transformed=(ClosureExpression)transformer.transform(pre);
+    copyPreStatements(transformed,body);
+  }
+  for (  FieldNode fNode : superList) {
+    String name=fNode.getName();
+    if (shouldSkip(name,excludes,includes))     continue;
+    assignField(useSetters,map,body,name);
+  }
+  for (  FieldNode fNode : list) {
+    String name=fNode.getName();
+    if (shouldSkip(name,excludes,includes))     continue;
+    assignField(useSetters,map,body,name);
+  }
+  if (post != null) {
+    ClosureExpression transformed=(ClosureExpression)transformer.transform(post);
+    body.addStatement(transformed.getCode());
+  }
+  cNode.addConstructor(new ConstructorNode(ACC_PUBLIC,params(map),ClassNode.EMPTY_ARRAY,body));
+}

@@ -1,0 +1,4 @@
+{
+  ArgumentListExpression nameArg=args(constX(name));
+  body.addStatement(ifS(callX(varX(map),"containsKey",nameArg),useSetters ? stmt(callThisX(getSetterName(name),callX(varX(map),"get",nameArg))) : assignS(propX(varX("this"),name),callX(varX(map),"get",nameArg))));
+}

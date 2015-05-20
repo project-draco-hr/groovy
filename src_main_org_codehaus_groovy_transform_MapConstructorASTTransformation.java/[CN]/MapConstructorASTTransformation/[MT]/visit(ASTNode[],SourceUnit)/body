@@ -1,0 +1,40 @@
+{
+  init(nodes,source);
+  AnnotatedNode parent=(AnnotatedNode)nodes[1];
+  AnnotationNode anno=(AnnotationNode)nodes[0];
+  if (!MY_TYPE.equals(anno.getClassNode()))   return;
+  if (parent instanceof ClassNode) {
+    ClassNode cNode=(ClassNode)parent;
+    if (!checkNotInterface(cNode,MY_TYPE_NAME))     return;
+    boolean includeFields=memberHasValue(anno,"includeFields",true);
+    boolean includeProperties=!memberHasValue(anno,"includeProperties",false);
+    boolean includeSuperProperties=memberHasValue(anno,"includeSuperProperties",true);
+    boolean useSetters=memberHasValue(anno,"useSetters",true);
+    List<String> excludes=getMemberList(anno,"excludes");
+    List<String> includes=getMemberList(anno,"includes");
+    if (hasAnnotation(cNode,CanonicalASTTransformation.MY_TYPE)) {
+      AnnotationNode canonical=cNode.getAnnotations(CanonicalASTTransformation.MY_TYPE).get(0);
+      if (excludes == null || excludes.isEmpty())       excludes=getMemberList(canonical,"excludes");
+      if (includes == null || includes.isEmpty())       includes=getMemberList(canonical,"includes");
+    }
+    if (!checkIncludeExclude(anno,excludes,includes,MY_TYPE_NAME))     return;
+    if (hasAnnotation(cNode,ImmutableASTTransformation.MY_TYPE))     return;
+    Expression pre=anno.getMember("pre");
+    if (pre != null && !(pre instanceof ClosureExpression)) {
+      addError("Expected closure value for annotation parameter 'pre'. Found " + pre,cNode);
+      return;
+    }
+    Expression post=anno.getMember("post");
+    if (post != null && !(post instanceof ClosureExpression)) {
+      addError("Expected closure value for annotation parameter 'post'. Found " + post,cNode);
+      return;
+    }
+    createConstructor(cNode,includeFields,includeProperties,includeSuperProperties,useSetters,excludes,includes,(ClosureExpression)pre,(ClosureExpression)post,source);
+    if (pre != null) {
+      anno.setMember("pre",new ClosureExpression(new Parameter[0],new EmptyStatement()));
+    }
+    if (post != null) {
+      anno.setMember("post",new ClosureExpression(new Parameter[0],new EmptyStatement()));
+    }
+  }
+}
