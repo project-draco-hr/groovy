@@ -1,6 +1,6 @@
 {
-  final ArrayList<AnnotationNode> copiedAnnotations=new ArrayList<AnnotationNode>();
-  final ArrayList<AnnotationNode> notCopied=new ArrayList<AnnotationNode>();
+  final List<AnnotationNode> copiedAnnotations=new ArrayList<AnnotationNode>();
+  final List<AnnotationNode> notCopied=new ArrayList<AnnotationNode>();
   GeneralUtils.copyAnnotatedNodeAnnotations(annotatedNode,copiedAnnotations,notCopied);
   for (  AnnotationNode annotation : notCopied) {
     addError(myTypeName + " does not support keeping Closure annotation members.",annotation);

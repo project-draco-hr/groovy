@@ -1,5 +1,5 @@
 {
-  final ArrayList<String> immutables=new ArrayList<String>();
+  final List<String> immutables=new ArrayList<String>();
   final Expression expression=node.getMember(MEMBER_KNOWN_IMMUTABLES);
   if (expression == null)   return immutables;
   if (!(expression instanceof ListExpression)) {
