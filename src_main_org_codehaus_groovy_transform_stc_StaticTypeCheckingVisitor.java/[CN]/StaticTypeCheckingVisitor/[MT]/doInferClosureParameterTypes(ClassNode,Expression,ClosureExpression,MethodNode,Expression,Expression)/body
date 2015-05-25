@@ -1,14 +1,13 @@
 {
   List<ClassNode[]> closureSignatures=getSignaturesFromHint(expression,selectedMethod,hintClass,options);
   List<ClassNode[]> candidates=new LinkedList<ClassNode[]>();
+  Parameter[] closureParams=expression.getParameters();
   for (  ClassNode[] signature : closureSignatures) {
     ClassNode[] inferred=resolveGenericsFromTypeHint(receiver,arguments,selectedMethod,signature);
-    Parameter[] closureParams=expression.getParameters();
     if (signature.length == closureParams.length || (signature.length == 1 && closureParams.length == 0) || (closureParams.length > signature.length && inferred[inferred.length - 1].isArray())) {
       candidates.add(inferred);
     }
   }
-  Parameter[] closureParams=expression.getParameters();
   if (candidates.size() > 1) {
     Iterator<ClassNode[]> candIt=candidates.iterator();
     while (candIt.hasNext()) {
