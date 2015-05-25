@@ -1,0 +1,3 @@
+{
+  return Collections.singletonList(candidates.get(0));
+}

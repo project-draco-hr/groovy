@@ -4,8 +4,9 @@
     for (    AnnotationNode annotation : annotations) {
       Expression hintClass=annotation.getMember("value");
       Expression options=annotation.getMember("options");
+      Expression resolverClass=annotation.getMember("conflictResolutionStrategy");
       if (hintClass instanceof ClassExpression) {
-        doInferClosureParameterTypes(receiver,arguments,expression,selectedMethod,hintClass,options);
+        doInferClosureParameterTypes(receiver,arguments,expression,selectedMethod,hintClass,resolverClass,options);
       }
     }
   }

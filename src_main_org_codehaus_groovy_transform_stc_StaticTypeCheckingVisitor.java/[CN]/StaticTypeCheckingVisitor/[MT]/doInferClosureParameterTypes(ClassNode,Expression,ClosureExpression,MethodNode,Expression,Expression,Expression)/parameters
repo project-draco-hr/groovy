@@ -3,4 +3,5 @@ Expression arguments
 ClosureExpression expression
 MethodNode selectedMethod
 Expression hintClass
+Expression resolverClass
 Expression options

@@ -1,0 +1,8 @@
+List<ClassNode[]> candidates
+ClassNode receiver
+Expression arguments
+ClosureExpression closure
+MethodNode methodNode
+SourceUnit sourceUnit
+CompilationUnit compilationUnit
+String[] options

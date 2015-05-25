@@ -35,6 +35,9 @@
         }
       }
     }
+    if (candidates.size() > 1 && resolverClass instanceof ClassExpression) {
+      candidates=resolveWithResolver(candidates,receiver,arguments,expression,selectedMethod,resolverClass,options);
+    }
     if (candidates.size() > 1) {
       addError("Ambiguous prototypes for closure. More than one target method matches. Please use explicit argument types.",expression);
     }

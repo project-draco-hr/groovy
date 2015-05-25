@@ -1,0 +1,17 @@
+{
+  try {
+    ClassLoader transformLoader=getTransformLoader();
+    @SuppressWarnings("unchecked") Class<? extends ClosureSignatureConflictResolver> resolver=(Class<? extends ClosureSignatureConflictResolver>)transformLoader.loadClass(resolverClass.getText());
+    ClosureSignatureConflictResolver resolverInstance=resolver.newInstance();
+    return resolverInstance.resolve(candidates,receiver,arguments,expression,selectedMethod instanceof ExtensionMethodNode ? ((ExtensionMethodNode)selectedMethod).getExtensionMethodNode() : selectedMethod,typeCheckingContext.source,typeCheckingContext.compilationUnit,convertToStringArray(options));
+  }
+ catch (  ClassNotFoundException e) {
+    throw new GroovyBugError(e);
+  }
+catch (  InstantiationException e) {
+    throw new GroovyBugError(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new GroovyBugError(e);
+  }
+}
