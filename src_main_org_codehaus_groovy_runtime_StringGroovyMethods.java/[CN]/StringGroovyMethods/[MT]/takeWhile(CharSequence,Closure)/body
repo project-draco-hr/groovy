@@ -1,14 +1,4 @@
 {
-  int num=0;
-  BooleanClosureWrapper bcw=new BooleanClosureWrapper(condition);
-  while (num < self.length()) {
-    char value=self.charAt(num);
-    if (bcw.call(value)) {
-      num+=1;
-    }
- else {
-      break;
-    }
-  }
-  return take(self,num);
+  Iterator selfIter=hasCharacterArg(condition) ? new CharacterIterator(self) : new StringIterator(self);
+  return join(DefaultGroovyMethods.takeWhile(selfIter,condition),"");
 }

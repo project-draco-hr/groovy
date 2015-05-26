@@ -1,7 +1,7 @@
 {
   int count=firstLine;
   T result=null;
-  for (  String line : readLines(self.toString())) {
+  for (  String line : readLines((CharSequence)self.toString())) {
     result=callClosureForLine(closure,line,count);
     count++;
   }
