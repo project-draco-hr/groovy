@@ -1,4 +1,4 @@
 {
-  Iterator selfIter=hasCharacterArg(condition) ? new CharacterIterator(self) : new StringIterator(self);
+  Iterator selfIter=hasSingleCharacterArg(condition) ? new CharacterIterator(self) : new StringIterator(self);
   return join(DefaultGroovyMethods.takeWhile(selfIter,condition),"");
 }

@@ -1,0 +1,5 @@
+{
+  if (c.getMaximumNumberOfParameters() != 1)   return false;
+  String typeName=c.getParameterTypes()[0].getName();
+  return typeName.equals("java.lang.String");
+}
