@@ -11,7 +11,7 @@
       }
  else {
         List vals=Arrays.asList(pattern.split(line));
-        result=closure.call(vals);
+        result=closure.call(hasSingleStringArg(closure) ? vals.get(0) : vals);
       }
     }
     Reader temp=self;
