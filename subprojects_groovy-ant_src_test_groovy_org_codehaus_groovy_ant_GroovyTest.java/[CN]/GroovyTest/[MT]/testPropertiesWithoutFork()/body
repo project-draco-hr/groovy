@@ -1,0 +1,5 @@
+{
+  assertNull(FLAG);
+  project.executeTarget("groovyAntPropertyWithoutFork");
+  assertEquals("someProp was someValue",FLAG);
+}
