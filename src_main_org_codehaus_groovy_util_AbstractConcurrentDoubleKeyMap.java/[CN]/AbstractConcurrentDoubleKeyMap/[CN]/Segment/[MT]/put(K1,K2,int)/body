@@ -1,10 +1,7 @@
 {
   lock();
   try {
-    int c=count;
-    if (c++ > threshold) {
-      rehash();
-    }
+    rehashIfThresholdExceeded();
     Object[] tab=table;
     final int index=hash & (tab.length - 1);
     final Object o=tab[index];
@@ -19,7 +16,7 @@
         arr[0]=res;
         arr[1]=e;
         tab[index]=arr;
-        count=c;
+        count++;
         return res;
       }
  else {
@@ -35,13 +32,13 @@
         arr[0]=res;
         System.arraycopy(arr,0,newArr,1,arr.length);
         tab[index]=arr;
-        count=c;
+        count++;
         return res;
       }
     }
     final Entry<K1,K2,V> res=createEntry(key1,key2,hash);
     tab[index]=res;
-    count=c;
+    count++;
     return res;
   }
   finally {
