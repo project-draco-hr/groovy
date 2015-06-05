@@ -1,0 +1,3 @@
+List<Receiver<String>> receivers
+StringBuilder path
+ClassNode delegate

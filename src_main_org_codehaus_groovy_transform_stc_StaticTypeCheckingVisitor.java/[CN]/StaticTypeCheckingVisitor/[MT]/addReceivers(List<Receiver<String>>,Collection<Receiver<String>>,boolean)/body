@@ -13,11 +13,11 @@ switch (strategy) {
 case Closure.OWNER_FIRST:
       receivers.addAll(owners);
     path.append("delegate");
-  receivers.add(new Receiver<String>(delegate,path.toString()));
+  doAddDelegateReceiver(receivers,path,delegate);
 break;
 case Closure.DELEGATE_FIRST:
 path.append("delegate");
-receivers.add(new Receiver<String>(delegate,path.toString()));
+doAddDelegateReceiver(receivers,path,delegate);
 receivers.addAll(owners);
 break;
 case Closure.OWNER_ONLY:
@@ -26,7 +26,7 @@ dmd=null;
 break;
 case Closure.DELEGATE_ONLY:
 path.append("delegate");
-receivers.add(new Receiver<String>(delegate,path.toString()));
+doAddDelegateReceiver(receivers,path,delegate);
 dmd=null;
 break;
 }

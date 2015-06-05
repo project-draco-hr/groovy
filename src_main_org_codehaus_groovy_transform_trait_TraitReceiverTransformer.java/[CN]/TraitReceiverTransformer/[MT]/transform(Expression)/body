@@ -88,7 +88,10 @@
     MethodCallExpression mce=new MethodCallExpression(exp,"rehydrate",new ArgumentListExpression(new VariableExpression(weaved),new VariableExpression(weaved),new VariableExpression(weaved)));
     mce.setImplicitThis(false);
     mce.setSourcePosition(exp);
+    boolean oldInClosure=inClosure;
+    inClosure=true;
     ((ClosureExpression)exp).getCode().visit(this);
+    inClosure=oldInClosure;
     exp.putNodeMetaData(TraitASTTransformation.POST_TYPECHECKING_REPLACEMENT,mce);
     return exp;
   }

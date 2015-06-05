@@ -10,6 +10,14 @@
       }
     }
   }
+  if (inClosure) {
+    MethodCallExpression transformed=new MethodCallExpression((Expression)call.getReceiver(),call.getMethod(),transform(call.getArguments()));
+    transformed.setSourcePosition(call);
+    transformed.setSafe(call.isSafe());
+    transformed.setSpreadSafe(call.isSpreadSafe());
+    transformed.setImplicitThis(call.isImplicitThis());
+    return transformed;
+  }
   MethodCallExpression transformed=new MethodCallExpression(weaved,method,transform(arguments));
   transformed.setSourcePosition(call);
   transformed.setSafe(call.isSafe());

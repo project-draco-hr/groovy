@@ -1,0 +1,6 @@
+{
+  receivers.add(new Receiver<String>(delegate,path.toString()));
+  if (isTraitHelper(delegate)) {
+    receivers.add(new Receiver<String>(delegate.getOuterClass(),path.toString()));
+  }
+}
