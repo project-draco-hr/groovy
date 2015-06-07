@@ -1,4 +1,4 @@
 {
-  CommandLineParser parser=new GroovyInternalPosixParser();
+  CommandLineParser parser=new DefaultParser();
   return parser.parse(options,args,true);
 }

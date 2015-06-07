@@ -1,6 +1,6 @@
 {
   Options options=createCompilationOptions();
-  CommandLineParser cliParser=new GroovyInternalPosixParser();
+  CommandLineParser cliParser=new DefaultParser();
   CommandLine cli;
   cli=cliParser.parse(options,args);
   if (cli.hasOption('h')) {
