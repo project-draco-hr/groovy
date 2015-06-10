@@ -16,6 +16,9 @@
   if (stacktrace) {
     commandLineList.add("-e");
   }
+  if (parameters) {
+    commandLineList.add("--parameters");
+  }
   if (useIndy) {
     commandLineList.add("--indy");
   }

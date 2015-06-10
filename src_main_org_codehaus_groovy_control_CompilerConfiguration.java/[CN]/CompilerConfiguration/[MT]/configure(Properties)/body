@@ -40,6 +40,7 @@
   if (text != null && text.equalsIgnoreCase("true"))   setVerbose(true);
   text=configuration.getProperty("groovy.output.debug");
   if (text != null && text.equalsIgnoreCase("true"))   setDebug(true);
+  setParameters(configuration.getProperty("groovy.parameters") != null);
   numeric=10;
   try {
     text=configuration.getProperty("groovy.errors.tolerance","10");

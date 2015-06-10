@@ -1,0 +1,12 @@
+{
+  try {
+    return System.getProperty(key,def);
+  }
+ catch (  SecurityException t) {
+  }
+catch (  NullPointerException t) {
+  }
+catch (  IllegalArgumentException t) {
+  }
+  return def;
+}

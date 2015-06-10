@@ -9,6 +9,7 @@
   options.addOption(Option.builder("h").longOpt("help").desc("Print a synopsis of standard options").build());
   options.addOption(Option.builder("v").longOpt("version").desc("Print the version").build());
   options.addOption(Option.builder("e").longOpt("exception").desc("Print stack trace on error").build());
+  options.addOption(Option.builder("pa").longOpt("parameters").desc("Generate metadata for reflection on method parameter names (jdk8+ only)").build());
   options.addOption(Option.builder("j").longOpt("jointCompilation").desc("Attach javac compiler to compile .java files").build());
   options.addOption(Option.builder("b").longOpt("basescript").hasArg().argName("class").desc("Base class name for scripts (must derive from Script)").build());
   options.addOption(Option.builder("J").argName("property=value").valueSeparator().numberOfArgs(2).desc("name-value pairs to pass to javac").build());

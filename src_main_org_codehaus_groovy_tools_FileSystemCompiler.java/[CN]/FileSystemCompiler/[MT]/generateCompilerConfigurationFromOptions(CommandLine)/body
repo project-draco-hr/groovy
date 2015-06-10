@@ -6,6 +6,7 @@
   if (cli.hasOption('d')) {
     configuration.setTargetDirectory(cli.getOptionValue('d'));
   }
+  configuration.setParameters(cli.hasOption("pa"));
   if (cli.hasOption("encoding")) {
     configuration.setSourceEncoding(cli.getOptionValue("encoding"));
   }
@@ -14,10 +15,15 @@
   }
   if (cli.hasOption('j')) {
     Map<String,Object> compilerOptions=new HashMap<String,Object>();
-    String[] opts=cli.getOptionValues("J");
-    compilerOptions.put("namedValues",opts);
-    opts=cli.getOptionValues("F");
-    compilerOptions.put("flags",opts);
+    String[] namedValues=cli.getOptionValues("J");
+    compilerOptions.put("namedValues",namedValues);
+    String[] flags=cli.getOptionValues("F");
+    if (flags != null && cli.hasOption("pa")) {
+      List<String> tmp=new ArrayList<String>(Arrays.asList(flags));
+      tmp.add("parameters");
+      flags=tmp.toArray(new String[tmp.size()]);
+    }
+    compilerOptions.put("flags",flags);
     configuration.setJointCompilationOptions(compilerOptions);
   }
   if (cli.hasOption("indy")) {

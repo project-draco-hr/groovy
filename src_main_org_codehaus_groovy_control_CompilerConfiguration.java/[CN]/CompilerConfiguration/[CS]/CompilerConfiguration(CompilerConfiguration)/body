@@ -5,6 +5,7 @@
   setClasspathList(new LinkedList<String>(configuration.getClasspath()));
   setVerbose(configuration.getVerbose());
   setDebug(configuration.getDebug());
+  setParameters(configuration.getParameters());
   setTolerance(configuration.getTolerance());
   setScriptBaseClass(configuration.getScriptBaseClass());
   setRecompileGroovySource(configuration.getRecompileGroovySource());

@@ -5,6 +5,7 @@
   setClasspath("");
   setVerbose(false);
   setDebug(false);
+  setParameters(safeGetSystemProperty("groovy.parameters") != null);
   setTolerance(10);
   setScriptBaseClass(null);
   setRecompileGroovySource(false);

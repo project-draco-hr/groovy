@@ -11,6 +11,7 @@
   main.isScriptFile=!line.hasOption('e');
   main.debug=line.hasOption('d');
   main.conf.setDebug(main.debug);
+  main.conf.setParameters(line.hasOption("pa"));
   main.processFiles=line.hasOption('p') || line.hasOption('n');
   main.autoOutput=line.hasOption('p');
   main.editFiles=line.hasOption('i');
