@@ -2,6 +2,7 @@
   final CompilerConfiguration init=new CompilerConfiguration();
   init.setWarningLevel(WarningMessage.POSSIBLE_ERRORS);
   init.setDebug(false);
+  init.setParameters(false);
   init.setVerbose(true);
   init.setTolerance(55);
   init.setMinimumRecompilationInterval(975);
@@ -16,6 +17,7 @@
   init.setTargetDirectory(initTDFile);
   assertEquals(WarningMessage.POSSIBLE_ERRORS,init.getWarningLevel());
   assertEquals(false,init.getDebug());
+  assertEquals(false,init.getParameters());
   assertEquals(true,init.getVerbose());
   assertEquals(55,init.getTolerance());
   assertEquals(975,init.getMinimumRecompilationInterval());
