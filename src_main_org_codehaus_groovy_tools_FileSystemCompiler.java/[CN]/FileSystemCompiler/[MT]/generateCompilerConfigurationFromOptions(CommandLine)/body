@@ -19,9 +19,8 @@
     compilerOptions.put("namedValues",namedValues);
     String[] flags=cli.getOptionValues("F");
     if (flags != null && cli.hasOption("pa")) {
-      List<String> tmp=new ArrayList<String>(Arrays.asList(flags));
-      tmp.add("parameters");
-      flags=tmp.toArray(new String[tmp.size()]);
+      flags=Arrays.copyOf(flags,flags.length + 1);
+      flags[flags.length - 1]="parameters";
     }
     compilerOptions.put("flags",flags);
     configuration.setJointCompilationOptions(compilerOptions);

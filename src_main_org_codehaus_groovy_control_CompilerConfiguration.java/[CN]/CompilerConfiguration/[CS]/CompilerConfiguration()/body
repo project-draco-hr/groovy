@@ -10,54 +10,19 @@
   setScriptBaseClass(null);
   setRecompileGroovySource(false);
   setMinimumRecompilationInterval(100);
-  String targetByteCode=null;
-  try {
-    targetByteCode=System.getProperty("groovy.target.bytecode",targetByteCode);
-  }
- catch (  Exception e) {
-  }
-  if (targetByteCode != null) {
-    setTargetBytecode(targetByteCode);
-  }
- else {
-    setTargetBytecode(getVMVersion());
-  }
-  String tmpDefaultScriptExtension=null;
-  try {
-    tmpDefaultScriptExtension=System.getProperty("groovy.default.scriptExtension");
-  }
- catch (  Exception e) {
-  }
-  if (tmpDefaultScriptExtension != null) {
-    setDefaultScriptExtension(tmpDefaultScriptExtension);
-  }
- else {
-    setDefaultScriptExtension(".groovy");
-  }
-  String encoding=null;
-  try {
-    encoding=System.getProperty("file.encoding","US-ASCII");
-  }
- catch (  Exception e) {
-  }
-  try {
-    encoding=System.getProperty("groovy.source.encoding",encoding);
-  }
- catch (  Exception e) {
-  }
+  setTargetBytecode(safeGetSystemProperty("groovy.target.bytecode",getVMVersion()));
+  setDefaultScriptExtension(safeGetSystemProperty("groovy.default.scriptExtension",".groovy"));
+  String encoding=safeGetSystemProperty("file.encoding","US-ASCII");
+  encoding=safeGetSystemProperty("groovy.source.encoding",encoding);
   setSourceEncoding(encoding);
   try {
     setOutput(new PrintWriter(System.err));
   }
  catch (  Exception e) {
   }
-  try {
-    String target=System.getProperty("groovy.target.directory");
-    if (target != null) {
-      setTargetDirectory(target);
-    }
-  }
- catch (  Exception e) {
+  String target=safeGetSystemProperty("groovy.target.directory");
+  if (target != null) {
+    setTargetDirectory(target);
   }
   boolean indy=false;
   try {
