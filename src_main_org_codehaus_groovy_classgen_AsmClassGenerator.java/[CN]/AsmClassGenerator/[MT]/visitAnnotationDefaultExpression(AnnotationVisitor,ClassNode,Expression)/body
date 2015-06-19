@@ -5,11 +5,16 @@
     av.visit(null,t);
   }
  else   if (type.isArray()) {
-    ListExpression list=(ListExpression)exp;
     AnnotationVisitor avl=av.visitArray(null);
     ClassNode componentType=type.getComponentType();
-    for (    Expression lExp : list.getExpressions()) {
-      visitAnnotationDefaultExpression(avl,componentType,lExp);
+    if (exp instanceof ListExpression) {
+      ListExpression list=(ListExpression)exp;
+      for (      Expression lExp : list.getExpressions()) {
+        visitAnnotationDefaultExpression(avl,componentType,lExp);
+      }
+    }
+ else {
+      visitAnnotationDefaultExpression(avl,componentType,exp);
     }
   }
  else   if (ClassHelper.isPrimitiveType(type) || type.equals(ClassHelper.STRING_TYPE)) {
