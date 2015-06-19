@@ -1,7 +1,7 @@
 {
   return AccessController.doPrivileged(new PrivilegedAction<InnerLoader>(){
     public InnerLoader run(){
-      return new InnerLoader(parent);
+      return new InnerLoader(parent,interfaces);
     }
   }
 );

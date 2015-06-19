@@ -1,0 +1,30 @@
+{
+  Class loadedClass=findLoadedClass(name);
+  if (loadedClass != null)   return loadedClass;
+  try {
+    loadedClass=findClass(name);
+  }
+ catch (  ClassNotFoundException e) {
+  }
+  if (loadedClass != null)   return loadedClass;
+  ClassNotFoundException ex=null;
+  try {
+    loadedClass=super.loadClass(name);
+  }
+ catch (  ClassNotFoundException e) {
+    ex=e;
+  }
+  if (loadedClass != null)   return loadedClass;
+  if (internalClassLoaders != null) {
+    for (    ClassLoader i : internalClassLoaders) {
+      try {
+        loadedClass=i.loadClass(name);
+        if (loadedClass != null)         return loadedClass;
+      }
+ catch (      ClassNotFoundException e) {
+      }
+    }
+  }
+  if (ex != null)   throw ex;
+  throw new ClassNotFoundException(name);
+}
