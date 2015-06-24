@@ -1,23 +1,34 @@
 {
   AccessController.doPrivileged(new PrivilegedAction<Void>(){
     public Void run(){
+      URI newURI;
       try {
-        URI newURI;
-        if (!URI_PATTERN.matcher(path).matches()) {
-          newURI=new File(path).toURI();
-        }
- else {
-          newURI=new URI(path);
-        }
-        URL[] urls=getURLs();
-        for (        URL url : urls) {
+        newURI=new URI(path);
+        newURI.toURL();
+      }
+ catch (      URISyntaxException e) {
+        newURI=new File(path).toURI();
+      }
+catch (      MalformedURLException e) {
+        newURI=new File(path).toURI();
+      }
+catch (      IllegalArgumentException e) {
+        newURI=new File(path).toURI();
+      }
+      URL[] urls=getURLs();
+      for (      URL url : urls) {
+        try {
           if (newURI.equals(url.toURI()))           return null;
         }
+ catch (        URISyntaxException e) {
+          throw new RuntimeException(e);
+        }
+      }
+      try {
         addURL(newURI.toURL());
       }
  catch (      MalformedURLException e) {
-      }
-catch (      URISyntaxException e) {
+        throw new RuntimeException(e);
       }
       return null;
     }
