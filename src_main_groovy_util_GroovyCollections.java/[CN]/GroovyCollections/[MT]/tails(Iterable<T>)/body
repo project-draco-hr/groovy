@@ -1,0 +1,9 @@
+{
+  List<T> copy=DefaultGroovyMethods.toList(collections);
+  List<List<T>> result=new ArrayList<List<T>>();
+  for (int i=0; i <= copy.size(); i++) {
+    List<T> next=copy.subList(i,copy.size());
+    result.add(next);
+  }
+  return result;
+}
