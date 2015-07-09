@@ -11,7 +11,7 @@
   MethodNode enclosingMethod=innerClass.getEnclosingMethod();
   if (enclosingMethod != null) {
     outerClassName=null;
-    innerClassName=null;
+    if (innerClass.isAnonymous())     innerClassName=null;
   }
   int mods=adjustedClassModifiersForInnerClassTable(cn);
   if (Modifier.isPrivate(mods)) {
