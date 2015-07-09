@@ -1,0 +1,6 @@
+{
+  if (ALLOW_RESOLVE) {
+    return this;
+  }
+  throw new UnsupportedOperationException();
+}
