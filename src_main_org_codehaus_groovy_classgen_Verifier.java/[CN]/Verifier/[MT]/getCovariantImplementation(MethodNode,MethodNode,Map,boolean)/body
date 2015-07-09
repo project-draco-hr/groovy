@@ -11,6 +11,7 @@
   boolean equalReturnType=mr.equals(omr);
   ClassNode testmr=correctToGenericsSpec(genericsSpec,omr);
   if (!isAssignable(mr,testmr)) {
+    if (ignoreError)     return null;
     throw new RuntimeParserException("The return type of " + overridingMethod.getTypeDescriptor() + " in "+ overridingMethod.getDeclaringClass().getName()+ " is incompatible with "+ testmr.getName()+ " in "+ oldMethod.getDeclaringClass().getName(),overridingMethod);
   }
   if (equalReturnType && normalEqualParameters)   return null;

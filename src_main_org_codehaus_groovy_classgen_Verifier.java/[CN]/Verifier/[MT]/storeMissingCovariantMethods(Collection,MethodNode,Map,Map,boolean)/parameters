@@ -2,3 +2,4 @@ Collection methods
 MethodNode method
 Map methodsToAdd
 Map genericsSpec
+boolean ignoreError

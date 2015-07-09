@@ -6,13 +6,13 @@
     for (    Object declaredMethod : declaredMethods) {
       MethodNode method=(MethodNode)declaredMethod;
       if (method.isStatic())       continue;
-      storeMissingCovariantMethods(classMethods,method,methodsToAdd,genericsSpec);
+      storeMissingCovariantMethods(classMethods,method,methodsToAdd,genericsSpec,false);
     }
     if (!abstractMethods.isEmpty()) {
       for (      Object classMethod : classMethods) {
         MethodNode method=(MethodNode)classMethod;
         if (method.isStatic())         continue;
-        storeMissingCovariantMethods(abstractMethods.values(),method,methodsToAdd,Collections.EMPTY_MAP);
+        storeMissingCovariantMethods(abstractMethods.values(),method,methodsToAdd,Collections.EMPTY_MAP,true);
       }
     }
     addCovariantMethods(sn.redirect(),declaredMethods,abstractMethods,methodsToAdd,genericsSpec);
@@ -24,7 +24,7 @@
     for (    Object declaredMethod : declaredMethods) {
       MethodNode method=(MethodNode)declaredMethod;
       if (method.isStatic())       continue;
-      storeMissingCovariantMethods(interfacesMethods,method,methodsToAdd,genericsSpec);
+      storeMissingCovariantMethods(interfacesMethods,method,methodsToAdd,genericsSpec,false);
     }
     addCovariantMethods(anInterface,declaredMethods,abstractMethods,methodsToAdd,genericsSpec);
   }

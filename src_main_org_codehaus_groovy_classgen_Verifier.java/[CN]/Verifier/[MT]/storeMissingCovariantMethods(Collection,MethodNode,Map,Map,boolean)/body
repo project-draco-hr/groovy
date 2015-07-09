@@ -1,7 +1,7 @@
 {
   for (  Object method1 : methods) {
     MethodNode toOverride=(MethodNode)method1;
-    MethodNode bridgeMethod=getCovariantImplementation(toOverride,method,genericsSpec);
+    MethodNode bridgeMethod=getCovariantImplementation(toOverride,method,genericsSpec,ignoreError);
     if (bridgeMethod == null)     continue;
     methodsToAdd.put(bridgeMethod.getTypeDescriptor(),bridgeMethod);
     return;

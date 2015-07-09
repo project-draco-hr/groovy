@@ -1,3 +1,4 @@
 MethodNode oldMethod
 MethodNode overridingMethod
 Map genericsSpec
+boolean ignoreError
