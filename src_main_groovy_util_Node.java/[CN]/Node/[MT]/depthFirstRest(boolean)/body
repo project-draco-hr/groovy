@@ -4,9 +4,10 @@
     Object child=iter.next();
     if (child instanceof Node) {
       Node childNode=(Node)child;
-      List children=childNode.depthFirstRest();
-      answer.add(childNode);
+      List children=childNode.depthFirstRest(preorder);
+      if (preorder)       answer.add(childNode);
       if (children.size() > 1 || (children.size() == 1 && !(children.get(0) instanceof String)))       answer.addAll(children);
+      if (!preorder)       answer.add(childNode);
     }
  else     if (child instanceof String) {
       answer.add(child);

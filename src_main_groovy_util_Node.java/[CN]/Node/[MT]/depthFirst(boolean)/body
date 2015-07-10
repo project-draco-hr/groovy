@@ -1,0 +1,7 @@
+{
+  List answer=new NodeList();
+  if (preorder)   answer.add(this);
+  answer.addAll(depthFirstRest(preorder));
+  if (!preorder)   answer.add(this);
+  return answer;
+}

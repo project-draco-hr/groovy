@@ -1,6 +1,3 @@
 {
-  List answer=new NodeList();
-  answer.add(this);
-  answer.addAll(breadthFirstRest());
-  return answer;
+  return breadthFirst(true);
 }
