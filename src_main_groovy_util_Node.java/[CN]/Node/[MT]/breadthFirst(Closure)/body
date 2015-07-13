@@ -1,0 +1,5 @@
+{
+  Map<String,Object> options=new ListHashMap<String,Object>();
+  options.put("preorder",true);
+  breadthFirst(options,c);
+}

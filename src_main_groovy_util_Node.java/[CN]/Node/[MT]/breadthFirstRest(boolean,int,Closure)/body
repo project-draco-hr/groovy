@@ -1,0 +1,26 @@
+{
+  Stack<Tuple2<Object,Integer>> stack=new Stack<Tuple2<Object,Integer>>();
+  List nextLevelChildren=preorder ? getDirectChildren() : DefaultGroovyMethods.reverse(getDirectChildren());
+  while (!nextLevelChildren.isEmpty()) {
+    List working=new NodeList(nextLevelChildren);
+    nextLevelChildren=new NodeList();
+    for (    Object child : working) {
+      if (preorder) {
+        callClosureForNode(c,child,level);
+      }
+ else {
+        stack.push(new Tuple2<Object,Integer>(child,level));
+      }
+      if (child instanceof Node) {
+        Node childNode=(Node)child;
+        List children=childNode.getDirectChildren();
+        if (children.size() > 1 || (children.size() == 1 && !(children.get(0) instanceof String)))         nextLevelChildren.addAll(preorder ? children : DefaultGroovyMethods.reverse(children));
+      }
+    }
+    level++;
+  }
+  while (!stack.isEmpty()) {
+    Tuple2<Object,Integer> next=stack.pop();
+    callClosureForNode(c,next.getFirst(),next.getSecond());
+  }
+}

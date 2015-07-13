@@ -1,0 +1,6 @@
+{
+  if (closure.getMaximumNumberOfParameters() == 2) {
+    return closure.call(new Object[]{node,level});
+  }
+  return closure.call(node);
+}

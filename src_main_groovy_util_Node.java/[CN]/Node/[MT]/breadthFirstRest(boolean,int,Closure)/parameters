@@ -1,0 +1,3 @@
+boolean preorder
+int level
+Closure c

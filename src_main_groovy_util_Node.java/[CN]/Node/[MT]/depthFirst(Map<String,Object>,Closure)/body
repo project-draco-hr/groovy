@@ -1,0 +1,6 @@
+{
+  boolean preorder=Boolean.valueOf(options.get("preorder").toString());
+  if (preorder)   callClosureForNode(c,this,1);
+  depthFirstRest(preorder,2,c);
+  if (!preorder)   callClosureForNode(c,this,1);
+}
