@@ -1,0 +1,20 @@
+{
+  Writer writer=null;
+  try {
+    Charset resolvedCharset=Charset.forName(charset);
+    boolean shouldWriteBom=writeBom && !self.toFile().exists();
+    OutputStream out=Files.newOutputStream(self,CREATE,APPEND);
+    if (shouldWriteBom) {
+      IOGroovyMethods.writeUTF16BomIfRequired(out,resolvedCharset);
+    }
+    writer=new OutputStreamWriter(out,resolvedCharset);
+    InvokerHelper.write(writer,text);
+    writer.flush();
+    Writer temp=writer;
+    writer=null;
+    temp.close();
+  }
+  finally {
+    closeWithWarning(writer);
+  }
+}

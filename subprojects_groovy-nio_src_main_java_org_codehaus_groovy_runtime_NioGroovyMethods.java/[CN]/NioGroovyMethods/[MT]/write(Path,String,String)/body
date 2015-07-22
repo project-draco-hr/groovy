@@ -1,14 +1,3 @@
 {
-  Writer writer=null;
-  try {
-    writer=new OutputStreamWriter(Files.newOutputStream(self),Charset.forName(charset));
-    writer.write(text);
-    writer.flush();
-    Writer temp=writer;
-    writer=null;
-    temp.close();
-  }
-  finally {
-    closeWithWarning(writer);
-  }
+  write(self,text,charset,false);
 }

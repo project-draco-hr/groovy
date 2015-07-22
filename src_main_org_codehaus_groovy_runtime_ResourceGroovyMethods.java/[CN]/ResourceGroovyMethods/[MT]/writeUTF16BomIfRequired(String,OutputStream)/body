@@ -1,8 +1,0 @@
-{
-  if ("UTF-16BE".equals(Charset.forName(charset).name())) {
-    writeUtf16Bom(stream,true);
-  }
- else   if ("UTF-16LE".equals(Charset.forName(charset).name())) {
-    writeUtf16Bom(stream,false);
-  }
-}

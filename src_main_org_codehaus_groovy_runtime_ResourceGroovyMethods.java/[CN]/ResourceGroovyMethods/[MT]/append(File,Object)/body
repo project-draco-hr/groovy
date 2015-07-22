@@ -1,14 +1,3 @@
 {
-  Writer writer=null;
-  try {
-    writer=new FileWriter(file,true);
-    InvokerHelper.write(writer,text);
-    writer.flush();
-    Writer temp=writer;
-    writer=null;
-    temp.close();
-  }
-  finally {
-    closeWithWarning(writer);
-  }
+  append(file,text,false);
 }

@@ -1,6 +1,3 @@
 {
-  if (append) {
-    return Files.newBufferedWriter(self,Charset.forName(charset),CREATE,APPEND);
-  }
-  return Files.newBufferedWriter(self,Charset.forName(charset));
+  return newWriter(self,charset,append,false);
 }

@@ -1,0 +1,3 @@
+{
+  writeUTF16BomIfRequired(writer,Charset.forName(charset));
+}

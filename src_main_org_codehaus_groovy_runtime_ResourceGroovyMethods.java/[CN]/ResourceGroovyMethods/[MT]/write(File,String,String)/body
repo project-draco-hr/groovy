@@ -1,16 +1,3 @@
 {
-  Writer writer=null;
-  try {
-    FileOutputStream out=new FileOutputStream(file);
-    writeUTF16BomIfRequired(charset,out);
-    writer=new OutputStreamWriter(out,charset);
-    writer.write(text);
-    writer.flush();
-    Writer temp=writer;
-    writer=null;
-    temp.close();
-  }
-  finally {
-    closeWithWarning(writer);
-  }
+  write(file,text,charset,false);
 }

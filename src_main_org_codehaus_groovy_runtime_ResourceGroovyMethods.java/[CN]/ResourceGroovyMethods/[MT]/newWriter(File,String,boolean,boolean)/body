@@ -1,0 +1,17 @@
+{
+  boolean shouldWriteBom=writeBom && !file.exists();
+  if (append) {
+    FileOutputStream stream=new FileOutputStream(file,append);
+    if (shouldWriteBom) {
+      IOGroovyMethods.writeUTF16BomIfRequired(stream,charset);
+    }
+    return new EncodingAwareBufferedWriter(new OutputStreamWriter(stream,charset));
+  }
+ else {
+    FileOutputStream stream=new FileOutputStream(file);
+    if (shouldWriteBom) {
+      IOGroovyMethods.writeUTF16BomIfRequired(stream,charset);
+    }
+    return new EncodingAwareBufferedWriter(new OutputStreamWriter(stream,charset));
+  }
+}

@@ -1,0 +1,18 @@
+{
+  Writer writer=null;
+  try {
+    FileOutputStream out=new FileOutputStream(file);
+    if (writeBom) {
+      IOGroovyMethods.writeUTF16BomIfRequired(out,charset);
+    }
+    writer=new OutputStreamWriter(out,charset);
+    writer.write(text);
+    writer.flush();
+    Writer temp=writer;
+    writer=null;
+    temp.close();
+  }
+  finally {
+    closeWithWarning(writer);
+  }
+}

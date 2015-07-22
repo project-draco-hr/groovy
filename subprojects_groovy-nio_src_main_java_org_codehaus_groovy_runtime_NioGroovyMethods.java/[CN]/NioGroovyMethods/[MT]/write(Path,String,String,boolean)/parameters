@@ -1,0 +1,4 @@
+Path self
+String text
+String charset
+boolean writeBom

@@ -1,10 +1,3 @@
 {
-  if (append) {
-    return new EncodingAwareBufferedWriter(new OutputStreamWriter(new FileOutputStream(file,append),charset));
-  }
- else {
-    FileOutputStream stream=new FileOutputStream(file);
-    writeUTF16BomIfRequired(charset,stream);
-    return new EncodingAwareBufferedWriter(new OutputStreamWriter(stream,charset));
-  }
+  return newWriter(file,charset,append,false);
 }

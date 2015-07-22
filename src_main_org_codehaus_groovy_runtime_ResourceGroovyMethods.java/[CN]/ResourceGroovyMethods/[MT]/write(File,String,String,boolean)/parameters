@@ -1,0 +1,4 @@
+File file
+String text
+String charset
+boolean writeBom

@@ -1,0 +1,18 @@
+{
+  BufferedWriter writer=null;
+  try {
+    boolean shouldWriteBom=writeBom && !file.exists();
+    writer=newWriter(file,true);
+    if (shouldWriteBom) {
+      IOGroovyMethods.writeUTF16BomIfRequired(writer,Charset.defaultCharset().name());
+    }
+    InvokerHelper.write(writer,text);
+    writer.flush();
+    Writer temp=writer;
+    writer=null;
+    temp.close();
+  }
+  finally {
+    closeWithWarning(writer);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  appendBuffered(file,reader,Charset.defaultCharset().name(),writeBom);
+}

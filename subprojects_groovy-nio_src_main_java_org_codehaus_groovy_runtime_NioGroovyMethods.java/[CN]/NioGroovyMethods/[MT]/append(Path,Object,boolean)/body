@@ -1,0 +1,3 @@
+{
+  append(self,text,Charset.defaultCharset().name(),writeBom);
+}

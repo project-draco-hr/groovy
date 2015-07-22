@@ -1,0 +1,17 @@
+{
+  boolean shouldWriteBom=writeBom && !self.toFile().exists();
+  if (append) {
+    BufferedWriter writer=Files.newBufferedWriter(self,Charset.forName(charset),CREATE,APPEND);
+    if (shouldWriteBom) {
+      IOGroovyMethods.writeUTF16BomIfRequired(writer,charset);
+    }
+    return writer;
+  }
+ else {
+    OutputStream out=Files.newOutputStream(self);
+    if (shouldWriteBom) {
+      IOGroovyMethods.writeUTF16BomIfRequired(out,charset);
+    }
+    return new BufferedWriter(new OutputStreamWriter(out,Charset.forName(charset)));
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (bigEndian) {
+    writer.write(-2);
+    writer.write(-1);
+  }
+ else {
+    writer.write(-1);
+    writer.write(-2);
+  }
+}

@@ -1,14 +1,3 @@
 {
-  Writer writer=null;
-  try {
-    writer=new OutputStreamWriter(Files.newOutputStream(self,CREATE,APPEND),Charset.defaultCharset());
-    InvokerHelper.write(writer,text);
-    writer.flush();
-    Writer temp=writer;
-    writer=null;
-    temp.close();
-  }
-  finally {
-    closeWithWarning(writer);
-  }
+  append(self,text,Charset.defaultCharset().name(),false);
 }
