@@ -1,0 +1,3 @@
+{
+  return updateHash(current,var == null ? 0 : var.charValue());
+}
