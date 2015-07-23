@@ -78,7 +78,12 @@ if (closure != null) {
 Object oldCurrent=getCurrent();
 setCurrent(node);
 setClosureDelegate(closure,node);
+try {
 closure.call();
+}
+ catch (Exception e) {
+throw new GroovyRuntimeException(e);
+}
 setCurrent(oldCurrent);
 }
 proxyBuilder.nodeCompleted(current,node);
