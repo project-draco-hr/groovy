@@ -23,7 +23,7 @@
   final BlockStatement body=new BlockStatement();
   for (  FieldNode fNode : superList) {
     String name=fNode.getName();
-    if (shouldSkip(name,excludes,includes))     continue;
+    if (shouldSkipUndefinedAware(name,excludes,includes))     continue;
     params.add(createParam(fNode,name,defaults,xform));
     boolean hasSetter=cNode.getProperty(name) != null && !fNode.isFinal();
     if (callSuper) {
@@ -43,7 +43,7 @@
   }
   for (  FieldNode fNode : list) {
     String name=fNode.getName();
-    if (shouldSkip(name,excludes,includes))     continue;
+    if (shouldSkipUndefinedAware(name,excludes,includes))     continue;
     Parameter nextParam=createParam(fNode,name,defaults,xform);
     params.add(nextParam);
     boolean hasSetter=cNode.getProperty(name) != null && !fNode.isFinal();

@@ -1,0 +1,7 @@
+{
+  if (includes != null && excludes != null && !excludes.isEmpty()) {
+    addError("Error during " + typeName + " processing: Only one of 'includes' and 'excludes' should be supplied not both.",node);
+    return false;
+  }
+  return true;
+}

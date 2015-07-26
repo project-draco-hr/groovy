@@ -1,0 +1,10 @@
+{
+  if (listExpression.getExpressions().size() != 1)   return false;
+  Expression itemExpr=listExpression.getExpression(0);
+  if (itemExpr != null && itemExpr instanceof ConstantExpression) {
+    Object value=((ConstantExpression)itemExpr).getValue();
+    System.out.println("value = " + value);
+    if (isUndefined(value.toString()))     return true;
+  }
+  return false;
+}
