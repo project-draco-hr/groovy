@@ -57,7 +57,11 @@
       }
     }
 ;
+    int origNumConstructors=classNode.getDeclaredConstructors().size();
     verifier.visitClass(classNode);
+    if (origNumConstructors == 0 && classNode.getDeclaredConstructors().size() == 1) {
+      classNode.getDeclaredConstructors().clear();
+    }
     currentModule=classNode.getModule();
     boolean isInterface=isInterfaceOrTrait(classNode);
     boolean isEnum=(classNode.getModifiers() & Opcodes.ACC_ENUM) != 0;

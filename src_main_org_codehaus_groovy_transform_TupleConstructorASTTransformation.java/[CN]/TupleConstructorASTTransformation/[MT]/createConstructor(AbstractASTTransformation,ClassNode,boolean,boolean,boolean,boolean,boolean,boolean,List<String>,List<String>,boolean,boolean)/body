@@ -1,9 +1,5 @@
 {
-  List<ConstructorNode> constructors=cNode.getDeclaredConstructors();
-  if (constructors.size() > 1 && !force)   return;
-  boolean foundEmpty=constructors.size() == 1 && constructors.get(0).getFirstStatement() == null;
-  if (constructors.size() == 1 && !foundEmpty && !force)   return;
-  if (foundEmpty)   constructors.remove(0);
+  if (!cNode.getDeclaredConstructors().isEmpty() && !force)   return;
   List<FieldNode> superList=new ArrayList<FieldNode>();
   if (includeSuperProperties) {
     superList.addAll(getSuperPropertyFields(cNode.getSuperClass()));
