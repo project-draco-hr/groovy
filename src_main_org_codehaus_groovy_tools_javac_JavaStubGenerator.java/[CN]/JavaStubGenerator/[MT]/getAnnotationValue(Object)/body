@@ -24,8 +24,13 @@
  else     if (constValue instanceof Number || constValue instanceof Boolean)     val=constValue.toString();
  else     val="\"" + escapeSpecialChars(constValue.toString()) + "\"";
   }
- else   if (memberValue instanceof PropertyExpression || memberValue instanceof VariableExpression) {
+ else   if (memberValue instanceof PropertyExpression) {
     val=((Expression)memberValue).getText();
+  }
+ else   if (memberValue instanceof VariableExpression) {
+    val=((Expression)memberValue).getText();
+    ImportNode alias=currentModule.getStaticImports().get(val);
+    if (alias != null)     val=alias.getClassName() + "." + alias.getFieldName();
   }
  else   if (memberValue instanceof ClosureExpression) {
     val="groovy.lang.Closure.class";
