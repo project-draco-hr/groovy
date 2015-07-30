@@ -8,7 +8,7 @@
   }
   for (  FieldNode fieldNode : fieldNodes) {
     String name=fieldNode.getName();
-    if (excludes.contains(name))     continue;
+    if (excludes != null && excludes.contains(name))     continue;
     ClassNode fieldType=fieldNode.getType();
     Expression direct=propX(varX("this"),name);
     Expression to=propX(other,name);

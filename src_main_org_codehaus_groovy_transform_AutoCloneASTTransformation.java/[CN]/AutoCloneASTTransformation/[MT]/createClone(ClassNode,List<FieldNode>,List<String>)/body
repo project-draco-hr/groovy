@@ -3,7 +3,7 @@
   final Expression result=varX("_result",cNode);
   body.addStatement(declS(result,castX(cNode,callSuperX("clone"))));
   for (  FieldNode fieldNode : fieldNodes) {
-    if (excludes.contains(fieldNode.getName()))     continue;
+    if (excludes != null && excludes.contains(fieldNode.getName()))     continue;
     ClassNode fieldType=fieldNode.getType();
     Expression fieldExpr=varX(fieldNode);
     Expression to=propX(result,fieldNode.getName());

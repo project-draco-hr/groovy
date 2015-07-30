@@ -12,7 +12,9 @@
   }
   List<String> excludes=new ArrayList<String>();
   List<String> includes=new ArrayList<String>();
+  includes.add(Undefined.STRING);
   if (!getIncludeExclude(transform,anno,buildee,excludes,includes))   return;
+  if (includes.size() == 1 && Undefined.isUndefined(includes.get(0)))   includes=null;
   if (unsupportedAttribute(transform,anno,"builderClassName"))   return;
   if (unsupportedAttribute(transform,anno,"builderMethodName"))   return;
   List<PropertyInfo> props;
@@ -22,8 +24,10 @@
  else {
     props=getPropertyInfoFromClassNode(buildee,includes,excludes);
   }
-  for (  String name : includes) {
-    checkKnownProperty(transform,anno,name,props);
+  if (includes != null) {
+    for (    String name : includes) {
+      checkKnownProperty(transform,anno,name,props);
+    }
   }
   for (  PropertyInfo prop : props) {
     builder.addField(createFieldCopy(builder,prop));

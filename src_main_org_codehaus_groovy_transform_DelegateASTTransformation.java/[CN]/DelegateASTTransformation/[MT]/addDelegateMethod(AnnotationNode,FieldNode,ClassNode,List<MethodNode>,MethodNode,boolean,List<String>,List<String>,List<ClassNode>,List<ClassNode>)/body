@@ -5,10 +5,10 @@
   Map<String,ClassNode> genericsSpec=createGenericsSpec(fieldNode.getDeclaringClass());
   genericsSpec=addMethodGenerics(candidate,genericsSpec);
   extractSuperClassGenerics(fieldNode.getType(),candidate.getDeclaringClass(),genericsSpec);
-  if (!excludeTypes.isEmpty() || !includeTypes.isEmpty()) {
+  if ((excludeTypes != null && !excludeTypes.isEmpty()) || includeTypes != null) {
     MethodNode correctedMethodNode=correctToGenericsSpec(genericsSpec,candidate);
     boolean checkReturn=fieldNode.getType().getMethods().contains(candidate);
-    if (shouldSkipOnDescriptor(checkReturn,genericsSpec,correctedMethodNode,excludeTypes,includeTypes))     return;
+    if (shouldSkipOnDescriptorUndefinedAware(checkReturn,genericsSpec,correctedMethodNode,excludeTypes,includeTypes))     return;
   }
   for (  MethodNode mn : GROOVYOBJECT_TYPE.getMethods()) {
     if (mn.getTypeDescriptor().equals(candidate.getTypeDescriptor())) {

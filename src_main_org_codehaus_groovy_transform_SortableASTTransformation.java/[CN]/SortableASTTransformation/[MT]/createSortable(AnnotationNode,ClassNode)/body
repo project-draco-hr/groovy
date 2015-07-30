@@ -1,7 +1,7 @@
 {
-  List<String> includes=getMemberList(annotation,"includes");
-  List<String> excludes=getMemberList(annotation,"excludes");
-  if (!checkIncludeExclude(annotation,excludes,includes,MY_TYPE_NAME))   return;
+  List<String> includes=getMemberStringList(annotation,"includes");
+  List<String> excludes=getMemberStringList(annotation,"excludes");
+  if (!checkIncludeExcludeUndefinedAware(annotation,excludes,includes,MY_TYPE_NAME))   return;
   if (!checkPropertyList(classNode,includes,"includes",annotation,MY_TYPE_NAME,false))   return;
   if (!checkPropertyList(classNode,excludes,"excludes",annotation,MY_TYPE_NAME,false))   return;
   if (classNode.isInterface()) {

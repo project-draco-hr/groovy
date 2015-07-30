@@ -1,0 +1,25 @@
+{
+  List<ClassNode> list=new ArrayList<ClassNode>();
+  Expression expr=anno.getMember(name);
+  if (expr == null) {
+    return null;
+  }
+  if (expr instanceof ListExpression) {
+    final ListExpression listExpression=(ListExpression)expr;
+    if (isUndefinedMarkerList(listExpression)) {
+      return null;
+    }
+    for (    Expression itemExpr : listExpression.getExpressions()) {
+      if (itemExpr != null && itemExpr instanceof ClassExpression) {
+        ClassNode cn=itemExpr.getType();
+        if (cn != null)         list.add(cn);
+      }
+    }
+  }
+ else   if (expr instanceof ClassExpression) {
+    ClassNode cn=expr.getType();
+    if (isUndefined(cn))     return null;
+    if (cn != null)     list.add(cn);
+  }
+  return list;
+}
