@@ -1,0 +1,6 @@
+{
+  if (!equal(actual,other)) {
+    return;
+  }
+  throw new IllegalArgumentException("Expecting actual not to be equal to other");
+}

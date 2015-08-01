@@ -1,0 +1,4 @@
+{
+  assertThat("true").isNotEmpty().isNotEqualTo("false");
+  assertThat("true").isNotEqualTo("false").isNotEmpty();
+}

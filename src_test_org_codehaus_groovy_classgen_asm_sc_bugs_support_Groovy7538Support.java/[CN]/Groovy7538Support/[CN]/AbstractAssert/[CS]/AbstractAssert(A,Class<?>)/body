@@ -1,0 +1,4 @@
+{
+  myself=(S)selfType.cast(this);
+  this.actual=actual;
+}

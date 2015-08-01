@@ -1,0 +1,4 @@
+{
+  assertNotEqual(actual,other);
+  return myself;
+}

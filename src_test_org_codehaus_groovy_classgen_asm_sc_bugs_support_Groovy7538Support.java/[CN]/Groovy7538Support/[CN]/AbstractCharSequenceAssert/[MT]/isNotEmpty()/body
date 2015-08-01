@@ -1,0 +1,4 @@
+{
+  assertNotEmpty(actual);
+  return myself;
+}

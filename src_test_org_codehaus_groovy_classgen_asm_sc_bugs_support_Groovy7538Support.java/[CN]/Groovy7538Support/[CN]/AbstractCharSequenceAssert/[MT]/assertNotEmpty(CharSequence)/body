@@ -1,0 +1,7 @@
+{
+  assertNotNull(actual);
+  if (hasContents(actual)) {
+    return;
+  }
+  throw new IllegalArgumentException("Expecting actual not to be empty");
+}

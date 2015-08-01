@@ -1,0 +1,6 @@
+{
+  if (actual != null) {
+    return;
+  }
+  throw new IllegalArgumentException("Expecting actual not to be null");
+}
