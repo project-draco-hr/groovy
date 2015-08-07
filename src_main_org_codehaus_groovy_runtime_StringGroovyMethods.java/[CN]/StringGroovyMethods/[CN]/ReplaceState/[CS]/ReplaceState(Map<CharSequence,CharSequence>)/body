@@ -1,0 +1,4 @@
+{
+  this.noMoreMatches=new boolean[replacements.size()];
+  this.replacementsList=DefaultGroovyMethods.toList(replacements.entrySet());
+}

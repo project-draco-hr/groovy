@@ -1,0 +1,27 @@
+{
+  if (self == null)   return null;
+  String text=self.toString();
+  if (replacements == null || replacements.isEmpty() || text.isEmpty())   return text;
+  ReplaceState state=new ReplaceState(replacements);
+  nextMatch(text,state);
+  if (state.textIndex == -1) {
+    return text;
+  }
+  StringBuilder buf=new StringBuilder(guessCapacity(capacity,replacements));
+  state.start=0;
+  while (state.textIndex != -1) {
+    for (int i=state.start; i < state.textIndex; i++) {
+      buf.append(text.charAt(i));
+    }
+    buf.append(state.value(state.replaceIndex));
+    state.start=state.textIndex + state.key(state.replaceIndex).length();
+    state.textIndex=-1;
+    state.replaceIndex=-1;
+    nextMatch(text,state);
+  }
+  int textLength=text.length();
+  for (int i=state.start; i < textLength; i++) {
+    buf.append(text.charAt(i));
+  }
+  return buf.toString();
+}

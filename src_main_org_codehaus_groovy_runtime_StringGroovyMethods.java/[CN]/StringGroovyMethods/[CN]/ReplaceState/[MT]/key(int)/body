@@ -1,0 +1,3 @@
+{
+  return replacementsList.get(i).getKey();
+}

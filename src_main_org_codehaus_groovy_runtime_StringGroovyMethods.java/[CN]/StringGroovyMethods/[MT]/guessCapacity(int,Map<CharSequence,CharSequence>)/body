@@ -1,0 +1,13 @@
+{
+  if (capacity >= 0) {
+    return capacity;
+  }
+  boolean possiblyBigger=false;
+  for (  Map.Entry<CharSequence,CharSequence> entry : replacements.entrySet()) {
+    if (entry.getValue().length() > entry.getKey().length()) {
+      possiblyBigger=true;
+      break;
+    }
+  }
+  return possiblyBigger ? replacements.size() * 3 / 2 : replacements.size();
+}

@@ -1,0 +1,2 @@
+int capacity
+Map<CharSequence,CharSequence> replacements

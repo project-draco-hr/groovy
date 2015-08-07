@@ -1,0 +1,3 @@
+{
+  return replace(self,-1,replacements);
+}
