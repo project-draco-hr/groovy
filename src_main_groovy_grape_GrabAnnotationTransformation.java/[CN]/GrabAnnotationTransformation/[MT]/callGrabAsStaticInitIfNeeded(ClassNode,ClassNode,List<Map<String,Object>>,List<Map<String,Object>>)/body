@@ -2,10 +2,18 @@
   List<Statement> grabInitializers=new ArrayList<Statement>();
   MapExpression basicArgs=new MapExpression();
   if (autoDownload != null) {
-    basicArgs.addMapEntryExpression(new ConstantExpression(AUTO_DOWNLOAD_SETTING),new ConstantExpression(autoDownload));
+    basicArgs.addMapEntryExpression(constX(AUTO_DOWNLOAD_SETTING),constX(autoDownload));
   }
   if (disableChecksums != null) {
-    basicArgs.addMapEntryExpression(new ConstantExpression(DISABLE_CHECKSUMS_SETTING),new ConstantExpression(disableChecksums));
+    basicArgs.addMapEntryExpression(constX(DISABLE_CHECKSUMS_SETTING),constX(disableChecksums));
+  }
+  if (systemProperties != null && !systemProperties.isEmpty()) {
+    BlockStatement block=new BlockStatement();
+    for (    Map.Entry e : systemProperties.entrySet()) {
+      block.addStatement(stmt(callX(SYSTEM_CLASSNODE,"setProperty",args(constX(e.getKey()),constX(e.getValue())))));
+    }
+    StaticMethodCallExpression enabled=callX(SYSTEM_CLASSNODE,"getProperty",args(constX("groovy.grape.enable"),constX("true")));
+    grabInitializers.add(ifS(eqX(enabled,constX("true")),block));
   }
   if (!grabExcludeMaps.isEmpty()) {
     ListExpression list=new ListExpression();
@@ -13,11 +21,11 @@
       Set<Map.Entry<String,Object>> entries=map.entrySet();
       MapExpression inner=new MapExpression();
       for (      Map.Entry<String,Object> entry : entries) {
-        inner.addMapEntryExpression(new ConstantExpression(entry.getKey()),new ConstantExpression(entry.getValue()));
+        inner.addMapEntryExpression(constX(entry.getKey()),constX(entry.getValue()));
       }
       list.addExpression(inner);
     }
-    basicArgs.addMapEntryExpression(new ConstantExpression("excludes"),list);
+    basicArgs.addMapEntryExpression(constX("excludes"),list);
   }
   List<Expression> argList=new ArrayList<Expression>();
   argList.add(basicArgs);
@@ -25,14 +33,13 @@
   for (  Map<String,Object> grabMap : grabMapsInit) {
     MapExpression dependencyArg=new MapExpression();
     for (    String s : GRAB_REQUIRED) {
-      dependencyArg.addMapEntryExpression(new ConstantExpression(s),new ConstantExpression(grabMap.get(s)));
+      dependencyArg.addMapEntryExpression(constX(s),constX(grabMap.get(s)));
     }
     for (    String s : GRAB_OPTIONAL) {
-      if (grabMap.containsKey(s))       dependencyArg.addMapEntryExpression(new ConstantExpression(s),new ConstantExpression(grabMap.get(s)));
+      if (grabMap.containsKey(s))       dependencyArg.addMapEntryExpression(constX(s),constX(grabMap.get(s)));
     }
     argList.add(dependencyArg);
   }
-  ArgumentListExpression grabArgs=new ArgumentListExpression(argList);
-  grabInitializers.add(new ExpressionStatement(new StaticMethodCallExpression(grapeClassNode,"grab",grabArgs)));
+  grabInitializers.add(stmt(callX(grapeClassNode,"grab",args(argList))));
   classNode.addStaticInitializerStatements(grabInitializers,true);
 }

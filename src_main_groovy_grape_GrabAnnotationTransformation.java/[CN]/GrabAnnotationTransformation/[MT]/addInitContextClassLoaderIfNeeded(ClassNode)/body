@@ -1,6 +1,6 @@
 {
   if (initContextClassLoader) {
-    Statement initStatement=new ExpressionStatement(new MethodCallExpression(new StaticMethodCallExpression(THREAD_CLASSNODE,"currentThread",ArgumentListExpression.EMPTY_ARGUMENTS),"setContextClassLoader",new MethodCallExpression(new MethodCallExpression(VariableExpression.THIS_EXPRESSION,"getClass",MethodCallExpression.NO_ARGUMENTS),"getClassLoader",ArgumentListExpression.EMPTY_ARGUMENTS)));
+    Statement initStatement=stmt(callX(callX(THREAD_CLASSNODE,"currentThread"),"setContextClassLoader",callX(callThisX("getClass"),"getClassLoader")));
     classNode.addObjectInitializerStatements(initStatement);
   }
 }

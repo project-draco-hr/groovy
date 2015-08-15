@@ -1,0 +1,12 @@
+{
+  systemProperties=new HashMap<String,String>();
+  List<String> nameValueList=AbstractASTTransformation.getMemberStringList(node,SYSTEM_PROPERTIES_SETTING);
+  if (nameValueList != null) {
+    for (    String nameValue : nameValueList) {
+      int equalsDelim=nameValue.indexOf('=');
+      if (equalsDelim != -1) {
+        systemProperties.put(nameValue.substring(0,equalsDelim),nameValue.substring(equalsDelim + 1));
+      }
+    }
+  }
+}
