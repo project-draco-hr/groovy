@@ -12,6 +12,10 @@
       writeModCall(receiver,arguments,rType,aType);
       return true;
     }
+ else     if ("rightShiftUnsigned".equals(message)) {
+      writeShiftOperatorCall(receiver,arguments,rType,aType);
+      return true;
+    }
   }
  else   if (STRING_TYPE.equals(rType) && "plus".equals(message)) {
     writeStringPlusCall(receiver,message,arguments);
