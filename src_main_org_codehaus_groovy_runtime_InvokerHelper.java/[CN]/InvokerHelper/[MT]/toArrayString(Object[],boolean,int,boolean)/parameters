@@ -1,0 +1,4 @@
+Object[] collection
+boolean verbose
+int maxSize
+boolean safe

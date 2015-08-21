@@ -1,3 +1,3 @@
 {
-  return toListString(DefaultTypeTransformation.asCollection(arguments),maxSize,safe);
+  return toArrayString(arguments,false,maxSize,safe);
 }
