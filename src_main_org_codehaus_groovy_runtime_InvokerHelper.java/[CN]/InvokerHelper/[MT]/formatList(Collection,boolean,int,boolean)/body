@@ -1,5 +1,6 @@
 {
-  StringBuilder buffer=new StringBuilder("[");
+  StringBuilder buffer=new StringBuilder(ITEM_ALLOCATE_SIZE * collection.size());
+  buffer.append('[');
   boolean first=true;
   for (  Object item : collection) {
     if (first) {
@@ -34,6 +35,6 @@
       buffer.append(str);
     }
   }
-  buffer.append("]");
+  buffer.append(']');
   return buffer.toString();
 }

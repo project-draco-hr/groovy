@@ -2,7 +2,8 @@
   if (map.isEmpty()) {
     return "[:]";
   }
-  StringBuilder buffer=new StringBuilder("[");
+  StringBuilder buffer=new StringBuilder(ITEM_ALLOCATE_SIZE * map.size() * 2);
+  buffer.append('[');
   boolean first=true;
   for (  Object o : map.entrySet()) {
     if (first) {
@@ -25,6 +26,6 @@
       buffer.append(format(entry.getValue(),verbose,sizeLeft(maxSize,buffer)));
     }
   }
-  buffer.append("]");
+  buffer.append(']');
   return buffer.toString();
 }
