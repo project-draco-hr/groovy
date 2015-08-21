@@ -1,0 +1,4 @@
+{
+  verifyValue();
+  writeCollectionWithClosure(writer,coll,c);
+}

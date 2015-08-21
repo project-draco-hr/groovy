@@ -1,0 +1,8 @@
+{
+  if (state == State.VALUE) {
+    throw new IllegalStateException("Cannot write value when value has just been written. Write a name first!");
+  }
+ else {
+    state=State.VALUE;
+  }
+}

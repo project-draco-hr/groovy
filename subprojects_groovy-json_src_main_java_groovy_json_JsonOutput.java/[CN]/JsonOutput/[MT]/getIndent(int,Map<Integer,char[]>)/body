@@ -2,7 +2,7 @@
   char[] indent=indentCache.get(indentSize);
   if (indent == null) {
     indent=new char[indentSize];
-    Arrays.fill(indent,' ');
+    Arrays.fill(indent,SPACE);
     indentCache.put(indentSize,indent);
   }
   return indent;

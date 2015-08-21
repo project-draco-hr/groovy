@@ -1,0 +1,4 @@
+{
+  writeName(name);
+  writeArray(Arrays.asList(array));
+}

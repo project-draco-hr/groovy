@@ -1,14 +1,14 @@
 {
   if (iterator.hasNext()) {
-    buffer.addChar('[');
+    buffer.addChar(OPEN_BRACKET);
     Object it=iterator.next();
     writeObject(it,buffer);
     while (iterator.hasNext()) {
       it=iterator.next();
-      buffer.addChar(',');
+      buffer.addChar(COMMA);
       writeObject(it,buffer);
     }
-    buffer.addChar(']');
+    buffer.addChar(CLOSE_BRACKET);
   }
  else {
     buffer.addChars(EMPTY_LIST_CHARS);

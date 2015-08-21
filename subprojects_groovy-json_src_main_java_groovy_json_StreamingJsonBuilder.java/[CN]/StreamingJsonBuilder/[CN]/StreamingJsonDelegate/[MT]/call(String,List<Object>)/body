@@ -1,0 +1,4 @@
+{
+  writeName(name);
+  writeArray(list);
+}

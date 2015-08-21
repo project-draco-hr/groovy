@@ -1,0 +1,3 @@
+{
+  writer.write(JsonOutput.toJson(Collections.singletonMap(name,Collections.emptyMap())));
+}

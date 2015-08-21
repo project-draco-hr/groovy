@@ -1,0 +1,24 @@
+{
+  if (args != null && Object[].class.isAssignableFrom(args.getClass())) {
+    try {
+      Object[] arr=(Object[])args;
+      if (arr.length == 1) {
+        final Object value=arr[0];
+        call(name,value);
+      }
+ else       if (isCollectionWithClosure(arr)) {
+        final Collection coll=(Collection)arr[0];
+        final Closure callable=(Closure)arr[1];
+        call(name,coll,callable);
+      }
+ else {
+        final List<Object> list=Arrays.asList(arr);
+        call(name,list);
+      }
+    }
+ catch (    IOException ioe) {
+      throw new JsonException(ioe);
+    }
+  }
+  return this;
+}

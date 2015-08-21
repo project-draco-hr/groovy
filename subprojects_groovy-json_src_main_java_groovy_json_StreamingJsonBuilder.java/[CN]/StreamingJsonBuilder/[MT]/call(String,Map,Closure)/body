@@ -1,0 +1,20 @@
+{
+  writer.write(JsonOutput.OPEN_BRACE);
+  writer.write(JsonOutput.toJson(name));
+  writer.write(COLON_WITH_OPEN_BRACE);
+  boolean first=true;
+  for (  Object it : map.entrySet()) {
+    if (!first) {
+      writer.write(JsonOutput.COMMA);
+    }
+ else {
+      first=false;
+    }
+    Map.Entry entry=(Map.Entry)it;
+    writer.write(JsonOutput.toJson(entry.getKey()));
+    writer.write(JsonOutput.COLON);
+    writer.write(JsonOutput.toJson(entry.getValue()));
+  }
+  StreamingJsonDelegate.cloneDelegateAndGetContent(writer,callable,map.size() == 0);
+  writer.write(DOUBLE_CLOSE_BRACKET);
+}

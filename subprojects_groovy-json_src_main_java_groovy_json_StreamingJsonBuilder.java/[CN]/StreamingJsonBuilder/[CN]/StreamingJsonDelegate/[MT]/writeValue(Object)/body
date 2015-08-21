@@ -1,0 +1,4 @@
+{
+  verifyValue();
+  writer.write(JsonOutput.toJson(value));
+}

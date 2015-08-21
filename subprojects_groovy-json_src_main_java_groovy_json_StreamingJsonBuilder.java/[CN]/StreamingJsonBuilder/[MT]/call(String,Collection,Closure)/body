@@ -1,0 +1,7 @@
+{
+  writer.write(JsonOutput.OPEN_BRACE);
+  writer.write(JsonOutput.toJson(name));
+  writer.write(JsonOutput.COLON);
+  call(coll,c);
+  writer.write(JsonOutput.CLOSE_BRACE);
+}

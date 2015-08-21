@@ -1,13 +1,13 @@
 {
   if (!map.isEmpty()) {
-    buffer.addChar('{');
+    buffer.addChar(OPEN_BRACE);
     boolean firstItem=true;
     for (    Map.Entry<?,?> entry : map.entrySet()) {
       if (entry.getKey() == null) {
         throw new IllegalArgumentException("Maps with null keys can\'t be converted to JSON");
       }
       if (!firstItem) {
-        buffer.addChar(',');
+        buffer.addChar(COMMA);
       }
  else {
         firstItem=false;
@@ -15,7 +15,7 @@
       buffer.addJsonFieldName(entry.getKey().toString());
       writeObject(entry.getValue(),buffer);
     }
-    buffer.addChar('}');
+    buffer.addChar(CLOSE_BRACE);
   }
  else {
     buffer.addChars(EMPTY_MAP_CHARS);

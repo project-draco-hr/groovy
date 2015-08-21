@@ -1,0 +1,17 @@
+{
+  writer.write(JsonOutput.OPEN_BRACKET);
+  boolean first=true;
+  for (  Object it : coll) {
+    if (!first) {
+      writer.write(JsonOutput.COMMA);
+    }
+ else {
+      first=false;
+    }
+    writer.write(JsonOutput.OPEN_BRACE);
+    curryDelegateAndGetContent(writer,closure,it);
+    writer.write(JsonOutput.CLOSE_BRACE);
+  }
+  writer.write(JsonOutput.CLOSE_BRACKET);
+  return writer;
+}

@@ -1,0 +1,16 @@
+{
+  if (state == State.NAME) {
+    throw new IllegalStateException("Cannot write a name when a name has just been written. Write a value first!");
+  }
+ else {
+    this.state=State.NAME;
+  }
+  if (!first) {
+    writer.write(JsonOutput.COMMA);
+  }
+ else {
+    first=false;
+  }
+  writer.write(JsonOutput.toJson(name));
+  writer.write(JsonOutput.COLON);
+}

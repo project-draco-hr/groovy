@@ -8,33 +8,33 @@
 switch (token.getType()) {
 case OPEN_CURLY:
       indentSize+=4;
-    output.addChars(Chr.array('{','\n')).addChars(getIndent(indentSize,indentCache));
+    output.addChars(Chr.array(OPEN_BRACE,NEW_LINE)).addChars(getIndent(indentSize,indentCache));
   break;
 case CLOSE_CURLY:
 indentSize-=4;
-output.addChar('\n');
+output.addChar(NEW_LINE);
 if (indentSize > 0) {
 output.addChars(getIndent(indentSize,indentCache));
 }
-output.addChar('}');
+output.addChar(CLOSE_BRACE);
 break;
 case OPEN_BRACKET:
 indentSize+=4;
-output.addChars(Chr.array('[','\n')).addChars(getIndent(indentSize,indentCache));
+output.addChars(Chr.array(OPEN_BRACKET,NEW_LINE)).addChars(getIndent(indentSize,indentCache));
 break;
 case CLOSE_BRACKET:
 indentSize-=4;
-output.addChar('\n');
+output.addChar(NEW_LINE);
 if (indentSize > 0) {
 output.addChars(getIndent(indentSize,indentCache));
 }
-output.addChar(']');
+output.addChar(CLOSE_BRACKET);
 break;
 case COMMA:
-output.addChars(Chr.array(',','\n')).addChars(getIndent(indentSize,indentCache));
+output.addChars(Chr.array(COMMA,NEW_LINE)).addChars(getIndent(indentSize,indentCache));
 break;
 case COLON:
-output.addChars(Chr.array(':',' '));
+output.addChars(Chr.array(COLON,SPACE));
 break;
 case STRING:
 String textStr=token.getText();

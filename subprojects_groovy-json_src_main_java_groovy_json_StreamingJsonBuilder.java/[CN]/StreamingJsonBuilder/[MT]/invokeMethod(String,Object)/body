@@ -4,50 +4,30 @@
     Object[] arr=(Object[])args;
     try {
       if (arr.length == 0) {
-        writer.write(JsonOutput.toJson(Collections.singletonMap(name,Collections.emptyMap())));
+        call(name);
       }
  else       if (arr.length == 1) {
         if (arr[0] instanceof Closure) {
-          writer.write("{");
-          writer.write(JsonOutput.toJson(name));
-          writer.write(":");
-          call((Closure)arr[0]);
-          writer.write("}");
+          final Closure callable=(Closure)arr[0];
+          call(name,callable);
         }
  else         if (arr[0] instanceof Map) {
-          writer.write(JsonOutput.toJson(Collections.singletonMap(name,(Map)arr[0])));
+          final Map<String,Map> map=Collections.singletonMap(name,(Map)arr[0]);
+          call(map);
         }
  else {
           notExpectedArgs=true;
         }
       }
  else       if (arr.length == 2 && arr[0] instanceof Map && arr[1] instanceof Closure) {
-        writer.write("{");
-        writer.write(JsonOutput.toJson(name));
-        writer.write(":{");
-        boolean first=true;
         Map map=(Map)arr[0];
-        for (        Object it : map.entrySet()) {
-          if (!first) {
-            writer.write(",");
-          }
- else {
-            first=false;
-          }
-          Map.Entry entry=(Map.Entry)it;
-          writer.write(JsonOutput.toJson(entry.getKey()));
-          writer.write(":");
-          writer.write(JsonOutput.toJson(entry.getValue()));
-        }
-        StreamingJsonDelegate.cloneDelegateAndGetContent(writer,(Closure)arr[1],map.size() == 0);
-        writer.write("}}");
+        final Closure callable=(Closure)arr[1];
+        call(name,map,callable);
       }
  else       if (StreamingJsonDelegate.isCollectionWithClosure(arr)) {
-        writer.write("{");
-        writer.write(JsonOutput.toJson(name));
-        writer.write(":");
-        call((Collection)arr[0],(Closure)arr[1]);
-        writer.write("}");
+        final Collection coll=(Collection)arr[0];
+        final Closure callable=(Closure)arr[1];
+        call(name,coll,callable);
       }
  else {
         notExpectedArgs=true;
