@@ -1,3 +1,3 @@
 {
-  return formatList(arg,false,maxSize,safe);
+  return formatCollection(arg,false,maxSize,safe);
 }

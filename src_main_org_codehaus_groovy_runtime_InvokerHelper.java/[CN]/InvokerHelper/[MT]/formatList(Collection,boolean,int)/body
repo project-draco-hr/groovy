@@ -1,3 +1,0 @@
-{
-  return formatList(collection,verbose,maxSize,false);
-}

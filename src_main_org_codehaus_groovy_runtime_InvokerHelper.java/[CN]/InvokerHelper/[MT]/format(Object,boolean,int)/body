@@ -19,7 +19,7 @@
     }
   }
   if (arguments instanceof Collection) {
-    return formatList((Collection)arguments,verbose,maxSize);
+    return formatCollection((Collection)arguments,verbose,maxSize);
   }
   if (arguments instanceof Map) {
     return formatMap((Map)arguments,verbose,maxSize);

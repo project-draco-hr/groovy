@@ -1,0 +1,3 @@
+{
+  return formatCollection(collection,verbose,maxSize,false);
+}
