@@ -37,6 +37,9 @@
  else     if (objectClass == UUID.class) {
       buffer.addQuoted(object.toString());
     }
+ else     if (objectClass == JsonUnescaped.class) {
+      buffer.add(object.toString());
+    }
  else     if (Closure.class.isAssignableFrom(objectClass)) {
       writeMap(JsonDelegate.cloneDelegateAndGetContent((Closure<?>)object),buffer);
     }
