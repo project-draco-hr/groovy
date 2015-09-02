@@ -1,0 +1,4 @@
+Object arguments
+boolean verbose
+int maxSize
+boolean safe

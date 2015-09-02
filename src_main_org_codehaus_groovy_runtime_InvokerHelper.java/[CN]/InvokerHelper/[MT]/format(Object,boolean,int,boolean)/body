@@ -1,0 +1,68 @@
+{
+  if (arguments == null) {
+    final NullObject nullObject=NullObject.getNullObject();
+    return (String)nullObject.getMetaClass().invokeMethod(nullObject,"toString",EMPTY_ARGS);
+  }
+  if (arguments.getClass().isArray()) {
+    if (arguments instanceof Object[]) {
+      return toArrayString((Object[])arguments,verbose,maxSize,safe);
+    }
+    if (arguments instanceof char[]) {
+      return new String((char[])arguments);
+    }
+    return formatCollection(DefaultTypeTransformation.arrayAsCollection(arguments),verbose,maxSize,safe);
+  }
+  if (arguments instanceof Range) {
+    Range range=(Range)arguments;
+    if (verbose) {
+      return range.inspect();
+    }
+ else {
+      return range.toString();
+    }
+  }
+  if (arguments instanceof Collection) {
+    return formatCollection((Collection)arguments,verbose,maxSize,safe);
+  }
+  if (arguments instanceof Map) {
+    return formatMap((Map)arguments,verbose,maxSize,safe);
+  }
+  if (arguments instanceof Element) {
+    try {
+      Method serialize=Class.forName("groovy.xml.XmlUtil").getMethod("serialize",Element.class);
+      return (String)serialize.invoke(null,arguments);
+    }
+ catch (    ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+catch (    NoSuchMethodException e) {
+      throw new RuntimeException(e);
+    }
+catch (    InvocationTargetException e) {
+      throw new RuntimeException(e);
+    }
+catch (    IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
+  }
+  if (arguments instanceof String) {
+    if (verbose) {
+      String arg=escapeBackslashes((String)arguments).replaceAll("'","\\\\'");
+      return "\'" + arg + "\'";
+    }
+ else {
+      return (String)arguments;
+    }
+  }
+  try {
+    return arguments.toString();
+  }
+ catch (  RuntimeException ex) {
+    if (!safe)     throw ex;
+    return handleFormattingException(arguments,ex);
+  }
+catch (  Exception ex) {
+    if (!safe)     throw new GroovyRuntimeException(ex);
+    return handleFormattingException(arguments,ex);
+  }
+}

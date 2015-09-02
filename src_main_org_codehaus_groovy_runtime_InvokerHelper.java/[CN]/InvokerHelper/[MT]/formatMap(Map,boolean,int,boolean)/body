@@ -23,7 +23,7 @@
       buffer.append("(this Map)");
     }
  else {
-      buffer.append(format(entry.getValue(),verbose,sizeLeft(maxSize,buffer)));
+      buffer.append(format(entry.getValue(),verbose,sizeLeft(maxSize,buffer),safe));
     }
   }
   buffer.append(']');

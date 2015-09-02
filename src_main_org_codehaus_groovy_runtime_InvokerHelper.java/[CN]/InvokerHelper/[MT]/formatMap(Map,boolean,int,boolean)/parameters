@@ -1,3 +1,4 @@
 Map map
 boolean verbose
 int maxSize
+boolean safe

@@ -1,0 +1,10 @@
+{
+  String hash;
+  try {
+    hash=Integer.toHexString(item.hashCode());
+  }
+ catch (  Exception ignored) {
+    hash="????";
+  }
+  return "<" + item.getClass().getName() + "@"+ hash+ ">";
+}

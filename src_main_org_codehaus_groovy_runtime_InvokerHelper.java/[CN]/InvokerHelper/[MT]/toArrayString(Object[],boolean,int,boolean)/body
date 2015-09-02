@@ -20,22 +20,7 @@
       argBuf.append("(this Collection)");
     }
  else {
-      String str;
-      try {
-        str=format(item,verbose,sizeLeft(maxSize,argBuf));
-      }
- catch (      Exception ex) {
-        if (!safe)         throw new GroovyRuntimeException(ex);
-        String hash;
-        try {
-          hash=Integer.toHexString(item.hashCode());
-        }
- catch (        Exception ignored) {
-          hash="????";
-        }
-        str="<" + item.getClass().getName() + "@"+ hash+ ">";
-      }
-      argBuf.append(str);
+      argBuf.append(format(item,verbose,sizeLeft(maxSize,argBuf),safe));
     }
   }
   argBuf.append(']');
