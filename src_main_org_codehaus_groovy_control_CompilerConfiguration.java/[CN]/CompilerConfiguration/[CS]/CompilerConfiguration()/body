@@ -30,12 +30,12 @@
   }
  catch (  Exception e) {
   }
-  if (DEFAULT != null && Boolean.TRUE.equals(DEFAULT.getOptimizationOptions().get("indy"))) {
+  if (DEFAULT != null && Boolean.TRUE.equals(DEFAULT.getOptimizationOptions().get(INVOKEDYNAMIC))) {
     indy=true;
   }
   Map options=new HashMap<String,Boolean>(3);
   if (indy) {
-    options.put("indy",Boolean.TRUE);
+    options.put(INVOKEDYNAMIC,Boolean.TRUE);
   }
   setOptimizationOptions(options);
 }
