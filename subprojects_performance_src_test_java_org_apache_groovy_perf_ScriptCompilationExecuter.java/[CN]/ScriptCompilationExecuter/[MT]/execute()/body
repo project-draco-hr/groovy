@@ -1,0 +1,12 @@
+{
+  ClassLoader cl=new URLClassLoader(classpath,ClassLoader.getSystemClassLoader().getParent());
+  GroovyClassLoader gcl=new GroovyClassLoader(cl);
+  CompilationUnit cu=new CompilationUnit(new CompilerConfiguration(),null,gcl,new GroovyClassLoader(this.getClass().getClassLoader()));
+  for (  File source : sources) {
+    cu.addSource(source);
+  }
+  long sd=System.nanoTime();
+  cu.compile(CompilePhase.CLASS_GENERATION.getPhaseNumber());
+  long dur=TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - sd);
+  return dur;
+}

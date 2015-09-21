@@ -1,0 +1,37 @@
+{
+  List<File> sources=new ArrayList<>();
+  List<URL> classpath=new ArrayList<>();
+  boolean isCp=false;
+  for (  String arg : args) {
+    if ("-cp".equals(arg)) {
+      isCp=true;
+    }
+ else     if (isCp) {
+      classpath.add(new File(arg).toURI().toURL());
+    }
+ else {
+      sources.add(new File(arg));
+    }
+  }
+  ScriptCompilationExecuter executer=new ScriptCompilationExecuter(sources.toArray(new File[sources.size()]),classpath);
+  System.out.println("Using Groovy " + GROOVY_VERSION);
+  DescriptiveStatistics stats=new DescriptiveStatistics();
+  for (int i=0; i < WARMUP + REPEAT; i++) {
+    if (i < WARMUP) {
+      System.out.println("Warmup #" + (i + 1));
+    }
+ else {
+      System.out.println("Round #" + (i - WARMUP));
+    }
+    long dur=executer.execute();
+    System.gc();
+    System.out.printf("Compile time = %dms%n",dur);
+    if (i >= WARMUP) {
+      stats.addValue((double)dur);
+    }
+  }
+  System.out.println("Compilation took " + stats.getMean() + "ms ?? "+ stats.getStandardDeviation()+ "ms");
+  FileWriter wrt=new FileWriter(new File("target/compilation-stats.csv"),true);
+  wrt.append(String.format("%s;%s;%s\n",GROOVY_VERSION,stats.getMean(),stats.getStandardDeviation()));
+  wrt.close();
+}
