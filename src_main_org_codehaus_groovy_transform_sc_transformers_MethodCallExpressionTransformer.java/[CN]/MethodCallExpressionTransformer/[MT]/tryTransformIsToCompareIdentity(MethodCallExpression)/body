@@ -1,4 +1,5 @@
 {
+  if (call.isSafe())   return null;
   MethodNode methodTarget=call.getMethodTarget();
   if (methodTarget instanceof ExtensionMethodNode && "is".equals(methodTarget.getName()) && methodTarget.getParameters().length == 1) {
     methodTarget=((ExtensionMethodNode)methodTarget).getExtensionMethodNode();
