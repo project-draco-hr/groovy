@@ -1,6 +1,5 @@
 {
   Object implicitReceiver=origin.getNodeMetaData(StaticTypesMarker.IMPLICIT_RECEIVER);
-  ClassNode propertyOwnerType=origin.getNodeMetaData(StaticCompilationMetadataKeys.PROPERTY_OWNER);
   if (implicitThis && implicitReceiver == null && origin instanceof MethodCallExpression) {
     implicitReceiver=((MethodCallExpression)origin).getObjectExpression().getNodeMetaData(StaticTypesMarker.IMPLICIT_RECEIVER);
   }
@@ -13,9 +12,6 @@
       pexp=new PropertyExpression(pexp,propertyPath[i]);
     }
     pexp.putNodeMetaData(StaticTypesMarker.IMPLICIT_RECEIVER,implicitReceiver);
-    if (propertyOwnerType != null) {
-      pexp.putNodeMetaData(StaticTypesMarker.INFERRED_TYPE,propertyOwnerType);
-    }
     origin.removeNodeMetaData(StaticTypesMarker.IMPLICIT_RECEIVER);
     if (origin instanceof PropertyExpression) {
       PropertyExpression rewritten=new PropertyExpression(pexp,((PropertyExpression)origin).getProperty(),((PropertyExpression)origin).isSafe());
