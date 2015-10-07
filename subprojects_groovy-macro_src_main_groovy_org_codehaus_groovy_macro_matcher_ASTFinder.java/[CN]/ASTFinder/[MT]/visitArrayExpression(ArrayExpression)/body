@@ -1,0 +1,4 @@
+{
+  super.visitArrayExpression(expression);
+  tryFind(ArrayExpression.class,expression);
+}

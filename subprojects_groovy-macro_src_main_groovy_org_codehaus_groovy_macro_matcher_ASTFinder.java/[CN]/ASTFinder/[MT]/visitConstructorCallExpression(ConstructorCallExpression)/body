@@ -1,0 +1,4 @@
+{
+  super.visitConstructorCallExpression(call);
+  tryFind(ConstructorCallExpression.class,call);
+}

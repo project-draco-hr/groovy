@@ -1,0 +1,4 @@
+{
+  super.visitCastExpression(expression);
+  trn.visitCastExpression(expression);
+}

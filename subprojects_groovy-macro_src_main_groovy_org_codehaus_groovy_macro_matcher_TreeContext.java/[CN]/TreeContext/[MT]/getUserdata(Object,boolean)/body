@@ -1,0 +1,9 @@
+{
+  if (userdata.containsKey(key)) {
+    return userdata.get(key);
+  }
+ else   if (parent != null && searchParent) {
+    return parent.getUserdata(key,true);
+  }
+  return null;
+}

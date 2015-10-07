@@ -1,0 +1,15 @@
+{
+  final StringBuilder sb=new StringBuilder("TreeContext{");
+  sb.append("node=").append(dumpNode());
+  TreeContext p=parent;
+  if (p != null) {
+    sb.append(", path=");
+  }
+  while (p != null) {
+    sb.append(p.dumpNode());
+    sb.append("<-");
+    p=p.parent;
+  }
+  sb.append('}');
+  return sb.toString();
+}

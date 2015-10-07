@@ -1,0 +1,11 @@
+{
+  if (call == null)   throw new IllegalArgumentException("Null: call");
+  if (methodName == null)   throw new IllegalArgumentException("Null: methodName");
+  if (!(call.getMethod() instanceof ConstantExpression)) {
+    return false;
+  }
+  if (!(methodName.equals(call.getMethodAsString()))) {
+    return false;
+  }
+  return call.getObjectExpression() == THIS_EXPRESSION;
+}

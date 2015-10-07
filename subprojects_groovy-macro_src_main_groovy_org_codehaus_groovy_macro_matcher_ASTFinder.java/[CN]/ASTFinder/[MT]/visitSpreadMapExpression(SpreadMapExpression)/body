@@ -1,0 +1,4 @@
+{
+  super.visitSpreadMapExpression(expression);
+  tryFind(SpreadMapExpression.class,expression);
+}

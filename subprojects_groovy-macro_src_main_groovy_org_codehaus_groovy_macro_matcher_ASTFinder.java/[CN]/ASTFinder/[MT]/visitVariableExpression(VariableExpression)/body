@@ -1,0 +1,4 @@
+{
+  super.visitVariableExpression(expression);
+  tryFind(VariableExpression.class,expression);
+}

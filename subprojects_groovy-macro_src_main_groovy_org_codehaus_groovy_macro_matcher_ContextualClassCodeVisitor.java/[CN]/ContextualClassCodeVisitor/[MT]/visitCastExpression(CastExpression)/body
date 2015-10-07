@@ -1,0 +1,5 @@
+{
+  pushContext(expression);
+  super.visitCastExpression(expression);
+  popContext();
+}

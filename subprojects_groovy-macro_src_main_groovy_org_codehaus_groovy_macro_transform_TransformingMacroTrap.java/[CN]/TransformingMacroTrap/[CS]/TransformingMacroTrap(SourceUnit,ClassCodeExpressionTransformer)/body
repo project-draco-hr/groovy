@@ -1,0 +1,4 @@
+{
+  super(sourceUnit.getSource(),sourceUnit);
+  this.trn=trn;
+}

@@ -1,0 +1,6 @@
+{
+  Closure<T> clone=(Closure<T>)predicate.clone();
+  clone.setDelegate(delegate);
+  clone.setResolveStrategy(Closure.DELEGATE_FIRST);
+  return clone;
+}

@@ -1,0 +1,11 @@
+{
+  boolean shouldContinueWalking=true;
+  if (isBuildInvocation(call)) {
+    shouldContinueWalking=handleTargetMethodCallExpression(call);
+  }
+  if (shouldContinueWalking) {
+    call.getObjectExpression().visit(this);
+    call.getMethod().visit(this);
+    call.getArguments().visit(this);
+  }
+}

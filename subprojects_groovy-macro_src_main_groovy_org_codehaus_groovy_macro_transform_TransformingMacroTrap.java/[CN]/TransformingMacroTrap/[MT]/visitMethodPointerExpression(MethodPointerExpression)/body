@@ -1,0 +1,4 @@
+{
+  super.visitMethodPointerExpression(expression);
+  trn.visitMethodPointerExpression(expression);
+}

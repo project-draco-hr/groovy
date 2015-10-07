@@ -1,0 +1,4 @@
+{
+  super.visitClosureListExpression(cle);
+  trn.visitClosureListExpression(cle);
+}

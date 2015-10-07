@@ -1,0 +1,4 @@
+{
+  super.visitBlockStatement(block);
+  trn.visitBlockStatement(block);
+}

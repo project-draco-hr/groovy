@@ -1,0 +1,5 @@
+{
+  pushContext(statement);
+  super.visitAssertStatement(statement);
+  popContext();
+}

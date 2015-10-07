@@ -1,0 +1,5 @@
+{
+  pushContext(call);
+  super.visitMethodCallExpression(call);
+  popContext();
+}

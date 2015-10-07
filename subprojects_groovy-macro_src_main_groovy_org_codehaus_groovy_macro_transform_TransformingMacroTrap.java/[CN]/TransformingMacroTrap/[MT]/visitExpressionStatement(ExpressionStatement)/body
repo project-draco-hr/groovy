@@ -1,0 +1,4 @@
+{
+  super.visitExpressionStatement(statement);
+  trn.visitExpressionStatement(statement);
+}

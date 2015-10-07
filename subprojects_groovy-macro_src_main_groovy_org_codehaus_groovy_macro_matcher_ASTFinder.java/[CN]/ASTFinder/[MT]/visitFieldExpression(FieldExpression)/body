@@ -1,0 +1,4 @@
+{
+  super.visitFieldExpression(expression);
+  tryFind(FieldExpression.class,expression);
+}

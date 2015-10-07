@@ -1,0 +1,27 @@
+{
+  final TreeContext treeContext=treeContextStack.pop();
+  List<TreeContextAction> actions=treeContext.getOnPopHandlers();
+  for (  TreeContextAction contextAction : actions) {
+    contextAction.call(treeContext);
+  }
+  lastContext=treeContext;
+  ASTNode parentNode=treeContext.parent != null ? treeContext.parent.node : null;
+  if (treeContext.node instanceof Expression && parentNode != null) {
+    ClassCodeExpressionTransformer trn=new ClassCodeExpressionTransformer(){
+      @Override protected SourceUnit getSourceUnit(){
+        return null;
+      }
+      @Override public Expression transform(      final Expression exp){
+        if (exp == treeContext.node) {
+          Expression replacement=treeContext.getReplacement();
+          if (replacement != null) {
+            return replacement;
+          }
+        }
+        return super.transform(exp);
+      }
+    }
+;
+  }
+  return treeContext;
+}

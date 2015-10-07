@@ -1,0 +1,4 @@
+{
+  super.visitEmptyStatement(statement);
+  tryFind(EmptyStatement.class,statement);
+}

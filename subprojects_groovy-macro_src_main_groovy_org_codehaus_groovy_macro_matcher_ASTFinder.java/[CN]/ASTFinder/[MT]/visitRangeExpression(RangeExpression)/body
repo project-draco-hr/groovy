@@ -1,0 +1,4 @@
+{
+  super.visitRangeExpression(expression);
+  tryFind(RangeExpression.class,expression);
+}

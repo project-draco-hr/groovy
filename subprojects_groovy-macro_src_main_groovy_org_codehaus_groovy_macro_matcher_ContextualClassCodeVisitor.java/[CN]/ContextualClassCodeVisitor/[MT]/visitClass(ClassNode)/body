@@ -1,0 +1,5 @@
+{
+  pushContext(node);
+  super.visitClass(node);
+  popContext();
+}

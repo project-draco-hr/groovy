@@ -1,0 +1,4 @@
+{
+  super.visitSpreadExpression(expression);
+  tryFind(SpreadExpression.class,expression);
+}

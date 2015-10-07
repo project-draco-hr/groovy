@@ -1,0 +1,13 @@
+{
+  TupleExpression tupleArguments=getMacroArguments(call);
+  if (tupleArguments.getExpressions().size() < 1) {
+    addError("Call arguments should have at least one argument",tupleArguments);
+    return null;
+  }
+  Expression result=tupleArguments.getExpression(tupleArguments.getExpressions().size() - 1);
+  if (!(result instanceof ClosureExpression)) {
+    addError("Last call argument should be a closure",result);
+    return null;
+  }
+  return (ClosureExpression)result;
+}

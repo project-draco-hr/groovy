@@ -1,0 +1,4 @@
+{
+  super.visitAttributeExpression(expression);
+  tryFind(AttributeExpression.class,expression);
+}

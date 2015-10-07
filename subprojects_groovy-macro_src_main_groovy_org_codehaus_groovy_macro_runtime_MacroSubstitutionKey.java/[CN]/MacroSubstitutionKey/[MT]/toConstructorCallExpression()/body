@@ -1,0 +1,3 @@
+{
+  return new ConstructorCallExpression(ClassHelper.make(this.getClass()),new ArgumentListExpression(new Expression[]{new ConstantExpression(startLine),new ConstantExpression(startColumn),new ConstantExpression(endLine),new ConstantExpression(endColumn)}));
+}

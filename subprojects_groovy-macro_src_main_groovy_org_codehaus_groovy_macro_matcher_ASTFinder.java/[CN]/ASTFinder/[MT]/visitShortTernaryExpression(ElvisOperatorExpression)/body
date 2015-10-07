@@ -1,0 +1,4 @@
+{
+  super.visitShortTernaryExpression(expression);
+  tryFind(ElvisOperatorExpression.class,expression);
+}

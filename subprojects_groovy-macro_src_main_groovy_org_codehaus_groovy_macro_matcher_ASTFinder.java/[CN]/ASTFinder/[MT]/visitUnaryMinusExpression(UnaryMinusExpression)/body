@@ -1,0 +1,4 @@
+{
+  super.visitUnaryMinusExpression(expression);
+  tryFind(UnaryMinusExpression.class,expression);
+}

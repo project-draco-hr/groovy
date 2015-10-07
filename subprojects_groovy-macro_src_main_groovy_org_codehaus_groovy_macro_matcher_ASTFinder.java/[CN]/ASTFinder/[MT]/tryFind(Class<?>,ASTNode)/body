@@ -1,0 +1,5 @@
+{
+  if (clazz.isAssignableFrom(initial.getClass()) && ASTMatcher.matches(node,initial)) {
+    matches.add(getLastContext());
+  }
+}

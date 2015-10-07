@@ -1,0 +1,4 @@
+{
+  super.visitTernaryExpression(expression);
+  trn.visitTernaryExpression(expression);
+}

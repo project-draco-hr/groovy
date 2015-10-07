@@ -1,0 +1,5 @@
+{
+  pushContext(block);
+  super.visitBlockStatement(block);
+  popContext();
+}

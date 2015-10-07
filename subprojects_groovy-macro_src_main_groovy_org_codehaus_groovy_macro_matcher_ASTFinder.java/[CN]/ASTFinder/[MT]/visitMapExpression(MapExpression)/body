@@ -1,0 +1,4 @@
+{
+  super.visitMapExpression(expression);
+  tryFind(MapExpression.class,expression);
+}

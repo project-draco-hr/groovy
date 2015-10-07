@@ -1,0 +1,4 @@
+{
+  super.visitTryCatchFinally(statement);
+  tryFind(TryCatchStatement.class,statement);
+}

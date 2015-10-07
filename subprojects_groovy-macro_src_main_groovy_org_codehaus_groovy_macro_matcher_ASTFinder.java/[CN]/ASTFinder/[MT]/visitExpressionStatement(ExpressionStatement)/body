@@ -1,0 +1,4 @@
+{
+  super.visitExpressionStatement(statement);
+  tryFind(ExpressionStatement.class,statement);
+}

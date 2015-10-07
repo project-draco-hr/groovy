@@ -1,0 +1,4 @@
+{
+  super.visitField(node);
+  tryFind(FieldNode.class,node);
+}

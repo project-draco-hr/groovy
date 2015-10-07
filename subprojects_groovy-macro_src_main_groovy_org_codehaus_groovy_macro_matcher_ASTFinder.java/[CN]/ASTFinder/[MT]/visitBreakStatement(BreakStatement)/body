@@ -1,0 +1,4 @@
+{
+  super.visitBreakStatement(statement);
+  tryFind(BreakStatement.class,statement);
+}

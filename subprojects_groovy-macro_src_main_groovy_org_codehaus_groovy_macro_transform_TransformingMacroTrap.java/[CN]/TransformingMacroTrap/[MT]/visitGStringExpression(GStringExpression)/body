@@ -1,0 +1,4 @@
+{
+  super.visitGStringExpression(expression);
+  trn.visitGStringExpression(expression);
+}

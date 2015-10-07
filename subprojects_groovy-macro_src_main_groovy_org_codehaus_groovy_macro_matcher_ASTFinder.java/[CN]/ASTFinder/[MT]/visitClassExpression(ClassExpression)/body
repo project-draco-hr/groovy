@@ -1,0 +1,4 @@
+{
+  super.visitClassExpression(expression);
+  tryFind(ClassExpression.class,expression);
+}

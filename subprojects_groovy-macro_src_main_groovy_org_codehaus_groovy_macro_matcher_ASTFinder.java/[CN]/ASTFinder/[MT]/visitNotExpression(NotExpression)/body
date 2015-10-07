@@ -1,0 +1,4 @@
+{
+  super.visitNotExpression(expression);
+  tryFind(NotExpression.class,expression);
+}

@@ -1,0 +1,4 @@
+{
+  super.visitClosureListExpression(cle);
+  tryFind(ClosureListExpression.class,cle);
+}

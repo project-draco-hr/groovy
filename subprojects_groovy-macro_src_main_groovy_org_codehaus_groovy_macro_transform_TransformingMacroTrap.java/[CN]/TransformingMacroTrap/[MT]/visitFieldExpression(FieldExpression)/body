@@ -1,0 +1,4 @@
+{
+  super.visitFieldExpression(expression);
+  trn.visitFieldExpression(expression);
+}
