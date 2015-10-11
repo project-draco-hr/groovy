@@ -1,0 +1,13 @@
+{
+  if (outer != null && !isStaticallyCompiled(outer) && outer.getNodeMetaData(StaticCompilationMetadataKeys.DYNAMIC_OUTER_NODE_CALLBACK) == null) {
+    outer.putNodeMetaData(StaticCompilationMetadataKeys.DYNAMIC_OUTER_NODE_CALLBACK,new CompilationUnit.PrimaryClassNodeOperation(){
+      @Override public void call(      SourceUnit source,      GeneratorContext context,      ClassNode classNode) throws CompilationFailedException {
+        if (classNode == outer) {
+          addPrivateBridgeMethods(classNode);
+          addPrivateFieldsAccessors(classNode);
+        }
+      }
+    }
+);
+  }
+}

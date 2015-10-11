@@ -17,5 +17,6 @@
   }
   super.visitClass(node);
   addPrivateFieldAndMethodAccessors(node);
+  if (isStaticallyCompiled(node))   addDynamicOuterClassAccessorsCallback(node.getOuterClass());
   classNode=oldCN;
 }

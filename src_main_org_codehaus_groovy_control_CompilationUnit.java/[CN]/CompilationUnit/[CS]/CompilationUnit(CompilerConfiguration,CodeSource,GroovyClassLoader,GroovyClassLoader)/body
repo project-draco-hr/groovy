@@ -89,6 +89,16 @@
     }
   }
 ,Phases.CANONICALIZATION);
+  addPhaseOperation(new PrimaryClassNodeOperation(){
+    @Override public void call(    SourceUnit source,    GeneratorContext context,    ClassNode classNode) throws CompilationFailedException {
+      Object callback=classNode.getNodeMetaData(StaticCompilationMetadataKeys.DYNAMIC_OUTER_NODE_CALLBACK);
+      if (callback instanceof PrimaryClassNodeOperation) {
+        ((PrimaryClassNodeOperation)callback).call(source,context,classNode);
+        classNode.removeNodeMetaData(StaticCompilationMetadataKeys.DYNAMIC_OUTER_NODE_CALLBACK);
+      }
+    }
+  }
+,Phases.INSTRUCTION_SELECTION);
   if (configuration != null) {
     final List<CompilationCustomizer> customizers=configuration.getCompilationCustomizers();
     for (    CompilationCustomizer customizer : customizers) {
