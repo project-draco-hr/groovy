@@ -1,8 +1,0 @@
-{
-  List<AnnotationNode> annotationMap=node.getAnnotations();
-  if (annotationMap.isEmpty())   return;
-  visitNode(node);
-  for (  AnnotationNode annotationNode : annotationMap) {
-    visitNode(annotationNode);
-  }
-}

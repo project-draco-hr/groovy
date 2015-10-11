@@ -1,7 +1,0 @@
-{
-  if (classNodes != null) {
-    for (    ClassNode classNode : classNodes) {
-      visitType(classNode);
-    }
-  }
-}

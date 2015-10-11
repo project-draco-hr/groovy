@@ -1,7 +1,0 @@
-{
-  if (nodes != null) {
-    for (    ASTNode node : nodes) {
-      visitNode(node);
-    }
-  }
-}
