@@ -9,7 +9,7 @@
     return false;
   }
   PropertyNode propertyNode=receiverType.getProperty(methodName);
-  if (propertyNode != null) {
+  if (getterNode == null && propertyNode != null) {
     String prefix="get";
     if (boolean_TYPE.equals(propertyNode.getOriginType())) {
       prefix="is";
