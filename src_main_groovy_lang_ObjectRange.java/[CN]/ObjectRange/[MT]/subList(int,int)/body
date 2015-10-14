@@ -2,14 +2,28 @@
   if (fromIndex < 0) {
     throw new IndexOutOfBoundsException("fromIndex = " + fromIndex);
   }
-  if (toIndex > size()) {
-    throw new IndexOutOfBoundsException("toIndex = " + toIndex);
-  }
   if (fromIndex > toIndex) {
     throw new IllegalArgumentException("fromIndex(" + fromIndex + ") > toIndex("+ toIndex+ ")");
   }
   if (fromIndex == toIndex) {
     return new EmptyRange(from);
   }
-  return new ObjectRange((Comparable)get(fromIndex),(Comparable)get(--toIndex),reverse);
+  StepIterator iter=new StepIterator(this,1);
+  Object value=iter.next();
+  int i=0;
+  for (; i < fromIndex; i++) {
+    if (!iter.hasNext()) {
+      throw new IndexOutOfBoundsException("Index: " + i + " is too big for range: "+ this);
+    }
+    value=iter.next();
+  }
+  Object fromValue=value;
+  for (; i < toIndex - 1; i++) {
+    if (!iter.hasNext()) {
+      throw new IndexOutOfBoundsException("Index: " + i + " is too big for range: "+ this);
+    }
+    value=iter.next();
+  }
+  Object toValue=value;
+  return new ObjectRange((Comparable)fromValue,(Comparable)toValue,reverse);
 }

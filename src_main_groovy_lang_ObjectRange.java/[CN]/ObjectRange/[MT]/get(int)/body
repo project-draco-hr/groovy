@@ -2,21 +2,13 @@
   if (index < 0) {
     throw new IndexOutOfBoundsException("Index: " + index + " should not be negative");
   }
-  if (index >= size()) {
-    throw new IndexOutOfBoundsException("Index: " + index + " is too big for range: "+ this);
-  }
-  Object value;
-  if (reverse) {
-    value=to;
-    for (int i=0; i < index; i++) {
-      value=decrement(value);
+  StepIterator iter=new StepIterator(this,1);
+  Object value=iter.next();
+  for (int i=0; i < index; i++) {
+    if (!iter.hasNext()) {
+      throw new IndexOutOfBoundsException("Index: " + index + " is too big for range: "+ this);
     }
-  }
- else {
-    value=from;
-    for (int i=0; i < index; i++) {
-      value=increment(value);
-    }
+    value=iter.next();
   }
   return value;
 }

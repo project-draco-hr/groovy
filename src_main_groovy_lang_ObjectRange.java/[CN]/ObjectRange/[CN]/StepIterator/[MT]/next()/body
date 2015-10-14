@@ -1,0 +1,9 @@
+{
+  if (!nextFetched) {
+    value=peek();
+    nextFetched=true;
+  }
+  nextFetched=false;
+  index++;
+  return value;
+}

@@ -1,0 +1,18 @@
+{
+  if (desiredStep == 0 && range.compareTo(range.getFrom(),range.getTo()) != 0) {
+    throw new GroovyRuntimeException("Infinite loop detected due to step size of 0");
+  }
+  this.range=range;
+  if (range.isReverse()) {
+    this.step=-desiredStep;
+  }
+ else {
+    this.step=desiredStep;
+  }
+  if (this.step > 0) {
+    value=range.getFrom();
+  }
+ else {
+    value=range.getTo();
+  }
+}

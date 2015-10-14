@@ -1,5 +1,5 @@
 {
-  Iterator it=iterator();
+  Iterator it=new StepIterator(this,1);
   if (value == null)   return false;
   while (it.hasNext()) {
     try {

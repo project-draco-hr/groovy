@@ -1,29 +1,16 @@
 {
-  return new Iterator(){
-    private int index;
-    private Object value=reverse ? to : from;
-    public boolean hasNext(){
-      return index < size();
+  final Iterator innerIterator=new StepIterator(this,1);
+  Iterator safeIterator=new Iterator(){
+    @Override public synchronized boolean hasNext(){
+      return innerIterator.hasNext();
     }
-    public Object next(){
-      if (index++ > 0) {
-        if (index > size()) {
-          value=null;
-        }
- else {
-          if (reverse) {
-            value=decrement(value);
-          }
- else {
-            value=increment(value);
-          }
-        }
-      }
-      return value;
+    @Override public synchronized Object next(){
+      return innerIterator.next();
     }
-    public void remove(){
-      ObjectRange.this.remove(index);
+    @Override public void remove(){
+      innerIterator.remove();
     }
   }
 ;
+  return safeIterator;
 }

@@ -17,14 +17,13 @@
       size=sizeNum.intValue();
     }
  else {
-      size=0;
-      Comparable first=from;
-      Comparable value=from;
-      while (compareTo(to,value) >= 0) {
-        value=(Comparable)increment(value);
-        size++;
-        if (compareTo(first,value) >= 0)         break;
+      Iterator iter=new StepIterator(this,1);
+      int tempsize=0;
+      while (iter.hasNext()) {
+        tempsize++;
+        iter.next();
       }
+      size=tempsize;
     }
   }
   return size;

@@ -1,0 +1,24 @@
+{
+  if (step > 0) {
+    Comparable peekValue=value;
+    for (int i=0; i < step; i++) {
+      peekValue=(Comparable)range.increment(peekValue);
+      if (range.compareTo(peekValue,range.from) <= 0)       return null;
+    }
+    if (range.compareTo(peekValue,range.to) <= 0) {
+      return peekValue;
+    }
+  }
+ else {
+    int positiveStep=-step;
+    Comparable peekValue=value;
+    for (int i=0; i < positiveStep; i++) {
+      peekValue=(Comparable)range.decrement(peekValue);
+      if (range.compareTo(peekValue,range.to) >= 0)       return null;
+    }
+    if (range.compareTo(peekValue,range.from) >= 0) {
+      return peekValue;
+    }
+  }
+  return null;
+}
