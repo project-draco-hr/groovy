@@ -1,20 +1,3 @@
 {
-  if (from == null) {
-    throw new IllegalArgumentException("Must specify a non-null value for the 'from' index in a Range");
-  }
-  if (to == null) {
-    throw new IllegalArgumentException("Must specify a non-null value for the 'to' index in a Range");
-  }
-  try {
-    this.reverse=ScriptBytecodeAdapter.compareGreaterThan(from,to);
-  }
- catch (  ClassCastException cce) {
-    throw new IllegalArgumentException("Unable to create range due to incompatible types: " + from.getClass().getSimpleName() + ".."+ to.getClass().getSimpleName()+ " (possible missing brackets around range?)",cce);
-  }
-  if (this.reverse) {
-    constructorHelper(to,from);
-  }
- else {
-    constructorHelper(from,to);
-  }
+  this(from,to,null);
 }

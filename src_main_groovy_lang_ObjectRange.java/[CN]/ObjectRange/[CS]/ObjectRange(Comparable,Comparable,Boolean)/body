@@ -1,0 +1,55 @@
+{
+  if (reverse == null) {
+    boolean computedReverse=areReversed(smaller,larger);
+    if (computedReverse) {
+      Comparable temp=larger;
+      larger=smaller;
+      smaller=temp;
+    }
+    this.reverse=computedReverse;
+  }
+ else {
+    this.reverse=reverse.booleanValue();
+  }
+  if (smaller instanceof Short) {
+    smaller=((Short)smaller).intValue();
+  }
+ else   if (smaller instanceof Float) {
+    smaller=((Float)smaller).doubleValue();
+  }
+  if (larger instanceof Short) {
+    larger=((Short)larger).intValue();
+  }
+ else   if (larger instanceof Float) {
+    larger=((Float)larger).doubleValue();
+  }
+  if (smaller instanceof Integer && larger instanceof Long) {
+    smaller=Long.valueOf(((Integer)smaller).longValue());
+  }
+ else   if (larger instanceof Integer && smaller instanceof Long) {
+    larger=Long.valueOf(((Integer)larger).longValue());
+  }
+  if (smaller.getClass() == larger.getClass()) {
+    this.from=smaller;
+    this.to=larger;
+  }
+ else {
+    this.from=normaliseStringType(smaller);
+    this.to=normaliseStringType(larger);
+  }
+  if (from instanceof String || to instanceof String) {
+    String start=smaller.toString();
+    String end=larger.toString();
+    if (start.length() > end.length()) {
+      throw new IllegalArgumentException("Incompatible Strings for Range: starting String is longer than ending string");
+    }
+    int length=Math.min(start.length(),end.length());
+    int i;
+    for (i=0; i < length; i++) {
+      if (start.charAt(i) != end.charAt(i))       break;
+    }
+    if (i < length - 1) {
+      throw new IllegalArgumentException("Incompatible Strings for Range: String#next() will not reach the expected value");
+    }
+  }
+}

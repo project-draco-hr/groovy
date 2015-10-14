@@ -8,6 +8,7 @@
  else {
     this.from=from;
     this.to=to;
+    this.reverse=false;
   }
   Long size=0L + this.to - this.from;
   if (size >= Integer.MAX_VALUE) {

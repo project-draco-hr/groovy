@@ -1,4 +1,3 @@
 {
-  constructorHelper(from,to);
-  this.reverse=reverse;
+  this(smaller,larger,Boolean.valueOf(reverse));
 }
