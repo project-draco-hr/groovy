@@ -9,7 +9,7 @@
     this.reverse=computedReverse;
   }
  else {
-    this.reverse=reverse.booleanValue();
+    this.reverse=reverse;
   }
   if (smaller instanceof Short) {
     smaller=((Short)smaller).intValue();
@@ -24,10 +24,10 @@
     larger=((Float)larger).doubleValue();
   }
   if (smaller instanceof Integer && larger instanceof Long) {
-    smaller=Long.valueOf(((Integer)smaller).longValue());
+    smaller=((Integer)smaller).longValue();
   }
  else   if (larger instanceof Integer && smaller instanceof Long) {
-    larger=Long.valueOf(((Integer)larger).longValue());
+    larger=((Integer)larger).longValue();
   }
   if (smaller.getClass() == larger.getClass()) {
     this.from=smaller;

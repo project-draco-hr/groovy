@@ -1,6 +1,6 @@
 {
   if (operand instanceof Character) {
-    return (int)((Character)operand).charValue();
+    return (int)(Character)operand;
   }
  else   if (operand instanceof String) {
     final String string=(String)operand;
