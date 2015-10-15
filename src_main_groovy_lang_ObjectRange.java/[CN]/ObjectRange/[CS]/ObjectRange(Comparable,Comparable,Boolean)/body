@@ -40,8 +40,19 @@
     this.to=larger;
   }
  else {
-    this.from=normaliseStringType(smaller);
-    this.to=normaliseStringType(larger);
+    Comparable tempfrom=normaliseStringType(smaller);
+    Comparable tempto=normaliseStringType(larger);
+    if (tempfrom.getClass() != tempto.getClass()) {
+      if ((tempfrom instanceof Number && !(tempto instanceof Number)) || (tempfrom instanceof String && !(tempto instanceof String))) {
+        throw new IllegalArgumentException("Incompatible Argument classes for ObjectRange " + smaller.getClass() + ", "+ larger.getClass());
+      }
+      this.from=smaller;
+      this.to=larger;
+    }
+ else {
+      this.from=tempfrom;
+      this.to=tempto;
+    }
   }
   checkBoundaryCompatibility();
 }

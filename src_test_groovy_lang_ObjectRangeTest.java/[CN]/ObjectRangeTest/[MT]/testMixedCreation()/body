@@ -1,0 +1,26 @@
+{
+  try {
+    createRange("aa","a");
+    fail();
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  try {
+    createRange("11",11);
+    fail();
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  try {
+    createRange(11,"11");
+    fail();
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  Range mixed=createRange('7',59.5);
+  assertEquals(5,mixed.size());
+  assertEquals(Arrays.asList('7','8','9',':',';'),mixed.step(1));
+  mixed=createRange('7',BigInteger.valueOf(59));
+  assertEquals(5,mixed.size());
+  assertEquals(Arrays.asList('7','8','9',':',';'),mixed.step(1));
+}
