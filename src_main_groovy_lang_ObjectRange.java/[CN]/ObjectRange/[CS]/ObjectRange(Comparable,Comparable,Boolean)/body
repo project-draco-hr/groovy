@@ -35,23 +35,24 @@
  else   if (larger instanceof Integer && smaller instanceof Long) {
     larger=((Integer)larger).longValue();
   }
-  if (smaller.getClass() == larger.getClass()) {
+  if (smaller.getClass() == larger.getClass() || (smaller instanceof Number && larger instanceof Number)) {
     this.from=smaller;
     this.to=larger;
   }
  else {
     Comparable tempfrom=normaliseStringType(smaller);
     Comparable tempto=normaliseStringType(larger);
-    if (tempfrom.getClass() != tempto.getClass()) {
-      if ((tempfrom instanceof Number && !(tempto instanceof Number)) || (tempfrom instanceof String && !(tempto instanceof String))) {
+    if (tempfrom instanceof Number && tempto instanceof Number) {
+      this.from=tempfrom;
+      this.to=tempto;
+    }
+ else {
+      Comparable start=this.reverse ? larger : smaller;
+      if (start instanceof String || start instanceof Number) {
         throw new IllegalArgumentException("Incompatible Argument classes for ObjectRange " + smaller.getClass() + ", "+ larger.getClass());
       }
       this.from=smaller;
       this.to=larger;
-    }
- else {
-      this.from=tempfrom;
-      this.to=tempto;
     }
   }
   checkBoundaryCompatibility();
