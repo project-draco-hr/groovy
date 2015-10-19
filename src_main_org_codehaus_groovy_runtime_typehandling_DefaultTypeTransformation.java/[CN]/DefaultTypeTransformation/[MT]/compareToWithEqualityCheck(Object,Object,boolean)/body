@@ -8,7 +8,7 @@
  else   if (right == null) {
     return 1;
   }
-  if (left instanceof Comparable) {
+  if (left instanceof Comparable || left instanceof Number) {
     if (left instanceof Number) {
       if (right instanceof Character || right instanceof Number) {
         return DefaultGroovyMethods.compareTo((Number)left,castToNumber(right));
@@ -23,6 +23,12 @@
       }
       if (right instanceof Number) {
         return DefaultGroovyMethods.compareTo((Character)left,(Number)right);
+      }
+      if (right instanceof String) {
+        return (left.toString()).compareTo((String)right);
+      }
+      if (right instanceof GString) {
+        return (left.toString()).compareTo(right.toString());
       }
     }
  else     if (right instanceof Number) {
