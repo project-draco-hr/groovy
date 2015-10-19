@@ -11,5 +11,8 @@
   if (isBigInteger(number)) {
     return BigIntegerMath.INSTANCE;
   }
-  return IntegerMath.INSTANCE;
+  if (isInteger(number) || isShort(number) || isByte(number)) {
+    return IntegerMath.INSTANCE;
+  }
+  return BigDecimalMath.INSTANCE;
 }
