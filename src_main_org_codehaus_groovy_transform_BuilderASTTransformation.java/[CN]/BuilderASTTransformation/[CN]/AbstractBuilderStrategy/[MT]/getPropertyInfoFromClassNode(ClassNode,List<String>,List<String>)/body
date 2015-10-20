@@ -1,6 +1,6 @@
 {
   List<PropertyInfo> props=new ArrayList<PropertyInfo>();
-  for (  FieldNode fNode : getInstancePropertyFields(cNode)) {
+  for (  FieldNode fNode : getSuperPropertyFields(cNode)) {
     if (shouldSkip(fNode.getName(),excludes,includes))     continue;
     props.add(new PropertyInfo(fNode.getName(),fNode.getType()));
   }
