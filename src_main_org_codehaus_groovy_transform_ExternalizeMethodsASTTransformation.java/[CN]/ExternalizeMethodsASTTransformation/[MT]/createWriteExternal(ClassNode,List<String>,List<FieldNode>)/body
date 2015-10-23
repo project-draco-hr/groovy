@@ -4,7 +4,9 @@
   for (  FieldNode fNode : list) {
     if (excludes != null && excludes.contains(fNode.getName()))     continue;
     if ((fNode.getModifiers() & ACC_TRANSIENT) != 0)     continue;
-    body.addStatement(stmt(callX(varX(out),"write" + suffixForField(fNode),varX(fNode))));
+    MethodCallExpression writeObject=callX(varX(out),"write" + suffixForField(fNode),varX(fNode));
+    writeObject.setImplicitThis(false);
+    body.addStatement(stmt(writeObject));
   }
   ClassNode[] exceptions={make(IOException.class)};
   cNode.addMethod("writeExternal",ACC_PUBLIC,ClassHelper.VOID_TYPE,params(out),exceptions,body);
