@@ -1,0 +1,3 @@
+{
+  this.consoleId.set(Integer.valueOf(consoleId));
+}

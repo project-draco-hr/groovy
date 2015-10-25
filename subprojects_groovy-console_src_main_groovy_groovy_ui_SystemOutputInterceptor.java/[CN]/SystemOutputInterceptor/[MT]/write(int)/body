@@ -1,5 +1,5 @@
 {
-  Boolean result=(Boolean)callback.call(String.valueOf((char)b));
+  Boolean result=(Boolean)callback.call(consoleId.get().intValue(),String.valueOf((char)b));
   if (result) {
     out.write(b);
   }
