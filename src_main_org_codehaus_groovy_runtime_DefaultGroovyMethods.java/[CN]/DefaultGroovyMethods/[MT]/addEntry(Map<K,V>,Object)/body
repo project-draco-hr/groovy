@@ -8,6 +8,12 @@
     Object value=list.size() <= 1 ? null : list.get(1);
     leftShift(result,new MapEntry(key,value));
   }
+ else   if (newEntry.getClass().isArray()) {
+    Object[] array=(Object[])newEntry;
+    Object key=array.length == 0 ? null : array[0];
+    Object value=array.length <= 1 ? null : array[1];
+    leftShift(result,new MapEntry(key,value));
+  }
  else {
     leftShift(result,asType(newEntry,Map.Entry.class));
   }
