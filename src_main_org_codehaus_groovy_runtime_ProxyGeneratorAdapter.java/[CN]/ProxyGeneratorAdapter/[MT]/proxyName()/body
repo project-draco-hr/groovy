@@ -1,5 +1,8 @@
 {
   String name=delegateClass != null ? delegateClass.getName() : superClass.getName();
+  if (name.startsWith("[") && name.endsWith(";")) {
+    name=name.substring(1,name.length() - 1) + "_array";
+  }
   int index=name.lastIndexOf('.');
   if (index == -1)   return name + pxyCounter.incrementAndGet() + "_groovyProxy";
   return name.substring(index + 1,name.length()) + pxyCounter.incrementAndGet() + "_groovyProxy";

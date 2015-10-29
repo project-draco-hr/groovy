@@ -8,8 +8,5 @@
     }
   }
   Class parent=clazz.getSuperclass();
-  if (parent != null) {
-    return isImplemented(parent,name,desc);
-  }
-  return false;
+  return parent != null && isImplemented(parent,name,desc);
 }
