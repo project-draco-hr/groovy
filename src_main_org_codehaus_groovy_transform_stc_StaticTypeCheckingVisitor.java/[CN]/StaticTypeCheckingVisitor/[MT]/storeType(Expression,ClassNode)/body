@@ -5,6 +5,9 @@
  else   if (exp instanceof MethodCallExpression && ((MethodCallExpression)exp).isSafe() && isPrimitiveType(cn)) {
     cn=getWrapper(cn);
   }
+ else   if (exp instanceof PropertyExpression && ((PropertyExpression)exp).isSafe() && isPrimitiveType(cn)) {
+    cn=getWrapper(cn);
+  }
   if (cn == UNKNOWN_PARAMETER_TYPE) {
     storeType(exp,getOriginalDeclarationType(exp));
     return;
