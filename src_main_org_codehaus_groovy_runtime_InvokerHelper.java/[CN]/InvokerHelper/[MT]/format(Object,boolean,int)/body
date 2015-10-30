@@ -44,7 +44,7 @@ catch (    IllegalAccessException e) {
   }
   if (arguments instanceof String) {
     if (verbose) {
-      String arg=((String)arguments).replace("\\","\\\\").replace("\n","\\n").replaceAll("\\r","\\\\r").replaceAll("\\t","\\\\t").replaceAll("\\f","\\\\f").replaceAll("'","\\\\'");
+      String arg=escapeBackslashes((String)arguments).replaceAll("'","\\\\'");
       return "\'" + arg + "\'";
     }
  else {
