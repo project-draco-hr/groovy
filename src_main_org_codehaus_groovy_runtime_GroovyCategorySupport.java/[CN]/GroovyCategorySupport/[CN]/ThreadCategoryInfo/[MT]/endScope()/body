@@ -15,8 +15,7 @@
     }
   }
   level--;
-  atomicCategoryUsageCounter.getAndDecrement();
-  categoriesInUse=atomicCategoryUsageCounter.get();
+  categoriesInUse=atomicCategoryUsageCounter.decrementAndGet();
   VMPluginFactory.getPlugin().invalidateCallSites();
   if (categoriesInUse == 0)   DefaultMetaClassInfo.setCategoryUsed(false);
   if (level == 0) {

@@ -1,6 +1,5 @@
 {
-  atomicCategoryUsageCounter.incrementAndGet();
-  categoriesInUse=atomicCategoryUsageCounter.get();
+  categoriesInUse=atomicCategoryUsageCounter.incrementAndGet();
   DefaultMetaClassInfo.setCategoryUsed(true);
   VMPluginFactory.getPlugin().invalidateCallSites();
   level++;
