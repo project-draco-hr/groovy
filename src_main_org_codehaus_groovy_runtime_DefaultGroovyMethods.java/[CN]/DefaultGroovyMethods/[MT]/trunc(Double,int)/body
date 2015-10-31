@@ -1,3 +1,6 @@
 {
+  if (number < 0d) {
+    return Math.ceil(number * Math.pow(10,precision)) / Math.pow(10,precision);
+  }
   return Math.floor(number * Math.pow(10,precision)) / Math.pow(10,precision);
 }

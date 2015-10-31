@@ -1,3 +1,6 @@
 {
+  if (number < 0f) {
+    return (float)Math.ceil(number.doubleValue());
+  }
   return (float)Math.floor(number.doubleValue());
 }

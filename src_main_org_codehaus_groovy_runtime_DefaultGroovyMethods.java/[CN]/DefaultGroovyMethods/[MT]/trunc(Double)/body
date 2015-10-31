@@ -1,3 +1,6 @@
 {
+  if (number < 0d) {
+    return Math.ceil(number);
+  }
   return Math.floor(number);
 }
