@@ -1,0 +1,3 @@
+{
+  return number.setScale(precision,RoundingMode.HALF_UP);
+}
