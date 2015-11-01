@@ -1,4 +1,3 @@
 {
-  NumberAwareComparator<Comparable> numberAwareComparator=new NumberAwareComparator<Comparable>();
-  return numberAwareComparator.compare(self,other);
+  return COMPARABLE_NUMBER_AWARE_COMPARATOR.compare(self,other);
 }
