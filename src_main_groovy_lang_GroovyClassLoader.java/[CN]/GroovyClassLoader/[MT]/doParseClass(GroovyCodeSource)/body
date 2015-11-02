@@ -29,7 +29,7 @@
   for (  Object o : collector.getLoadedClasses()) {
     Class clazz=(Class)o;
     String clazzName=clazz.getName();
-    definePackage(clazzName);
+    definePackageInternal(clazzName);
     setClassCacheEntry(clazz);
     if (clazzName.equals(mainClass))     answer=clazz;
   }

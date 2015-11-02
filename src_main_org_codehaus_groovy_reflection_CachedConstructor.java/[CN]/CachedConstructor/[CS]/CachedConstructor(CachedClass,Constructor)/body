@@ -12,4 +12,7 @@
   }
  catch (  SecurityException e) {
   }
+catch (  RuntimeException re) {
+    if (!"java.lang.reflect.InaccessibleObjectException".equals(re.getClass().getName()))     throw re;
+  }
 }
