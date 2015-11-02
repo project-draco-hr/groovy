@@ -13,6 +13,12 @@
     return;
   }
   if (spreadSafe && origin instanceof MethodCallExpression) {
+    if (receiver instanceof ListExpression) {
+      TemporaryVariableExpression tmp=new TemporaryVariableExpression(receiver);
+      makeCall(origin,tmp,message,arguments,adapter,true,true,false);
+      tmp.remove(controller);
+      return;
+    }
     MethodVisitor mv=controller.getMethodVisitor();
     CompileStack compileStack=controller.getCompileStack();
     TypeChooser typeChooser=controller.getTypeChooser();

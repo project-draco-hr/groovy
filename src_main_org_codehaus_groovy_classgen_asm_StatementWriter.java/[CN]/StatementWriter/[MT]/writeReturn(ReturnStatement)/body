@@ -20,6 +20,7 @@
     int returnValueIdx=controller.getCompileStack().defineTemporaryVariable("returnValue",returnType,true);
     controller.getCompileStack().applyBlockRecorder();
     operandStack.load(type,returnValueIdx);
+    controller.getCompileStack().removeVar(returnValueIdx);
   }
   BytecodeHelper.doReturn(mv,returnType);
   operandStack.remove(1);

@@ -47,9 +47,10 @@
   mv.visitJumpInsn(GOTO,skipCatchAll);
   mv.visitLabel(catchAny);
   operandStack.push(ClassHelper.OBJECT_TYPE);
-  int anyExceptionIndex=compileStack.defineTemporaryVariable("exception",true);
+  final int anyExceptionIndex=compileStack.defineTemporaryVariable("exception",true);
   finallyStatement.visit(controller.getAcg());
   mv.visitVarInsn(ALOAD,anyExceptionIndex);
   mv.visitInsn(ATHROW);
   mv.visitLabel(skipCatchAll);
+  compileStack.removeVar(anyExceptionIndex);
 }

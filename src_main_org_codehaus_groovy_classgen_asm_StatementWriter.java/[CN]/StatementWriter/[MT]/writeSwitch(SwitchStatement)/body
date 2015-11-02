@@ -3,7 +3,7 @@
   writeStatementLabel(statement);
   statement.getExpression().visit(controller.getAcg());
   Label breakLabel=controller.getCompileStack().pushSwitch();
-  int switchVariableIndex=controller.getCompileStack().defineTemporaryVariable("switch",true);
+  final int switchVariableIndex=controller.getCompileStack().defineTemporaryVariable("switch",true);
   List caseStatements=statement.getCaseStatements();
   int caseCount=caseStatements.size();
   Label[] labels=new Label[caseCount + 1];
@@ -17,5 +17,6 @@
   }
   statement.getDefaultStatement().visit(controller.getAcg());
   controller.getMethodVisitor().visitLabel(breakLabel);
+  controller.getCompileStack().removeVar(switchVariableIndex);
   controller.getCompileStack().pop();
 }

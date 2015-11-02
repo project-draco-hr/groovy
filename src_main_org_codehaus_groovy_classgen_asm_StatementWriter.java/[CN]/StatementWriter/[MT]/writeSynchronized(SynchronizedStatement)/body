@@ -33,4 +33,5 @@
   finallyPart.run();
   mv.visitInsn(ATHROW);
   mv.visitLabel(synchronizedEnd);
+  compileStack.removeVar(index);
 }
