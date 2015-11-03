@@ -17,6 +17,8 @@
   properties.setProperty("overviewFile",overviewFile != null ? overviewFile.getAbsolutePath() : "");
   properties.setProperty("charset",charset != null ? charset : "");
   properties.setProperty("fileEncoding",fileEncoding != null ? fileEncoding : "");
+  properties.setProperty("timestamp",Boolean.valueOf(!noTimestamp).toString());
+  properties.setProperty("versionStamp",Boolean.valueOf(!noVersionStamp).toString());
   if (sourcePath != null) {
     sourceDirs.addExisting(sourcePath);
   }

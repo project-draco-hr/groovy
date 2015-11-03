@@ -12,4 +12,6 @@
   author=true;
   processScripts=true;
   includeMainForScripts=true;
+  noTimestamp=false;
+  noVersionStamp=false;
 }
