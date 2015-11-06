@@ -3,6 +3,6 @@
     return super.setName(name);
   }
  else {
-    throw new GroovyBugError("ConstructedClassWithPackage#setName should not be called");
+    throw new GroovyBugError("LowerCaseClass#setName should not be called");
   }
 }
