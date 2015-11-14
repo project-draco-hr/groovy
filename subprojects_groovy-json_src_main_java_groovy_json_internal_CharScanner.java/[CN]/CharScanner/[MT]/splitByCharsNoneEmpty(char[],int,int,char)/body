@@ -1,4 +1,0 @@
-{
-  final char[][] results=splitByCharsFromToDelims(inputArray,from,to,delims);
-  return compact(results);
-}

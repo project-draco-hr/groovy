@@ -10,7 +10,7 @@
   for (; index < to; index++) {
     char ch=buffer[index];
     if (isNumberDigit(ch)) {
-      if (foundDot == true) {
+      if (foundDot) {
         digitsPastPoint++;
       }
     }

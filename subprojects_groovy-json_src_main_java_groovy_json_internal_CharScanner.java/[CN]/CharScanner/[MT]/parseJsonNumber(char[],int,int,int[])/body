@@ -10,7 +10,7 @@
   for (; index < max; index++) {
     char ch=buffer[index];
     if (isNumberDigit(ch)) {
-      if (foundDot == true) {
+      if (foundDot) {
         digitsPastPoint++;
       }
     }
@@ -43,7 +43,7 @@
     }
   }
  else {
-    value=parseBigDecimal(buffer,from,length);
+    value=new BigDecimal(buffer,from,length);
   }
   if (size != null) {
     size[0]=index;
