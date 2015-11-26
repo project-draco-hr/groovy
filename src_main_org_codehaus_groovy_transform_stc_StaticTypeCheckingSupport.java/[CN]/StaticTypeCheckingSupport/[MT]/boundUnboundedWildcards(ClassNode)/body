@@ -1,0 +1,11 @@
+{
+  if (type.isArray()) {
+    return boundUnboundedWildcards(type.getComponentType()).makeArray();
+  }
+  ClassNode target=type.redirect();
+  if (target == null || type == target || !isUsingGenericsOrIsArrayUsingGenerics(target))   return type;
+  ClassNode newType=type.getPlainNodeReference();
+  newType.setGenericsPlaceHolder(type.isGenericsPlaceHolder());
+  newType.setGenericsTypes(boundUnboundedWildcards(type.getGenericsTypes(),target.getGenericsTypes()));
+  return newType;
+}

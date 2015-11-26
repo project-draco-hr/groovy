@@ -1,0 +1,9 @@
+{
+  if (isUnboundedWildcard(gt)) {
+    ClassNode base=ClassHelper.makeWithoutCaching("?");
+    GenericsType newGt=new GenericsType(base,spec.getUpperBounds(),spec.getLowerBound());
+    newGt.setWildcard(true);
+    return newGt;
+  }
+  return gt;
+}

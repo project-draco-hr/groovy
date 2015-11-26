@@ -1,0 +1,7 @@
+{
+  if (gt.isWildcard() && gt.getLowerBound() == null) {
+    ClassNode[] upperBounds=gt.getUpperBounds();
+    return upperBounds == null || upperBounds.length == 0 || (upperBounds.length == 1 && OBJECT_TYPE.equals(upperBounds[0]));
+  }
+  return false;
+}

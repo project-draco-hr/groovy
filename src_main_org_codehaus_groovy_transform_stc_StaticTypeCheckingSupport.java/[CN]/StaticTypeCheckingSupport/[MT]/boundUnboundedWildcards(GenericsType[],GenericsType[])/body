@@ -1,0 +1,7 @@
+{
+  GenericsType[] newGts=new GenericsType[usage.length];
+  for (int i=0; i < usage.length; i++) {
+    newGts[i]=boundUnboundedWildcard(usage[i],declaration[i]);
+  }
+  return newGts;
+}
