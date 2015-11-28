@@ -13,11 +13,9 @@
     return;
   }
   if (spreadSafe && origin instanceof MethodCallExpression) {
-    if (receiver instanceof ListExpression) {
-      TemporaryVariableExpression tmp=new TemporaryVariableExpression(receiver);
-      makeCall(origin,tmp,message,arguments,adapter,true,true,false);
-      tmp.remove(controller);
-      return;
+    Expression tmpReceiver=receiver;
+    if (!(receiver instanceof VariableExpression) && !(receiver instanceof ConstantExpression)) {
+      tmpReceiver=new TemporaryVariableExpression(receiver);
     }
     MethodVisitor mv=controller.getMethodVisitor();
     CompileStack compileStack=controller.getCompileStack();
@@ -31,13 +29,13 @@
     DeclarationExpression declr=new DeclarationExpression(result,Token.newSymbol("=",origin.getLineNumber(),origin.getColumnNumber()),cce);
     declr.visit(controller.getAcg());
     operandStack.pop();
-    receiver.visit(controller.getAcg());
+    tmpReceiver.visit(controller.getAcg());
     Label ifnull=compileStack.createLocalLabel("ifnull_" + counter);
     mv.visitJumpInsn(IFNULL,ifnull);
     operandStack.remove(1);
     Label nonull=compileStack.createLocalLabel("nonull_" + counter);
     mv.visitLabel(nonull);
-    ClassNode componentType=StaticTypeCheckingVisitor.inferLoopElementType(typeChooser.resolveType(receiver,classNode));
+    ClassNode componentType=StaticTypeCheckingVisitor.inferLoopElementType(typeChooser.resolveType(tmpReceiver,classNode));
     Parameter iterator=new Parameter(componentType,"for$it$" + counter);
     VariableExpression iteratorAsVar=new VariableExpression(iterator);
     MethodCallExpression origMCE=(MethodCallExpression)origin;
@@ -48,10 +46,13 @@
     MethodCallExpression add=new MethodCallExpression(result,"add",newMCE);
     add.setImplicitThis(false);
     add.setMethodTarget(StaticCompilationVisitor.ARRAYLIST_ADD_METHOD);
-    ForStatement stmt=new ForStatement(iterator,receiver,new ExpressionStatement(add));
+    ForStatement stmt=new ForStatement(iterator,tmpReceiver,new ExpressionStatement(add));
     stmt.visit(controller.getAcg());
     mv.visitLabel(ifnull);
     result.visit(controller.getAcg());
+    if (tmpReceiver instanceof TemporaryVariableExpression) {
+      ((TemporaryVariableExpression)tmpReceiver).remove(controller);
+    }
   }
  else   if (safe && origin instanceof MethodCallExpression) {
     MethodVisitor mv=controller.getMethodVisitor();
