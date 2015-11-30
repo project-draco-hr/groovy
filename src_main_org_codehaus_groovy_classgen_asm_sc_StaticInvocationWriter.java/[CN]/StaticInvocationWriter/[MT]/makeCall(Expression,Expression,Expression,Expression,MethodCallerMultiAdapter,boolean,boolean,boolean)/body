@@ -23,11 +23,10 @@
     OperandStack operandStack=controller.getOperandStack();
     ClassNode classNode=controller.getClassNode();
     int counter=labelCounter.incrementAndGet();
-    VariableExpression result=new VariableExpression("spreadresult" + counter,StaticCompilationVisitor.ARRAYLIST_CLASSNODE);
     ConstructorCallExpression cce=new ConstructorCallExpression(StaticCompilationVisitor.ARRAYLIST_CLASSNODE,ArgumentListExpression.EMPTY_ARGUMENTS);
     cce.setNodeMetaData(StaticTypesMarker.DIRECT_METHOD_CALL_TARGET,StaticCompilationVisitor.ARRAYLIST_CONSTRUCTOR);
-    DeclarationExpression declr=new DeclarationExpression(result,Token.newSymbol("=",origin.getLineNumber(),origin.getColumnNumber()),cce);
-    declr.visit(controller.getAcg());
+    TemporaryVariableExpression result=new TemporaryVariableExpression(cce);
+    result.visit(controller.getAcg());
     operandStack.pop();
     tmpReceiver.visit(controller.getAcg());
     Label ifnull=compileStack.createLocalLabel("ifnull_" + counter);
@@ -53,6 +52,7 @@
     if (tmpReceiver instanceof TemporaryVariableExpression) {
       ((TemporaryVariableExpression)tmpReceiver).remove(controller);
     }
+    result.remove(controller);
   }
  else   if (safe && origin instanceof MethodCallExpression) {
     MethodVisitor mv=controller.getMethodVisitor();
