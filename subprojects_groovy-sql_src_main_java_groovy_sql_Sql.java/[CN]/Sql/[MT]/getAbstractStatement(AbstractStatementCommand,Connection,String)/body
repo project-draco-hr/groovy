@@ -1,12 +1,10 @@
 {
   Statement stmt;
   if (cacheStatements) {
-synchronized (statementCache) {
-      stmt=statementCache.get(sql);
-      if (stmt == null) {
-        stmt=cmd.execute(connection,sql);
-        statementCache.put(sql,stmt);
-      }
+    stmt=statementCache.get(sql);
+    if (stmt == null) {
+      stmt=cmd.execute(connection,sql);
+      statementCache.put(sql,stmt);
     }
   }
  else {

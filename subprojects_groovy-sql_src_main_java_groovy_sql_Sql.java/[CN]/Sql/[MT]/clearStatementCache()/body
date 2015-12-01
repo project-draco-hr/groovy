@@ -1,11 +1,9 @@
 {
   Statement statements[];
-synchronized (statementCache) {
-    if (statementCache.isEmpty())     return;
-    statements=new Statement[statementCache.size()];
-    statementCache.values().toArray(statements);
-    statementCache.clear();
-  }
+  if (statementCache.isEmpty())   return;
+  statements=new Statement[statementCache.size()];
+  statementCache.values().toArray(statements);
+  statementCache.clear();
   for (  Statement s : statements) {
     try {
       s.close();
