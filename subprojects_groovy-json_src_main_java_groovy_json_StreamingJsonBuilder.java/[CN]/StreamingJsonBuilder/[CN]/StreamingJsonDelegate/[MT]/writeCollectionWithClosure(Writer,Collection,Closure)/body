@@ -1,0 +1,3 @@
+{
+  return writeCollectionWithClosure(writer,(Iterable)coll,closure);
+}
