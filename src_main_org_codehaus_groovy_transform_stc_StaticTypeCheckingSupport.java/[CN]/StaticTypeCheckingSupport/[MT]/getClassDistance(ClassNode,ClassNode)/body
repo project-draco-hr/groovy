@@ -1,0 +1,6 @@
+{
+  if (actualReceiverForDistance.equals(declaringClassForDistance)) {
+    return 0;
+  }
+  return getDistance(actualReceiverForDistance,declaringClassForDistance);
+}

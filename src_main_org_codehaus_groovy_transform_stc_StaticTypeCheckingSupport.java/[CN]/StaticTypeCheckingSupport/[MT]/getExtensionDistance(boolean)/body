@@ -1,0 +1,3 @@
+{
+  return isExtensionMethodNode ? 0 : 1;
+}

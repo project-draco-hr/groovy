@@ -1,0 +1,9 @@
+{
+  int dist=0;
+  if (params.length > 0) {
+    Parameter[] firstParams=new Parameter[params.length - 1];
+    System.arraycopy(params,0,firstParams,0,firstParams.length);
+    dist=allParametersAndArgumentsMatch(firstParams,safeArgs);
+  }
+  return dist;
+}
