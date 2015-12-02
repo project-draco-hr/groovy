@@ -2,23 +2,37 @@
   if (args != null && Object[].class.isAssignableFrom(args.getClass())) {
     try {
       Object[] arr=(Object[])args;
-      if (arr.length == 1) {
+      final int len=arr.length;
+switch (len) {
+case 1:
         final Object value=arr[0];
-        call(name,value);
-      }
- else       if (isCollectionWithClosure(arr)) {
-        final Collection coll=(Collection)arr[0];
-        final Closure callable=(Closure)arr[1];
-        call(name,coll,callable);
-      }
- else {
-        final List<Object> list=Arrays.asList(arr);
-        call(name,list);
-      }
+      call(name,value);
+    return null;
+case 2:
+  if (arr[len - 1] instanceof Closure) {
+    final Object obj=arr[0];
+    final Closure callable=(Closure)arr[1];
+    if (obj instanceof Iterable) {
+      call(name,(Iterable)obj,callable);
+      return null;
     }
- catch (    IOException ioe) {
-      throw new JsonException(ioe);
+ else     if (obj.getClass().isArray()) {
+      call(name,Arrays.asList((Object[])obj),callable);
+      return null;
+    }
+ else {
+      call(name,obj,callable);
+      return null;
     }
   }
-  return this;
+default :
+final List<Object> list=Arrays.asList(arr);
+call(name,list);
+}
+}
+ catch (IOException ioe) {
+throw new JsonException(ioe);
+}
+}
+return this;
 }

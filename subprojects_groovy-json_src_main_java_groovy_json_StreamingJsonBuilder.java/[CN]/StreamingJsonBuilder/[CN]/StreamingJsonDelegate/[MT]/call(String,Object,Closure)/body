@@ -1,0 +1,5 @@
+{
+  writeName(name);
+  verifyValue();
+  writeObject(writer,value,callable);
+}

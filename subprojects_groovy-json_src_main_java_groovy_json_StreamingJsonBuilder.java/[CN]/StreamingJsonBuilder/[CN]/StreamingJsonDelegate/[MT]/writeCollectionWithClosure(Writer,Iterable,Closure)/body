@@ -8,9 +8,7 @@
  else {
       first=false;
     }
-    writer.write(JsonOutput.OPEN_BRACE);
-    curryDelegateAndGetContent(writer,closure,it);
-    writer.write(JsonOutput.CLOSE_BRACE);
+    writeObject(writer,it,closure);
   }
   writer.write(JsonOutput.CLOSE_BRACKET);
   return writer;

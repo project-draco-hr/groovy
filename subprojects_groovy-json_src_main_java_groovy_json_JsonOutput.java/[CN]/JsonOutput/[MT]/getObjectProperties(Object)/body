@@ -1,0 +1,7 @@
+{
+  Map<?,?> properties=DefaultGroovyMethods.getProperties(object);
+  properties.remove("class");
+  properties.remove("declaringClass");
+  properties.remove("metaClass");
+  return properties;
+}

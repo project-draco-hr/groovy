@@ -57,10 +57,7 @@
       buffer.addQuoted(((Enum<?>)object).name());
     }
  else     if (File.class.isAssignableFrom(objectClass)) {
-      Map<?,?> properties=DefaultGroovyMethods.getProperties(object);
-      properties.remove("class");
-      properties.remove("declaringClass");
-      properties.remove("metaClass");
+      Map<?,?> properties=getObjectProperties(object);
       Iterator<? extends Map.Entry<?,?>> iterator=properties.entrySet().iterator();
       while (iterator.hasNext()) {
         Map.Entry<?,?> entry=iterator.next();
@@ -71,10 +68,7 @@
       writeMap(properties,buffer);
     }
  else {
-      Map<?,?> properties=DefaultGroovyMethods.getProperties(object);
-      properties.remove("class");
-      properties.remove("declaringClass");
-      properties.remove("metaClass");
+      Map<?,?> properties=getObjectProperties(object);
       writeMap(properties,buffer);
     }
   }

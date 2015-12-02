@@ -1,0 +1,7 @@
+{
+  writeName(name);
+  verifyValue();
+  writer.write(JsonOutput.OPEN_BRACE);
+  StreamingJsonDelegate.cloneDelegateAndGetContent(writer,value);
+  writer.write(JsonOutput.CLOSE_BRACE);
+}

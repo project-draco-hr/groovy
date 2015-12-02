@@ -1,0 +1,5 @@
+{
+  writer.write(JsonOutput.OPEN_BRACE);
+  curryDelegateAndGetContent(writer,closure,object);
+  writer.write(JsonOutput.CLOSE_BRACE);
+}
