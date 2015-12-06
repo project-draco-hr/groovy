@@ -1,7 +1,7 @@
 {
   List<T> selfList=asList(self);
   List<List<T>> answer=new ArrayList<List<T>>();
-  if (size <= 0 || selfList.isEmpty()) {
+  if (size <= 0) {
     answer.add(selfList);
   }
  else {
