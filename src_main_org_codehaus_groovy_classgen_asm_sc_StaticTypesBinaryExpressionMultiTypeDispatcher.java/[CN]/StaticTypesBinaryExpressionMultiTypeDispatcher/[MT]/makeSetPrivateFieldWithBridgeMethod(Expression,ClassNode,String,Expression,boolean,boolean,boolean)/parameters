@@ -1,0 +1,7 @@
+Expression receiver
+ClassNode receiverType
+String fieldName
+Expression arguments
+boolean safe
+boolean spreadSafe
+boolean implicitThis

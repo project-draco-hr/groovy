@@ -56,6 +56,10 @@
       call.visit(controller.getAcg());
       return true;
     }
+    if (isThisExpression && !controller.isInClosure()) {
+      receiverType=controller.getClassNode();
+    }
+    if (makeSetPrivateFieldWithBridgeMethod(receiver,receiverType,property,arguments,safe,spreadSafe,implicitThis))     return true;
   }
   return false;
 }

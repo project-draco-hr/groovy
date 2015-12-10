@@ -1,5 +1,8 @@
 {
   FieldNode field=expr.getNodeMetaData(StaticTypesMarker.PV_FIELDS_ACCESS);
+  if (field == null) {
+    field=expr.getNodeMetaData(StaticTypesMarker.PV_FIELDS_MUTATION);
+  }
   if (field != null) {
     VariableExpression receiver=new VariableExpression("this");
     PropertyExpression pexp=new PropertyExpression(receiver,expr.getName());

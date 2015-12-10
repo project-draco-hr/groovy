@@ -2,7 +2,7 @@
   if (field == null || !returnTrueIfFieldExists)   return false;
   if (visitor != null)   visitor.visitField(field);
   storeWithResolve(field.getOriginType(),receiver,field.getDeclaringClass(),field.isStatic(),expressionToStoreOn);
-  checkOrMarkPrivateAccess(expressionToStoreOn,field);
+  checkOrMarkPrivateAccess(expressionToStoreOn,field,lhsOfAssignment);
   if (delegationData != null) {
     expressionToStoreOn.putNodeMetaData(StaticTypesMarker.IMPLICIT_RECEIVER,delegationData);
   }

@@ -55,12 +55,12 @@
       }
       FieldNode field=current.getDeclaredField(propertyName);
       field=allowStaticAccessToMember(field,staticOnly);
-      if (storeField(field,isAttributeExpression,pexp,current,visitor,receiver.getData()))       return true;
+      if (storeField(field,isAttributeExpression,pexp,current,visitor,receiver.getData(),!readMode))       return true;
       PropertyNode propertyNode=current.getProperty(propertyName);
       propertyNode=allowStaticAccessToMember(propertyNode,staticOnly);
       if (storeProperty(propertyNode,pexp,current,visitor,receiver.getData()))       return true;
       boolean isThisExpression=objectExpression instanceof VariableExpression && ((VariableExpression)objectExpression).isThisExpression() && objectExpressionType.equals(current);
-      if (storeField(field,isThisExpression,pexp,receiver.getType(),visitor,receiver.getData()))       return true;
+      if (storeField(field,isThisExpression,pexp,receiver.getType(),visitor,receiver.getData(),!readMode))       return true;
       MethodNode getter=current.getGetterMethod("get" + capName);
       getter=allowStaticAccessToMember(getter,staticOnly);
       if (getter == null)       getter=current.getGetterMethod("is" + capName);
@@ -109,7 +109,7 @@
         }
       }
       foundGetterOrSetter=foundGetterOrSetter || !setters.isEmpty() || getter != null;
-      if (storeField(field,true,pexp,current,visitor,receiver.getData()))       return true;
+      if (storeField(field,true,pexp,current,visitor,receiver.getData(),!readMode))       return true;
       if (current.getSuperClass() != null) {
         queue.add(current.getUnresolvedSuperClass());
       }

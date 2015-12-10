@@ -1,2 +1,3 @@
 Expression source
 FieldNode fn
+boolean lhsOfAssignment

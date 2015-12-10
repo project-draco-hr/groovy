@@ -14,7 +14,7 @@
     if (vexp == VariableExpression.SUPER_EXPRESSION)     return makeSuper();
     final Variable variable=vexp.getAccessedVariable();
     if (variable instanceof FieldNode) {
-      checkOrMarkPrivateAccess(vexp,(FieldNode)variable);
+      checkOrMarkPrivateAccess(vexp,(FieldNode)variable,isLHSOfEnclosingAssignment(vexp));
       return getType((FieldNode)variable);
     }
     if (variable != null && variable != vexp && variable instanceof VariableExpression) {

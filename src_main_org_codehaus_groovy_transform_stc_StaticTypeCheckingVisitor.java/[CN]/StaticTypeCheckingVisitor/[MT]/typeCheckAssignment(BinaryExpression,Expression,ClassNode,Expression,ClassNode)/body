@@ -1,5 +1,8 @@
 {
   if (!typeCheckMultipleAssignmentAndContinue(leftExpression,rightExpression))   return;
+  if (leftExpression instanceof VariableExpression && ((VariableExpression)leftExpression).getAccessedVariable() instanceof FieldNode) {
+    checkOrMarkPrivateAccess(leftExpression,(FieldNode)((VariableExpression)leftExpression).getAccessedVariable(),true);
+  }
   if (addedReadOnlyPropertyError(leftExpression))   return;
   ClassNode leftRedirect=leftExpressionType.redirect();
   ClassNode wrappedRHS=adjustTypeForSpreading(inferredRightExpressionType,leftExpression);
