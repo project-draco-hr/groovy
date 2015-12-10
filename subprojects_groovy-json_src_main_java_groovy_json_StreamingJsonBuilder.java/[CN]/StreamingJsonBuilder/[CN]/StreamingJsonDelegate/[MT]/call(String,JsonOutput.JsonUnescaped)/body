@@ -1,4 +1,5 @@
 {
   writeName(name);
+  verifyValue();
   writer.write(json.toString());
 }
