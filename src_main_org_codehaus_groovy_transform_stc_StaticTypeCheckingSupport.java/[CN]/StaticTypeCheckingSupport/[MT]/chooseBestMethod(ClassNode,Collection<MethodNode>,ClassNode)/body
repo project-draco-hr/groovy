@@ -20,57 +20,17 @@
       safeNode=((ExtensionMethodNode)candidateNode).getExtensionMethodNode();
     }
     Parameter[] params=makeRawTypes(safeNode.getParameters());
-    if (params.length == safeArgs.length) {
-      int allPMatch=allParametersAndArgumentsMatch(params,safeArgs);
-      int firstParamDist=firstParametersAndArgumentsMatch(params,safeArgs);
-      int lastArgMatch=isVargs(params) && firstParamDist >= 0 ? lastArgMatchesVarg(params,safeArgs) : -1;
-      if (lastArgMatch >= 0) {
-        lastArgMatch+=getVarargsDistance(params);
+    int dist=measureParametersAndArgumentsDistance(params,safeArgs);
+    if (dist >= 0) {
+      dist+=getClassDistance(declaringClassForDistance,actualReceiverForDistance);
+      dist+=getExtensionDistance(isExtensionMethodNode);
+      if (dist < bestDist) {
+        bestChoices.clear();
+        bestChoices.add(candidateNode);
+        bestDist=dist;
       }
-      int dist=allPMatch >= 0 ? Math.max(allPMatch,lastArgMatch) : lastArgMatch;
-      if (dist >= 0) {
-        dist+=getClassDistance(declaringClassForDistance,actualReceiverForDistance);
-        dist+=getExtensionDistance(isExtensionMethodNode);
-        if (dist < bestDist) {
-          bestChoices.clear();
-          bestChoices.add(candidateNode);
-          bestDist=dist;
-        }
- else         if (dist == bestDist) {
-          bestChoices.add(candidateNode);
-        }
-      }
-    }
- else     if (isVargs(params)) {
-      int dist=firstParametersAndArgumentsMatch(params,safeArgs);
-      if (dist >= 0) {
-        if (params.length == safeArgs.length + 1) {
-          dist+=getVarargsDistance(params);
-          dist++;
-          if (dist < bestDist) {
-            bestChoices.clear();
-            bestChoices.add(candidateNode);
-            bestDist=dist;
-          }
-        }
- else {
-          int excessArgumentsDistance=excessArgumentsMatchesVargsParameter(params,safeArgs);
-          if (excessArgumentsDistance < 0)           continue;
-          dist+=excessArgumentsDistance;
-          dist+=getClassDistance(declaringClassForDistance,actualReceiverForDistance);
-          dist+=getVarargsDistance(params);
-          dist+=getExtensionDistance(isExtensionMethodNode);
-          if (params.length < safeArgs.length) {
-            if (dist < bestDist) {
-              bestChoices.clear();
-              bestChoices.add(candidateNode);
-              bestDist=dist;
-            }
- else             if (dist == bestDist) {
-              bestChoices.add(candidateNode);
-            }
-          }
-        }
+ else       if (dist == bestDist) {
+        bestChoices.add(candidateNode);
       }
     }
   }
