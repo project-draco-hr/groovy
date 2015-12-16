@@ -8,7 +8,7 @@
   if (ClassHelper.isPrimitiveType(unwrapReceiver) && ClassHelper.isPrimitiveType(unwrapCompare) && unwrapReceiver != unwrapCompare) {
     dist=getPrimitiveDistance(unwrapReceiver,unwrapCompare);
   }
-  if (isPrimitiveType(receiver) && !isPrimitiveType(compare)) {
+  if (isPrimitiveType(receiver) ^ isPrimitiveType(compare)) {
     dist=(dist + 1) << 1;
   }
   if (unwrapCompare.equals(unwrapReceiver))   return dist;
