@@ -8,7 +8,6 @@
     extension.afterMethodCall(call);
     return;
   }
-  final ClassNode rememberLastItType=typeCheckingContext.lastImplicitItType;
   Expression callArguments=call.getArguments();
   ArgumentListExpression argumentList=InvocationWriter.makeArgumentList(callArguments);
   checkForbiddenSpreadArgument(argumentList);

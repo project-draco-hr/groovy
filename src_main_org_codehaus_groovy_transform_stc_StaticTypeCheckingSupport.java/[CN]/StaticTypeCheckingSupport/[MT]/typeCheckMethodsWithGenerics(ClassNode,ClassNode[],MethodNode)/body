@@ -5,7 +5,6 @@
   if (CLASS_Type.equals(receiver) && receiver.isUsingGenerics() && !candidateMethod.getDeclaringClass().equals(receiver)&& !(candidateMethod instanceof ExtensionMethodNode)) {
     return typeCheckMethodsWithGenerics(receiver.getGenericsTypes()[0].getType(),arguments,candidateMethod);
   }
-  Parameter[] parameters=candidateMethod.getParameters();
   GenericsType[] genericsTypes=candidateMethod.getGenericsTypes();
   boolean methodUsesGenerics=(genericsTypes != null && genericsTypes.length > 0);
   boolean isExtensionMethod=candidateMethod instanceof ExtensionMethodNode;
