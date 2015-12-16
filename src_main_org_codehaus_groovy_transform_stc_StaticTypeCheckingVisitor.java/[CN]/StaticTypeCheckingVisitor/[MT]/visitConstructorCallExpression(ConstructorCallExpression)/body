@@ -12,7 +12,7 @@
   if (args.length > 0 && typeCheckingContext.getEnclosingClosure() != null && argumentList.getExpression(0) instanceof VariableExpression && ((VariableExpression)argumentList.getExpression(0)).isThisExpression() && call.getType() instanceof InnerClassNode && call.getType().getOuterClass().equals(args[0]) && !call.getType().isStaticClass()) {
     args[0]=CLOSURE_TYPE;
   }
-  MethodNode node=null;
+  MethodNode node;
   if (args.length == 1 && implementsInterfaceOrIsSubclassOf(args[0],MAP_TYPE) && findMethod(receiver,"<init>",ClassNode.EMPTY_ARRAY).size() == 1 && findMethod(receiver,"<init>",args).isEmpty()) {
     node=typeCheckMapConstructor(call,receiver,arguments);
     if (node != null) {

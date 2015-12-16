@@ -89,7 +89,7 @@
           storeType(call,data);
         }
       }
-      int nbOfArgs=0;
+      int nbOfArgs;
       if (callArguments instanceof ArgumentListExpression) {
         ArgumentListExpression list=(ArgumentListExpression)callArguments;
         nbOfArgs=list.getExpressions().size();

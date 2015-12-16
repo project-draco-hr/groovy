@@ -1,5 +1,5 @@
 {
-  List<ClassNode[]> closureSignatures=null;
+  List<ClassNode[]> closureSignatures;
   try {
     ClassLoader transformLoader=getTransformLoader();
     @SuppressWarnings("unchecked") Class<? extends ClosureSignatureHint> hint=(Class<? extends ClosureSignatureHint>)transformLoader.loadClass(hintClass.getText());

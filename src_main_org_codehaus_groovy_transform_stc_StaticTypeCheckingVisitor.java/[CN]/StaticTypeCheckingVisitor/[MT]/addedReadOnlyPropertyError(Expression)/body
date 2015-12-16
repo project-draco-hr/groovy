@@ -1,6 +1,6 @@
 {
   if (expr.getNodeMetaData(StaticTypesMarker.READONLY_PROPERTY) == null)   return false;
-  String name=null;
+  String name;
   if (expr instanceof VariableExpression) {
     name=((VariableExpression)expr).getName();
   }

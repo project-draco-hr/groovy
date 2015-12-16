@@ -1,7 +1,7 @@
 {
   if (member == null)   return null;
   if (!staticOnly)   return member;
-  boolean isStatic=false;
+  boolean isStatic;
   if (member instanceof Variable) {
     Variable v=(Variable)member;
     isStatic=Modifier.isStatic(v.getModifiers());
