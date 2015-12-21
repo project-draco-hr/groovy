@@ -6,7 +6,10 @@
     if (methods.isEmpty()) {
       MethodNode node=new ConstructorNode(Opcodes.ACC_PUBLIC,Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,GENERATED_EMPTY_STATEMENT);
       node.setDeclaringClass(receiver);
-      return Collections.singletonList(node);
+      methods=Collections.singletonList(node);
+      if (receiver.isArray()) {
+        return methods;
+      }
     }
   }
  else {
