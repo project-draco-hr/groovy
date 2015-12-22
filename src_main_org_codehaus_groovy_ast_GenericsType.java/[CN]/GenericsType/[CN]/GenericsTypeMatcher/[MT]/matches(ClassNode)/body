@@ -28,6 +28,7 @@
     if (lowerBound != null) {
       return implementsInterfaceOrIsSubclassOf(lowerBound,classNode) && checkGenerics(classNode);
     }
+    return true;
   }
   if ((type != null && !type.equals(classNode))) {
     return false;

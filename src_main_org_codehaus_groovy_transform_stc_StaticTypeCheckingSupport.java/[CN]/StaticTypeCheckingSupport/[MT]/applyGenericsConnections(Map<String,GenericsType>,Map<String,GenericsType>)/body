@@ -18,14 +18,18 @@
       if (!original.isWildcard() && !original.isPlaceholder()) {
         continue;
       }
- else       if (!replacement.isPlaceholder()) {
-        entry.setValue(replacement);
-        continue;
+      boolean placeholderReplacement=replacement.isPlaceholder();
+      if (placeholderReplacement) {
+        GenericsType connectedType=resolvedPlaceholders.get(replacement.getName());
+        if (replacement == connectedType)         continue;
       }
-      GenericsType connectedType=resolvedPlaceholders.get(replacement.getName());
-      if (replacement == connectedType)       continue;
-      entry.setValue(replacement);
-      checkForMorePlaceHolders=checkForMorePlaceHolders || !equalIncludingGenerics(original,replacement);
+      ClassNode replacementType=extractType(replacement);
+      if (original.isCompatibleWith(replacementType)) {
+        entry.setValue(replacement);
+        if (placeholderReplacement) {
+          checkForMorePlaceHolders=checkForMorePlaceHolders || !equalIncludingGenerics(original,replacement);
+        }
+      }
     }
     if (!checkForMorePlaceHolders)     break;
   }

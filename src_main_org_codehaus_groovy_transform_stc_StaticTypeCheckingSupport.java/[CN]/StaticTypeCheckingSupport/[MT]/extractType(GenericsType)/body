@@ -1,0 +1,16 @@
+{
+  if (!gt.isPlaceholder()) {
+    return gt.getType();
+  }
+  ClassNode replacementType=OBJECT_TYPE;
+  if (gt.getType().getGenericsTypes() != null) {
+    GenericsType realGt=gt.getType().getGenericsTypes()[0];
+    if (realGt.getLowerBound() != null) {
+      replacementType=realGt.getLowerBound();
+    }
+ else     if (realGt.getUpperBounds() != null && realGt.getUpperBounds().length > 0) {
+      replacementType=realGt.getUpperBounds()[0];
+    }
+  }
+  return replacementType;
+}
