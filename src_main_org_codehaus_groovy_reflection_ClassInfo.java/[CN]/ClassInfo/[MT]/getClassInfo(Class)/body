@@ -1,5 +1,3 @@
 {
-  LocalMap map=getLocalClassInfoMap();
-  if (map != null)   return map.get(cls);
   return globalClassValue.get(cls);
 }

@@ -1,5 +1,0 @@
-{
-  LocalMap map=getLocalClassInfoMap();
-  if (map != null)   return map.values();
-  return globalClassSet.values();
-}

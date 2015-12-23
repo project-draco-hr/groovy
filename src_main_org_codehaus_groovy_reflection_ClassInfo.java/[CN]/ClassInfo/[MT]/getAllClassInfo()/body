@@ -1,4 +1,3 @@
 {
-  Collection<ClassInfo> localClassInfos=getAllLocalClassInfo();
-  return localClassInfos != null ? localClassInfos : getAllGlobalClassInfo();
+  return getAllGlobalClassInfo();
 }
