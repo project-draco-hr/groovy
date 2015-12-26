@@ -3,7 +3,7 @@
     if (STRING_OFFSET_FIELD_OFFSET != -1L && STRING_COUNT_FIELD_OFFSET != -1L) {
       return StringImplementation.OFFSET;
     }
- else     if (STRING_OFFSET_FIELD_OFFSET == -1L && STRING_COUNT_FIELD_OFFSET == -1L) {
+ else     if (STRING_OFFSET_FIELD_OFFSET == -1L && STRING_COUNT_FIELD_OFFSET == -1L && valueFieldIsCharArray()) {
       return StringImplementation.DIRECT_CHARS;
     }
  else {

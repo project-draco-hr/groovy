@@ -1,0 +1,4 @@
+{
+  Object o=UNSAFE.getObject("",STRING_VALUE_FIELD_OFFSET);
+  return (o instanceof char[]);
+}
