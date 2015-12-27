@@ -10,6 +10,14 @@
   }
   if (!checkMethod(method)) {
     try {
+      if (method.getDeclaringClass() == GroovyObject.class) {
+        if ("getMetaClass".equals(method.getName())) {
+          return getMetaClass(proxy);
+        }
+ else         if ("setMetaClass".equals(method.getName())) {
+          return setMetaClass((MetaClass)args[0]);
+        }
+      }
       return invokeCustom(proxy,method,args);
     }
  catch (    GroovyRuntimeException gre) {

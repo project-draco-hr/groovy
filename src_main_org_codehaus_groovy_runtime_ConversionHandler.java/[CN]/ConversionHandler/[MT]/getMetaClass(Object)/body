@@ -1,0 +1,8 @@
+{
+  MetaClass mc=metaClass;
+  if (mc == null) {
+    mc=((MetaClassRegistryImpl)GroovySystem.getMetaClassRegistry()).getMetaClass(proxy);
+    metaClass=mc;
+  }
+  return mc;
+}
