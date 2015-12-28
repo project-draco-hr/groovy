@@ -1,5 +1,8 @@
 {
   try {
+    if (delegate instanceof GroovyObject) {
+      return ((GroovyObject)delegate).invokeMethod(name,args);
+    }
     return metaClass.invokeMethod(delegate,name,args);
   }
  catch (  MissingMethodException mme) {
