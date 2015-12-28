@@ -59,7 +59,7 @@
       PropertyNode propertyNode=current.getProperty(propertyName);
       propertyNode=allowStaticAccessToMember(propertyNode,staticOnly);
       if (storeProperty(propertyNode,pexp,current,visitor,receiver.getData()))       return true;
-      boolean isThisExpression=objectExpression instanceof VariableExpression && ((VariableExpression)objectExpression).isThisExpression();
+      boolean isThisExpression=objectExpression instanceof VariableExpression && ((VariableExpression)objectExpression).isThisExpression() && objectExpressionType.equals(current);
       if (storeField(field,isThisExpression,pexp,receiver.getType(),visitor,receiver.getData()))       return true;
       MethodNode getter=current.getGetterMethod("get" + capName);
       getter=allowStaticAccessToMember(getter,staticOnly);
