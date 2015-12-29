@@ -52,6 +52,7 @@
       }
       addPropertyMethod(newMethod);
       newMethod.setGenericsTypes(method.getGenericsTypes());
+      newMethod.putNodeMetaData(DEFAULT_PARAMETER_GENERATED,true);
     }
   }
 );
