@@ -6,7 +6,6 @@
       collector=an;
       break;
     }
-    ;
   }
   if (collector == null)   return;
   cn.setModifiers((ACC_FINAL + cn.getModifiers()) & ~(ACC_ENUM | ACC_INTERFACE | ACC_ANNOTATION| ACC_ABSTRACT));

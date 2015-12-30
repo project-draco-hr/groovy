@@ -1,4 +1,3 @@
 {
   writeIndyCast(sourceType,ClassHelper.boolean_TYPE);
-  ;
 }
