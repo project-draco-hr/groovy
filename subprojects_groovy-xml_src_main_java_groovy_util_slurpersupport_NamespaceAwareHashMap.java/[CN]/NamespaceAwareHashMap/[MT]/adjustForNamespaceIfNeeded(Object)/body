@@ -1,6 +1,6 @@
 {
   String keyString=key.toString();
-  if (keyString.contains("{") || namespaceTagHints == null || namespaceTagHints.isEmpty() || keyString.contains("{") || !keyString.contains(":")) {
+  if (keyString.contains("{") || namespaceTagHints == null || namespaceTagHints.isEmpty() || !keyString.contains(":")) {
     return key;
   }
   final int i=keyString.indexOf(":");
