@@ -17,9 +17,6 @@
     }
     box();
   }
- else   if (primTop) {
-    controller.getInvocationWriter().castToNonPrimitiveIfNecessary(top,targetType);
-  }
  else   if (primTarget) {
   }
  else {
