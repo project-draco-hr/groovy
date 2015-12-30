@@ -2,7 +2,7 @@
   if (arguments instanceof TupleExpression) {
     TupleExpression te=(TupleExpression)arguments;
     List<Expression> expressions=te.getExpressions();
-    if (expressions.size() == 0)     return null;
+    if (expressions.isEmpty())     return null;
     Expression last=expressions.remove(expressions.size() - 1);
     if (last instanceof AnonymousInnerClassCarrier) {
       AnonymousInnerClassCarrier carrier=(AnonymousInnerClassCarrier)last;

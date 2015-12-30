@@ -5,7 +5,7 @@
     ParameterTypes paramTypes=(ParameterTypes)method;
     long dist=MetaClassHelper.calculateParameterDistance(arguments,paramTypes);
     if (dist == 0)     return method;
-    if (matches.size() == 0) {
+    if (matches.isEmpty()) {
       matches.add(method);
       matchesDistance=dist;
     }
@@ -21,7 +21,7 @@
   if (matches.size() == 1) {
     return matches.getFirst();
   }
-  if (matches.size() == 0) {
+  if (matches.isEmpty()) {
     return null;
   }
   StringBuilder msg=new StringBuilder("Ambiguous method overloading for method ");

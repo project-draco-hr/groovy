@@ -1,5 +1,5 @@
 {
   if (inImmutableList(fieldType.getName()) || knownImmutableClasses.contains(fieldType.getName()))   return true;
   if (!fieldType.isResolved())   return false;
-  return fieldType.isEnum() || ClassHelper.isPrimitiveType(fieldType) || fieldType.getAnnotations(MY_TYPE).size() != 0;
+  return fieldType.isEnum() || ClassHelper.isPrimitiveType(fieldType) || !fieldType.getAnnotations(MY_TYPE).isEmpty();
 }

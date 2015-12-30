@@ -1,5 +1,5 @@
 {
-  if (stateStack.size() == 0) {
+  if (stateStack.isEmpty()) {
     throw new GroovyBugError("Tried to do a pop on the compile stack without push.");
   }
   StateStackElement element=(StateStackElement)stateStack.removeLast();

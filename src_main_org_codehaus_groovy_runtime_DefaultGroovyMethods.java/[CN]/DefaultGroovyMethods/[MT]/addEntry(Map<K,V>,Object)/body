@@ -4,7 +4,7 @@
   }
  else   if (newEntry instanceof List) {
     List list=(List)newEntry;
-    Object key=list.size() == 0 ? null : list.get(0);
+    Object key=list.isEmpty() ? null : list.get(0);
     Object value=list.size() <= 1 ? null : list.get(1);
     leftShift(result,new MapEntry(key,value));
   }

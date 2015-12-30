@@ -9,7 +9,7 @@
       continue;
     }
  else {
-      if (configEntry instanceof Map && ((Map)configEntry).size() > 0 && value instanceof Map) {
+      if (configEntry instanceof Map && !((Map)configEntry).isEmpty() && value instanceof Map) {
         doMerge((Map)configEntry,(Map)value);
       }
  else {

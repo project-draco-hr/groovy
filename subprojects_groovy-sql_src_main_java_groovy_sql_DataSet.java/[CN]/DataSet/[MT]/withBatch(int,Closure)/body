@@ -3,7 +3,7 @@
   withinDataSetBatch=true;
   closure.call(this);
   withinDataSetBatch=false;
-  if (batchData.size() == 0) {
+  if (batchData.isEmpty()) {
     return EMPTY_INT_ARRAY;
   }
   Closure transformedClosure=new Closure(null){

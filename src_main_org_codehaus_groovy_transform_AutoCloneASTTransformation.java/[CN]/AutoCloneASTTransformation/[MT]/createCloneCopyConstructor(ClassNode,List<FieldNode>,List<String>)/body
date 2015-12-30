@@ -1,5 +1,5 @@
 {
-  if (cNode.getDeclaredConstructors().size() == 0) {
+  if (cNode.getDeclaredConstructors().isEmpty()) {
     BlockStatement noArgBody=new BlockStatement();
     noArgBody.addStatement(EmptyStatement.INSTANCE);
     cNode.addConstructor(ACC_PUBLIC,Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,noArgBody);

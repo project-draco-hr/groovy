@@ -1,6 +1,6 @@
 {
   Collection<T> ansCollection=createSimilarCollection(self);
-  if (self.size() == 0)   return ansCollection;
+  if (self.isEmpty())   return ansCollection;
   T head=self.iterator().next();
   boolean nlgnSort=sameType(new Collection[]{self,removeMe});
   Comparator<T> numberComparator=new NumberAwareComparator<T>();

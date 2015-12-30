@@ -3,7 +3,7 @@
   if (!(code instanceof BlockStatement))   return null;
   BlockStatement block=(BlockStatement)code;
   List stats=block.getStatements();
-  if (stats == null || stats.size() == 0)   return null;
+  if (stats == null || stats.isEmpty())   return null;
   Statement stat=(Statement)stats.get(0);
   if (!(stat instanceof ExpressionStatement))   return null;
   Expression expr=((ExpressionStatement)stat).getExpression();

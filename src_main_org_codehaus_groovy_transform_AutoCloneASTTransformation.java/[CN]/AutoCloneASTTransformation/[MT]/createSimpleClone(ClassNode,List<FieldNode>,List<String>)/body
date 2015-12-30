@@ -1,5 +1,5 @@
 {
-  if (cNode.getDeclaredConstructors().size() == 0) {
+  if (cNode.getDeclaredConstructors().isEmpty()) {
     cNode.addConstructor(ACC_PUBLIC,Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,block(EmptyStatement.INSTANCE));
   }
   addSimpleCloneHelperMethod(cNode,fieldNodes,excludes);

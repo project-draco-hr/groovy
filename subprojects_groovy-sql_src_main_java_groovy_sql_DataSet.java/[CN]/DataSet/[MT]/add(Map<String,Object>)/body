@@ -1,6 +1,6 @@
 {
   if (withinDataSetBatch) {
-    if (batchData.size() == 0) {
+    if (batchData.isEmpty()) {
       batchKeys=map.keySet();
     }
  else {

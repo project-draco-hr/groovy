@@ -9,7 +9,7 @@
   keepStubs=Boolean.TRUE.equals(options.get("keepStubs"));
   addPhaseOperation(new PrimaryClassNodeOperation(){
     public void call(    SourceUnit source,    GeneratorContext context,    ClassNode node) throws CompilationFailedException {
-      if (javaSources.size() != 0) {
+      if (!javaSources.isEmpty()) {
         VariableScopeVisitor scopeVisitor=new VariableScopeVisitor(source);
         scopeVisitor.visitClass(node);
         new JavaAwareResolveVisitor(JavaAwareCompilationUnit.this).startResolving(node,source);
@@ -29,7 +29,7 @@
   addPhaseOperation(new PrimaryClassNodeOperation(){
     public void call(    SourceUnit source,    GeneratorContext context,    ClassNode classNode) throws CompilationFailedException {
       try {
-        if (javaSources.size() != 0)         stubGenerator.generateClass(classNode);
+        if (!javaSources.isEmpty())         stubGenerator.generateClass(classNode);
       }
  catch (      FileNotFoundException fnfe) {
         source.addException(fnfe);

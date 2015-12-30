@@ -2,7 +2,7 @@
   if (aic) {
     ClassNode sn=enumClass.getSuperClass();
     List<ConstructorNode> sctors=new ArrayList<ConstructorNode>(sn.getDeclaredConstructors());
-    if (sctors.size() == 0) {
+    if (sctors.isEmpty()) {
       addMapConstructors(enumClass,false);
     }
  else {

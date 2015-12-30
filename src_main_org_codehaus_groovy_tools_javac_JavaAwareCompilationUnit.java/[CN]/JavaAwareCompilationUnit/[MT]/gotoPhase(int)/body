@@ -1,6 +1,6 @@
 {
   super.gotoPhase(phase);
-  if (phase == Phases.SEMANTIC_ANALYSIS && javaSources.size() > 0) {
+  if (phase == Phases.SEMANTIC_ANALYSIS && !javaSources.isEmpty()) {
     for (    ModuleNode module : getAST().getModules()) {
       module.setImportsResolved(false);
     }

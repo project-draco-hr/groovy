@@ -1,5 +1,5 @@
 {
-  if (typeArgumentList != null && typeArgumentList.size() > 0) {
+  if (typeArgumentList != null && !typeArgumentList.isEmpty()) {
     expression.setGenericsTypes(typeArgumentList.toArray(new GenericsType[typeArgumentList.size()]));
   }
 }

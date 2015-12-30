@@ -12,7 +12,7 @@
     finallyStatement=statement(node);
     node=node.getNextSibling();
   }
-  if (finallyStatement instanceof EmptyStatement && catches.size() == 0) {
+  if (finallyStatement instanceof EmptyStatement && catches.isEmpty()) {
     throw new ASTRuntimeException(tryStatementNode,"A try statement must have at least one catch or finally block.");
   }
   TryCatchStatement tryCatchStatement=new TryCatchStatement(tryStatement,finallyStatement);

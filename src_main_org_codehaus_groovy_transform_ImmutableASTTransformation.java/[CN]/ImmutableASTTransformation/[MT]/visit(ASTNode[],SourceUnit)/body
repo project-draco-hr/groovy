@@ -44,7 +44,7 @@
     if (!hasAnnotation(cNode,ToStringASTTransformation.MY_TYPE)) {
       createToString(cNode,false,false,null,null,false,true);
     }
-    if (memberHasValue(node,MEMBER_ADD_COPY_WITH,true) && pList.size() > 0 && !hasDeclaredMethod(cNode,COPY_WITH_METHOD,1)) {
+    if (memberHasValue(node,MEMBER_ADD_COPY_WITH,true) && !pList.isEmpty() && !hasDeclaredMethod(cNode,COPY_WITH_METHOD,1)) {
       createCopyWith(cNode,pList);
     }
   }

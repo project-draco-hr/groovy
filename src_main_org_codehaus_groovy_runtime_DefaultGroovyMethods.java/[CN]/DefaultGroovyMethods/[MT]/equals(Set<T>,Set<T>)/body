@@ -28,5 +28,5 @@
     if (!found)     return false;
     otherItems.remove(foundItem);
   }
-  return otherItems.size() == 0;
+  return otherItems.isEmpty();
 }

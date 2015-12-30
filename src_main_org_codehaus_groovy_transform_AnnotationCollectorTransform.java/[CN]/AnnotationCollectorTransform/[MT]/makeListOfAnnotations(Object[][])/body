@@ -6,7 +6,7 @@
     AnnotationNode toAdd=new AnnotationNode(ClassHelper.make(anno));
     ret.add(toAdd);
     @SuppressWarnings("unchecked") Map<String,Object> member=(Map<String,Object>)inner[1];
-    if (member.size() == 0)     continue;
+    if (member.isEmpty())     continue;
     Map<String,Expression> generated=new HashMap<String,Expression>(member.size());
     for (    String name : member.keySet()) {
       Object val=member.get(name);

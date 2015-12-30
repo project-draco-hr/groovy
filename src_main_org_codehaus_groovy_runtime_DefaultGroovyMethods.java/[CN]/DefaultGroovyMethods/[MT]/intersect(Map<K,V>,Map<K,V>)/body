@@ -1,6 +1,6 @@
 {
   final Map<K,V> ansMap=createSimilarMap(left);
-  if (right != null && right.size() > 0) {
+  if (right != null && !right.isEmpty()) {
     for (    Map.Entry<K,V> e1 : left.entrySet()) {
       for (      Map.Entry<K,V> e2 : right.entrySet()) {
         if (DefaultTypeTransformation.compareEqual(e1,e2)) {

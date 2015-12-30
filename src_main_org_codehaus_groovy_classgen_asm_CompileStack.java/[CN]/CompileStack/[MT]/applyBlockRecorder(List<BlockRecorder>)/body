@@ -1,5 +1,5 @@
 {
-  if (blocks.size() == 0 || blocks.size() == visitedBlocks.size())   return;
+  if (blocks.isEmpty() || blocks.size() == visitedBlocks.size())   return;
   MethodVisitor mv=controller.getMethodVisitor();
   Label end=new Label();
   mv.visitInsn(NOP);

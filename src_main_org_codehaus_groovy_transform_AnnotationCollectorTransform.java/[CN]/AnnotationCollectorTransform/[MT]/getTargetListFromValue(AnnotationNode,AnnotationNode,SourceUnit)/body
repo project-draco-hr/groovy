@@ -7,7 +7,7 @@
   }
   ListExpression memberListExp=(ListExpression)memberValue;
   List<Expression> memberList=memberListExp.getExpressions();
-  if (memberList.size() == 0)   return Collections.EMPTY_LIST;
+  if (memberList.isEmpty())   return Collections.EMPTY_LIST;
   List<AnnotationNode> ret=new ArrayList<AnnotationNode>();
   for (  Expression e : memberList) {
     AnnotationNode toAdd=new AnnotationNode(e.getType());

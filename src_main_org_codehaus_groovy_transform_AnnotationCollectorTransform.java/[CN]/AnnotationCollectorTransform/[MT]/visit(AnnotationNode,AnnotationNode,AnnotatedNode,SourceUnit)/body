@@ -9,7 +9,7 @@
       }
     }
   }
-  if (unusedNames.size() > 0) {
+  if (!unusedNames.isEmpty()) {
     String message="Annotation collector got unmapped names " + unusedNames.toString() + ".";
     addError(message,aliasAnnotationUsage,source);
   }

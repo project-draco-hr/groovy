@@ -12,16 +12,16 @@
   }
   try {
     Map namedArgs=Collections.EMPTY_MAP;
-    if ((list.size() > 0) && (list.get(0) instanceof LinkedHashMap)) {
+    if ((!list.isEmpty()) && (list.get(0) instanceof LinkedHashMap)) {
       namedArgs=(Map)list.get(0);
       list=list.subList(1,list.size());
     }
-    if ((list.size() > 0) && (list.get(list.size() - 1) instanceof Closure)) {
+    if ((!list.isEmpty()) && (list.get(list.size() - 1) instanceof Closure)) {
       closure=(Closure)list.get(list.size() - 1);
       list=list.subList(0,list.size() - 1);
     }
     Object arg;
-    if (list.size() == 0) {
+    if (list.isEmpty()) {
       arg=null;
     }
  else     if (list.size() == 1) {
