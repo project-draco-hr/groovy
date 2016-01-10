@@ -1,6 +1,6 @@
 {
-  VMPlugin plugin=VMPluginFactory.getPlugin();
-  if (plugin.getVersion() >= 7 && isDefaultMethod(method)) {
+  if (handleCache != null && isDefaultMethod(method)) {
+    VMPlugin plugin=VMPluginFactory.getPlugin();
     Object handle=handleCache.get(method);
     if (handle == null) {
       handle=plugin.getInvokeSpecialHandle(method,proxy);
