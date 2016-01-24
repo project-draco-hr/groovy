@@ -1,8 +1,8 @@
 {
   ManagedReference<V> ref=new ManagedReference<V>(bundle,value){
     @Override public void finalizeReference(){
+      internalMap.remove(key,this);
       super.finalizeReference();
-      internalMap.remove(key,get());
     }
   }
 ;

@@ -1,0 +1,4 @@
+{
+  this.entry.clean();
+  super.finalizeReference();
+}

@@ -1,4 +1,3 @@
 {
-  super.finalizeReference();
-  segment.removeEntry(this);
+  finalizeReference();
 }
