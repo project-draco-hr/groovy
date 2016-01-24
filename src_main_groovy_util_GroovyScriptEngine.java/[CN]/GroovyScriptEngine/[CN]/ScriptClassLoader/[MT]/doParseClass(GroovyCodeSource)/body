@@ -3,46 +3,15 @@
   LocalData localData=new LocalData();
   localTh.set(localData);
   StringSetMap cache=localData.dependencyCache;
-  ScriptCacheEntry origEntry=scriptCache.get(codeSource.getName());
-  Set<String> origDep=null;
-  if (origEntry != null)   origDep=origEntry.dependencies;
-  if (origDep != null) {
-    Set<String> newDep=new HashSet<String>(origDep.size());
-    for (    String depName : origDep) {
-      ScriptCacheEntry dep=scriptCache.get(depName);
-      try {
-        if (origEntry == dep || GroovyScriptEngine.this.isSourceNewer(dep)) {
-          newDep.add(depName);
-        }
-      }
- catch (      ResourceException re) {
-      }
-    }
-    cache.put(".",newDep);
+  Class<?> answer=null;
+  try {
+    updateLocalDependencyCache(codeSource,localData);
+    answer=super.parseClass(codeSource,false);
+    updateScriptCache(localData);
   }
-  Class answer=super.parseClass(codeSource,false);
-  cache.makeTransitiveHull();
-  long time=getCurrentTime();
-  Set<String> entryNames=new HashSet<String>();
-  for (  Map.Entry<String,Set<String>> entry : cache.entrySet()) {
-    String className=entry.getKey();
-    Class clazz=getClassCacheEntry(className);
-    if (clazz == null)     continue;
-    String entryName=getPath(clazz,localData.precompiledEntries);
-    if (entryNames.contains(entryName))     continue;
-    entryNames.add(entryName);
-    Set<String> value=convertToPaths(entry.getValue(),localData.precompiledEntries);
-    long lastModified;
-    try {
-      lastModified=getLastModified(entryName);
-    }
- catch (    ResourceException e) {
-      lastModified=time;
-    }
-    ScriptCacheEntry cacheEntry=new ScriptCacheEntry(clazz,lastModified,time,value,false);
-    scriptCache.put(entryName,cacheEntry);
+  finally {
+    cache.clear();
+    localTh.remove();
   }
-  cache.clear();
-  localTh.set(null);
   return answer;
 }
