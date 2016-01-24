@@ -1,0 +1,9 @@
+{
+  int index=iter.nextIndex();
+  if (index >= list.size()) {
+    throw new NoSuchElementException();
+  }
+ else {
+    return list.get(index);
+  }
+}

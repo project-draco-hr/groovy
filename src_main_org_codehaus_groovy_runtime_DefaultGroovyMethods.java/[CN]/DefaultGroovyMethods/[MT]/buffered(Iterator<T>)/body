@@ -1,0 +1,8 @@
+{
+  if (self instanceof BufferedIterator) {
+    return (BufferedIterator<T>)self;
+  }
+ else {
+    return new IteratorBufferedIterator<T>(self);
+  }
+}

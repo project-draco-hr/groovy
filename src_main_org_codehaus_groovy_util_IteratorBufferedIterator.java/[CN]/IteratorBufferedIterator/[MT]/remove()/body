@@ -1,0 +1,8 @@
+{
+  if (hasBuffered) {
+    throw new IllegalStateException("Can't remove from " + this + " when an item is buffered.");
+  }
+ else {
+    iter.remove();
+  }
+}

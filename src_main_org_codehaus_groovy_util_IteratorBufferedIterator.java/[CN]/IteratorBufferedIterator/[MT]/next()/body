@@ -1,0 +1,11 @@
+{
+  if (hasBuffered) {
+    T buffered=this.buffered;
+    this.buffered=null;
+    hasBuffered=false;
+    return buffered;
+  }
+ else {
+    return iter.next();
+  }
+}

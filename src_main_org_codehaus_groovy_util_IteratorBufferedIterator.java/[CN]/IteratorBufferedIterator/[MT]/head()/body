@@ -1,0 +1,7 @@
+{
+  if (!hasBuffered) {
+    buffered=iter.next();
+    hasBuffered=true;
+  }
+  return buffered;
+}
