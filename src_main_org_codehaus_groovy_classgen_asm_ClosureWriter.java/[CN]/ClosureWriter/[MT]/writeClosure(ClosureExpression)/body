@@ -3,7 +3,7 @@
   MethodVisitor mv=controller.getMethodVisitor();
   ClassNode classNode=controller.getClassNode();
   AsmClassGenerator acg=controller.getAcg();
-  ClassNode closureClass=getOrAddClosureClass(expression,0);
+  ClassNode closureClass=getOrAddClosureClass(expression,ACC_PUBLIC);
   String closureClassinternalName=BytecodeHelper.getClassInternalName(closureClass);
   List constructors=closureClass.getDeclaredConstructors();
   ConstructorNode node=(ConstructorNode)constructors.get(0);
