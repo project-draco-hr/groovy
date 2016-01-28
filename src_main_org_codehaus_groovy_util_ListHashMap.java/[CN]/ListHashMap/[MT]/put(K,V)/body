@@ -15,6 +15,7 @@
     }
  else {
       innerMap=makeMap();
+      clearArrays();
     }
   }
   V val=(V)innerMap.put(key,value);

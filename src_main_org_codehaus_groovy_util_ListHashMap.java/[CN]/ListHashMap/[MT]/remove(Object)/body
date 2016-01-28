@@ -4,8 +4,12 @@
       if (listKeys[i].equals(key)) {
         V old=(V)listValues[i];
         size--;
-        listValues[i]=listValues[size];
-        listKeys[i]=listKeys[size];
+        if (i < size) {
+          listValues[i]=listValues[size];
+          listKeys[i]=listKeys[size];
+        }
+        listValues[size]=null;
+        listKeys[size]=null;
         return old;
       }
     }

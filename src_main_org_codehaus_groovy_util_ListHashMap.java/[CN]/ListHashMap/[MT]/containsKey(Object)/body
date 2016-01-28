@@ -1,5 +1,8 @@
 {
-  if (size < maxListFill) {
+  if (size == 0) {
+    return false;
+  }
+  if (innerMap == null) {
     for (int i=0; i < size; i++) {
       if (listKeys[i].equals(key))       return true;
     }

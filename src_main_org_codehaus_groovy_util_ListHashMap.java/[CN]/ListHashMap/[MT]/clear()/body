@@ -1,8 +1,5 @@
 {
   innerMap=null;
-  for (int i=0; i < maxListFill; i++) {
-    listValues[i]=null;
-    listKeys[i]=null;
-  }
+  clearArrays();
   size=0;
 }
