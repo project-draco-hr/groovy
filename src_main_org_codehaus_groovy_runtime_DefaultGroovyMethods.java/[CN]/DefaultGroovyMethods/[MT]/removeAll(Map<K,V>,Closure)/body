@@ -1,0 +1,13 @@
+{
+  Iterator<Map.Entry<K,V>> iter=self.entrySet().iterator();
+  BooleanClosureWrapper bcw=new BooleanClosureWrapper(condition);
+  boolean result=false;
+  while (iter.hasNext()) {
+    Map.Entry<K,V> entry=iter.next();
+    if (bcw.callForMap(entry)) {
+      iter.remove();
+      result=true;
+    }
+  }
+  return result;
+}
