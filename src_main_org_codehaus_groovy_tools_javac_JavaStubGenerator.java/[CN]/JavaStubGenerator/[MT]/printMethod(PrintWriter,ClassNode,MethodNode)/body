@@ -8,7 +8,7 @@
     if (isDefaultTraitImpl(methodNode)) {
       modifiers^=Opcodes.ACC_ABSTRACT;
     }
-    printModifiers(out,modifiers);
+    printModifiers(out,modifiers & ~(clazz.isEnum() ? Opcodes.ACC_ABSTRACT : 0));
   }
   printGenericsBounds(out,methodNode.getGenericsTypes());
   out.print(" ");
@@ -30,7 +30,7 @@
   if (Traits.isTrait(clazz)) {
     out.println(";");
   }
- else   if (isAbstract(methodNode)) {
+ else   if (isAbstract(methodNode) && !clazz.isEnum()) {
     if (clazz.isAnnotationDefinition() && methodNode.hasAnnotationDefault()) {
       Statement fs=methodNode.getFirstStatement();
       if (fs instanceof ExpressionStatement) {
