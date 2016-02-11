@@ -4,52 +4,57 @@
   AnnotationNode node=(AnnotationNode)nodes[0];
   if (parent instanceof FieldNode) {
     FieldNode fieldNode=(FieldNode)parent;
-    final ClassNode type=fieldNode.getType();
-    final ClassNode owner=fieldNode.getOwner();
-    if (type.equals(ClassHelper.OBJECT_TYPE) || type.equals(GROOVYOBJECT_TYPE)) {
-      addError(MY_TYPE_NAME + " field '" + fieldNode.getName()+ "' has an inappropriate type: "+ type.getName()+ ". Please add an explicit type but not java.lang.Object or groovy.lang.GroovyObject.",parent);
+    DelegateDescription delegate=new DelegateDescription();
+    delegate.delegate=fieldNode;
+    delegate.annotation=node;
+    delegate.delegateName=fieldNode.getName();
+    delegate.type=fieldNode.getType();
+    delegate.owner=fieldNode.getOwner();
+    delegate.getOp=varX(fieldNode);
+    if (delegate.type.equals(ClassHelper.OBJECT_TYPE) || delegate.type.equals(GROOVYOBJECT_TYPE)) {
+      addError(MY_TYPE_NAME + " field '" + delegate.delegateName+ "' has an inappropriate type: "+ delegate.type.getName()+ ". Please add an explicit type but not java.lang.Object or groovy.lang.GroovyObject.",parent);
       return;
     }
-    if (type.equals(owner)) {
-      addError(MY_TYPE_NAME + " field '" + fieldNode.getName()+ "' has an inappropriate type: "+ type.getName()+ ". Delegation to own type not supported. Please use a different type.",parent);
+    if (delegate.type.equals(delegate.owner)) {
+      addError(MY_TYPE_NAME + " field '" + delegate.delegateName+ "' has an inappropriate type: "+ delegate.type.getName()+ ". Delegation to own type not supported. Please use a different type.",parent);
       return;
     }
-    final List<MethodNode> fieldMethods=getAllMethods(type);
-    for (    ClassNode next : type.getAllInterfaces()) {
-      fieldMethods.addAll(getAllMethods(next));
+    final List<MethodNode> delegateMethods=getAllMethods(delegate.type);
+    for (    ClassNode next : delegate.type.getAllInterfaces()) {
+      delegateMethods.addAll(getAllMethods(next));
     }
     final boolean skipInterfaces=memberHasValue(node,MEMBER_INTERFACES,false);
-    final boolean includeDeprecated=memberHasValue(node,MEMBER_DEPRECATED,true) || (type.isInterface() && !skipInterfaces);
+    final boolean includeDeprecated=memberHasValue(node,MEMBER_DEPRECATED,true) || (delegate.type.isInterface() && !skipInterfaces);
     final boolean allNames=memberHasValue(node,MEMBER_ALL_NAMES,true);
-    List<String> excludes=getMemberStringList(node,MEMBER_EXCLUDES);
-    List<String> includes=getMemberStringList(node,MEMBER_INCLUDES);
-    List<ClassNode> excludeTypes=getMemberClassList(node,MEMBER_EXCLUDE_TYPES);
-    List<ClassNode> includeTypes=getMemberClassList(node,MEMBER_INCLUDE_TYPES);
-    checkIncludeExcludeUndefinedAware(node,excludes,includes,excludeTypes,includeTypes,MY_TYPE_NAME);
-    final List<MethodNode> ownerMethods=getAllMethods(owner);
-    for (    MethodNode mn : fieldMethods) {
-      addDelegateMethod(node,fieldNode,owner,ownerMethods,mn,includeDeprecated,includes,excludes,includeTypes,excludeTypes,allNames);
+    delegate.excludes=getMemberStringList(node,MEMBER_EXCLUDES);
+    delegate.includes=getMemberStringList(node,MEMBER_INCLUDES);
+    delegate.excludeTypes=getMemberClassList(node,MEMBER_EXCLUDE_TYPES);
+    delegate.includeTypes=getMemberClassList(node,MEMBER_INCLUDE_TYPES);
+    checkIncludeExcludeUndefinedAware(node,delegate.excludes,delegate.includes,delegate.excludeTypes,delegate.includeTypes,MY_TYPE_NAME);
+    final List<MethodNode> ownerMethods=getAllMethods(delegate.owner);
+    for (    MethodNode mn : delegateMethods) {
+      addDelegateMethod(delegate,ownerMethods,mn,includeDeprecated,allNames);
     }
-    for (    PropertyNode prop : getAllProperties(type)) {
+    for (    PropertyNode prop : getAllProperties(delegate.type)) {
       if (prop.isStatic() || !prop.isPublic())       continue;
       String name=prop.getName();
-      addGetterIfNeeded(fieldNode,owner,prop,name,includes,excludes,allNames);
-      addSetterIfNeeded(fieldNode,owner,prop,name,includes,excludes,allNames);
+      addGetterIfNeeded(delegate,prop,name,allNames);
+      addSetterIfNeeded(delegate,prop,name,allNames);
     }
     if (skipInterfaces)     return;
-    final Set<ClassNode> allInterfaces=getInterfacesAndSuperInterfaces(type);
-    final Set<ClassNode> ownerIfaces=owner.getAllInterfaces();
-    Map<String,ClassNode> genericsSpec=createGenericsSpec(fieldNode.getDeclaringClass());
-    genericsSpec=createGenericsSpec(fieldNode.getType(),genericsSpec);
+    final Set<ClassNode> allInterfaces=getInterfacesAndSuperInterfaces(delegate.type);
+    final Set<ClassNode> ownerIfaces=delegate.owner.getAllInterfaces();
+    Map<String,ClassNode> genericsSpec=createGenericsSpec(delegate.owner);
+    genericsSpec=createGenericsSpec(delegate.type,genericsSpec);
     for (    ClassNode iface : allInterfaces) {
       if (Modifier.isPublic(iface.getModifiers()) && !ownerIfaces.contains(iface)) {
-        final ClassNode[] ifaces=owner.getInterfaces();
+        final ClassNode[] ifaces=delegate.owner.getInterfaces();
         final ClassNode[] newIfaces=new ClassNode[ifaces.length + 1];
         for (int i=0; i < ifaces.length; i++) {
           newIfaces[i]=correctToGenericsSpecRecurse(genericsSpec,ifaces[i]);
         }
         newIfaces[ifaces.length]=correctToGenericsSpecRecurse(genericsSpec,iface);
-        owner.setInterfaces(newIfaces);
+        delegate.owner.setInterfaces(newIfaces);
       }
     }
   }

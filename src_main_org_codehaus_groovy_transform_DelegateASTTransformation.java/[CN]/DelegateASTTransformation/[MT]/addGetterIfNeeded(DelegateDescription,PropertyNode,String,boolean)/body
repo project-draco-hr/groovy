@@ -1,0 +1,6 @@
+{
+  String getterName="get" + Verifier.capitalize(name);
+  if (delegate.owner.getGetterMethod(getterName) == null && !shouldSkipPropertyMethod(name,getterName,delegate.excludes,delegate.includes,allNames)) {
+    delegate.owner.addMethod(getterName,ACC_PUBLIC,GenericsUtils.nonGeneric(prop.getType()),Parameter.EMPTY_ARRAY,null,returnS(propX(delegate.getOp,name)));
+  }
+}

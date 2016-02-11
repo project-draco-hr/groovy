@@ -1,0 +1,5 @@
+DelegateDescription delegate
+List<MethodNode> ownMethods
+MethodNode candidate
+boolean includeDeprecated
+boolean allNames
