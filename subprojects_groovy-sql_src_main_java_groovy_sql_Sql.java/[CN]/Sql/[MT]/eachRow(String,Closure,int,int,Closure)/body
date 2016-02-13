@@ -1,8 +1,9 @@
 {
   Connection connection=createConnection();
-  Statement statement=getStatement(connection,sql);
+  Statement statement=null;
   ResultSet results=null;
   try {
+    statement=getStatement(connection,sql);
     results=statement.executeQuery(sql);
     if (metaClosure != null)     metaClosure.call(results.getMetaData());
     boolean cursorAtRow=moveCursor(results,offset);

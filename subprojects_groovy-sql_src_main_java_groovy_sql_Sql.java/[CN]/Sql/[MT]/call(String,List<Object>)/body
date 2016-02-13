@@ -1,8 +1,9 @@
 {
   Connection connection=createConnection();
-  CallableStatement statement=connection.prepareCall(sql);
+  CallableStatement statement=null;
   try {
     LOG.fine(sql + " | " + params);
+    statement=connection.prepareCall(sql);
     setParameters(params,statement);
     configure(statement);
     return statement.executeUpdate();
