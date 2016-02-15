@@ -34,7 +34,7 @@
     List<String> currentMethodGenPlaceholders=genericPlaceholderNames(candidate);
     for (int i=0; i < newParams.length; i++) {
       ClassNode newParamType=correctToGenericsSpecRecurse(genericsSpec,params[i].getType(),currentMethodGenPlaceholders);
-      Parameter newParam=new Parameter(newParamType,getParamName(params,i,delegate.delegateName));
+      Parameter newParam=new Parameter(newParamType,getParamName(params,i,delegate.name));
       newParam.setInitialExpression(params[i].getInitialExpression());
       if (memberHasValue(delegate.annotation,MEMBER_PARAMETER_ANNOTATIONS,true)) {
         newParam.addAnnotations(copyAnnotatedNodeAnnotations(params[i],MY_TYPE_NAME));
@@ -43,7 +43,7 @@
       args.addExpression(varX(newParam));
     }
     boolean alsoLazy=!delegate.delegate.getAnnotations(LAZY_TYPE).isEmpty();
-    MethodCallExpression mce=callX(alsoLazy ? propX(varX("this"),delegate.delegateName.substring(1)) : varX(delegate.delegateName,correctToGenericsSpecRecurse(genericsSpec,delegate.type)),candidate.getName(),args);
+    MethodCallExpression mce=callX(alsoLazy ? propX(varX("this"),delegate.name.substring(1)) : delegate.getOp,candidate.getName(),args);
     mce.setSourcePosition(delegate.delegate);
     ClassNode returnType=correctToGenericsSpecRecurse(genericsSpec,candidate.getReturnType(),currentMethodGenPlaceholders);
     MethodNode newMethod=delegate.owner.addMethod(candidate.getName(),candidate.getModifiers() & (~ACC_ABSTRACT) & (~ACC_NATIVE),returnType,newParams,candidate.getExceptions(),stmt(mce));
