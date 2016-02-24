@@ -12,6 +12,7 @@
     delegate.type=fieldNode.getType();
     delegate.owner=fieldNode.getOwner();
     delegate.getOp=varX(fieldNode);
+    delegate.origin="field";
   }
  else   if (parent instanceof MethodNode) {
     MethodNode methodNode=(MethodNode)parent;
@@ -22,6 +23,7 @@
     delegate.type=methodNode.getReturnType();
     delegate.owner=methodNode.getDeclaringClass();
     delegate.getOp=callThisX(delegate.name);
+    delegate.origin="method";
     if (methodNode.getParameters().length > 0) {
       addError("You can only delegate to methods that take no parameters, but " + delegate.name + " takes "+ methodNode.getParameters().length+ " parameters.",parent);
       return;
@@ -29,11 +31,11 @@
   }
   if (delegate != null) {
     if (delegate.type.equals(ClassHelper.OBJECT_TYPE) || delegate.type.equals(GROOVYOBJECT_TYPE)) {
-      addError(MY_TYPE_NAME + " field '" + delegate.name+ "' has an inappropriate type: "+ delegate.type.getName()+ ". Please add an explicit type but not java.lang.Object or groovy.lang.GroovyObject.",parent);
+      addError(MY_TYPE_NAME + " " + delegate.origin+ " '"+ delegate.name+ "' has an inappropriate type: "+ delegate.type.getName()+ ". Please add an explicit type but not java.lang.Object or groovy.lang.GroovyObject.",parent);
       return;
     }
     if (delegate.type.equals(delegate.owner)) {
-      addError(MY_TYPE_NAME + " field '" + delegate.name+ "' has an inappropriate type: "+ delegate.type.getName()+ ". Delegation to own type not supported. Please use a different type.",parent);
+      addError(MY_TYPE_NAME + " " + delegate.origin+ " '"+ delegate.name+ "' has an inappropriate type: "+ delegate.type.getName()+ ". Delegation to own type not supported. Please use a different type.",parent);
       return;
     }
     final List<MethodNode> delegateMethods=getAllMethods(delegate.type);
