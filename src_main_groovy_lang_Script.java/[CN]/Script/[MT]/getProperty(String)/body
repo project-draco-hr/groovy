@@ -1,8 +1,6 @@
 {
-  try {
+  if (binding.hasVariable(property)) {
     return binding.getVariable(property);
   }
- catch (  MissingPropertyException e) {
-    return super.getProperty(property);
-  }
+  return super.getProperty(property);
 }
