@@ -13,7 +13,6 @@
   setTargetBytecode(configuration.getTargetBytecode());
   setDefaultScriptExtension(configuration.getDefaultScriptExtension());
   setSourceEncoding(configuration.getSourceEncoding());
-  setOutput(configuration.getOutput());
   setTargetDirectory(configuration.getTargetDirectory());
   Map<String,Object> jointCompilationOptions=configuration.getJointCompilationOptions();
   if (jointCompilationOptions != null) {

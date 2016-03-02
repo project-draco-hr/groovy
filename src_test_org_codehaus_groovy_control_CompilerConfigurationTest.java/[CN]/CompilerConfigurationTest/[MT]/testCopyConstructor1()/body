@@ -11,8 +11,6 @@
   init.setTargetBytecode(CompilerConfiguration.POST_JDK5);
   init.setRecompileGroovySource(true);
   init.setClasspath("File1" + File.pathSeparator + "Somewhere");
-  final PrintWriter initOut=new PrintWriter(System.out);
-  init.setOutput(initOut);
   final File initTDFile=new File("A wandering path");
   init.setTargetDirectory(initTDFile);
   init.setDefaultScriptExtension(".jpp");
@@ -36,7 +34,6 @@
     assertEquals("File1",listCP.get(0));
     assertEquals("Somewhere",listCP.get(1));
   }
-  assertEquals(initOut,init.getOutput());
   assertEquals(initTDFile,init.getTargetDirectory());
   assertEquals(".jpp",init.getDefaultScriptExtension());
   assertEquals(initJoint,init.getJointCompilationOptions());
@@ -56,7 +53,6 @@
     assertEquals("File1",listCP.get(0));
     assertEquals("Somewhere",listCP.get(1));
   }
-  assertEquals(initOut,config.getOutput());
   assertEquals(initTDFile,config.getTargetDirectory());
   assertEquals(".jpp",config.getDefaultScriptExtension());
   assertEquals(initJoint,config.getJointCompilationOptions());

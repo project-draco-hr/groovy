@@ -16,7 +16,6 @@
     assertNotNull(listCP);
     assertEquals(0,listCP.size());
   }
-  assertNotNull(config.getOutput());
   assertNull(config.getTargetDirectory());
   assertEquals(".groovy",config.getDefaultScriptExtension());
   assertNull(config.getJointCompilationOptions());
