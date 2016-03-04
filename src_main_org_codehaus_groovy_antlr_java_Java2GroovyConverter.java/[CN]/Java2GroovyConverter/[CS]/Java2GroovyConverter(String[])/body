@@ -1,5 +1,4 @@
 {
-  this.tokenNames=tokenNames;
   typeMapping=new int[400];
   typeMapping[JavaTokenTypes.ABSTRACT]=GroovyTokenTypes.ABSTRACT;
   typeMapping[JavaTokenTypes.EOF]=GroovyTokenTypes.EOF;

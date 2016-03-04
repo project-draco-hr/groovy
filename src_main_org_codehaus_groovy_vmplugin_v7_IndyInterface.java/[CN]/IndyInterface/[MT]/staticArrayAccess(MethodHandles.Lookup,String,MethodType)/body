@@ -1,5 +1,4 @@
 {
-  MethodHandle handle;
   if (type.parameterCount() == 2) {
     return new ConstantCallSite(IndyArrayAccess.arrayGet(type));
   }

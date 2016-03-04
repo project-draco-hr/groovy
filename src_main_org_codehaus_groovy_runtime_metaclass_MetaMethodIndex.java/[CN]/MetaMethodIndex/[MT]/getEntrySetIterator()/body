@@ -2,7 +2,6 @@
   return new EntryIterator(){
     Entry next;
     int index;
-    Entry current;
 {
       Entry[] t=table;
       int i=t.length;
@@ -29,7 +28,7 @@
       while (n == null && i > 0)       n=t[--i];
       index=i;
       next=n;
-      return current=e;
+      return e;
     }
   }
 ;

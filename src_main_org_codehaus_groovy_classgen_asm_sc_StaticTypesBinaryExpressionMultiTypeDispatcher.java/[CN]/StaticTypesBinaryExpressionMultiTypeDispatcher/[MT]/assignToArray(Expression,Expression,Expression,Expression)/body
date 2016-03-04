@@ -4,7 +4,6 @@
   ClassNode arrayComponentType=arrayType.getComponentType();
   int operationType=getOperandType(arrayComponentType);
   BinaryExpressionWriter bew=binExpWriter[operationType];
-  AsmClassGenerator acg=getController().getAcg();
   if (bew.arraySet(true) && arrayType.isArray()) {
     super.assignToArray(parent,receiver,index,rhsValueLoader);
   }
@@ -13,7 +12,6 @@
     StaticTypeCheckingVisitor visitor=new StaticCompilationVisitor(controller.getSourceUnit(),controller.getClassNode());
     ArgumentListExpression ae=new ArgumentListExpression(index,rhsValueLoader);
     if (rhsValueLoader instanceof VariableSlotLoader && parent instanceof BinaryExpression) {
-      Expression right=((BinaryExpression)parent).getRightExpression();
       rhsValueLoader.putNodeMetaData(StaticTypesMarker.INFERRED_TYPE,controller.getTypeChooser().resolveType(parent,controller.getClassNode()));
     }
     MethodCallExpression mce=new MethodCallExpression(receiver,"putAt",ae);

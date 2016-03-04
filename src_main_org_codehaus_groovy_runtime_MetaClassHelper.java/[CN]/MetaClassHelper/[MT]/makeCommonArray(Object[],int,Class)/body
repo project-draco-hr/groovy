@@ -19,9 +19,9 @@
     int tmpCount=0;
     for (int i=offset; i < arguments.length; i++) {
       if (arguments[i] != null) {
-        Class argClass, tmpClass;
+        Class tmpClass;
         Set<Class> intfs=new HashSet<Class>();
-        tmpClass=argClass=arguments[i].getClass();
+        tmpClass=arguments[i].getClass();
         for (; tmpClass != Object.class; tmpClass=tmpClass.getSuperclass()) {
           intfs.addAll(Arrays.asList(tmpClass.getInterfaces()));
         }

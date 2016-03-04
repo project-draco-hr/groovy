@@ -1,3 +1,0 @@
-ClassNode cNode
-String name
-Parameter[] params

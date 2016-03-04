@@ -1,9 +1,9 @@
 {
-  if (name.equals("int") || name.equals("long") || name.equals("short")|| name.equals("float")|| name.equals("double")|| name.equals("byte")|| name.equals("char")|| name.equals("boolean")|| name.equals("void")) {
-    return name;
-  }
   if (name == null) {
     return "java.lang.Object;";
+  }
+  if (name.equals("int") || name.equals("long") || name.equals("short")|| name.equals("float")|| name.equals("double")|| name.equals("byte")|| name.equals("char")|| name.equals("boolean")|| name.equals("void")) {
+    return name;
   }
   if (name.startsWith("[")) {
     return name.replace('/','.');

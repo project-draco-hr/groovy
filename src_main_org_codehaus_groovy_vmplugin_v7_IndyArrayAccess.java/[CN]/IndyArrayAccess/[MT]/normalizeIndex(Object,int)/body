@@ -1,9 +1,0 @@
-{
-  int temp=i;
-  int size=getLength(array);
-  i+=size;
-  if (i < 0) {
-    throw new ArrayIndexOutOfBoundsException("Negative array index [" + temp + "] too large for array size "+ size);
-  }
-  return i;
-}

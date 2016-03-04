@@ -8,7 +8,6 @@
   if (lastParaType.isArray() && ((argumentList.size() > para.length) || ((argumentList.size() == (para.length - 1)) && !lastParaType.equals(lastArgType)) || ((argumentList.size() == para.length && lastArgType != null && !lastArgType.isArray()) && (StaticTypeCheckingSupport.implementsInterfaceOrIsSubclassOf(lastArgType,lastParaType.getComponentType())))|| ClassHelper.GSTRING_TYPE.equals(lastArgType) && ClassHelper.STRING_TYPE.equals(lastParaType.getComponentType()))) {
     int stackLen=operandStack.getStackLength() + argumentList.size();
     MethodVisitor mv=controller.getMethodVisitor();
-    MethodVisitor orig=mv;
     controller.setMethodVisitor(mv);
     for (int i=0; i < para.length - 1; i++) {
       Expression expression=argumentList.get(i);

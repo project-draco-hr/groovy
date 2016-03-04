@@ -1,6 +1,5 @@
 {
   BeanInfo info;
-  final Class stopClass;
   try {
     if (isBeanDerivative(theClass)) {
       info=(BeanInfo)AccessController.doPrivileged(new PrivilegedExceptionAction(){

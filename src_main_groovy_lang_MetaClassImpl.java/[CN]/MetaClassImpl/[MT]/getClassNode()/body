@@ -20,7 +20,6 @@
           }
         }
 ;
-        final ClassLoader parent=theClass.getClassLoader();
         CompilationUnit unit=new CompilationUnit();
         unit.setClassgenCallback(search);
         unit.addSource(url);

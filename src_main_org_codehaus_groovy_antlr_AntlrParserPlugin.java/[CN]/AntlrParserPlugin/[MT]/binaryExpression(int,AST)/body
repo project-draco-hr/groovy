@@ -13,7 +13,6 @@
       throw new ASTRuntimeException(node,"\n[" + ((ConstantExpression)leftExpression).getValue() + "] is a constant expression, but it should be a variable expression");
     }
  else     if (leftExpression instanceof BinaryExpression) {
-      Expression leftexp=((BinaryExpression)leftExpression).getLeftExpression();
       int lefttype=((BinaryExpression)leftExpression).getOperation().getType();
       if (!Types.ofType(lefttype,Types.ASSIGNMENT_OPERATOR) && lefttype != Types.LEFT_SQUARE_BRACKET) {
         throw new ASTRuntimeException(node,"\n" + ((BinaryExpression)leftExpression).getText() + " is a binary expression, but it should be a variable expression");
