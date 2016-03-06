@@ -4,7 +4,7 @@
   includes.add(Undefined.STRING);
   if (!getIncludeExclude(transform,anno,buildee,excludes,includes))   return;
   if (includes.size() == 1 && Undefined.isUndefined(includes.get(0)))   includes=null;
-  List<FieldNode> fields=getSuperPropertyFields(buildee);
+  List<FieldNode> fields=getFields(transform,anno,buildee);
   List<FieldNode> filteredFields=filterFields(fields,includes,excludes);
   if (filteredFields.isEmpty()) {
     transform.addError("Error during " + BuilderASTTransformation.MY_TYPE_NAME + " processing: at least one property is required for this strategy",anno);

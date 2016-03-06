@@ -1,0 +1,4 @@
+{
+  boolean includeSuperProperties=transform.memberHasValue(anno,"includeSuperProperties",true);
+  return includeSuperProperties ? getSuperPropertyFields(buildee) : getInstancePropertyFields(buildee);
+}

@@ -22,7 +22,7 @@
     props=getPropertyInfoFromBeanInfo(buildee,includes,excludes);
   }
  else {
-    props=getPropertyInfoFromClassNode(buildee,includes,excludes);
+    props=getPropertyInfoFromClassNode(transform,anno,buildee,includes,excludes);
   }
   if (includes != null) {
     for (    String name : includes) {
