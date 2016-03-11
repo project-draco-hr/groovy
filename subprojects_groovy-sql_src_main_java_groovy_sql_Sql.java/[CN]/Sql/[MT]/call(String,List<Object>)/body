@@ -2,10 +2,7 @@
   Connection connection=createConnection();
   CallableStatement statement=null;
   try {
-    LOG.fine(sql + " | " + params);
-    statement=connection.prepareCall(sql);
-    setParameters(params,statement);
-    configure(statement);
+    statement=getCallableStatement(connection,sql,params);
     return statement.executeUpdate();
   }
  catch (  SQLException e) {
