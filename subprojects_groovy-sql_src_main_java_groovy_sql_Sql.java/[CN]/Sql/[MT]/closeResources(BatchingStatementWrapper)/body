@@ -1,5 +1,4 @@
 {
-  if (cacheStatements)   return;
   if (statement != null) {
     try {
       statement.close();

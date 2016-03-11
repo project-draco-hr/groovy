@@ -1,0 +1,4 @@
+{
+  if (cacheStatements)   return;
+  closeResources((BatchingStatementWrapper)statement);
+}
