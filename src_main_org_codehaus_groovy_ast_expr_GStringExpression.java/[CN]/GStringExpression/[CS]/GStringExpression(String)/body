@@ -1,4 +1,6 @@
 {
   this.verbatimText=verbatimText;
   super.setType(ClassHelper.GSTRING_TYPE);
+  this.strings=new ArrayList<ConstantExpression>();
+  this.values=new ArrayList<Expression>();
 }

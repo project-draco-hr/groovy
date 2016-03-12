@@ -6,10 +6,12 @@
   this.isGroovy=isGroovy;
   stack=new Stack<GroovySourceAST>();
   classDocs=new HashMap<String,GroovyClassDoc>();
-  className=file;
   if (file != null) {
     int idx=file.lastIndexOf(".");
     className=file.substring(0,idx);
+  }
+ else {
+    className=file;
   }
   deferSetup=packagePath.equals("DefaultPackage");
   importedClassesAndPackages=new ArrayList<String>();
