@@ -22,10 +22,7 @@
     if (clazz == null)     throw new ScriptException("Script class is null");
     return eval(clazz,ctx);
   }
- catch (  SyntaxException e) {
-    throw new ScriptException(e.getMessage(),e.getSourceLocator(),e.getLine());
-  }
-catch (  Exception e) {
+ catch (  Exception e) {
     if (debug)     e.printStackTrace();
     throw new ScriptException(e);
   }

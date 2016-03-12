@@ -1,5 +1,4 @@
 {
-  this.tool=tool;
   this.resourceManager=resourceManager;
   this.properties=properties;
   this.docTemplatePaths=Arrays.asList(docTemplates);

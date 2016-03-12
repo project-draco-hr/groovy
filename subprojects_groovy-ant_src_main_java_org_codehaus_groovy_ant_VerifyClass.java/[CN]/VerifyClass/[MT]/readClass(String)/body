@@ -19,7 +19,6 @@
  catch (      Exception e) {
         e.printStackTrace();
       }
-      final Frame[] frames=a.getFrames();
       if (!failed) {
         failed=true;
         log("verifying of class " + clazz + " failed");
