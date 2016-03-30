@@ -1,0 +1,5 @@
+BuilderASTTransformation transform
+ClassNode buildee
+AnnotationNode anno
+boolean useSetters
+boolean allNames

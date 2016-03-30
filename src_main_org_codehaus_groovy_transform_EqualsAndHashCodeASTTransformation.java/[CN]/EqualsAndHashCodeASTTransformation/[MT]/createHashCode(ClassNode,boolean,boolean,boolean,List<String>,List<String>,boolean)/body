@@ -1,0 +1,15 @@
+{
+  boolean hasExistingHashCode=hasDeclaredMethod(cNode,"hashCode",0);
+  if (hasExistingHashCode && hasDeclaredMethod(cNode,"_hashCode",0))   return;
+  final BlockStatement body=new BlockStatement();
+  if (cacheResult) {
+    final FieldNode hashField=cNode.addField("$hash$code",ACC_PRIVATE | ACC_SYNTHETIC,ClassHelper.int_TYPE,null);
+    final Expression hash=varX(hashField);
+    body.addStatement(ifS(isZeroX(hash),calculateHashStatements(cNode,hash,includeFields,callSuper,excludes,includes,allNames)));
+    body.addStatement(returnS(hash));
+  }
+ else {
+    body.addStatement(calculateHashStatements(cNode,null,includeFields,callSuper,excludes,includes,allNames));
+  }
+  cNode.addMethod(new MethodNode(hasExistingHashCode ? "_hashCode" : "hashCode",hasExistingHashCode ? ACC_PRIVATE : ACC_PUBLIC,ClassHelper.int_TYPE,Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,body));
+}

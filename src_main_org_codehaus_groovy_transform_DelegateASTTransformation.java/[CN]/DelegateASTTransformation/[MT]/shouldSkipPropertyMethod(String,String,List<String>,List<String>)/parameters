@@ -1,4 +1,0 @@
-String propertyName
-String methodName
-List<String> excludes
-List<String> includes

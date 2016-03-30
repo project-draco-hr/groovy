@@ -12,6 +12,7 @@
     boolean useSetters=memberHasValue(anno,"useSetters",true);
     List<String> excludes=getMemberStringList(anno,"excludes");
     List<String> includes=getMemberStringList(anno,"includes");
+    boolean allNames=memberHasValue(anno,"allNames",true);
     if (!checkIncludeExcludeUndefinedAware(anno,excludes,includes,MY_TYPE_NAME))     return;
     if (!checkPropertyList(cNode,includes,"includes",anno,MY_TYPE_NAME,includeFields))     return;
     if (!checkPropertyList(cNode,excludes,"excludes",anno,MY_TYPE_NAME,includeFields))     return;
@@ -26,7 +27,7 @@
       addError("Expected closure value for annotation parameter 'post'. Found " + post,cNode);
       return;
     }
-    createConstructor(cNode,includeFields,includeProperties,includeSuperProperties,useSetters,excludes,includes,(ClosureExpression)pre,(ClosureExpression)post,source);
+    createConstructor(cNode,includeFields,includeProperties,includeSuperProperties,useSetters,excludes,includes,(ClosureExpression)pre,(ClosureExpression)post,source,allNames);
     if (pre != null) {
       anno.setMember("pre",new ClosureExpression(new Parameter[0],new EmptyStatement()));
     }

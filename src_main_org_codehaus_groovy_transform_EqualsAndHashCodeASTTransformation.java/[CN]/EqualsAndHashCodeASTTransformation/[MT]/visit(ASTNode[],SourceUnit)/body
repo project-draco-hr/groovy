@@ -15,10 +15,11 @@
     boolean includeFields=memberHasValue(anno,"includeFields",true);
     List<String> excludes=getMemberStringList(anno,"excludes");
     List<String> includes=getMemberStringList(anno,"includes");
+    final boolean allNames=memberHasValue(anno,"allNames",true);
     if (!checkIncludeExcludeUndefinedAware(anno,excludes,includes,MY_TYPE_NAME))     return;
     if (!checkPropertyList(cNode,includes,"includes",anno,MY_TYPE_NAME,includeFields))     return;
     if (!checkPropertyList(cNode,excludes,"excludes",anno,MY_TYPE_NAME,includeFields))     return;
-    createHashCode(cNode,cacheHashCode,includeFields,callSuper,excludes,includes);
-    createEquals(cNode,includeFields,callSuper,useCanEqual,excludes,includes);
+    createHashCode(cNode,cacheHashCode,includeFields,callSuper,excludes,includes,allNames);
+    createEquals(cNode,includeFields,callSuper,useCanEqual,excludes,includes,allNames);
   }
 }

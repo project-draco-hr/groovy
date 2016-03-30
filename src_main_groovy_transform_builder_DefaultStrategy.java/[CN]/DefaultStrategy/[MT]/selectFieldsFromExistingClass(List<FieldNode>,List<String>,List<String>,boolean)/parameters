@@ -1,0 +1,4 @@
+List<FieldNode> fieldNodes
+List<String> includes
+List<String> excludes
+boolean allNames

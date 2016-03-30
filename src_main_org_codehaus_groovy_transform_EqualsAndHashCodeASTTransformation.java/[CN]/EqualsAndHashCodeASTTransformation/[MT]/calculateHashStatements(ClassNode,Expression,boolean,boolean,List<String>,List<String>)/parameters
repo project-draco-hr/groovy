@@ -1,6 +1,0 @@
-ClassNode cNode
-Expression hash
-boolean includeFields
-boolean callSuper
-List<String> excludes
-List<String> includes

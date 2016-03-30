@@ -1,0 +1,4 @@
+String name
+List<String> excludes
+List<String> includes
+boolean allNames

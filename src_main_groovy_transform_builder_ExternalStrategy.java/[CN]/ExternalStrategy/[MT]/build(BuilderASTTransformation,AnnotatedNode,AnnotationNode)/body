@@ -18,11 +18,12 @@
   if (unsupportedAttribute(transform,anno,"builderClassName"))   return;
   if (unsupportedAttribute(transform,anno,"builderMethodName"))   return;
   List<PropertyInfo> props;
+  boolean allNames=transform.memberHasValue(anno,"allNames",true);
   if (buildee.getModule() == null) {
-    props=getPropertyInfoFromBeanInfo(buildee,includes,excludes);
+    props=getPropertyInfoFromBeanInfo(buildee,includes,excludes,allNames);
   }
  else {
-    props=getPropertyInfoFromClassNode(transform,anno,buildee,includes,excludes);
+    props=getPropertyInfoFromClassNode(transform,anno,buildee,includes,excludes,allNames);
   }
   if (includes != null) {
     for (    String name : includes) {

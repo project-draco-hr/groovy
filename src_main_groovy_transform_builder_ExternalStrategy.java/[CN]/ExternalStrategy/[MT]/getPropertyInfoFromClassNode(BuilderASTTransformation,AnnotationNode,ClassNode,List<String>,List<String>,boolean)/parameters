@@ -1,0 +1,6 @@
+BuilderASTTransformation transform
+AnnotationNode anno
+ClassNode cNode
+List<String> includes
+List<String> excludes
+boolean allNames

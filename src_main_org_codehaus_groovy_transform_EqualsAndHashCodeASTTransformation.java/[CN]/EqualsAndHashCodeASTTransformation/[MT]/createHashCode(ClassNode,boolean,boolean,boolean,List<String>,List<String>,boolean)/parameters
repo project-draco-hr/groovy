@@ -1,0 +1,7 @@
+ClassNode cNode
+boolean cacheResult
+boolean includeFields
+boolean callSuper
+List<String> excludes
+List<String> includes
+boolean allNames

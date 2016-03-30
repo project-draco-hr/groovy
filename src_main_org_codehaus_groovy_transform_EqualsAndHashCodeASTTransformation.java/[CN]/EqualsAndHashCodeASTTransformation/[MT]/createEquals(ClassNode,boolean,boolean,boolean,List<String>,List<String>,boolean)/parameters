@@ -1,0 +1,7 @@
+ClassNode cNode
+boolean includeFields
+boolean callSuper
+boolean useCanEqual
+List<String> excludes
+List<String> includes
+boolean allNames

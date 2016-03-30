@@ -1,8 +1,0 @@
-{
-  List<FieldNode> fields=new ArrayList<FieldNode>();
-  for (  FieldNode fNode : fieldNodes) {
-    if (AbstractASTTransformation.shouldSkipUndefinedAware(fNode.getName(),excludes,includes))     continue;
-    fields.add(fNode);
-  }
-  return fields;
-}

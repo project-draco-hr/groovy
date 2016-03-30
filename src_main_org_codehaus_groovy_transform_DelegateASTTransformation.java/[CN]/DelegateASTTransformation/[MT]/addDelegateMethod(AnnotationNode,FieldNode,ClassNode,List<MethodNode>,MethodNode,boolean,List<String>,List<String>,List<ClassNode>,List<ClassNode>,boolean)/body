@@ -1,0 +1,55 @@
+{
+  if (!candidate.isPublic() || candidate.isStatic() || 0 != (candidate.getModifiers() & ACC_SYNTHETIC))   return;
+  if (!candidate.getAnnotations(DEPRECATED_TYPE).isEmpty() && !includeDeprecated)   return;
+  if (shouldSkip(candidate.getName(),excludes,includes,allNames))   return;
+  Map<String,ClassNode> genericsSpec=createGenericsSpec(fieldNode.getDeclaringClass());
+  genericsSpec=addMethodGenerics(candidate,genericsSpec);
+  extractSuperClassGenerics(fieldNode.getType(),candidate.getDeclaringClass(),genericsSpec);
+  if ((excludeTypes != null && !excludeTypes.isEmpty()) || includeTypes != null) {
+    MethodNode correctedMethodNode=correctToGenericsSpec(genericsSpec,candidate);
+    boolean checkReturn=fieldNode.getType().getMethods().contains(candidate);
+    if (shouldSkipOnDescriptorUndefinedAware(checkReturn,genericsSpec,correctedMethodNode,excludeTypes,includeTypes))     return;
+  }
+  for (  MethodNode mn : GROOVYOBJECT_TYPE.getMethods()) {
+    if (mn.getTypeDescriptor().equals(candidate.getTypeDescriptor())) {
+      return;
+    }
+  }
+  for (  MethodNode mn : owner.getMethods()) {
+    if (mn.getTypeDescriptor().equals(candidate.getTypeDescriptor())) {
+      return;
+    }
+  }
+  MethodNode existingNode=null;
+  for (  MethodNode mn : ownMethods) {
+    if (mn.getTypeDescriptor().equals(candidate.getTypeDescriptor()) && !mn.isAbstract() && !mn.isStatic()) {
+      existingNode=mn;
+      break;
+    }
+  }
+  if (existingNode == null || existingNode.getCode() == null) {
+    final ArgumentListExpression args=new ArgumentListExpression();
+    final Parameter[] params=candidate.getParameters();
+    final Parameter[] newParams=new Parameter[params.length];
+    List<String> currentMethodGenPlaceholders=genericPlaceholderNames(candidate);
+    for (int i=0; i < newParams.length; i++) {
+      ClassNode newParamType=correctToGenericsSpecRecurse(genericsSpec,params[i].getType(),currentMethodGenPlaceholders);
+      Parameter newParam=new Parameter(newParamType,getParamName(params,i,fieldNode.getName()));
+      newParam.setInitialExpression(params[i].getInitialExpression());
+      if (memberHasValue(node,MEMBER_PARAMETER_ANNOTATIONS,true)) {
+        newParam.addAnnotations(copyAnnotatedNodeAnnotations(params[i],MY_TYPE_NAME));
+      }
+      newParams[i]=newParam;
+      args.addExpression(varX(newParam));
+    }
+    boolean alsoLazy=!fieldNode.getAnnotations(LAZY_TYPE).isEmpty();
+    MethodCallExpression mce=callX(alsoLazy ? propX(varX("this"),fieldNode.getName().substring(1)) : varX(fieldNode.getName(),correctToGenericsSpecRecurse(genericsSpec,fieldNode.getType())),candidate.getName(),args);
+    mce.setSourcePosition(fieldNode);
+    ClassNode returnType=correctToGenericsSpecRecurse(genericsSpec,candidate.getReturnType(),currentMethodGenPlaceholders);
+    MethodNode newMethod=owner.addMethod(candidate.getName(),candidate.getModifiers() & (~ACC_ABSTRACT) & (~ACC_NATIVE),returnType,newParams,candidate.getExceptions(),stmt(mce));
+    newMethod.setGenericsTypes(candidate.getGenericsTypes());
+    if (memberHasValue(node,MEMBER_METHOD_ANNOTATIONS,true)) {
+      newMethod.addAnnotations(copyAnnotatedNodeAnnotations(candidate,MY_TYPE_NAME));
+    }
+  }
+}

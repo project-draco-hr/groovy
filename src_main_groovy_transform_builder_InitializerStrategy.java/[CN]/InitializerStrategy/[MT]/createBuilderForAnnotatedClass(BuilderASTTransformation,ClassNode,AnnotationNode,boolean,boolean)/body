@@ -1,0 +1,16 @@
+{
+  List<String> excludes=new ArrayList<String>();
+  List<String> includes=new ArrayList<String>();
+  includes.add(Undefined.STRING);
+  if (!getIncludeExclude(transform,anno,buildee,excludes,includes))   return;
+  if (includes.size() == 1 && Undefined.isUndefined(includes.get(0)))   includes=null;
+  List<FieldNode> fields=getFields(transform,anno,buildee);
+  List<FieldNode> filteredFields=filterFields(fields,includes,excludes,allNames);
+  if (filteredFields.isEmpty()) {
+    transform.addError("Error during " + BuilderASTTransformation.MY_TYPE_NAME + " processing: at least one property is required for this strategy",anno);
+  }
+  ClassNode builder=createInnerHelperClass(buildee,getBuilderClassName(buildee,anno),filteredFields.size());
+  addFields(buildee,filteredFields,builder);
+  buildCommon(buildee,anno,filteredFields,builder);
+  createBuildeeConstructors(transform,buildee,builder,filteredFields,true,useSetters);
+}
