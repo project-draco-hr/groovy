@@ -11,7 +11,7 @@
  else     if (samReturnType.isGenericsPlaceHolder()) {
       placeholders.put(samReturnType.getGenericsTypes()[0].getName(),closureType.getGenericsTypes()[0]);
     }
-    if (expression instanceof ClosureExpression) {
+    if (expression instanceof ClosureExpression && sam.getParameters().length > 0) {
       List<ClassNode[]> genericsToConnect=new LinkedList<ClassNode[]>();
       Parameter[] closureParams=((ClosureExpression)expression).getParameters();
       ClassNode[] closureParamTypes=extractTypesFromParameters(closureParams);
