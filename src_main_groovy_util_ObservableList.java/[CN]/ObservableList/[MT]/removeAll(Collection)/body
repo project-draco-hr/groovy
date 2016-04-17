@@ -3,8 +3,12 @@
     return false;
   }
   List values=new ArrayList();
+  Set delegateSet=new HashSet<Object>(delegate);
+  if (!(c instanceof Set)) {
+    c=new HashSet<Object>(c);
+  }
   for (  Object element : c) {
-    if (delegate.contains(element)) {
+    if (delegateSet.contains(element)) {
       values.add(element);
     }
   }
