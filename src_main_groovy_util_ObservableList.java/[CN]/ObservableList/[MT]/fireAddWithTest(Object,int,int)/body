@@ -1,0 +1,13 @@
+{
+  if (test != null) {
+    Object result=test.call(element);
+    if (result != null && result instanceof Boolean && (Boolean)result) {
+      fireElementAddedEvent(index,element);
+      fireSizeChangedEvent(oldSize,size());
+    }
+  }
+ else {
+    fireElementAddedEvent(index,element);
+    fireSizeChangedEvent(oldSize,size());
+  }
+}

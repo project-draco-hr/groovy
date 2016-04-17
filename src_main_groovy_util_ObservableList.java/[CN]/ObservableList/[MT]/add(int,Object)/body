@@ -1,15 +1,5 @@
 {
   int oldSize=size();
   delegate.add(index,element);
-  if (test != null) {
-    Object result=test.call(element);
-    if (result != null && result instanceof Boolean && (Boolean)result) {
-      fireElementAddedEvent(index,element);
-      fireSizeChangedEvent(oldSize,size());
-    }
-  }
- else {
-    fireElementAddedEvent(index,element);
-    fireSizeChangedEvent(oldSize,size());
-  }
+  fireAddWithTest(element,index,oldSize);
 }

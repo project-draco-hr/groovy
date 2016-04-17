@@ -3,11 +3,9 @@
     return false;
   }
   List values=new ArrayList();
-  if (c != null) {
-    for (    Object element : delegate) {
-      if (!c.contains(element)) {
-        values.add(element);
-      }
+  for (  Object element : delegate) {
+    if (!c.contains(element)) {
+      values.add(element);
     }
   }
   int oldSize=size();
