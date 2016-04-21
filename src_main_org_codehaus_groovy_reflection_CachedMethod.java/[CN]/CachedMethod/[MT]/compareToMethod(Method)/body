@@ -1,11 +1,11 @@
 {
-  if (m == null)   return -1;
-  final int strComp=getName().compareTo(m.getName());
+  if (other == null)   return -1;
+  final int strComp=getName().compareTo(other.getName());
   if (strComp != 0)   return strComp;
-  final int retComp=getReturnType().getName().compareTo(m.getReturnType().getName());
+  final int retComp=getReturnType().getName().compareTo(other.getReturnType().getName());
   if (retComp != 0)   return retComp;
   CachedClass[] params=getParameterTypes();
-  Class[] mparams=m.getParameterTypes();
+  Class[] mparams=other.getParameterTypes();
   final int pd=params.length - mparams.length;
   if (pd != 0)   return pd;
   for (int i=0; i != params.length; ++i) {

@@ -1,6 +1,6 @@
 {
   if (!skipCompiled) {
-    Constructor constr=getConstrcutor(pogoCallSiteConstructor);
+    Constructor constr=getConstructor(pogoCallSiteConstructor);
     if (constr == null) {
       if (CallSiteGenerator.isCompilable(this)) {
         constr=CallSiteGenerator.compilePogoMethod(this);

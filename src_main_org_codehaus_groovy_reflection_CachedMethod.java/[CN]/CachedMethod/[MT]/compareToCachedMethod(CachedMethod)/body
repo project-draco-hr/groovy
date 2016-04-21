@@ -1,15 +1,15 @@
 {
-  if (m == null)   return -1;
-  final int strComp=getName().compareTo(m.getName());
+  if (other == null)   return -1;
+  final int strComp=getName().compareTo(other.getName());
   if (strComp != 0)   return strComp;
-  final int retComp=getReturnType().getName().compareTo(m.getReturnType().getName());
+  final int retComp=getReturnType().getName().compareTo(other.getReturnType().getName());
   if (retComp != 0)   return retComp;
   CachedClass[] params=getParameterTypes();
-  CachedClass[] mparams=m.getParameterTypes();
-  final int pd=params.length - mparams.length;
+  CachedClass[] otherParams=other.getParameterTypes();
+  final int pd=params.length - otherParams.length;
   if (pd != 0)   return pd;
   for (int i=0; i != params.length; ++i) {
-    final int nameComp=params[i].getName().compareTo(mparams[i].getName());
+    final int nameComp=params[i].getName().compareTo(otherParams[i].getName());
     if (nameComp != 0)     return nameComp;
   }
   throw new RuntimeException("Should never happen");

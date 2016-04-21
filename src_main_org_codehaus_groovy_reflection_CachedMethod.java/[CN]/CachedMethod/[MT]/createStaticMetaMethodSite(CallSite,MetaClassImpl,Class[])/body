@@ -1,6 +1,6 @@
 {
   if (!skipCompiled) {
-    Constructor constr=getConstrcutor(staticCallSiteConstructor);
+    Constructor constr=getConstructor(staticCallSiteConstructor);
     if (constr == null) {
       if (CallSiteGenerator.isCompilable(this)) {
         constr=CallSiteGenerator.compileStaticMethod(this);

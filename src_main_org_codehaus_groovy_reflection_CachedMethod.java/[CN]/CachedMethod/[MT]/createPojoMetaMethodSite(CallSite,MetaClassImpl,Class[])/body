@@ -1,6 +1,6 @@
 {
   if (!skipCompiled) {
-    Constructor constr=getConstrcutor(pojoCallSiteConstructor);
+    Constructor constr=getConstructor(pojoCallSiteConstructor);
     if (constr == null) {
       if (CallSiteGenerator.isCompilable(this)) {
         constr=CallSiteGenerator.compilePojoMethod(this);
