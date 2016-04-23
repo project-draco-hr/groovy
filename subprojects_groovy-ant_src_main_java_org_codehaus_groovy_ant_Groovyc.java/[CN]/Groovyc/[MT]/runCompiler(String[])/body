@@ -11,7 +11,7 @@
     configuration.setDefaultScriptExtension(tmpExtension);
     String[] filenames=FileSystemCompiler.generateFileNamesFromOptions(cli);
     boolean fileNameErrors=filenames == null;
-    fileNameErrors=fileNameErrors && !FileSystemCompiler.validateFiles(filenames);
+    fileNameErrors=fileNameErrors || !FileSystemCompiler.validateFiles(filenames);
     if (targetBytecode != null) {
       configuration.setTargetBytecode(targetBytecode);
     }
