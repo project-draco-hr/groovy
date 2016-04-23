@@ -1,7 +1,7 @@
 {
   try {
     if (isJsonDate(charArray,from,to)) {
-      int year=CharScanner.parseIntFromTo(charArray,from + 0,from + 4);
+      int year=CharScanner.parseIntFromTo(charArray,from,from + 4);
       int month=CharScanner.parseIntFromTo(charArray,from + 5,from + 7);
       int day=CharScanner.parseIntFromTo(charArray,from + 8,from + 10);
       int hour=CharScanner.parseIntFromTo(charArray,from + 11,from + 13);

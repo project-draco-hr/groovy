@@ -18,12 +18,7 @@ case '"':
         continue;
       }
 case '\\':
-    if (!escape) {
-      escape=true;
-    }
- else {
-      escape=false;
-    }
+    escape=!escape;
   encoded=true;
 continue;
 }

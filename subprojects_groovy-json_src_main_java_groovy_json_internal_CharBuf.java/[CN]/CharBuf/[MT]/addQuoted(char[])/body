@@ -9,7 +9,7 @@
   }
   _buffer[_location]='"';
   _location++;
-  arraycopy(chars,0,_buffer,_location,chars.length);
+  System.arraycopy(chars,0,_buffer,_location,chars.length);
   _location+=(chars.length);
   _buffer[_location]='"';
   _location++;

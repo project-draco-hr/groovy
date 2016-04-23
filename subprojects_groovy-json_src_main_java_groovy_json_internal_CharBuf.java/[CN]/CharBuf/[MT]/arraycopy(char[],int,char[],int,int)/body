@@ -1,3 +1,0 @@
-{
-  sysstemarraycopy(src,srcPos,dest,destPos,length);
-}

@@ -6,9 +6,9 @@ case '"':
 case '{':
   return decodeJsonObjectLazyFinalParse();
 case 't':
-return decodeTrue() == true ? ValueContainer.TRUE : ValueContainer.FALSE;
+return decodeTrue() ? ValueContainer.TRUE : ValueContainer.FALSE;
 case 'f':
-return decodeFalse() == false ? ValueContainer.FALSE : ValueContainer.TRUE;
+return !decodeFalse() ? ValueContainer.FALSE : ValueContainer.TRUE;
 case 'n':
 return decodeNull() == null ? ValueContainer.NULL : ValueContainer.NULL;
 case '[':

@@ -1,7 +1,7 @@
 {
   try {
     if (isISO8601(charArray,from,to)) {
-      int year=CharScanner.parseIntFromTo(charArray,from + 0,from + 4);
+      int year=CharScanner.parseIntFromTo(charArray,from,from + 4);
       int month=CharScanner.parseIntFromTo(charArray,from + 5,from + 7);
       int day=CharScanner.parseIntFromTo(charArray,from + 8,from + 10);
       int hour=CharScanner.parseIntFromTo(charArray,from + 11,from + 13);
@@ -12,10 +12,7 @@
         tz=TimeZone.getTimeZone("GMT");
       }
  else {
-        StringBuilder builder=new StringBuilder(9);
-        builder.append("GMT");
-        builder.append(charArray,from + 19,6);
-        String tzStr=builder.toString();
+        String tzStr="GMT" + String.valueOf(charArray,from + 19,6);
         tz=TimeZone.getTimeZone(tzStr);
       }
       return toDate(tz,year,month,day,hour,minute,second);

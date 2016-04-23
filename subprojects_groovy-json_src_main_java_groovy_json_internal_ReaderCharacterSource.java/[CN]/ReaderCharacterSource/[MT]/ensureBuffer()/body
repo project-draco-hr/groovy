@@ -3,11 +3,8 @@
     if (index >= length && !done) {
       readNextBuffer();
     }
- else     if (done && index >= length) {
-      more=false;
-    }
  else {
-      more=true;
+      more=!(done && index >= length);
     }
   }
  catch (  Exception ex) {

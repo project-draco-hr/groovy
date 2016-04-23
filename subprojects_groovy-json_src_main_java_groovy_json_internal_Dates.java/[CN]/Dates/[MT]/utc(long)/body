@@ -2,6 +2,5 @@
   Calendar calendar=Calendar.getInstance();
   calendar.setTimeInMillis(time);
   calendar.setTimeZone(UTC_TIME_ZONE);
-  long utcNow=calendar.getTime().getTime();
-  return utcNow;
+  return calendar.getTime().getTime();
 }

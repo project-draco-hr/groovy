@@ -46,8 +46,7 @@
   }
  catch (  Exception ex) {
     if (ex instanceof JsonException) {
-      JsonException jsonException=(JsonException)ex;
-      throw jsonException;
+      throw (JsonException)ex;
     }
     throw new JsonException(exceptionDetails("issue parsing JSON array"),ex);
   }
