@@ -3,6 +3,9 @@
     return false;
   }
   List values=new ArrayList();
+  if (!(c instanceof Set)) {
+    c=new HashSet<Object>(c);
+  }
   for (  Object element : delegate) {
     if (!c.contains(element)) {
       values.add(element);
