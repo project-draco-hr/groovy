@@ -13,7 +13,7 @@
     }
  else {
       if (verbose) {
-        log("Cached template " + key + " needs recompiliation! "+ entry);
+        log("Cached template " + key + " needs recompilation! "+ entry);
       }
     }
   }
