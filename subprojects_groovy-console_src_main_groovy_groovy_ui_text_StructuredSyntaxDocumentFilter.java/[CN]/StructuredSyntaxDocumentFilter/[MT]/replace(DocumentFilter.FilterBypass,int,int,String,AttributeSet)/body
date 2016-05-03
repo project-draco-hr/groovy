@@ -1,4 +1,5 @@
 {
+  if (text == null)   text="";
   text=replaceMetaCharacters(text);
   fb.replace(offset,length,text,attrs);
   parseDocument(offset,text.length());
