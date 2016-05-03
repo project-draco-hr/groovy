@@ -1,4 +1,0 @@
-{
-  super(cap);
-  this.bundle=bundle;
-}

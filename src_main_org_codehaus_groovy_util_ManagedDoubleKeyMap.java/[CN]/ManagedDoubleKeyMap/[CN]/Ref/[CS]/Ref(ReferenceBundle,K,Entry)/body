@@ -1,4 +1,0 @@
-{
-  super(bundle,referent);
-  this.entry=entry;
-}

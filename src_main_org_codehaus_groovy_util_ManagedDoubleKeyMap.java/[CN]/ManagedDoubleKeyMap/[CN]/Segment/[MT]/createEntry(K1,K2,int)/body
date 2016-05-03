@@ -1,3 +1,0 @@
-{
-  return new EntryWithValue(bundle,key1,key2,hash,this);
-}
