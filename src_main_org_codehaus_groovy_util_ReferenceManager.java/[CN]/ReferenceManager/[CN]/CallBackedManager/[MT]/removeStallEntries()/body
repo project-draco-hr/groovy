@@ -1,0 +1,11 @@
+{
+  ReferenceQueue queue=getReferenceQueue();
+  if (queuesInProcess.putIfAbsent(queue,this) == null) {
+    try {
+      removeStallEntries0(queue);
+    }
+  finally {
+      queuesInProcess.remove(queue);
+    }
+  }
+}
