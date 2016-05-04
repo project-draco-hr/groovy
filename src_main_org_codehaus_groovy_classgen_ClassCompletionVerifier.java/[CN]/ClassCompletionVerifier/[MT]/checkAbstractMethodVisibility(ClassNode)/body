@@ -1,0 +1,10 @@
+{
+  if (!isAbstract(node.getModifiers()) || isInterface(node.getModifiers()))   return;
+  List<MethodNode> abstractMethods=node.getAbstractMethods();
+  if (abstractMethods == null || abstractMethods.isEmpty())   return;
+  for (  MethodNode method : abstractMethods) {
+    if (method.isPrivate()) {
+      addError("Method '" + method.getName() + "' from "+ getDescription(node)+ " must not be private as it is declared as an abstract method.",method);
+    }
+  }
+}

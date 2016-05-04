@@ -5,6 +5,7 @@
   if (source != null && !source.getErrorCollector().hasErrors()) {
     checkClassForIncorrectModifiers(node);
     checkInterfaceMethodVisibility(node);
+    checkAbstractMethodVisibility(node);
     checkClassForOverwritingFinal(node);
     checkMethodsForIncorrectModifiers(node);
     checkMethodsForWeakerAccess(node);
