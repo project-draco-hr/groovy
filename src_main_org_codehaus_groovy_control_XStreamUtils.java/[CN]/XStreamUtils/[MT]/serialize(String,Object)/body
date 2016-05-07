@@ -1,7 +1,13 @@
 {
+  if (name == null || name.length() == 0)   return;
   XStream xstream=new XStream(new StaxDriver());
   try {
-    xstream.toXML(ast,new FileWriter(name + ".xml"));
+    File astFile=astFile(name);
+    if (astFile == null) {
+      System.out.println("File-name for writing " + name + " AST could not be determined!");
+      return;
+    }
+    xstream.toXML(ast,new FileWriter(astFile,false));
     System.out.println("Written AST to " + name + ".xml");
   }
  catch (  Exception e) {

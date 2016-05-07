@@ -1,0 +1,9 @@
+{
+  try {
+    final String astFileName=uriOrFileName + ".xml";
+    return uriOrFileName.startsWith("file:") ? new File(URI.create(astFileName)) : new File(astFileName);
+  }
+ catch (  IllegalArgumentException e) {
+    return null;
+  }
+}
