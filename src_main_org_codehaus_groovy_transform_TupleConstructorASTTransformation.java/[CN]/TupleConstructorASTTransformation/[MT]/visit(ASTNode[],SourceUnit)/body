@@ -21,6 +21,22 @@
     if (!checkPropertyList(cNode,includes,"includes",anno,MY_TYPE_NAME,includeFields))     return;
     if (!checkPropertyList(cNode,excludes,"excludes",anno,MY_TYPE_NAME,includeFields))     return;
     if (hasAnnotation(cNode,ImmutableASTTransformation.MY_TYPE))     return;
-    createConstructor(this,cNode,includeFields,includeProperties,includeSuperFields,includeSuperProperties,callSuper,force,excludes,includes,useSetters,defaults,allNames);
+    Expression pre=anno.getMember("pre");
+    if (pre != null && !(pre instanceof ClosureExpression)) {
+      addError("Expected closure value for annotation parameter 'pre'. Found " + pre,cNode);
+      return;
+    }
+    Expression post=anno.getMember("post");
+    if (post != null && !(post instanceof ClosureExpression)) {
+      addError("Expected closure value for annotation parameter 'post'. Found " + post,cNode);
+      return;
+    }
+    createConstructor(this,cNode,includeFields,includeProperties,includeSuperFields,includeSuperProperties,callSuper,force,excludes,includes,useSetters,defaults,allNames,sourceUnit,(ClosureExpression)pre,(ClosureExpression)post);
+    if (pre != null) {
+      anno.setMember("pre",new ClosureExpression(new Parameter[0],new EmptyStatement()));
+    }
+    if (post != null) {
+      anno.setMember("post",new ClosureExpression(new Parameter[0],new EmptyStatement()));
+    }
   }
 }

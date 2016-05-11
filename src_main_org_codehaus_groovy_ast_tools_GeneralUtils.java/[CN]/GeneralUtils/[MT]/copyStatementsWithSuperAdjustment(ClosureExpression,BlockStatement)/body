@@ -1,5 +1,6 @@
 {
   Statement preCode=pre.getCode();
+  boolean changed=false;
   if (preCode instanceof BlockStatement) {
     BlockStatement block=(BlockStatement)preCode;
     List<Statement> statements=block.getStatements();
@@ -13,10 +14,12 @@
           String name=mce.getMethodAsString();
           if ("super".equals(name)) {
             es.setExpression(new ConstructorCallExpression(ClassNode.SUPER,mce.getArguments()));
+            changed=true;
           }
         }
       }
       body.addStatement(statement);
     }
   }
+  return changed;
 }

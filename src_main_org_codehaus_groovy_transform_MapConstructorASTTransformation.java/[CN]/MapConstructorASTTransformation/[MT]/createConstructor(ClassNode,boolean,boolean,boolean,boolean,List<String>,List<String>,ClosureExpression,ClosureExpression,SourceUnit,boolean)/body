@@ -15,10 +15,10 @@
   }
   Parameter map=param(MAP_TYPE,"args");
   final BlockStatement body=new BlockStatement();
-  ClassCodeExpressionTransformer transformer=makeTransformer();
+  ClassCodeExpressionTransformer transformer=makeMapTypedArgsTransformer();
   if (pre != null) {
     ClosureExpression transformed=(ClosureExpression)transformer.transform(pre);
-    copyPreStatements(transformed,body);
+    copyStatementsWithSuperAdjustment(transformed,body);
   }
   for (  FieldNode fNode : superList) {
     String name=fNode.getName();
