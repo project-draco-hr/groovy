@@ -8,7 +8,7 @@
         ret+=classNode.getName();
       }
  else {
-        ret+=classNode.toString(showRedirect);
+        ret+=classNode.toString(false);
       }
       if (i + 1 < genericsType.getUpperBounds().length)       ret+=" & ";
     }
