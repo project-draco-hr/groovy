@@ -4,6 +4,6 @@
   AnnotationNode node=(AnnotationNode)nodes[0];
   if (parent instanceof FieldNode) {
     final FieldNode fieldNode=(FieldNode)parent;
-    visitField(node,fieldNode);
+    visitField(this,node,fieldNode);
   }
 }

@@ -1,0 +1,11 @@
+{
+  Expression initExpr=fieldNode.getInitialValueExpression();
+  fieldNode.setInitialValueExpression(null);
+  if (initExpr == null || initExpr instanceof EmptyExpression) {
+    if (fieldNode.getType().isAbstract()) {
+      xform.addError("You cannot lazily initialize '" + fieldNode.getName() + "' from the abstract class '"+ fieldNode.getType().getName()+ "'",fieldNode);
+    }
+    initExpr=ctorX(fieldNode.getType());
+  }
+  return initExpr;
+}
