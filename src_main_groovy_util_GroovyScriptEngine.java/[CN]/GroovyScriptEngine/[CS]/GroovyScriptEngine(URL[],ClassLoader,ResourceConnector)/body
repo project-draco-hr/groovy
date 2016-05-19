@@ -6,5 +6,4 @@
   if (parent == CL_STUB)   parent=this.getClass().getClassLoader();
   this.parentLoader=parent;
   this.groovyLoader=initGroovyLoader();
-  for (  URL root : roots)   this.groovyLoader.addURL(root);
 }
