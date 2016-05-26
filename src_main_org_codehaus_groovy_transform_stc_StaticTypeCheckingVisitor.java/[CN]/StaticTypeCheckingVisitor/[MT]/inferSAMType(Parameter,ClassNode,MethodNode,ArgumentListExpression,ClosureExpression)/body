@@ -3,6 +3,7 @@
   extractGenericsConnections(targetMethodDeclarationClassConnections,receiver,receiver.redirect());
   Parameter[] parametersOfMethodContainingSAM=methodWithSAMParameter.getParameters();
   for (int i=0; i < parametersOfMethodContainingSAM.length; i++) {
+    if (i == parametersOfMethodContainingSAM.length - 1 && i == originalMethodCallArguments.getExpressions().size() && parametersOfMethodContainingSAM[i].getType().isArray())     continue;
     Expression callArg=originalMethodCallArguments.getExpression(i);
     if (callArg == openBlock)     continue;
     ClassNode parameterType=parametersOfMethodContainingSAM[i].getType();
