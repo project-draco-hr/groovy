@@ -3,5 +3,5 @@
   CompilerConfiguration config=new CompilerConfiguration();
   config.getOptimizationOptions().put("asmResolving",false);
   GroovyShell shell=new GroovyShell(config);
-  shell.evaluate(script,"bug7862.groovy");
+  shell.evaluate(script,"bug7826.groovy");
 }
