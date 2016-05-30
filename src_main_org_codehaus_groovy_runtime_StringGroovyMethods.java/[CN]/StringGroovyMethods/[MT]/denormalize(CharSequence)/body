@@ -1,5 +1,4 @@
 {
-  final String s=self.toString();
   if (lineSeparator == null) {
     final StringWriter sw=new StringWriter(2);
     try {
@@ -12,18 +11,18 @@
       lineSeparator="\n";
     }
   }
-  final int len=s.length();
+  final int len=self.length();
   if (len < 1) {
-    return s;
+    return self.toString();
   }
   final StringBuilder sb=new StringBuilder((110 * len) / 100);
   int i=0;
   while (i < len) {
-    final char ch=s.charAt(i++);
+    final char ch=self.charAt(i++);
 switch (ch) {
 case '\r':
       sb.append(lineSeparator);
-    if ((i < len) && (s.charAt(i) == '\n')) {
+    if ((i < len) && (self.charAt(i) == '\n')) {
       ++i;
     }
   break;

@@ -1,6 +1,5 @@
 {
-  String s=self.toString();
   String mc=marginChar.toString();
-  if (mc == null || mc.length() == 0)   return stripMargin((CharSequence)s,'|');
-  return stripMargin((CharSequence)s,mc.charAt(0));
+  if (mc.length() == 0)   return stripMargin(self,'|');
+  return stripMargin(self,mc.charAt(0));
 }

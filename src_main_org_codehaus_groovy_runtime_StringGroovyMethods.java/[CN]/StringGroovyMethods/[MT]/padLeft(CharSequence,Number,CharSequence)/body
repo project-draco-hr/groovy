@@ -1,10 +1,9 @@
 {
-  String s=self.toString();
   int numChars=numberOfChars.intValue();
-  if (numChars <= s.length()) {
-    return s;
+  if (numChars <= self.length()) {
+    return self.toString();
   }
  else {
-    return getPadding(padding.toString(),numChars - s.length()) + s;
+    return getPadding(padding.toString(),numChars - self.length()) + self;
   }
 }

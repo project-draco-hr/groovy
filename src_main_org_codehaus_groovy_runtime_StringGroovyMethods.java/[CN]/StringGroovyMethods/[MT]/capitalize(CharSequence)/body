@@ -1,5 +1,4 @@
 {
-  String s=self.toString();
-  if (s == null || s.length() == 0)   return s;
-  return Character.toUpperCase(s.charAt(0)) + s.substring(1);
+  if (self.length() == 0)   return "";
+  return "" + Character.toUpperCase(self.charAt(0)) + self.subSequence(1,self.length());
 }

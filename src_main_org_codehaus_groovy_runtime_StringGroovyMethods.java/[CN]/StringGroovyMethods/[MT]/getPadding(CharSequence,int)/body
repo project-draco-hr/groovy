@@ -3,6 +3,6 @@
     return multiply(padding,length / padding.length() + 1).substring(0,length);
   }
  else {
-    return padding.substring(0,length);
+    return "" + padding.subSequence(0,length);
   }
 }

@@ -1,7 +1,6 @@
 {
-  String s=caseValue.toString();
   if (switchValue == null) {
-    return s == null;
+    return caseValue == null;
   }
-  return s.equals(switchValue.toString());
+  return caseValue.toString().equals(switchValue.toString());
 }

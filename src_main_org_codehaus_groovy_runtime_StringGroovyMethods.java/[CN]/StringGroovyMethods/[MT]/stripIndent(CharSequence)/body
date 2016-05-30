@@ -1,9 +1,8 @@
 {
-  String s=self.toString();
-  if (s.length() == 0)   return s;
+  if (self.length() == 0)   return self.toString();
   int runningCount=-1;
   try {
-    for (    String line : readLines((CharSequence)s)) {
+    for (    String line : readLines(self)) {
       if (isAllWhitespace((CharSequence)line))       continue;
       if (runningCount == -1)       runningCount=line.length();
       runningCount=findMinimumLeadingSpaces(line,runningCount);
@@ -12,5 +11,5 @@
   }
  catch (  IOException e) {
   }
-  return stripIndent(s,runningCount == -1 ? 0 : runningCount);
+  return stripIndent(self,runningCount == -1 ? 0 : runningCount);
 }

@@ -1,20 +1,19 @@
 {
-  String s=self.toString();
-  if (s.length() == 0 || numChars <= 0)   return s;
+  if (self.length() == 0 || numChars <= 0)   return self.toString();
   try {
     StringBuilder builder=new StringBuilder();
-    for (    String line : readLines((CharSequence)s)) {
+    for (    String line : readLines(self)) {
       if (!isAllWhitespace((CharSequence)line)) {
         builder.append(stripIndentFromLine(line,numChars));
       }
       builder.append("\n");
     }
-    if (!s.endsWith("\n")) {
+    if (self.charAt(self.length() - 1) != '\n') {
       builder.deleteCharAt(builder.length() - 1);
     }
     return builder.toString();
   }
  catch (  IOException e) {
   }
-  return s;
+  return self.toString();
 }
