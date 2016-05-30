@@ -1,0 +1,8 @@
+{
+  if (idx >= charSequence.length()) {
+    return EOF;
+  }
+ else {
+    return charSequence.charAt(idx++);
+  }
+}

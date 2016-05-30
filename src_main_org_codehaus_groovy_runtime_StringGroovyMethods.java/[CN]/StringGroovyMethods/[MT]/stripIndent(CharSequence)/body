@@ -1,15 +1,11 @@
 {
   if (self.length() == 0)   return self.toString();
   int runningCount=-1;
-  try {
-    for (    String line : readLines(self)) {
-      if (isAllWhitespace((CharSequence)line))       continue;
-      if (runningCount == -1)       runningCount=line.length();
-      runningCount=findMinimumLeadingSpaces(line,runningCount);
-      if (runningCount == 0)       break;
-    }
-  }
- catch (  IOException e) {
+  for (  String line : new LineIterable(self)) {
+    if (isAllWhitespace((CharSequence)line))     continue;
+    if (runningCount == -1)     runningCount=line.length();
+    runningCount=findMinimumLeadingSpaces(line,runningCount);
+    if (runningCount == 0)     break;
   }
   return stripIndent(self,runningCount == -1 ? 0 : runningCount);
 }

@@ -1,19 +1,14 @@
 {
   if (self.length() == 0 || numChars <= 0)   return self.toString();
-  try {
-    StringBuilder builder=new StringBuilder();
-    for (    String line : readLines(self)) {
-      if (!isAllWhitespace((CharSequence)line)) {
-        builder.append(stripIndentFromLine(line,numChars));
-      }
-      builder.append("\n");
+  StringBuilder builder=new StringBuilder();
+  for (  String line : new LineIterable(self)) {
+    if (!isAllWhitespace((CharSequence)line)) {
+      builder.append(stripIndentFromLine(line,numChars));
     }
-    if (self.charAt(self.length() - 1) != '\n') {
-      builder.deleteCharAt(builder.length() - 1);
-    }
-    return builder.toString();
+    builder.append("\n");
   }
- catch (  IOException e) {
+  if (self.charAt(self.length() - 1) != '\n') {
+    builder.deleteCharAt(builder.length() - 1);
   }
-  return self.toString();
+  return builder.toString();
 }
