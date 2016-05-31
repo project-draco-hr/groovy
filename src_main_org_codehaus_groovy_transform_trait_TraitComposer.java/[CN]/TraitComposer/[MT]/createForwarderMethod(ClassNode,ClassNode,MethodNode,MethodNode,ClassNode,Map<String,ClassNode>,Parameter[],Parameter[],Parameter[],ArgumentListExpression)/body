@@ -2,8 +2,6 @@
   MethodCallExpression mce=new MethodCallExpression(new ClassExpression(helperClassNode),helperMethod.getName(),helperMethodArgList);
   mce.setImplicitThis(false);
   genericsSpec=GenericsUtils.addMethodGenerics(helperMethod,genericsSpec);
-  Map<String,ClassNode> methodSpec=new HashMap<String,ClassNode>();
-  methodSpec=GenericsUtils.addMethodGenerics(helperMethod,methodSpec);
   ClassNode[] exceptionNodes=correctToGenericsSpecRecurse(genericsSpec,copyExceptions(helperMethod.getExceptions()));
   ClassNode fixedReturnType=correctToGenericsSpecRecurse(genericsSpec,helperMethod.getReturnType());
   Expression forwardExpression=genericsSpec.isEmpty() ? mce : new CastExpression(fixedReturnType,mce);
@@ -30,6 +28,8 @@
  else {
     GenericsType[] genericsTypes=helperMethod.getGenericsTypes();
     if (genericsTypes != null) {
+      Map<String,ClassNode> methodSpec=new HashMap<String,ClassNode>();
+      methodSpec=GenericsUtils.addMethodGenerics(helperMethod,methodSpec);
       GenericsType[] newGt=GenericsUtils.applyGenericsContextToPlaceHolders(methodSpec,helperMethod.getGenericsTypes());
       forwarder.setGenericsTypes(newGt);
     }
