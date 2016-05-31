@@ -1,0 +1,11 @@
+{
+  for (  ClassNode iface : getInterfaces()) {
+    Map<String,MethodNode> ifaceMethodsMap=iface.getDeclaredMethodsMap();
+    for (    String methSig : ifaceMethodsMap.keySet()) {
+      if (!methodsMap.containsKey(methSig)) {
+        MethodNode methNode=ifaceMethodsMap.get(methSig);
+        methodsMap.put(methSig,methNode);
+      }
+    }
+  }
+}

@@ -1,18 +1,8 @@
 {
   StringBuilder msg=new StringBuilder();
   msg.append(method.getName());
-  msg.append("(");
-  boolean needsComma=false;
-  for (  Parameter parameter : parameters) {
-    if (needsComma) {
-      msg.append(",");
-    }
- else {
-      needsComma=true;
-    }
-    msg.append(parameter.getType());
-  }
-  msg.append(") in ");
+  appendParamsDescription(parameters,msg);
+  msg.append(" in ");
   msg.append(cn.getName());
   msg.append(" cannot override ");
   msg.append(superMethod.getName());

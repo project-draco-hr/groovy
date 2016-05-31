@@ -1,21 +1,13 @@
 {
   ClassNode parent=getSuperClass();
-  Map<String,MethodNode> result=null;
+  Map<String,MethodNode> result;
   if (parent != null) {
     result=parent.getDeclaredMethodsMap();
   }
  else {
     result=new HashMap<String,MethodNode>();
   }
-  for (  ClassNode iface : getInterfaces()) {
-    Map<String,MethodNode> ifaceMethodsMap=iface.getDeclaredMethodsMap();
-    for (    String methSig : ifaceMethodsMap.keySet()) {
-      if (!result.containsKey(methSig)) {
-        MethodNode methNode=ifaceMethodsMap.get(methSig);
-        result.put(methSig,methNode);
-      }
-    }
-  }
+  addInterfaceMethods(result);
   for (  MethodNode method : getMethods()) {
     String sig=method.getTypeDescriptor();
     result.put(sig,method);

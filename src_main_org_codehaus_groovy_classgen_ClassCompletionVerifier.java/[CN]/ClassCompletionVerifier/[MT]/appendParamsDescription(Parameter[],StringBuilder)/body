@@ -1,0 +1,14 @@
+{
+  msg.append("(");
+  boolean needsComma=false;
+  for (  Parameter parameter : parameters) {
+    if (needsComma) {
+      msg.append(",");
+    }
+ else {
+      needsComma=true;
+    }
+    msg.append(parameter.getType());
+  }
+  msg.append(")");
+}
