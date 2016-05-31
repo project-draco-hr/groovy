@@ -2,7 +2,7 @@
   RangeInfo info=subListBorders(text.length(),range);
   String answer=text.substring(info.from,info.to);
   if (info.reverse) {
-    answer=reverse(answer);
+    answer=reverse((CharSequence)answer);
   }
   return answer;
 }

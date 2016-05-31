@@ -1,4 +1,4 @@
 {
   this.noMoreMatches=new boolean[replacements.size()];
-  this.replacementsList=DefaultGroovyMethods.toList(replacements.entrySet());
+  this.replacementsList=DefaultGroovyMethods.toList((Iterable<Map.Entry<CharSequence,CharSequence>>)replacements.entrySet());
 }
