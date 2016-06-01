@@ -1,7 +1,7 @@
 {
   for (  MethodNode orig : correctedNext.getDeclaredMethods(mn.getName())) {
     MethodNode method=correctToGenericsSpec(genericsSpec,orig);
-    if (parametersEqual(method.getParameters(),mn.getParameters())) {
+    if (ParameterUtils.parametersEqual(method.getParameters(),mn.getParameters())) {
       return method;
     }
   }

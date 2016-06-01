@@ -7,7 +7,7 @@
  else {
     result=new HashMap<String,MethodNode>();
   }
-  addInterfaceMethods(result);
+  ClassNodeUtils.addInterfaceMethods(this,result);
   for (  MethodNode method : getMethods()) {
     String sig=method.getTypeDescriptor();
     result.put(sig,method);

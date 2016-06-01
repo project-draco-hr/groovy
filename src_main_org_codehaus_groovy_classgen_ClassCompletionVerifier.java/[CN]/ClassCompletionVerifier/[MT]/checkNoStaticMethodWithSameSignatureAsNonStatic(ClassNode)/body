@@ -7,7 +7,7 @@
  else {
     result=new HashMap<String,MethodNode>();
   }
-  node.addInterfaceMethods(result);
+  ClassNodeUtils.addInterfaceMethods(node,result);
   for (  MethodNode methodNode : node.getMethods()) {
     MethodNode mn=result.get(methodNode.getTypeDescriptor());
     if (mn != null && (mn.isStatic() ^ methodNode.isStatic()) && !methodNode.isStaticConstructor()) {

@@ -2,7 +2,7 @@
   List<ConstructorNode> cl=node.getDeclaredConstructors();
   MethodNode res=null;
   for (  ConstructorNode cn : cl) {
-    if (parametersEqual(cn.getParameters(),paraTypes)) {
+    if (ParameterUtils.parametersEqual(cn.getParameters(),paraTypes)) {
       res=cn;
       break;
     }

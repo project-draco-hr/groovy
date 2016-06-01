@@ -1,1 +1,2 @@
+ClassNode cnode
 Map<String,MethodNode> methodsMap

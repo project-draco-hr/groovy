@@ -1,5 +1,5 @@
 {
-  for (  ClassNode iface : getInterfaces()) {
+  for (  ClassNode iface : cnode.getInterfaces()) {
     Map<String,MethodNode> ifaceMethodsMap=iface.getDeclaredMethodsMap();
     for (    String methSig : ifaceMethodsMap.keySet()) {
       if (!methodsMap.containsKey(methSig)) {
