@@ -18,5 +18,13 @@
       boolean uninitialized=isDeclaration && rightExpression == EmptyExpression.INSTANCE;
       recordAssignment((Variable)leftExpression,isDeclaration,uninitialized,false,expression);
     }
+ else     if (leftExpression instanceof TupleExpression) {
+      TupleExpression te=(TupleExpression)leftExpression;
+      for (      Expression next : te.getExpressions()) {
+        if (next instanceof Variable) {
+          recordAssignment((Variable)next,isDeclaration,false,false,next);
+        }
+      }
+    }
   }
 }
