@@ -1,0 +1,8 @@
+{
+  Map<String,MethodNode> result=new HashMap<String,MethodNode>();
+  ClassNode[] interfaces=classNode.getInterfaces();
+  for (  ClassNode iface : interfaces) {
+    result.putAll(iface.getDeclaredMethodsMap());
+  }
+  return result;
+}

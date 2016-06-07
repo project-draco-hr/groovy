@@ -1,15 +1,9 @@
 {
   Map methodsToAdd=new HashMap();
   Map genericsSpec=new HashMap();
-  Map abstractMethods=new HashMap();
-  Map<String,MethodNode> allInterfaceMethods=new HashMap<String,MethodNode>();
-  ClassNode[] interfaces=classNode.getInterfaces();
-  for (  ClassNode iface : interfaces) {
-    Map ifaceMethodsMap=iface.getDeclaredMethodsMap();
-    abstractMethods.putAll(ifaceMethodsMap);
-    allInterfaceMethods.putAll(ifaceMethodsMap);
-  }
-  collectSuperInterfaceMethods(classNode,allInterfaceMethods);
+  Map<String,MethodNode> abstractMethods=ClassNodeUtils.getDeclaredMethodMapsFromInterfaces(classNode);
+  Map<String,MethodNode> allInterfaceMethods=new HashMap<String,MethodNode>(abstractMethods);
+  ClassNodeUtils.addDeclaredMethodMapsFromSuperInterfaces(classNode,allInterfaceMethods);
   List<MethodNode> declaredMethods=new ArrayList<MethodNode>(classNode.getMethods());
   for (Iterator methodsIterator=declaredMethods.iterator(); methodsIterator.hasNext(); ) {
     MethodNode m=(MethodNode)methodsIterator.next();

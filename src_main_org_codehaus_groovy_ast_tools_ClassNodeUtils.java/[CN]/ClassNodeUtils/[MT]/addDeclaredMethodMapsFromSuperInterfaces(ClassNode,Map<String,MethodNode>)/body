@@ -5,8 +5,7 @@
     ClassNode[] interfaces=sn.getInterfaces();
     for (    ClassNode iface : interfaces) {
       if (!cnInterfaces.contains(iface)) {
-        Map<String,MethodNode> ifaceMethodsMap=iface.getDeclaredMethodsMap();
-        allInterfaceMethods.putAll(ifaceMethodsMap);
+        allInterfaceMethods.putAll(iface.getDeclaredMethodsMap());
       }
     }
     sn=sn.getSuperClass();
