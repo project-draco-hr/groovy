@@ -1,0 +1,3 @@
+Map<String,ClassNode> genericsSpec
+MethodNode origMethod
+ClassNode correctedClass

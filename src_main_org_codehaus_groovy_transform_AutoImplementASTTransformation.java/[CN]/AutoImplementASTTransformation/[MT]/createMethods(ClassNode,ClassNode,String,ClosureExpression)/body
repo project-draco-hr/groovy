@@ -1,0 +1,7 @@
+{
+  for (  MethodNode candidate : getAllCorrectedMethodsMap(cNode).values()) {
+    if (candidate.isAbstract()) {
+      cNode.addMethod(candidate.getName(),Opcodes.ACC_PUBLIC,candidate.getReturnType(),candidate.getParameters(),candidate.getExceptions(),methodBody(exception,message,code,candidate.getReturnType()));
+    }
+  }
+}

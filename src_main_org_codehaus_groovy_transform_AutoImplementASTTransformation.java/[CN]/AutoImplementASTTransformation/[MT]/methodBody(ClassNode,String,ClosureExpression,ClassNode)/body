@@ -1,0 +1,16 @@
+{
+  BlockStatement body=new BlockStatement();
+  if (code != null) {
+    body.addStatement(code.getCode());
+  }
+ else   if (exception != null) {
+    body.addStatement(throwS(ctorX(exception,message == null ? EMPTY_ARGUMENTS : constX(message))));
+  }
+ else {
+    Expression result=getDefaultValueForPrimitive(returnType);
+    if (result != null) {
+      body.addStatement(returnS(result));
+    }
+  }
+  return body;
+}

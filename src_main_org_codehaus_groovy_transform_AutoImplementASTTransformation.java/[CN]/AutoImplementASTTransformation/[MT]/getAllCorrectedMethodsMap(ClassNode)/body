@@ -1,0 +1,51 @@
+{
+  Map<String,MethodNode> result=new HashMap<String,MethodNode>();
+  for (  MethodNode mn : cNode.getMethods()) {
+    result.put(mn.getTypeDescriptor(),mn);
+  }
+  ClassNode next=cNode;
+  while (true) {
+    Map<String,ClassNode> genericsSpec=createGenericsSpec(next);
+    for (    MethodNode mn : next.getMethods()) {
+      MethodNode correctedMethod=correctToGenericsSpec(genericsSpec,mn);
+      if (next != cNode) {
+        ClassNode correctedClass=correctToGenericsSpecRecurse(genericsSpec,next);
+        MethodNode found=getDeclaredMethodCorrected(genericsSpec,correctedMethod,correctedClass);
+        if (found != null) {
+          String td=found.getTypeDescriptor();
+          if (result.containsKey(td) && !result.get(td).isAbstract()) {
+            continue;
+          }
+          result.put(td,found);
+        }
+      }
+    }
+    List<ClassNode> interfaces=new ArrayList<ClassNode>(Arrays.asList(next.getInterfaces()));
+    Map<String,ClassNode> updatedGenericsSpec=new HashMap<String,ClassNode>(genericsSpec);
+    while (!interfaces.isEmpty()) {
+      ClassNode origInterface=interfaces.remove(0);
+      if (!origInterface.equals(ClassHelper.OBJECT_TYPE)) {
+        updatedGenericsSpec=createGenericsSpec(origInterface,updatedGenericsSpec);
+        ClassNode correctedInterface=correctToGenericsSpecRecurse(updatedGenericsSpec,origInterface);
+        for (        MethodNode nextMethod : correctedInterface.getMethods()) {
+          MethodNode correctedMethod=correctToGenericsSpec(genericsSpec,nextMethod);
+          MethodNode found=getDeclaredMethodCorrected(updatedGenericsSpec,correctedMethod,correctedInterface);
+          if (found != null) {
+            String td=found.getTypeDescriptor();
+            if (result.containsKey(td) && !result.get(td).isAbstract()) {
+              continue;
+            }
+            result.put(td,found);
+          }
+        }
+        interfaces.addAll(Arrays.asList(correctedInterface.getInterfaces()));
+      }
+    }
+    ClassNode superClass=next.getUnresolvedSuperClass();
+    if (superClass == null) {
+      break;
+    }
+    next=correctToGenericsSpecRecurse(updatedGenericsSpec,superClass);
+  }
+  return result;
+}

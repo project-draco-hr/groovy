@@ -1,0 +1,24 @@
+{
+  init(nodes,source);
+  AnnotatedNode parent=(AnnotatedNode)nodes[1];
+  AnnotationNode anno=(AnnotationNode)nodes[0];
+  if (!MY_TYPE.equals(anno.getClassNode()))   return;
+  if (parent instanceof ClassNode) {
+    ClassNode cNode=(ClassNode)parent;
+    if (!checkNotInterface(cNode,MY_TYPE_NAME))     return;
+    ClassNode exception=getMemberClassValue(anno,"exception");
+    if (exception != null && Undefined.isUndefinedException(exception)) {
+      exception=null;
+    }
+    String message=getMemberStringValue(anno,"message");
+    Expression code=anno.getMember("code");
+    if (code != null && !(code instanceof ClosureExpression)) {
+      addError("Expected closure value for annotation parameter 'code'. Found " + code,cNode);
+      return;
+    }
+    createMethods(cNode,exception,message,(ClosureExpression)code);
+    if (code != null) {
+      anno.setMember("code",new ClosureExpression(new Parameter[0],new EmptyStatement()));
+    }
+  }
+}
