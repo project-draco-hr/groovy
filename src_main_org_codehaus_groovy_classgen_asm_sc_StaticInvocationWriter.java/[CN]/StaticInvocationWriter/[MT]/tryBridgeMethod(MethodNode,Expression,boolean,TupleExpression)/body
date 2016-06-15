@@ -2,8 +2,11 @@
   ClassNode lookupClassNode;
   if (target.isProtected()) {
     lookupClassNode=controller.getClassNode();
-    if (controller.isInClosure()) {
+    while (lookupClassNode != null && !lookupClassNode.isDerivedFrom(target.getDeclaringClass())) {
       lookupClassNode=lookupClassNode.getOuterClass();
+    }
+    if (lookupClassNode == null) {
+      return false;
     }
   }
  else {
@@ -13,13 +16,8 @@
   MethodNode bridge=bridges == null ? null : bridges.get(target);
   if (bridge != null) {
     Expression fixedReceiver=receiver;
-    ClassNode declaringClass=bridge.getDeclaringClass();
     if (implicitThis && !controller.isInClosure()) {
-      ClassNode classNode=controller.getClassNode();
-      while (!classNode.isDerivedFrom(declaringClass) && !classNode.implementsInterface(declaringClass) && classNode instanceof InnerClassNode) {
-        classNode=classNode.getOuterClass();
-      }
-      fixedReceiver=new PropertyExpression(new ClassExpression(classNode),"this");
+      fixedReceiver=new PropertyExpression(new ClassExpression(lookupClassNode),"this");
     }
     ArgumentListExpression newArgs=new ArgumentListExpression(target.isStatic() ? new ConstantExpression(null) : fixedReceiver);
     for (    Expression expression : args.getExpressions()) {

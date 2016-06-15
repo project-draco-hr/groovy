@@ -57,6 +57,9 @@
         ASTNode src=receiver == null ? args : receiver;
         controller.getSourceUnit().addError(new SyntaxException("Method " + target.getName() + " is protected in "+ target.getDeclaringClass().toString(false),src.getLineNumber(),src.getColumnNumber(),src.getLastLineNumber(),src.getLastColumnNumber()));
       }
+ else       if (!node.isDerivedFrom(target.getDeclaringClass()) && tryBridgeMethod(target,receiver,implicitThis,args)) {
+        return true;
+      }
     }
     if (receiver != null) {
       if (!(receiver instanceof VariableExpression) || !((VariableExpression)receiver).isSuperExpression()) {
