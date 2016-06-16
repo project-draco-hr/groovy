@@ -1,7 +1,7 @@
 {
   Map<String,MethodNode> result=new HashMap<String,MethodNode>();
   for (  MethodNode mn : cNode.getMethods()) {
-    result.put(mn.getTypeDescriptor(),mn);
+    result.put(makeDescriptorWithoutReturnType(mn),mn);
   }
   ClassNode next=cNode;
   while (true) {
@@ -12,7 +12,7 @@
         ClassNode correctedClass=correctToGenericsSpecRecurse(genericsSpec,next);
         MethodNode found=getDeclaredMethodCorrected(genericsSpec,correctedMethod,correctedClass);
         if (found != null) {
-          String td=found.getTypeDescriptor();
+          String td=makeDescriptorWithoutReturnType(found);
           if (result.containsKey(td) && !result.get(td).isAbstract()) {
             continue;
           }
@@ -31,7 +31,7 @@
           MethodNode correctedMethod=correctToGenericsSpec(genericsSpec,nextMethod);
           MethodNode found=getDeclaredMethodCorrected(updatedGenericsSpec,correctedMethod,correctedInterface);
           if (found != null) {
-            String td=found.getTypeDescriptor();
+            String td=makeDescriptorWithoutReturnType(found);
             if (result.containsKey(td) && !result.get(td).isAbstract()) {
               continue;
             }
