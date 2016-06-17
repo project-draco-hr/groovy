@@ -1,4 +1,5 @@
 {
   ClassNode type=node.getType();
   checkGenericsUsage(type,type.redirect());
+  super.visitField(node);
 }

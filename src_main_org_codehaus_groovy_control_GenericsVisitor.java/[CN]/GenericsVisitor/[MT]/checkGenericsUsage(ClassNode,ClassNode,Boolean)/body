@@ -1,0 +1,39 @@
+{
+  if (n.isGenericsPlaceHolder())   return;
+  GenericsType[] nTypes=n.getGenericsTypes();
+  GenericsType[] cnTypes=cn.getGenericsTypes();
+  if (nTypes == null)   return;
+  if (cnTypes == null) {
+    String message="The class " + getPrintName(n) + " (supplied with "+ plural("type parameter",nTypes.length)+ ") refers to the class "+ getPrintName(cn)+ " which takes no parameters";
+    if (nTypes.length == 0) {
+      message+=" (invalid Diamond <> usage?)";
+    }
+    addError(message,n);
+    return;
+  }
+  if (nTypes.length != cnTypes.length) {
+    if (Boolean.FALSE.equals(isAnonInnerClass) && nTypes.length == 0) {
+      return;
+    }
+    String message;
+    if (Boolean.TRUE.equals(isAnonInnerClass) && nTypes.length == 0) {
+      message="Cannot use diamond <> with anonymous inner classes";
+    }
+ else {
+      message="The class " + getPrintName(n) + " (supplied with "+ plural("type parameter",nTypes.length)+ ") refers to the class "+ getPrintName(cn)+ " which takes "+ plural("parameter",cnTypes.length);
+      if (nTypes.length == 0) {
+        message+=" (invalid Diamond <> usage?)";
+      }
+    }
+    addError(message,n);
+    return;
+  }
+  for (int i=0; i < nTypes.length; i++) {
+    ClassNode nType=nTypes[i].getType();
+    ClassNode cnType=cnTypes[i].getType();
+    if (!nType.isDerivedFrom(cnType)) {
+      if (cnType.isInterface() && nType.implementsInterface(cnType))       continue;
+      addError("The type " + nTypes[i].getName() + " is not a valid substitute for the bounded parameter <"+ getPrintName(cnTypes[i])+ ">",n);
+    }
+  }
+}

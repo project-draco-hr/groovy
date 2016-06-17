@@ -1,0 +1,3 @@
+ClassNode n
+ClassNode cn
+Boolean isAnonInnerClass

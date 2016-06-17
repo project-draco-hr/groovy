@@ -6,4 +6,5 @@
   }
   ClassNode returnType=node.getReturnType();
   checkGenericsUsage(returnType,returnType.redirect());
+  super.visitMethod(node);
 }

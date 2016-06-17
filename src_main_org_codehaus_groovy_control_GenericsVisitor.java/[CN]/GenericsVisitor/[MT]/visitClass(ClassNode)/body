@@ -1,10 +1,11 @@
 {
   boolean error=checkWildcard(node);
   if (error)   return;
-  checkGenericsUsage(node.getUnresolvedSuperClass(false),node.getSuperClass());
+  boolean isAnon=node instanceof InnerClassNode && ((InnerClassNode)node).isAnonymous();
+  checkGenericsUsage(node.getUnresolvedSuperClass(false),node.getSuperClass(),isAnon ? true : null);
   ClassNode[] interfaces=node.getInterfaces();
-  for (int i=0; i < interfaces.length; i++) {
-    checkGenericsUsage(interfaces[i],interfaces[i].redirect());
+  for (  ClassNode anInterface : interfaces) {
+    checkGenericsUsage(anInterface,anInterface.redirect());
   }
   node.visitContents(this);
 }

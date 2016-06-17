@@ -1,0 +1,5 @@
+{
+  ClassNode type=call.getType();
+  boolean isAnon=type instanceof InnerClassNode && ((InnerClassNode)type).isAnonymous();
+  checkGenericsUsage(type,type.redirect(),isAnon);
+}

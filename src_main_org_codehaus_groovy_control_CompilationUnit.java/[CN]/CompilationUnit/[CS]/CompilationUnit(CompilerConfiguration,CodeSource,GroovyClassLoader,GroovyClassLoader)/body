@@ -43,6 +43,15 @@
   }
 ,Phases.SEMANTIC_ANALYSIS);
   addPhaseOperation(new PrimaryClassNodeOperation(){
+    @Override public void call(    SourceUnit source,    GeneratorContext context,    ClassNode classNode) throws CompilationFailedException {
+      if (!classNode.isSynthetic()) {
+        GenericsVisitor genericsVisitor=new GenericsVisitor(source);
+        genericsVisitor.visitClass(classNode);
+      }
+    }
+  }
+,Phases.SEMANTIC_ANALYSIS);
+  addPhaseOperation(new PrimaryClassNodeOperation(){
     public void call(    SourceUnit source,    GeneratorContext context,    ClassNode classNode) throws CompilationFailedException {
       TraitComposer.doExtendTraits(classNode,source,CompilationUnit.this);
     }
