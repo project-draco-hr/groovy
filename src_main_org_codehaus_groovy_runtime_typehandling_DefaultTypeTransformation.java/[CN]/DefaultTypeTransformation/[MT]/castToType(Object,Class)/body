@@ -12,7 +12,7 @@
     return continueCastOnCollection(object,type);
   }
  else   if (type == String.class) {
-    return ShortTypeHandling.castToString(object);
+    return InvokerHelper.toString(object);
   }
  else   if (type == Character.class) {
     return ShortTypeHandling.castToChar(object);
