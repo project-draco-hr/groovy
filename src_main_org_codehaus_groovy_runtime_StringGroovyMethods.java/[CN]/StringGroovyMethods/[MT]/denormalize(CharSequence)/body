@@ -17,12 +17,13 @@
   }
   final StringBuilder sb=new StringBuilder((110 * len) / 100);
   int i=0;
+  CharSequence cs=(self instanceof GString) ? self.toString() : self;
   while (i < len) {
-    final char ch=self.charAt(i++);
+    final char ch=cs.charAt(i++);
 switch (ch) {
 case '\r':
       sb.append(lineSeparator);
-    if ((i < len) && (self.charAt(i) == '\n')) {
+    if ((i < len) && (cs.charAt(i) == '\n')) {
       ++i;
     }
   break;

@@ -1,3 +1,3 @@
 {
-  this.delegate=cs;
+  this.delegate=(cs instanceof GString) ? cs.toString() : cs;
 }
