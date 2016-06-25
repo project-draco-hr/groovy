@@ -1,3 +1,3 @@
 {
-  return UNDEFINED_EXCEPTION.class.getName().equals(other.getName());
+  return EXCEPTION.class.getName().equals(other.getName());
 }
