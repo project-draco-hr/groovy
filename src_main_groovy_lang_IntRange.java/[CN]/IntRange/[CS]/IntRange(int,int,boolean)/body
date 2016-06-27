@@ -6,8 +6,5 @@
   this.from=from;
   this.to=to;
   this.reverse=reverse;
-  Long size=0L + this.to - this.from;
-  if (size >= Integer.MAX_VALUE) {
-    throw new IllegalArgumentException("A range must have no more than " + Integer.MAX_VALUE + " elements but attempted "+ size+ " elements");
-  }
+  checkSize();
 }

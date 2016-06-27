@@ -1,0 +1,6 @@
+{
+  Long size=(long)this.to - this.from + 1;
+  if (size > Integer.MAX_VALUE) {
+    throw new IllegalArgumentException("A range must have no more than " + Integer.MAX_VALUE + " elements but attempted "+ size+ " elements");
+  }
+}

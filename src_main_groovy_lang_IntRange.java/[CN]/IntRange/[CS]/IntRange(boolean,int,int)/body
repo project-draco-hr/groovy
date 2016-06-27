@@ -3,4 +3,5 @@
   this.to=to;
   this.inclusive=inclusive;
   this.reverse=false;
+  checkSize();
 }
