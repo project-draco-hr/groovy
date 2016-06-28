@@ -1,18 +1,19 @@
 {
-  if (null == ctx.getAttribute("context",ScriptContext.ENGINE_SCOPE)) {
-    ctx.setAttribute("context",ctx,ScriptContext.ENGINE_SCOPE);
-    final Writer writer=ctx.getWriter();
-    ctx.setAttribute("out",(writer instanceof PrintWriter) ? writer : new PrintWriter(writer,true),ScriptContext.ENGINE_SCOPE);
-  }
-  if (ctx.getWriter() != null) {
-    ctx.setAttribute("out",new PrintWriter(ctx.getWriter(),true),ScriptContext.ENGINE_SCOPE);
-  }
   Binding binding=new Binding(ctx.getBindings(ScriptContext.ENGINE_SCOPE)){
     @Override public Object getVariable(    String name){
 synchronized (ctx) {
         int scope=ctx.getAttributesScope(name);
         if (scope != -1) {
           return ctx.getAttribute(name,scope);
+        }
+        if ("out".equals(name)) {
+          Writer writer=ctx.getWriter();
+          if (writer != null) {
+            return (writer instanceof PrintWriter) ? (PrintWriter)writer : new PrintWriter(writer,true);
+          }
+        }
+        if ("context".equals(name)) {
+          return ctx;
         }
       }
       throw new MissingPropertyException(name,getClass());
@@ -78,9 +79,5 @@ synchronized (ctx) {
   }
  catch (  Exception e) {
     throw new ScriptException(e);
-  }
- finally {
-    ctx.removeAttribute("context",ScriptContext.ENGINE_SCOPE);
-    ctx.removeAttribute("out",ScriptContext.ENGINE_SCOPE);
   }
 }
