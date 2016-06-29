@@ -1,5 +1,5 @@
 {
   String name=sourceName != null ? sourceName : "GeneratedMarkupTemplate" + counter.getAndIncrement();
-  templateClass=groovyClassLoader.parseClass(new GroovyCodeSource(reader,name,""),modelTypes);
+  templateClass=groovyClassLoader.parseClass(new GroovyCodeSource(reader,name,"x"),modelTypes);
   this.modeltypes=modelTypes;
 }
