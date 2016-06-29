@@ -1,7 +1,7 @@
 {
   if (value instanceof Comparable) {
-    int result=compareTo(from,(Comparable)value);
-    return result == 0 || result < 0 && compareTo(to,(Comparable)value) >= 0;
+    final int result=compareTo(from,value);
+    return result == 0 || result < 0 && compareTo(to,value) >= 0;
   }
   return contains(value);
 }

@@ -1,4 +1,6 @@
 {
-  if (inclusive == null || from <= to)   return from;
+  if (inclusive == null || from <= to) {
+    return from;
+  }
   return inclusive ? to : to + 1;
 }

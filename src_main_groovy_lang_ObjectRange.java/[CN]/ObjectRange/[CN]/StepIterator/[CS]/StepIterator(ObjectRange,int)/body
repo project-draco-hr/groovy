@@ -4,12 +4,12 @@
   }
   this.range=range;
   if (range.isReverse()) {
-    this.step=-desiredStep;
+    step=-desiredStep;
   }
  else {
-    this.step=desiredStep;
+    step=desiredStep;
   }
-  if (this.step > 0) {
+  if (step > 0) {
     value=range.getFrom();
   }
  else {

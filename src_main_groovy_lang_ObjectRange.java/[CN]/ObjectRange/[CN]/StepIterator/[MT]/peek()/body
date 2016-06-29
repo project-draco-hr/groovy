@@ -10,7 +10,7 @@
     }
   }
  else {
-    int positiveStep=-step;
+    final int positiveStep=-step;
     Comparable peekValue=value;
     for (int i=0; i < positiveStep; i++) {
       peekValue=(Comparable)range.decrement(peekValue);

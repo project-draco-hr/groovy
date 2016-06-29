@@ -4,8 +4,12 @@
   }
  else   if (operand instanceof String) {
     final String string=(String)operand;
-    if (string.length() == 1)     return (int)string.charAt(0);
- else     return string;
+    if (string.length() == 1) {
+      return (int)string.charAt(0);
+    }
+ else {
+      return string;
+    }
   }
  else {
     return operand;

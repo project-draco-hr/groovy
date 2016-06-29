@@ -1,5 +1,7 @@
 {
-  if (inclusive == null)   throw new IllegalStateException("Should not call subListBorders on a non-inclusive aware IntRange");
+  if (inclusive == null) {
+    throw new IllegalStateException("Should not call subListBorders on a non-inclusive aware IntRange");
+  }
   int tempFrom=from;
   if (tempFrom < 0) {
     tempFrom+=size;

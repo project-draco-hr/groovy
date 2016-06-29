@@ -1,3 +1,3 @@
 {
-  this.range.remove(index);
+  range.remove(index);
 }

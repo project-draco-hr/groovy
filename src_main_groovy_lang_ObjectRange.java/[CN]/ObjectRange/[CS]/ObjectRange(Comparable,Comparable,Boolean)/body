@@ -6,9 +6,9 @@
     throw new IllegalArgumentException("Must specify a non-null value for the 'to' index in a Range");
   }
   if (reverse == null) {
-    boolean computedReverse=areReversed(smaller,larger);
+    final boolean computedReverse=areReversed(smaller,larger);
     if (computedReverse) {
-      Comparable temp=larger;
+      final Comparable temp=larger;
       larger=smaller;
       smaller=temp;
     }
@@ -40,14 +40,14 @@
     this.to=larger;
   }
  else {
-    Comparable tempfrom=normaliseStringType(smaller);
-    Comparable tempto=normaliseStringType(larger);
+    final Comparable tempfrom=normaliseStringType(smaller);
+    final Comparable tempto=normaliseStringType(larger);
     if (tempfrom instanceof Number && tempto instanceof Number) {
       this.from=tempfrom;
       this.to=tempto;
     }
  else {
-      Comparable start=this.reverse ? larger : smaller;
+      final Comparable start=this.reverse ? larger : smaller;
       if (start instanceof String || start instanceof Number) {
         throw new IllegalArgumentException("Incompatible Argument classes for ObjectRange " + smaller.getClass() + ", "+ larger.getClass());
       }

@@ -1,6 +1,6 @@
 {
   final Iterator innerIterator=new StepIterator(this,1);
-  Iterator safeIterator=new Iterator(){
+  final Iterator safeIterator=new Iterator(){
     @Override public synchronized boolean hasNext(){
       return innerIterator.hasNext();
     }

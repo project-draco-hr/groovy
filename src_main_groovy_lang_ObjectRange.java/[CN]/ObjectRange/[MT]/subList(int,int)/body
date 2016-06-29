@@ -8,7 +8,7 @@
   if (fromIndex == toIndex) {
     return new EmptyRange(from);
   }
-  StepIterator iter=new StepIterator(this,1);
+  final StepIterator iter=new StepIterator(this,1);
   Object value=iter.next();
   int i=0;
   for (; i < fromIndex; i++) {
@@ -17,13 +17,13 @@
     }
     value=iter.next();
   }
-  Object fromValue=value;
+  final Object fromValue=value;
   for (; i < toIndex - 1; i++) {
     if (!iter.hasNext()) {
       throw new IndexOutOfBoundsException("Index: " + i + " is too big for range: "+ this);
     }
     value=iter.next();
   }
-  Object toValue=value;
+  final Object toValue=value;
   return new ObjectRange((Comparable)fromValue,(Comparable)toValue,reverse);
 }

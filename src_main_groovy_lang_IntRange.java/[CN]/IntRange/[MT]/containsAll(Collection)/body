@@ -1,7 +1,7 @@
 {
   if (other instanceof IntRange) {
     final IntRange range=(IntRange)other;
-    return this.getFrom() <= range.getFrom() && range.getTo() <= this.getTo();
+    return getFrom() <= range.getFrom() && range.getTo() <= getTo();
   }
   return super.containsAll(other);
 }

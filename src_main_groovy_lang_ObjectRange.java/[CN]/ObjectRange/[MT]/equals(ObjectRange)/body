@@ -1,3 +1,3 @@
 {
-  return that != null && this.reverse == that.reverse && DefaultTypeTransformation.compareEqual(this.from,that.from) && DefaultTypeTransformation.compareEqual(this.to,that.to);
+  return that != null && reverse == that.reverse && DefaultTypeTransformation.compareEqual(from,that.from) && DefaultTypeTransformation.compareEqual(to,that.to);
 }

@@ -2,7 +2,7 @@
   if (index < 0) {
     throw new IndexOutOfBoundsException("Index: " + index + " should not be negative");
   }
-  StepIterator iter=new StepIterator(this,1);
+  final StepIterator iter=new StepIterator(this,1);
   Object value=iter.next();
   for (int i=0; i < index; i++) {
     if (!iter.hasNext()) {

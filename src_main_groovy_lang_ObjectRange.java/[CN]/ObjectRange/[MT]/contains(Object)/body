@@ -1,6 +1,8 @@
 {
-  Iterator it=new StepIterator(this,1);
-  if (value == null)   return false;
+  final Iterator it=new StepIterator(this,1);
+  if (value == null) {
+    return false;
+  }
   while (it.hasNext()) {
     try {
       if (DefaultTypeTransformation.compareEqual(value,it.next()))       return true;
