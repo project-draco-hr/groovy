@@ -13,7 +13,7 @@
   }
   Class declaringClass=method.getDeclaringClass();
   try {
-    return LOOKUP_Constructor.newInstance(declaringClass,MethodHandles.Lookup.PRIVATE).unreflectSpecial(method,declaringClass).bindTo(receiver);
+    return LOOKUP_Constructor.newInstance(declaringClass,-1).unreflectSpecial(method,declaringClass).bindTo(receiver);
   }
  catch (  ReflectiveOperationException e) {
     throw new GroovyBugError(e);
