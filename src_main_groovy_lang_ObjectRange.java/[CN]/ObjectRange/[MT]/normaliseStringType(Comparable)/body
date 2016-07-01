@@ -2,16 +2,12 @@
   if (operand instanceof Character) {
     return (int)(Character)operand;
   }
- else   if (operand instanceof String) {
+  if (operand instanceof String) {
     final String string=(String)operand;
     if (string.length() == 1) {
       return (int)string.charAt(0);
     }
- else {
-      return string;
-    }
+    return string;
   }
- else {
-    return operand;
-  }
+  return operand;
 }

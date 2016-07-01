@@ -2,7 +2,7 @@
   if (value instanceof Integer) {
     return (Integer)value >= getFrom() && (Integer)value <= getTo();
   }
- else   if (value instanceof BigInteger) {
+  if (value instanceof BigInteger) {
     final BigInteger bigint=(BigInteger)value;
     return bigint.compareTo(BigInteger.valueOf(getFrom())) >= 0 && bigint.compareTo(BigInteger.valueOf(getTo())) <= 0;
   }

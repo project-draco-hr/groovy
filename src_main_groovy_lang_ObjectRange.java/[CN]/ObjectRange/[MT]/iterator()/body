@@ -1,16 +1,15 @@
 {
   final Iterator innerIterator=new StepIterator(this,1);
-  final Iterator safeIterator=new Iterator(){
+  return new Iterator(){
     @Override public synchronized boolean hasNext(){
       return innerIterator.hasNext();
     }
     @Override public synchronized Object next(){
       return innerIterator.next();
     }
-    @Override public void remove(){
+    @Override public synchronized void remove(){
       innerIterator.remove();
     }
   }
 ;
-  return safeIterator;
 }

@@ -1,6 +1,6 @@
 {
   try {
-    range.add(0,new Integer(12));
+    range.add(0,12);
     fail("added value to empty range");
   }
  catch (  UnsupportedOperationException e) {
