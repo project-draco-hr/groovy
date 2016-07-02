@@ -58,6 +58,7 @@
           MethodCallExpression call=new MethodCallExpression(left,"compareTo",new ArgumentListExpression(right));
           call.setImplicitThis(false);
           call.setMethodTarget(COMPARE_TO_METHOD);
+          call.setSourcePosition(bin);
           CompareIdentityExpression compareIdentity=new CompareIdentityExpression(left,right);
           compareIdentity.putNodeMetaData(StaticTypesMarker.INFERRED_RETURN_TYPE,ClassHelper.boolean_TYPE);
           TernaryExpression result=new TernaryExpression(new BooleanExpression(compareIdentity),CONSTANT_ZERO,new TernaryExpression(new BooleanExpression(new CompareToNullExpression(left,true)),CONSTANT_MINUS_ONE,new TernaryExpression(new BooleanExpression(new CompareToNullExpression(right,true)),CONSTANT_ONE,call)));
@@ -91,6 +92,7 @@
       call.setMethodTarget(adapter);
       call.setImplicitThis(false);
     }
+    call.setSourcePosition(bin);
     if (!isAssignment)     return call;
     return new BinaryExpression(left,Token.newSymbol("=",operation.getStartLine(),operation.getStartColumn()),call);
   }
