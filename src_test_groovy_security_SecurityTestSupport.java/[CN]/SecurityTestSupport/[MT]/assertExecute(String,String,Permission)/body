@@ -2,8 +2,12 @@
   if (!isSecurityAvailable()) {
     return;
   }
-  if (codeBase == null) {
-    codeBase="/groovy/security/test";
+  final String effectiveCodeBase=(codeBase != null) ? codeBase : "/groovy/security/test";
+  AccessController.doPrivileged(new PrivilegedAction<Void>(){
+    @Override public Void run(){
+      parseAndExecute(new GroovyCodeSource(scriptStr,generateClassName(),effectiveCodeBase),missingPermission);
+      return null;
+    }
   }
-  parseAndExecute(new GroovyCodeSource(scriptStr,generateClassName(),codeBase),missingPermission);
+);
 }

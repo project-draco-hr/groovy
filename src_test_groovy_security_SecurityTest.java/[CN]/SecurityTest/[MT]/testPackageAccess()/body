@@ -1,6 +1,12 @@
 {
   String script="new javax.print.PrintException();";
-  Security.setProperty("package.access","javax.print");
+  AccessController.doPrivileged(new PrivilegedAction<Void>(){
+    @Override public Void run(){
+      Security.setProperty("package.access","javax.print");
+      return null;
+    }
+  }
+);
   assertExecute(script,"/groovy/security/javax/print/deny",new RuntimePermission("accessClassInPackage.javax.print"));
   assertExecute(script,"/groovy/security/javax/print/allow",null);
 }

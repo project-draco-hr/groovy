@@ -2,12 +2,18 @@
   if (!isSecurityAvailable()) {
     return;
   }
-  GroovyCodeSource gcs=null;
-  try {
-    gcs=new GroovyCodeSource(file);
+  AccessController.doPrivileged(new PrivilegedAction<Void>(){
+    @Override public Void run(){
+      GroovyCodeSource gcs=null;
+      try {
+        gcs=new GroovyCodeSource(file);
+      }
+ catch (      IOException fnfe) {
+        fail(fnfe.toString());
+      }
+      parseAndExecute(gcs,missingPermission);
+      return null;
+    }
   }
- catch (  IOException fnfe) {
-    fail(fnfe.toString());
-  }
-  parseAndExecute(gcs,missingPermission);
+);
 }
