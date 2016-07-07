@@ -1,0 +1,3 @@
+{
+  return new NumberRange(new Long(from),new Long(to));
+}

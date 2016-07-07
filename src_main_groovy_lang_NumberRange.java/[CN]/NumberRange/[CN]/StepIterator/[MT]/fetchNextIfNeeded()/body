@@ -1,0 +1,11 @@
+{
+  if (!isNextFetched) {
+    isNextFetched=true;
+    if (next == null) {
+      next=isAscending ? range.getFrom() : range.getTo();
+    }
+ else {
+      next=isAscending ? increment(next,step) : decrement(next,step);
+    }
+  }
+}

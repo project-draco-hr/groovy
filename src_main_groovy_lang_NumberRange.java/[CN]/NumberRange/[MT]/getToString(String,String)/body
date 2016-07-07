@@ -1,0 +1,5 @@
+{
+  String sep=inclusive ? ".." : "..<";
+  String base=reverse ? "" + toText + sep+ fromText : "" + fromText + sep+ toText;
+  return Integer.valueOf(1).equals(stepSize) ? base : base + ".by(" + stepSize+ ")";
+}

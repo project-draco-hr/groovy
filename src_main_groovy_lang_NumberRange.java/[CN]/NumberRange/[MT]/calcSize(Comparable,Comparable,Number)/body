@@ -1,0 +1,36 @@
+{
+  int tempsize=0;
+  boolean shortcut=false;
+  if (isIntegral(stepSize)) {
+    if ((from instanceof Integer || from instanceof Long) && (to instanceof Integer || to instanceof Long)) {
+      final BigInteger fromNum=new BigInteger(from.toString());
+      final BigInteger toTemp=new BigInteger(to.toString());
+      final BigInteger toNum=inclusive ? toTemp : toTemp.subtract(BigInteger.ONE);
+      final BigInteger sizeNum=new BigDecimal(toNum.subtract(fromNum)).divide(new BigDecimal(stepSize.longValue()),BigDecimal.ROUND_DOWN).toBigInteger().add(BigInteger.ONE);
+      tempsize=sizeNum.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) == -1 ? sizeNum.intValue() : Integer.MAX_VALUE;
+      shortcut=true;
+    }
+ else     if (((from instanceof BigDecimal || from instanceof BigInteger) && to instanceof Number) || ((to instanceof BigDecimal || to instanceof BigInteger) && from instanceof Number)) {
+      final BigDecimal fromNum=new BigDecimal(from.toString());
+      final BigDecimal toTemp=new BigDecimal(to.toString());
+      final BigDecimal toNum=inclusive ? toTemp : toTemp.subtract(new BigDecimal("1.0"));
+      final BigInteger sizeNum=toNum.subtract(fromNum).divide(new BigDecimal(stepSize.longValue()),BigDecimal.ROUND_DOWN).toBigInteger().add(BigInteger.ONE);
+      tempsize=sizeNum.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) == -1 ? sizeNum.intValue() : Integer.MAX_VALUE;
+      shortcut=true;
+    }
+  }
+  if (!shortcut) {
+    final Iterator iter=new StepIterator(this,stepSize);
+    while (iter.hasNext()) {
+      tempsize++;
+      if (tempsize < 0) {
+        break;
+      }
+      iter.next();
+    }
+    if (tempsize < 0) {
+      tempsize=Integer.MAX_VALUE;
+    }
+  }
+  size=tempsize;
+}

@@ -1,0 +1,6 @@
+{
+  if (!Integer.valueOf(1).equals(this.stepSize)) {
+    throw new IllegalStateException("by only allowed on ranges with original stepSize = 1 but found " + this.stepSize);
+  }
+  return new NumberRange(comparableNumber(from),comparableNumber(to),stepSize,inclusive);
+}

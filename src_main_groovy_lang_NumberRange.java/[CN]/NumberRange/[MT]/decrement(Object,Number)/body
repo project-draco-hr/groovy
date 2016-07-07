@@ -1,0 +1,3 @@
+{
+  return (Comparable)minus((Number)value,step);
+}

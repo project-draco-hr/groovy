@@ -1,0 +1,4 @@
+{
+  fetchNextIfNeeded();
+  return (next != null) && (isAscending ? (range.inclusive ? compareLessThanEqual(next,range.getTo()) : compareLessThan(next,range.getTo())) : (range.inclusive ? compareGreaterThanEqual(next,range.getFrom()) : compareGreaterThan(next,range.getFrom())));
+}

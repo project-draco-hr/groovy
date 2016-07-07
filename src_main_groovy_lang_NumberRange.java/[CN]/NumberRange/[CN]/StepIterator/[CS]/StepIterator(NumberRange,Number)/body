@@ -1,0 +1,14 @@
+{
+  if (compareEqual(step,0) && compareNotEqual(range.getFrom(),range.getTo())) {
+    throw new GroovyRuntimeException("Infinite loop detected due to step size of 0");
+  }
+  this.range=range;
+  if (compareLessThan(step,0)) {
+    this.step=multiply(step,-1);
+    isAscending=range.isReverse();
+  }
+ else {
+    this.step=step;
+    isAscending=!range.isReverse();
+  }
+}

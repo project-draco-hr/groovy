@@ -1,0 +1,29 @@
+{
+  if (fromIndex < 0) {
+    throw new IndexOutOfBoundsException("fromIndex = " + fromIndex);
+  }
+  if (fromIndex > toIndex) {
+    throw new IllegalArgumentException("fromIndex(" + fromIndex + ") > toIndex("+ toIndex+ ")");
+  }
+  if (fromIndex == toIndex) {
+    return new EmptyRange<Comparable>(from);
+  }
+  final Iterator<Comparable> iter=new StepIterator(this,stepSize);
+  Comparable value=iter.next();
+  int i=0;
+  for (; i < fromIndex; i++) {
+    if (!iter.hasNext()) {
+      throw new IndexOutOfBoundsException("Index: " + i + " is too big for range: "+ this);
+    }
+    value=iter.next();
+  }
+  final Comparable fromValue=value;
+  for (; i < toIndex - 1; i++) {
+    if (!iter.hasNext()) {
+      throw new IndexOutOfBoundsException("Index: " + i + " is too big for range: "+ this);
+    }
+    value=iter.next();
+  }
+  final Comparable toValue=value;
+  return new NumberRange(comparableNumber(fromValue),comparableNumber(toValue),comparableNumber(stepSize),true);
+}

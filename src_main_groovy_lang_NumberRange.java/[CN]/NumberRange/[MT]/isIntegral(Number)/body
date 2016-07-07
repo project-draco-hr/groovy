@@ -1,0 +1,4 @@
+{
+  BigDecimal tempStepSize=new BigDecimal(stepSize.toString());
+  return tempStepSize.equals(new BigDecimal(tempStepSize.toBigInteger()));
+}

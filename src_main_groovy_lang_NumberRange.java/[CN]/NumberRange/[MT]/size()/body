@@ -1,0 +1,6 @@
+{
+  if (size == -1) {
+    calcSize(from,to,stepSize);
+  }
+  return size;
+}

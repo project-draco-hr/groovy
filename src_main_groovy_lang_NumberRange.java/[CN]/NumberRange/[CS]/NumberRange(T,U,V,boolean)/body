@@ -1,0 +1,41 @@
+{
+  if (from == null) {
+    throw new IllegalArgumentException("Must specify a non-null value for the 'from' index in a Range");
+  }
+  if (to == null) {
+    throw new IllegalArgumentException("Must specify a non-null value for the 'to' index in a Range");
+  }
+  reverse=areReversed(from,to);
+  Number tempFrom;
+  Number tempTo;
+  if (reverse) {
+    tempFrom=to;
+    tempTo=from;
+  }
+ else {
+    tempFrom=from;
+    tempTo=to;
+  }
+  if (tempFrom instanceof Short) {
+    tempFrom=tempFrom.intValue();
+  }
+ else   if (tempFrom instanceof Float) {
+    tempFrom=tempFrom.doubleValue();
+  }
+  if (tempTo instanceof Short) {
+    tempTo=tempTo.intValue();
+  }
+ else   if (tempTo instanceof Float) {
+    tempTo=tempTo.doubleValue();
+  }
+  if (tempFrom instanceof Integer && tempTo instanceof Long) {
+    tempFrom=tempFrom.longValue();
+  }
+ else   if (tempTo instanceof Integer && tempFrom instanceof Long) {
+    tempTo=tempTo.longValue();
+  }
+  this.from=(Comparable)tempFrom;
+  this.to=(Comparable)tempTo;
+  this.stepSize=stepSize == null ? 1 : stepSize;
+  this.inclusive=inclusive;
+}

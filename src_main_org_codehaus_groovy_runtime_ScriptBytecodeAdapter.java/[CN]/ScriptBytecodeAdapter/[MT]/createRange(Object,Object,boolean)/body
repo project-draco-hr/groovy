@@ -6,10 +6,13 @@
       return new IntRange(inclusive,ifrom,ito);
     }
   }
+  if (!inclusive && compareEqual(from,to)) {
+    return new EmptyRange((Comparable)from);
+  }
+  if (from instanceof Number && to instanceof Number) {
+    return new NumberRange(comparableNumber((Number)from),comparableNumber((Number)to),inclusive);
+  }
   if (!inclusive) {
-    if (compareEqual(from,to)) {
-      return new EmptyRange((Comparable)from);
-    }
     if (compareGreaterThan(from,to)) {
       to=invokeMethod0(ScriptBytecodeAdapter.class,to,"next");
     }

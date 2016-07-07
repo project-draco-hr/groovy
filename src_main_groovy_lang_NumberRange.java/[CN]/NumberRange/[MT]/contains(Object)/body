@@ -1,0 +1,12 @@
+{
+  if (value == null) {
+    return false;
+  }
+  final Iterator it=new StepIterator(this,stepSize);
+  while (it.hasNext()) {
+    if (compareEqual(value,it.next())) {
+      return true;
+    }
+  }
+  return false;
+}

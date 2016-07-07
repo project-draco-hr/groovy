@@ -1,0 +1,14 @@
+{
+  if (index < 0) {
+    throw new IndexOutOfBoundsException("Index: " + index + " should not be negative");
+  }
+  final Iterator<Comparable> iter=new StepIterator(this,stepSize);
+  Comparable value=iter.next();
+  for (int i=0; i < index; i++) {
+    if (!iter.hasNext()) {
+      throw new IndexOutOfBoundsException("Index: " + index + " is too big for range: "+ this);
+    }
+    value=iter.next();
+  }
+  return value;
+}

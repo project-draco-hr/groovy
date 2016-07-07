@@ -1,0 +1,3 @@
+{
+  return new NumberRange((float)from,(float)to);
+}

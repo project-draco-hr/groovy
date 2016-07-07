@@ -1,0 +1,3 @@
+{
+  return new NumberRange(NumberRange.comparableNumber((Number)from),NumberRange.comparableNumber((Number)to),stepSize,inclusive);
+}

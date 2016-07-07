@@ -1,0 +1,6 @@
+{
+  if (hashCodeCache == null) {
+    hashCodeCache=super.hashCode();
+  }
+  return hashCodeCache;
+}

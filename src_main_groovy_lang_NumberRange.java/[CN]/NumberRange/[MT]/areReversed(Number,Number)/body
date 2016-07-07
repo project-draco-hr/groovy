@@ -1,0 +1,8 @@
+{
+  try {
+    return compareGreaterThan(from,to);
+  }
+ catch (  ClassCastException cce) {
+    throw new IllegalArgumentException("Unable to create range due to incompatible types: " + from.getClass().getSimpleName() + ".."+ to.getClass().getSimpleName()+ " (possible missing brackets around range?)",cce);
+  }
+}

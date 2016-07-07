@@ -1,0 +1,3 @@
+{
+  return that != null && reverse == that.reverse && inclusive == that.inclusive && compareEqual(from,that.from) && compareEqual(to,that.to) && compareEqual(stepSize,that.stepSize);
+}

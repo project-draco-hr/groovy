@@ -1,0 +1,5 @@
+{
+  final IteratorClosureAdapter<Comparable> adapter=new IteratorClosureAdapter<Comparable>(this);
+  step(numSteps,adapter);
+  return adapter.asList();
+}
