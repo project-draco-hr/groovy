@@ -6,7 +6,7 @@
     throw new IllegalArgumentException("fromIndex(" + fromIndex + ") > toIndex("+ toIndex+ ")");
   }
   if (fromIndex == toIndex) {
-    return new EmptyRange(from);
+    return new EmptyRange<Comparable>(from);
   }
   final StepIterator iter=new StepIterator(this,1);
   Object value=iter.next();
