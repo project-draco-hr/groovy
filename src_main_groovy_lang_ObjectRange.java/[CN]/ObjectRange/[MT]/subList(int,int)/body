@@ -8,22 +8,21 @@
   if (fromIndex == toIndex) {
     return new EmptyRange<Comparable>(from);
   }
-  final StepIterator iter=new StepIterator(this,1);
-  Object value=iter.next();
+  final Iterator<Comparable> iter=new StepIterator(this,1);
+  Comparable toValue=iter.next();
   int i=0;
   for (; i < fromIndex; i++) {
     if (!iter.hasNext()) {
       throw new IndexOutOfBoundsException("Index: " + i + " is too big for range: "+ this);
     }
-    value=iter.next();
+    toValue=iter.next();
   }
-  final Object fromValue=value;
+  final Comparable fromValue=toValue;
   for (; i < toIndex - 1; i++) {
     if (!iter.hasNext()) {
       throw new IndexOutOfBoundsException("Index: " + i + " is too big for range: "+ this);
     }
-    value=iter.next();
+    toValue=iter.next();
   }
-  final Object toValue=value;
-  return new ObjectRange((Comparable)fromValue,(Comparable)toValue,reverse);
+  return new ObjectRange(fromValue,toValue,reverse);
 }

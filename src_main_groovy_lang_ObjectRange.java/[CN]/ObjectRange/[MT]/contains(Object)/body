@@ -1,5 +1,5 @@
 {
-  final Iterator iter=new StepIterator(this,1);
+  final Iterator<Comparable> iter=new StepIterator(this,1);
   if (value == null) {
     return false;
   }

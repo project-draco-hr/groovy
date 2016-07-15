@@ -25,7 +25,7 @@
       }
     }
  else {
-      final Iterator iter=new StepIterator(this,1);
+      final Iterator<Comparable> iter=new StepIterator(this,1);
       while (iter.hasNext()) {
         tempsize++;
         if (tempsize < 0) {

@@ -2,7 +2,7 @@
   if (step == 0 && compareTo(from,to) == 0) {
     return;
   }
-  final StepIterator iter=new StepIterator(this,step);
+  final Iterator<Comparable> iter=new StepIterator(this,step);
   while (iter.hasNext()) {
     closure.call(iter.next());
   }
