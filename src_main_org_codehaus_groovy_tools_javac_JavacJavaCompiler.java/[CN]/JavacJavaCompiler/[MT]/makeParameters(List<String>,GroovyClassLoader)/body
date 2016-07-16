@@ -24,14 +24,13 @@
     }
   }
   if (!hadClasspath) {
-    StringBuilder resultPath=new StringBuilder(DefaultGroovyMethods.join((Iterable)config.getClasspath(),File.pathSeparator));
+    List<String> paths=new ArrayList<String>(config.getClasspath());
     ClassLoader cl=parentClassLoader;
     while (cl != null) {
       if (cl instanceof URLClassLoader) {
         for (        URL u : ((URLClassLoader)cl).getURLs()) {
           try {
-            resultPath.append(File.pathSeparator);
-            resultPath.append(new File(u.toURI()).getPath());
+            paths.add(new File(u.toURI()).getPath());
           }
  catch (          URISyntaxException e) {
           }
@@ -39,6 +38,20 @@
       }
       cl=cl.getParent();
     }
+    try {
+      CodeSource codeSource=AccessController.doPrivileged(new PrivilegedAction<CodeSource>(){
+        @Override public CodeSource run(){
+          return GroovyObject.class.getProtectionDomain().getCodeSource();
+        }
+      }
+);
+      if (codeSource != null) {
+        paths.add(new File(codeSource.getLocation().toURI()).getPath());
+      }
+    }
+ catch (    URISyntaxException e) {
+    }
+    StringBuilder resultPath=new StringBuilder(DefaultGroovyMethods.join((Iterable)paths,File.pathSeparator));
     paras.add("-classpath");
     paras.add(resultPath.toString());
   }
