@@ -38,7 +38,12 @@
     }
     if (!equalityCheckOnly || left.getClass().isAssignableFrom(right.getClass()) || (right.getClass() != Object.class && right.getClass().isAssignableFrom(left.getClass()))|| (left instanceof GString && right instanceof String)) {
       Comparable comparable=(Comparable)left;
-      return comparable.compareTo(right);
+      try {
+        return comparable.compareTo(right);
+      }
+ catch (      ClassCastException cce) {
+        if (!equalityCheckOnly)         throw cce;
+      }
     }
   }
   if (equalityCheckOnly) {
