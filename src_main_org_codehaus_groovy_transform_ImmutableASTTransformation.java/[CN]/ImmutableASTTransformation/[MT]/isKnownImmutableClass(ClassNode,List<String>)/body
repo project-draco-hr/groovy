@@ -1,5 +1,13 @@
 {
   if (inImmutableList(fieldType.getName()) || knownImmutableClasses.contains(fieldType.getName()))   return true;
   if (!fieldType.isResolved())   return false;
+  if ("java.util.Optional".equals(fieldType.getName()) && fieldType.getGenericsTypes() != null && fieldType.getGenericsTypes().length == 1) {
+    GenericsType optionalType=fieldType.getGenericsTypes()[0];
+    if (optionalType.isResolved() && !optionalType.isPlaceholder() && !optionalType.isWildcard()) {
+      String name=optionalType.getType().getName();
+      if (inImmutableList(name) || knownImmutableClasses.contains(name))       return true;
+      if (optionalType.getType().isEnum() || !optionalType.getType().getAnnotations(MY_TYPE).isEmpty())       return true;
+    }
+  }
   return fieldType.isEnum() || ClassHelper.isPrimitiveType(fieldType) || !fieldType.getAnnotations(MY_TYPE).isEmpty();
 }
