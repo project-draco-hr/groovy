@@ -1,0 +1,8 @@
+{
+  if (declaredVariables == Collections.EMPTY_MAP) {
+    return declaredVariables;
+  }
+ else {
+    return Collections.unmodifiableMap(declaredVariables);
+  }
+}
