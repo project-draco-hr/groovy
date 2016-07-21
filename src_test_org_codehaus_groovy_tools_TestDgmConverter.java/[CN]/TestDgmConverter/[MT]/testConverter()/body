@@ -11,7 +11,6 @@
     File file=files[i];
     final String name=file.getName();
     if (name.startsWith("dgm$")) {
-      System.out.println(name);
       final String className="org.codehaus.groovy.runtime." + name.substring(0,name.length() - ".class".length());
       try {
         Class cls=Class.forName(className,false,DefaultGroovyMethods.class.getClassLoader());

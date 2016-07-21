@@ -4,5 +4,4 @@
   NewInstanceMetaMethod metaMethod=createNewMetaMethod(method);
   Object answer=metaMethod.invoke("abc",new Object[]{"123"});
   assertEquals("abc123",answer);
-  System.out.println("Found: " + answer);
 }
