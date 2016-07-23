@@ -48,6 +48,10 @@
       method=null;
     }
   }
+  if (method == null && !isStatic && this.isMap) {
+    ((Map)object).put(name,newValue);
+    return;
+  }
   if (method == null && field != null) {
     if (Modifier.isFinal(field.getModifiers())) {
       throw new ReadOnlyPropertyException(name,theClass);
@@ -75,10 +79,6 @@
       arguments[1]=newValue;
     }
     method.doMethodInvoke(object,arguments);
-    return;
-  }
-  if (!isStatic && this.isMap) {
-    ((Map)object).put(name,newValue);
     return;
   }
   if (ambiguousListener) {
