@@ -36,7 +36,10 @@
  else     if (left instanceof String && right instanceof GString) {
       return ((String)left).compareTo(right.toString());
     }
-    if (!equalityCheckOnly || left.getClass().isAssignableFrom(right.getClass()) || (right.getClass() != Object.class && right.getClass().isAssignableFrom(left.getClass()))|| (left instanceof GString && right instanceof String)) {
+ else     if (left instanceof GString && right instanceof String) {
+      return ((GString)left).compareTo(right);
+    }
+    if (!equalityCheckOnly || left.getClass().isAssignableFrom(right.getClass()) || (right.getClass() != Object.class && right.getClass().isAssignableFrom(left.getClass()))) {
       Comparable comparable=(Comparable)left;
       try {
         return comparable.compareTo(right);
