@@ -4,12 +4,7 @@
     return false;
   }
   while (iter.hasNext()) {
-    try {
-      if (DefaultTypeTransformation.compareEqual(value,iter.next()))       return true;
-    }
- catch (    ClassCastException e) {
-      return false;
-    }
+    if (DefaultTypeTransformation.compareEqual(value,iter.next()))     return true;
   }
   return false;
 }
