@@ -1,5 +1,5 @@
 {
-  final Border border1=BorderFactory.createEmptyBorder();
+  final Border border=BorderFactory.createEmptyBorder();
   jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
   tokenPane.setEditable(false);
   tokenPane.setText("");
@@ -7,11 +7,13 @@
   scriptPane.setEditable(false);
   scriptPane.setMargin(new Insets(5,5,5,5));
   scriptPane.setText("");
-  jScrollPane1.setBorder(border1);
-  jScrollPane2.setBorder(border1);
+  jScrollPane1.setBorder(border);
+  jScrollPane2.setBorder(border);
   jSplitPane1.setMinimumSize(new Dimension(800,600));
   mainPanel.add(jSplitPane1,BorderLayout.CENTER);
-  mainPanel.add(jbutton,BorderLayout.NORTH);
+  if (reader == null) {
+    mainPanel.add(jbutton,BorderLayout.NORTH);
+  }
   this.getContentPane().add(mainPanel);
   jSplitPane1.add(jScrollPane1,JSplitPane.LEFT);
   jScrollPane1.getViewport().add(tokenPane,null);

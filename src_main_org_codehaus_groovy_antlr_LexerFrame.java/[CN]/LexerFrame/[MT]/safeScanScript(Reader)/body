@@ -1,0 +1,8 @@
+{
+  try {
+    scanScript(reader instanceof StringReader ? (StringReader)reader : new StringReader(IOGroovyMethods.getText(reader)));
+  }
+ catch (  final Exception ex) {
+    ex.printStackTrace();
+  }
+}

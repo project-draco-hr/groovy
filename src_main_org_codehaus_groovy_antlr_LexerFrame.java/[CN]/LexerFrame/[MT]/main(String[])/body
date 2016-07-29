@@ -4,5 +4,22 @@
   }
  catch (  Exception ignore) {
   }
-  new LexerFrame(GroovyLexer.class,GroovyTokenTypes.class).setVisible(true);
+  LexerFrame lexerFrame=null;
+  if (args.length == 0) {
+    lexerFrame=new LexerFrame(GroovyLexer.class,GroovyTokenTypes.class);
+  }
+ else   if (args.length > 1) {
+    System.err.println("usage: java LexerFrame [filename.ext]");
+    System.exit(1);
+  }
+ else {
+    String filename=args[0];
+    if (filename.endsWith(".java")) {
+      lexerFrame=new LexerFrame(JavaLexer.class,JavaTokenTypes.class,new FileReader(filename));
+    }
+ else {
+      lexerFrame=new LexerFrame(GroovyLexer.class,GroovyTokenTypes.class,new FileReader(filename));
+    }
+  }
+  lexerFrame.setVisible(true);
 }

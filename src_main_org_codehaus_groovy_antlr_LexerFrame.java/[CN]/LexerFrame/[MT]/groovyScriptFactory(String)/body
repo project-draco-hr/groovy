@@ -1,0 +1,3 @@
+{
+  return new LexerFrame(GroovyLexer.class,GroovyTokenTypes.class,new StringReader(scriptText));
+}

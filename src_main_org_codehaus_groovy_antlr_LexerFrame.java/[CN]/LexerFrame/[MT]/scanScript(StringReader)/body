@@ -1,8 +1,8 @@
 {
-  scriptPane.read(new FileReader(file),null);
-  final Constructor constructor=lexerClass.getConstructor(InputStream.class);
-  final FileInputStream fileInputStream=new FileInputStream(file);
-  final CharScanner lexer=(CharScanner)constructor.newInstance(fileInputStream);
+  scriptPane.read(reader,null);
+  reader.reset();
+  final Constructor constructor=lexerClass.getConstructor(Reader.class);
+  final CharScanner lexer=(CharScanner)constructor.newInstance(reader);
   tokenPane.setEditable(true);
   tokenPane.setText("");
   int line=1;
@@ -28,5 +28,5 @@
   }
   tokenPane.setEditable(false);
   tokenPane.setCaretPosition(0);
-  fileInputStream.close();
+  reader.close();
 }
