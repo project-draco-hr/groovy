@@ -18,9 +18,8 @@
   }
   if (value instanceof ArrayList) {
     List newlist=new ArrayList();
-    Iterator it=((ArrayList)value).iterator();
-    for (; it.hasNext(); ) {
-      newlist.add(bitwiseNegate(it.next()));
+    for (    Object o : ((ArrayList)value)) {
+      newlist.add(bitwiseNegate(o));
     }
     return newlist;
   }

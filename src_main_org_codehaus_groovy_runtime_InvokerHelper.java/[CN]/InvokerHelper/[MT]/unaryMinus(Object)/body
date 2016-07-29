@@ -31,9 +31,8 @@
   }
   if (value instanceof ArrayList) {
     List newlist=new ArrayList();
-    Iterator it=((ArrayList)value).iterator();
-    for (; it.hasNext(); ) {
-      newlist.add(unaryMinus(it.next()));
+    for (    Object o : ((ArrayList)value)) {
+      newlist.add(unaryMinus(o));
     }
     return newlist;
   }

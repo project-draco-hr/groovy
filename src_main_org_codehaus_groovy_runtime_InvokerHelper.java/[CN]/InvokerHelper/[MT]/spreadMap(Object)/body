@@ -2,9 +2,7 @@
   if (value instanceof Map) {
     Object[] values=new Object[((Map)value).keySet().size() * 2];
     int index=0;
-    Iterator it=((Map)value).keySet().iterator();
-    for (; it.hasNext(); ) {
-      Object key=it.next();
+    for (    Object key : ((Map)value).keySet()) {
       values[index++]=key;
       values[index++]=((Map)value).get(key);
     }

@@ -9,8 +9,9 @@
     return Arrays.asList((Object[])value);
   }
   if (value instanceof Enumeration) {
+    Enumeration e=(Enumeration)value;
     List answer=new ArrayList();
-    for (Enumeration e=(Enumeration)value; e.hasMoreElements(); ) {
+    while (e.hasMoreElements()) {
       answer.add(e.nextElement());
     }
     return answer;

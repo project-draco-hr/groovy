@@ -1,11 +1,11 @@
 {
-  if (collection == null) {
+  if (array == null) {
     return "null";
   }
   boolean first=true;
-  StringBuilder argBuf=new StringBuilder(collection.length);
+  StringBuilder argBuf=new StringBuilder(array.length);
   argBuf.append('[');
-  for (  Object item : collection) {
+  for (  Object item : array) {
     if (first) {
       first=false;
     }
@@ -16,8 +16,8 @@
       argBuf.append("...");
       break;
     }
-    if (item == collection) {
-      argBuf.append("(this Collection)");
+    if (item == array) {
+      argBuf.append("(this array)");
     }
  else {
       argBuf.append(format(item,verbose,sizeLeft(maxSize,argBuf),safe));

@@ -4,9 +4,8 @@
   }
   if (value instanceof ArrayList) {
     List newlist=new ArrayList();
-    Iterator it=((ArrayList)value).iterator();
-    for (; it.hasNext(); ) {
-      newlist.add(unaryPlus(it.next()));
+    for (    Object o : ((ArrayList)value)) {
+      newlist.add(unaryPlus(o));
     }
     return newlist;
   }
