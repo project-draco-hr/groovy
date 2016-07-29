@@ -14,7 +14,7 @@
       }
     }
 );
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
   }
  catch (  Exception e) {
     e.printStackTrace();

@@ -1,6 +1,5 @@
 {
-  border1=BorderFactory.createEmptyBorder();
-  border2=BorderFactory.createEmptyBorder();
+  final Border border1=BorderFactory.createEmptyBorder();
   jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
   tokenPane.setEditable(false);
   tokenPane.setText("");

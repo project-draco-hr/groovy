@@ -1,12 +1,13 @@
 {
   scriptPane.read(new FileReader(file),null);
-  Constructor constructor=lexerClass.getConstructor(new Class[]{InputStream.class});
-  CharScanner lexer=(CharScanner)constructor.newInstance(new Object[]{new FileInputStream(file)});
+  final Constructor constructor=lexerClass.getConstructor(InputStream.class);
+  final FileInputStream fileInputStream=new FileInputStream(file);
+  final CharScanner lexer=(CharScanner)constructor.newInstance(fileInputStream);
   tokenPane.setEditable(true);
   tokenPane.setText("");
   int line=1;
-  ButtonGroup bg=new ButtonGroup();
-  Token token=null;
+  final ButtonGroup bg=new ButtonGroup();
+  Token token;
   while (true) {
     token=lexer.nextToken();
     JToggleButton tokenButton=new JToggleButton((String)tokens.get(Integer.valueOf(token.getType())));
@@ -21,8 +22,11 @@
       line=token.getLine();
     }
     insertComponent(tokenButton);
-    if (token.getType() == Token.EOF_TYPE)     break;
+    if (token.getType() == Token.EOF_TYPE) {
+      break;
+    }
   }
   tokenPane.setEditable(false);
   tokenPane.setCaretPosition(0);
+  fileInputStream.close();
 }
