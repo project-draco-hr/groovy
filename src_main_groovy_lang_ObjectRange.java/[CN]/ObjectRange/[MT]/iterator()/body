@@ -1,15 +1,3 @@
 {
-  final Iterator<Comparable> innerIterator=new StepIterator(this,1);
-  return new Iterator<Comparable>(){
-    @Override public synchronized boolean hasNext(){
-      return innerIterator.hasNext();
-    }
-    @Override public synchronized Comparable next(){
-      return innerIterator.next();
-    }
-    @Override public synchronized void remove(){
-      innerIterator.remove();
-    }
-  }
-;
+  return new StepIterator(this,1);
 }
