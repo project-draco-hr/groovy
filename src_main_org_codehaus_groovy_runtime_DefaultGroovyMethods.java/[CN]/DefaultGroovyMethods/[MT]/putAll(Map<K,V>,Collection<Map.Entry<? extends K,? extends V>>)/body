@@ -1,5 +1,5 @@
 {
-  for (  Map.Entry<K,V> entry : entries) {
+  for (  Map.Entry<? extends K,? extends V> entry : entries) {
     self.put(entry.getKey(),entry.getValue());
   }
   return self;
