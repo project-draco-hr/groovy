@@ -5,9 +5,7 @@
     G key=outer.getKey();
     List<Map.Entry<K,V>> entries=outer.getValue();
     Map<K,V> target=createSimilarMap(self);
-    for (    Map.Entry<K,V> entry : entries) {
-      target.put(entry.getKey(),entry.getValue());
-    }
+    putAll(target,entries);
     answer.put(key,target);
   }
   return answer;

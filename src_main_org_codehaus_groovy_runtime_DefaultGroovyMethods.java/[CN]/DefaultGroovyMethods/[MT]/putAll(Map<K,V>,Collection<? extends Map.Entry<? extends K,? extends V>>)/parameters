@@ -1,0 +1,2 @@
+Map<K,V> self
+Collection<? extends Map.Entry<? extends K,? extends V>> entries
