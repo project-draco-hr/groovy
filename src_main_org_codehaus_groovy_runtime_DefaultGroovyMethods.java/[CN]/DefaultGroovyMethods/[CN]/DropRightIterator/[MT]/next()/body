@@ -1,0 +1,6 @@
+{
+  if (exhausted)   throw new NoSuchElementException();
+  E result=discards.removeFirst();
+  advance();
+  return result;
+}

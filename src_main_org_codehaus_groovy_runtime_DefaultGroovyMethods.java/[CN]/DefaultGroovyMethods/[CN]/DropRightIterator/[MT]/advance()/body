@@ -1,0 +1,8 @@
+{
+  while (discards.size() <= num && !exhausted) {
+    exhausted=!delegate.hasNext();
+    if (!exhausted) {
+      discards.add(delegate.next());
+    }
+  }
+}

@@ -1,4 +1,6 @@
 {
-  List<T> result=dropRight(toList(self),num);
-  return result.listIterator();
+  if (num <= 0) {
+    return self;
+  }
+  return new DropRightIterator<T>(self,num);
 }
