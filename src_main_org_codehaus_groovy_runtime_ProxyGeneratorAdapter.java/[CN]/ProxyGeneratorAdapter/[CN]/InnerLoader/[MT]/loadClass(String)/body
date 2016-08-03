@@ -4,7 +4,7 @@
   try {
     loadedClass=findClass(name);
   }
- catch (  ClassNotFoundException e) {
+ catch (  ClassNotFoundException ignore) {
   }
   if (loadedClass != null)   return loadedClass;
   ClassNotFoundException ex=null;
