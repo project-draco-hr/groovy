@@ -1,3 +1,3 @@
 {
-  return toList((Iterable<T>)unique(toList(self))).listIterator();
+  return uniqueItems(new IteratorIterableAdapter<T>(self)).listIterator();
 }
