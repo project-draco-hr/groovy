@@ -1,3 +1,4 @@
 {
-  return toList((Iterable<T>)unique(toList(self),closure)).listIterator();
+  Comparator<T> comparator=condition.getMaximumNumberOfParameters() == 1 ? new OrderBy<T>(condition,true) : new ClosureComparator<T>(condition);
+  return unique(self,comparator);
 }
