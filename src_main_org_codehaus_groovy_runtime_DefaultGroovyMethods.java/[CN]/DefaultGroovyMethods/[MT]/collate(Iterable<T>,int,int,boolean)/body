@@ -5,6 +5,7 @@
     answer.add(selfList);
   }
  else {
+    if (step == 0)     throw new IllegalArgumentException("step cannot be zero");
     for (int pos=0; pos < selfList.size() && pos > -1; pos+=step) {
       if (!keepRemainder && pos > selfList.size() - size) {
         break;
