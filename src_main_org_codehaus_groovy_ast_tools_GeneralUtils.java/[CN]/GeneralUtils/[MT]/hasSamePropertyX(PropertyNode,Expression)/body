@@ -1,4 +1,4 @@
 {
-  String getterName=getGetterName(pNode);
-  return sameX(callThisX(getterName),callX(other,getterName));
+  ClassNode cNode=pNode.getDeclaringClass();
+  return sameX(getterThisX(cNode,pNode),getterX(cNode,other,pNode));
 }
