@@ -18,7 +18,7 @@
  catch (  ClassCastException cce) {
   }
   try {
-    Class clazz=getScriptClass(script);
+    Class<?> clazz=getScriptClass(script);
     if (clazz == null)     throw new ScriptException("Script class is null");
     return eval(clazz,ctx);
   }

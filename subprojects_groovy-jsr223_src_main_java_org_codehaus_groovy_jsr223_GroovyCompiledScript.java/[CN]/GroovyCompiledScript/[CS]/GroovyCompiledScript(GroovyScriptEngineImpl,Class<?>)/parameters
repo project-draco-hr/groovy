@@ -1,2 +1,2 @@
 GroovyScriptEngineImpl engine
-Class clazz
+Class<?> clazz

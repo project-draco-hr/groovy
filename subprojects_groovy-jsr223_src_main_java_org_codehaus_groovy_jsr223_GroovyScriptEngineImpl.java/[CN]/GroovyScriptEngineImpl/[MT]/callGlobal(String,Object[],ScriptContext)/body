@@ -1,5 +1,5 @@
 {
-  Closure closure=globalClosures.get(name);
+  Closure<?> closure=globalClosures.get(name);
   if (closure != null) {
     return closure.call(args);
   }
