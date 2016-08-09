@@ -8,12 +8,8 @@
       writePowerCall(receiver,arguments,rType,aType);
       return true;
     }
- else     if ("mod".equals(message)) {
-      writeModCall(receiver,arguments,rType,aType);
-      return true;
-    }
- else     if ("rightShiftUnsigned".equals(message)) {
-      writeShiftOperatorCall(receiver,arguments,rType,aType);
+ else     if ("mod".equals(message) || "leftShift".equals(message) || "rightShift".equals(message)|| "rightShiftUnsigned".equals(message)) {
+      writeOperatorCall(receiver,arguments,message);
       return true;
     }
   }

@@ -1,4 +1,3 @@
 Expression receiver
 Expression arguments
-ClassNode rType
-ClassNode aType
+String operator
