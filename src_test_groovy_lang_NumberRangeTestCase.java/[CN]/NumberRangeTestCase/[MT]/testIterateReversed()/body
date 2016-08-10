@@ -1,0 +1,8 @@
+{
+  final Range range=createRange(5,1);
+  int next=5;
+  for (  Object value : range) {
+    assertEquals("wrong number",createValue(next--),value);
+  }
+  assertEquals("wrong number of elements in iteration",0,next);
+}
