@@ -1,0 +1,11 @@
+{
+  Expression result=null;
+  ImportNode importNode=importNodes.get(accessorName);
+  ClassNode importClass=importNode.getType();
+  String importMember=importNode.getFieldName();
+  result=findStaticPropertyAccessorByFullName(importClass,importMember);
+  if (result == null) {
+    result=findStaticPropertyAccessor(importClass,getPropNameForAccessor(importMember));
+  }
+  return result;
+}

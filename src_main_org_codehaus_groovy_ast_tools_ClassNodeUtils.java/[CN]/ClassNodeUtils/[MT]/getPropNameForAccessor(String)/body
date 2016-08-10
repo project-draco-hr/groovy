@@ -1,0 +1,5 @@
+{
+  if (!isValidAccessorName(accessorName))   return accessorName;
+  int prefixLength=accessorName.startsWith("is") ? 2 : 3;
+  return String.valueOf(accessorName.charAt(prefixLength)).toLowerCase() + accessorName.substring(prefixLength + 1);
+}

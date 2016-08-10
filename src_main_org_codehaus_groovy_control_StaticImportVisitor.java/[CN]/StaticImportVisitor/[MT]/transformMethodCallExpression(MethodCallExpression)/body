@@ -35,17 +35,32 @@
       ConstantExpression ce=(ConstantExpression)method;
       Object value=ce.getValue();
       if (value instanceof String) {
+        boolean foundInstanceMethod=false;
         String methodName=(String)value;
-        boolean lookForPossibleStaticMethod=!methodName.equals("call");
+        boolean inInnerClass=isInnerClass(currentClass);
         if (currentMethod != null && !currentMethod.isStatic()) {
           if (currentClass.hasPossibleMethod(methodName,args)) {
-            lookForPossibleStaticMethod=false;
+            foundInstanceMethod=true;
           }
         }
-        if (!inClosure && (inSpecialConstructorCall || (lookForPossibleStaticMethod && currentClass.hasPossibleStaticMethod(methodName,args)))) {
+        boolean lookForPossibleStaticMethod=!methodName.equals("call");
+        lookForPossibleStaticMethod&=!foundInstanceMethod;
+        lookForPossibleStaticMethod|=inSpecialConstructorCall;
+        lookForPossibleStaticMethod&=!inInnerClass;
+        if (!inClosure && lookForPossibleStaticMethod && (hasPossibleStaticMethod(currentClass,methodName,args,true)) || hasPossibleStaticProperty(currentClass,methodName)) {
           StaticMethodCallExpression smce=new StaticMethodCallExpression(currentClass,methodName,args);
           setSourcePosition(smce,mce);
           return smce;
+        }
+        if (!inClosure && inInnerClass && inSpecialConstructorCall&& mce.isImplicitThis()&& !foundInstanceMethod) {
+          if (currentClass.getOuterClass().hasPossibleMethod(methodName,args)) {
+            object=new PropertyExpression(new ClassExpression(currentClass.getOuterClass()),new ConstantExpression("this"));
+          }
+ else           if (hasPossibleStaticMethod(currentClass.getOuterClass(),methodName,args,true) || hasPossibleStaticProperty(currentClass.getOuterClass(),methodName)) {
+            StaticMethodCallExpression smce=new StaticMethodCallExpression(currentClass.getOuterClass(),methodName,args);
+            setSourcePosition(smce,mce);
+            return smce;
+          }
         }
       }
     }

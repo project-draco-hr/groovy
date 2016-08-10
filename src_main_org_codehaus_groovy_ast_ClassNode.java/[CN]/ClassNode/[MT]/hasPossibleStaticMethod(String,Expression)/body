@@ -1,29 +1,3 @@
 {
-  int count=0;
-  if (arguments instanceof TupleExpression) {
-    TupleExpression tuple=(TupleExpression)arguments;
-    count=tuple.getExpressions().size();
-  }
- else   if (arguments instanceof MapExpression) {
-    count=1;
-  }
-  for (  MethodNode method : getMethods(name)) {
-    if (method.isStatic()) {
-      Parameter[] parameters=method.getParameters();
-      if (parameters.length == count)       return true;
-      if (parameters.length > 0 && parameters[parameters.length - 1].getType().isArray()) {
-        if (count >= parameters.length - 1)         return true;
-      }
-      int nonDefaultParameters=0;
-      for (      Parameter parameter : parameters) {
-        if (!parameter.hasInitialExpression()) {
-          nonDefaultParameters++;
-        }
-      }
-      if (count < parameters.length && nonDefaultParameters <= count) {
-        return true;
-      }
-    }
-  }
-  return false;
+  return ClassNodeUtils.hasPossibleStaticMethod(this,name,arguments,false);
 }

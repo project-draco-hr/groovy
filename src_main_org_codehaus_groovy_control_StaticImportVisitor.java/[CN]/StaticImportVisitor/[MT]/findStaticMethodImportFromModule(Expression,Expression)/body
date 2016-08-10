@@ -16,15 +16,17 @@
       return new StaticMethodCallExpression(importNode.getType(),importNode.getFieldName(),args);
     }
   }
-  if (validPropName(name)) {
+  if (isValidAccessorName(name)) {
     String propName=getPropNameForAccessor(name);
     if (importNodes.containsKey(propName)) {
       ImportNode importNode=importNodes.get(propName);
-      expression=findStaticMethod(importNode.getType(),prefix(name) + capitalize(importNode.getFieldName()),args);
+      ClassNode importClass=importNode.getType();
+      String importMember=importNode.getFieldName();
+      expression=findStaticMethod(importClass,prefix(name) + capitalize(importMember),args);
       if (expression != null)       return expression;
-      expression=findStaticPropertyAccessorGivenArgs(importNode.getType(),importNode.getFieldName(),args);
+      expression=findStaticPropertyAccessorGivenArgs(importClass,importMember,args);
       if (expression != null) {
-        return new StaticMethodCallExpression(importNode.getType(),prefix(name) + capitalize(importNode.getFieldName()),args);
+        return new StaticMethodCallExpression(importClass,prefix(name) + capitalize(importMember),args);
       }
     }
   }

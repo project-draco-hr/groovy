@@ -1,0 +1,39 @@
+{
+  int count=0;
+  boolean foundSpread=false;
+  if (arguments instanceof TupleExpression) {
+    TupleExpression tuple=(TupleExpression)arguments;
+    for (    Expression arg : tuple.getExpressions()) {
+      if (arg instanceof SpreadExpression) {
+        foundSpread=true;
+      }
+ else {
+        count++;
+      }
+    }
+  }
+ else   if (arguments instanceof MapExpression) {
+    count=1;
+  }
+  for (  MethodNode method : cNode.getMethods(name)) {
+    if (method.isStatic()) {
+      Parameter[] parameters=method.getParameters();
+      if (trySpread && foundSpread && parameters.length >= count)       return true;
+      if (parameters.length == count)       return true;
+      if (parameters.length > 0 && parameters[parameters.length - 1].getType().isArray()) {
+        if (count >= parameters.length - 1)         return true;
+        if (trySpread && foundSpread)         return true;
+      }
+      int nonDefaultParameters=0;
+      for (      Parameter parameter : parameters) {
+        if (!parameter.hasInitialExpression()) {
+          nonDefaultParameters++;
+        }
+      }
+      if (count < parameters.length && nonDefaultParameters <= count) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

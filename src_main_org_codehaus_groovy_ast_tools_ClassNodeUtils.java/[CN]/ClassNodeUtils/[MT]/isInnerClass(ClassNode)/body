@@ -1,0 +1,3 @@
+{
+  return currentClass.getOuterClass() != null && !currentClass.isStaticClass();
+}

@@ -1,3 +1,0 @@
-{
-  return propName.startsWith("get") || propName.startsWith("is") || propName.startsWith("set");
-}

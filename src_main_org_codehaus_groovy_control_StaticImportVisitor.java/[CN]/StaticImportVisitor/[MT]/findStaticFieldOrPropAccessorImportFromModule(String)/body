@@ -5,19 +5,13 @@
   Expression expression;
   String accessorName=getAccessorName(name);
   if (importNodes.containsKey(accessorName)) {
-    ImportNode importNode=importNodes.get(accessorName);
-    expression=findStaticPropertyAccessorByFullName(importNode.getType(),importNode.getFieldName());
-    if (expression != null)     return expression;
-    expression=findStaticPropertyAccessor(importNode.getType(),getPropNameForAccessor(importNode.getFieldName()));
+    expression=findStaticProperty(importNodes,accessorName);
     if (expression != null)     return expression;
   }
   if (accessorName.startsWith("get")) {
     accessorName="is" + accessorName.substring(3);
     if (importNodes.containsKey(accessorName)) {
-      ImportNode importNode=importNodes.get(accessorName);
-      expression=findStaticPropertyAccessorByFullName(importNode.getType(),importNode.getFieldName());
-      if (expression != null)       return expression;
-      expression=findStaticPropertyAccessor(importNode.getType(),getPropNameForAccessor(importNode.getFieldName()));
+      expression=findStaticProperty(importNodes,accessorName);
       if (expression != null)       return expression;
     }
   }

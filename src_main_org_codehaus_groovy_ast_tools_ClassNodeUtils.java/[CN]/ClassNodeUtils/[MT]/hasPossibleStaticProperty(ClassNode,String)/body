@@ -1,0 +1,8 @@
+{
+  if (!methodName.startsWith("get") && !methodName.startsWith("is")) {
+    return false;
+  }
+  String propName=getPropNameForAccessor(methodName);
+  PropertyNode pNode=getStaticProperty(candidate,propName);
+  return pNode != null && (methodName.startsWith("get") || boolean_TYPE.equals(pNode.getType()));
+}
