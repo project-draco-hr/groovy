@@ -1,0 +1,10 @@
+{
+  ClassNode classNode=cNode;
+  while (classNode != null) {
+    for (    PropertyNode pn : classNode.getProperties()) {
+      if (pn.getName().equals(propName) && pn.isStatic())       return pn;
+    }
+    classNode=classNode.getSuperClass();
+  }
+  return null;
+}
