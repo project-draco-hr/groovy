@@ -1,5 +1,5 @@
 {
-  if (hasBounds(genericsType)) {
+  if (hasNonTrivialBounds(genericsType)) {
     if (genericsType.getLowerBound() != null)     return genericsType.getLowerBound();
     if (genericsType.getUpperBounds() != null)     return genericsType.getUpperBounds()[0];
   }

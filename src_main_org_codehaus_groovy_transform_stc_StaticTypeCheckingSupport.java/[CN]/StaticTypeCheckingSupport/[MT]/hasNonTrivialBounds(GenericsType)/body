@@ -1,0 +1,4 @@
+{
+  ClassNode[] upperBounds=gt.getUpperBounds();
+  return gt.getLowerBound() != null || gt.isWildcard() || (upperBounds != null && (upperBounds.length != 1 || upperBounds[0].isGenericsPlaceHolder() || !OBJECT_TYPE.equals(upperBounds[0])));
+}

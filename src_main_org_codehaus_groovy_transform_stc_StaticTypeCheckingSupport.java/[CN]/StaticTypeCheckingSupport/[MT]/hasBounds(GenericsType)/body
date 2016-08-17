@@ -1,3 +1,0 @@
-{
-  return gt.getLowerBound() != null || gt.getUpperBounds() != null;
-}

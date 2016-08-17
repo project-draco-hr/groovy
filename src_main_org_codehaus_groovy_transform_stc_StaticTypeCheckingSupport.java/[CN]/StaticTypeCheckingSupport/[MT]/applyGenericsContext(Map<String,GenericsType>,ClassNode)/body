@@ -8,7 +8,7 @@
   newBound.setGenericsTypes(applyGenericsContext(spec,bound.getGenericsTypes()));
   if (bound.isGenericsPlaceHolder()) {
     GenericsType[] gt=newBound.getGenericsTypes();
-    boolean hasBounds=hasBounds(gt[0]);
+    boolean hasBounds=hasNonTrivialBounds(gt[0]);
     if (hasBounds || !gt[0].isPlaceholder())     return getCombinedBoundType(gt[0]);
     String placeHolderName=newBound.getGenericsTypes()[0].getName();
     if (!placeHolderName.equals(newBound.getUnresolvedName())) {

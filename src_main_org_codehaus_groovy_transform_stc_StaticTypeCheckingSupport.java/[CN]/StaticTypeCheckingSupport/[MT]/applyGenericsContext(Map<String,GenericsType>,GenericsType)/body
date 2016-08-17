@@ -3,7 +3,7 @@
     String name=gt.getName();
     GenericsType specType=spec.get(name);
     if (specType != null)     return specType;
-    if (hasBounds(gt)) {
+    if (hasNonTrivialBounds(gt)) {
       GenericsType newGT=new GenericsType(gt.getType(),applyGenericsContext(spec,gt.getUpperBounds()),applyGenericsContext(spec,gt.getLowerBound()));
       newGT.setPlaceholder(true);
       return newGT;

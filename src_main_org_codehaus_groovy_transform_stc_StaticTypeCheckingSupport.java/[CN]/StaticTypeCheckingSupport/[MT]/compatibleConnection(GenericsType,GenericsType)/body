@@ -5,7 +5,7 @@
     return true;
   }
   ClassNode compareNode;
-  if (hasBounds(resolved)) {
+  if (hasNonTrivialBounds(resolved)) {
     compareNode=getCombinedBoundType(resolved);
     compareNode=compareNode.redirect().getPlainNodeReference();
   }

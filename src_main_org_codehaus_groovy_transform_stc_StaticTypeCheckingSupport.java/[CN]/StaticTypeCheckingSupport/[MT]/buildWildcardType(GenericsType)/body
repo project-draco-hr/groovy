@@ -1,6 +1,6 @@
 {
   ClassNode lowerBound=origin.getType().getPlainNodeReference();
-  if (hasBounds(origin)) {
+  if (hasNonTrivialBounds(origin)) {
     lowerBound.setGenericsTypes(new GenericsType[]{origin});
   }
   ClassNode base=makeWithoutCaching("?");
