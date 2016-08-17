@@ -1,6 +1,6 @@
 {
   if (UNKNOWN_PARAMETER_TYPE == argumentType) {
-    return !ClassHelper.isPrimitiveType(parameterType);
+    return !isPrimitiveType(parameterType);
   }
   if (!isAssignableTo(argumentType,parameterType) && !lastArg) {
     return false;

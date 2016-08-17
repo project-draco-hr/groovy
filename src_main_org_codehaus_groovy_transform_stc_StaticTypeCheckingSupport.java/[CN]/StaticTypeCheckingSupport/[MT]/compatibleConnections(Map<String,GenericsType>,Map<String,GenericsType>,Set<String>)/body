@@ -3,7 +3,7 @@
     GenericsType resolved=resolvedMethodGenerics.get(entry.getKey());
     if (resolved == null)     continue;
     GenericsType connection=entry.getValue();
-    if (connection.isPlaceholder() && connection.getUpperBounds() == null && connection.getLowerBound() == null) {
+    if (connection.isPlaceholder() && !hasBounds(connection)) {
       continue;
     }
     if (!compatibleConnection(resolved,connection)) {

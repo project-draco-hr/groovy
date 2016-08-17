@@ -1,7 +1,7 @@
 {
   List<MethodNode> result=null;
   for (  MethodNode method : cn.getDeclaredMethods(setterName)) {
-    if (setterName.equals(method.getName()) && (!voidOnly || ClassHelper.VOID_TYPE == method.getReturnType()) && method.getParameters().length == 1) {
+    if (setterName.equals(method.getName()) && (!voidOnly || VOID_TYPE == method.getReturnType()) && method.getParameters().length == 1) {
       if (result == null) {
         result=new LinkedList<MethodNode>();
       }

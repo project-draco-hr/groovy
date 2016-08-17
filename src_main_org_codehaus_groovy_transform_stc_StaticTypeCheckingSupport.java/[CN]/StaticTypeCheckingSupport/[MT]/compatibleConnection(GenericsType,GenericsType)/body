@@ -5,7 +5,7 @@
     return true;
   }
   ClassNode compareNode;
-  if (resolved.getLowerBound() != null || resolved.getUpperBounds() != null) {
+  if (hasBounds(resolved)) {
     compareNode=getCombinedBoundType(resolved);
     compareNode=compareNode.redirect().getPlainNodeReference();
   }

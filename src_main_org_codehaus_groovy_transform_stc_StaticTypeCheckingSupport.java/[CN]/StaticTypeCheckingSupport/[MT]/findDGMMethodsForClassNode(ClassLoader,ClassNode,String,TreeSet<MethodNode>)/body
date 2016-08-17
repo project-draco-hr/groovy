@@ -10,7 +10,7 @@
   }
   if (clazz.isArray()) {
     ClassNode componentClass=clazz.getComponentType();
-    if (!componentClass.equals(OBJECT_TYPE) && !ClassHelper.isPrimitiveType(componentClass)) {
+    if (!componentClass.equals(OBJECT_TYPE) && !isPrimitiveType(componentClass)) {
       if (componentClass.isInterface()) {
         findDGMMethodsForClassNode(loader,OBJECT_TYPE.makeArray(),name,accumulator);
       }
@@ -22,7 +22,7 @@
   if (clazz.getSuperClass() != null) {
     findDGMMethodsForClassNode(loader,clazz.getSuperClass(),name,accumulator);
   }
- else   if (!clazz.equals(ClassHelper.OBJECT_TYPE)) {
-    findDGMMethodsForClassNode(loader,ClassHelper.OBJECT_TYPE,name,accumulator);
+ else   if (!clazz.equals(OBJECT_TYPE)) {
+    findDGMMethodsForClassNode(loader,OBJECT_TYPE,name,accumulator);
   }
 }

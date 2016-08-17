@@ -3,14 +3,12 @@
     String name=gt.getName();
     GenericsType specType=spec.get(name);
     if (specType != null)     return specType;
-    if (gt.getLowerBound() != null || gt.getUpperBounds() != null) {
-      GenericsType newType=new GenericsType(gt.getType(),applyGenericsContext(spec,gt.getUpperBounds()),applyGenericsContext(spec,gt.getLowerBound()));
-      newType.setPlaceholder(true);
-      return newType;
+    if (hasBounds(gt)) {
+      GenericsType newGT=new GenericsType(gt.getType(),applyGenericsContext(spec,gt.getUpperBounds()),applyGenericsContext(spec,gt.getLowerBound()));
+      newGT.setPlaceholder(true);
+      return newGT;
     }
- else {
-      return gt;
-    }
+    return gt;
   }
  else   if (gt.isWildcard()) {
     GenericsType newGT=new GenericsType(gt.getType(),applyGenericsContext(spec,gt.getUpperBounds()),applyGenericsContext(spec,gt.getLowerBound()));

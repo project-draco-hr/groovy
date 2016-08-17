@@ -1,9 +1,9 @@
 {
   ClassNode lowerBound=origin.getType().getPlainNodeReference();
-  if (origin.getLowerBound() != null || origin.getUpperBounds() != null) {
+  if (hasBounds(origin)) {
     lowerBound.setGenericsTypes(new GenericsType[]{origin});
   }
-  ClassNode base=ClassHelper.makeWithoutCaching("?");
+  ClassNode base=makeWithoutCaching("?");
   GenericsType gt=new GenericsType(base,null,lowerBound);
   gt.setWildcard(true);
   return gt;

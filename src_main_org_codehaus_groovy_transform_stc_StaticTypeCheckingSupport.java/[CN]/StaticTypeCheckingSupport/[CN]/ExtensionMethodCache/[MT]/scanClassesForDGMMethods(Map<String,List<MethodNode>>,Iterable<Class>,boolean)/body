@@ -1,6 +1,6 @@
 {
   for (  Class dgmLikeClass : allClasses) {
-    ClassNode cn=ClassHelper.makeWithoutCaching(dgmLikeClass,true);
+    ClassNode cn=makeWithoutCaching(dgmLikeClass,true);
     for (    MethodNode metaMethod : cn.getMethods()) {
       Parameter[] types=metaMethod.getParameters();
       if (metaMethod.isStatic() && metaMethod.isPublic() && types.length > 0 && metaMethod.getAnnotations(Deprecated_TYPE).isEmpty()) {
