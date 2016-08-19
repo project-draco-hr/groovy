@@ -12,7 +12,9 @@
       continue;
     }
     if (methodName.startsWith("<"))     continue;
-    if (!useOnlyIfDeclaredHereToo.contains(new MopKey(methodName,mn.getParameters())))     continue;
+    if (!useOnlyIfDeclaredHereToo.contains(new MopKey(methodName,mn.getParameters())) && !orNameMentionedHere.contains(methodName)) {
+      continue;
+    }
     String name=getMopMethodName(mn,isThis);
     MopKey key=new MopKey(name,mn.getParameters());
     if (mops.containsKey(key))     continue;

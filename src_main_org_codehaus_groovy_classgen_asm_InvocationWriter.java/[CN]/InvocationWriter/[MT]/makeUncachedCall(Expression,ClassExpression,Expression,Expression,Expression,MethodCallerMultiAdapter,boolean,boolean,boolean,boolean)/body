@@ -9,6 +9,10 @@
  else {
     sender.visit(acg);
   }
+  String methodName=getMethodName(message);
+  if (adapter == invokeMethodOnSuper && methodName != null) {
+    controller.getSuperMethodNames().add(methodName);
+  }
   compileStack.pushImplicitThis(implicitThis);
   receiver.visit(acg);
   operandStack.box();

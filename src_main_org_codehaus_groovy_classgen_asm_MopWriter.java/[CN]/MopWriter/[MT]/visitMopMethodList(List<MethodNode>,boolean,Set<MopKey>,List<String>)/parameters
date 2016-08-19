@@ -1,3 +1,4 @@
 List<MethodNode> methods
 boolean isThis
 Set<MopKey> useOnlyIfDeclaredHereToo
+List<String> orNameMentionedHere

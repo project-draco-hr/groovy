@@ -4,6 +4,6 @@
     return;
   }
   Set<MopKey> currentClassSignatures=buildCurrentClassSignatureSet(classNode.getMethods());
-  visitMopMethodList(classNode.getMethods(),true,Collections.EMPTY_SET);
-  visitMopMethodList(classNode.getSuperClass().getAllDeclaredMethods(),false,currentClassSignatures);
+  visitMopMethodList(classNode.getMethods(),true,Collections.EMPTY_SET,Collections.EMPTY_LIST);
+  visitMopMethodList(classNode.getSuperClass().getAllDeclaredMethods(),false,currentClassSignatures,controller.getSuperMethodNames());
 }
