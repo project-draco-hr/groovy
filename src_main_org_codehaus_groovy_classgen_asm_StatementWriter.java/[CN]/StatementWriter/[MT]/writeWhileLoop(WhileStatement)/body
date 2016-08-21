@@ -6,10 +6,10 @@
   Label continueLabel=controller.getCompileStack().getContinueLabel();
   Label breakLabel=controller.getCompileStack().getBreakLabel();
   mv.visitLabel(continueLabel);
-  Expression bool=loop.getBooleanExpression();
+  BooleanExpression bool=loop.getBooleanExpression();
   boolean boolHandled=false;
-  if (bool instanceof ConstantExpression) {
-    ConstantExpression constant=(ConstantExpression)bool;
+  if (bool.getExpression() instanceof ConstantExpression) {
+    ConstantExpression constant=(ConstantExpression)bool.getExpression();
     if (constant.getValue() == Boolean.TRUE) {
       boolHandled=true;
     }
