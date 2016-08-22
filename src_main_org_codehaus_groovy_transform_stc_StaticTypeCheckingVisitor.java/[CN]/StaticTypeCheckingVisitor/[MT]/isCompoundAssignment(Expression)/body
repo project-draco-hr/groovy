@@ -1,0 +1,5 @@
+{
+  if (!(exp instanceof BinaryExpression))   return false;
+  int type=((BinaryExpression)exp).getOperation().getType();
+  return isAssignment(type) && type != ASSIGN;
+}

@@ -1,0 +1,6 @@
+{
+  if (!(exp instanceof BinaryExpression))   return null;
+  Token op=((BinaryExpression)exp).getOperation();
+  int typeWithoutEqual=TokenUtil.removeAssignment(op.getType());
+  return new Token(typeWithoutEqual,op.getText(),op.getStartLine(),op.getStartColumn());
+}

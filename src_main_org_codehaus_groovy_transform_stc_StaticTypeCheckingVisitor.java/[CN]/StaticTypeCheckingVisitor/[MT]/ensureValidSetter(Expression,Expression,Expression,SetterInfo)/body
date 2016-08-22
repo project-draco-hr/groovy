@@ -1,6 +1,7 @@
 {
   VariableExpression ve=new VariableExpression("%",setterInfo.receiverType);
-  MethodCallExpression call=new MethodCallExpression(ve,setterInfo.name,rightExpression);
+  final Expression newRightExpression=isCompoundAssignment(expression) ? new BinaryExpression(leftExpression,getOpWithoutEqual(expression),rightExpression) : rightExpression;
+  MethodCallExpression call=new MethodCallExpression(ve,setterInfo.name,newRightExpression);
   call.setImplicitThis(false);
   visitMethodCallExpression(call);
   MethodNode directSetterCandidate=call.getNodeMetaData(StaticTypesMarker.DIRECT_METHOD_CALL_TARGET);
@@ -8,7 +9,7 @@
     for (    MethodNode setter : setterInfo.setters) {
       ClassNode type=getWrapper(setter.getParameters()[0].getOriginType());
       if (Boolean_TYPE.equals(type) || STRING_TYPE.equals(type) || CLASS_Type.equals(type)) {
-        call=new MethodCallExpression(ve,setterInfo.name,new CastExpression(type,rightExpression));
+        call=new MethodCallExpression(ve,setterInfo.name,new CastExpression(type,newRightExpression));
         call.setImplicitThis(false);
         visitMethodCallExpression(call);
         directSetterCandidate=call.getNodeMetaData(StaticTypesMarker.DIRECT_METHOD_CALL_TARGET);
@@ -22,14 +23,14 @@
     for (    MethodNode setter : setterInfo.setters) {
       if (setter == directSetterCandidate) {
         leftExpression.putNodeMetaData(StaticTypesMarker.DIRECT_METHOD_CALL_TARGET,directSetterCandidate);
-        storeType(leftExpression,getType(rightExpression));
+        storeType(leftExpression,getType(newRightExpression));
         break;
       }
     }
   }
  else {
     ClassNode firstSetterType=setterInfo.setters.iterator().next().getParameters()[0].getOriginType();
-    addAssignmentError(firstSetterType,getType(rightExpression),expression);
+    addAssignmentError(firstSetterType,getType(newRightExpression),expression);
     return true;
   }
   return false;
