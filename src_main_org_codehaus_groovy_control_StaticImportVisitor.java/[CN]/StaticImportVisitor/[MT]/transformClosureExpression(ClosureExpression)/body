@@ -1,6 +1,13 @@
 {
   boolean oldInClosure=inClosure;
   inClosure=true;
+  if (ce.getParameters() != null) {
+    for (    Parameter p : ce.getParameters()) {
+      if (p.hasInitialExpression()) {
+        p.setInitialExpression(transform(p.getInitialExpression()));
+      }
+    }
+  }
   Statement code=ce.getCode();
   if (code != null)   code.visit(this);
   inClosure=oldInClosure;
