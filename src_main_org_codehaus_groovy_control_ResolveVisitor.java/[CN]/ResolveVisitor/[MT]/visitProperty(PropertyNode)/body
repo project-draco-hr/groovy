@@ -1,6 +1,11 @@
 {
+  Map<String,GenericsType> oldPNames=genericParameterNames;
+  if (node.isStatic()) {
+    genericParameterNames=new HashMap<String,GenericsType>();
+  }
   ClassNode t=node.getType();
   resolveOrFail(t,node);
   super.visitProperty(node);
   fieldTypesChecked.add(node.getField());
+  genericParameterNames=oldPNames;
 }

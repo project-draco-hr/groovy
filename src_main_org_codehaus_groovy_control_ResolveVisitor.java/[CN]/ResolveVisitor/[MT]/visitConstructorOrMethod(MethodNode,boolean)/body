@@ -2,7 +2,7 @@
   VariableScope oldScope=currentScope;
   currentScope=node.getVariableScope();
   Map<String,GenericsType> oldPNames=genericParameterNames;
-  genericParameterNames=new HashMap<String,GenericsType>(genericParameterNames);
+  genericParameterNames=node.isStatic() ? new HashMap<String,GenericsType>() : new HashMap<String,GenericsType>(genericParameterNames);
   resolveGenericsHeader(node.getGenericsTypes());
   Parameter[] paras=node.getParameters();
   for (  Parameter p : paras) {
