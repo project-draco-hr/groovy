@@ -5,14 +5,14 @@
   String getterName="get" + capitalize(name);
   String setterName="set" + capitalize(name);
   if ((propNodeModifiers & Modifier.VOLATILE) != 0) {
-    propNodeModifiers=propNodeModifiers - Modifier.VOLATILE;
+    propNodeModifiers-=Modifier.VOLATILE;
   }
   if ((propNodeModifiers & Modifier.TRANSIENT) != 0) {
-    propNodeModifiers=propNodeModifiers - Modifier.TRANSIENT;
+    propNodeModifiers-=Modifier.TRANSIENT;
   }
   Statement getterBlock=node.getGetterBlock();
   if (getterBlock == null) {
-    MethodNode getter=classNode.getGetterMethod(getterName);
+    MethodNode getter=classNode.getGetterMethod(getterName,!node.isStatic());
     if (getter == null && ClassHelper.boolean_TYPE == node.getType()) {
       String secondGetterName="is" + capitalize(name);
       getter=classNode.getGetterMethod(secondGetterName);
@@ -28,14 +28,18 @@
       setterBlock=createSetterBlock(node,field);
     }
   }
+  int getterModifiers=propNodeModifiers;
+  if (node.isStatic() && (propNodeModifiers & Modifier.FINAL) != 0) {
+    getterModifiers-=Modifier.FINAL;
+  }
   if (getterBlock != null) {
-    MethodNode getter=new MethodNode(getterName,propNodeModifiers,node.getType(),Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,getterBlock);
+    MethodNode getter=new MethodNode(getterName,getterModifiers,node.getType(),Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,getterBlock);
     getter.setSynthetic(true);
     addPropertyMethod(getter);
     visitMethod(getter);
     if (ClassHelper.boolean_TYPE == node.getType() || ClassHelper.Boolean_TYPE == node.getType()) {
       String secondGetterName="is" + capitalize(name);
-      MethodNode secondGetter=new MethodNode(secondGetterName,propNodeModifiers,node.getType(),Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,getterBlock);
+      MethodNode secondGetter=new MethodNode(secondGetterName,getterModifiers,node.getType(),Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,getterBlock);
       secondGetter.setSynthetic(true);
       addPropertyMethod(secondGetter);
       visitMethod(secondGetter);

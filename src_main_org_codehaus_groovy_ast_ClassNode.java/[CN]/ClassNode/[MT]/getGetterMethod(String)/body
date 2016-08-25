@@ -1,14 +1,3 @@
 {
-  MethodNode getterMethod=null;
-  for (  MethodNode method : getDeclaredMethods(getterName)) {
-    if (getterName.equals(method.getName()) && ClassHelper.VOID_TYPE != method.getReturnType() && method.getParameters().length == 0) {
-      if (getterMethod == null || getterMethod.isSynthetic()) {
-        getterMethod=method;
-      }
-    }
-  }
-  if (getterMethod != null)   return getterMethod;
-  ClassNode parent=getSuperClass();
-  if (parent != null)   return parent.getGetterMethod(getterName);
-  return null;
+  return getGetterMethod(getterName,true);
 }
