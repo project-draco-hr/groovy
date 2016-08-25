@@ -1,0 +1,8 @@
+{
+  for (ComplexKeyHashMap.EntryIterator iter=from.getEntrySetIterator(); iter.hasNext(); ) {
+    SingleKeyHashMap.Entry entry=(SingleKeyHashMap.Entry)iter.next();
+    CachedField mfp=(CachedField)entry.getValue();
+    if (!inheritedOrPublic(mfp) && !packageLocal(mfp,klass))     continue;
+    to.put(entry.getKey(),mfp);
+  }
+}

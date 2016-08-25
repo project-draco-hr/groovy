@@ -1,0 +1,6 @@
+{
+  if ((mfp.getModifiers() & (Modifier.PRIVATE | Modifier.PUBLIC | Modifier.PROTECTED)) != 0 || klass == null)   return false;
+  Package fieldPackage=mfp.field.getDeclaringClass().getPackage();
+  Package classPackage=klass.getTheClass().getPackage();
+  return (fieldPackage == null && classPackage == null) || fieldPackage != null && classPackage != null && fieldPackage.getName().equals(classPackage.getName());
+}

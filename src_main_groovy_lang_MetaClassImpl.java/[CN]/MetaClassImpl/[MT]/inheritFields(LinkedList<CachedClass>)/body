@@ -3,7 +3,7 @@
   for (  CachedClass klass : superClasses) {
     SingleKeyHashMap propertyIndex=classPropertyIndex.getNotNull(klass);
     if (last != null) {
-      copyNonPrivateFields(last,propertyIndex);
+      copyNonPrivateFields(last,propertyIndex,klass);
     }
     last=propertyIndex;
     addFields(klass,propertyIndex);
