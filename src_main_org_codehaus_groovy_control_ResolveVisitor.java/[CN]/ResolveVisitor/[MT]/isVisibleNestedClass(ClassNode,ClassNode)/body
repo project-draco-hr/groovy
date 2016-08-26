@@ -1,0 +1,8 @@
+{
+  if (!type.isRedirectNode())   return false;
+  ClassNode redirect=type.redirect();
+  if (Modifier.isPublic(redirect.getModifiers()) || Modifier.isProtected(redirect.getModifiers()))   return true;
+  PackageNode classPackage=ceType.getPackage();
+  PackageNode nestedPackage=redirect.getPackage();
+  return (redirect.getModifiers() & (Modifier.PROTECTED | Modifier.PUBLIC | Modifier.PRIVATE)) == 0 && ((classPackage == null && nestedPackage == null) || classPackage != null && nestedPackage != null && classPackage.getName().equals(nestedPackage.getName()));
+}
