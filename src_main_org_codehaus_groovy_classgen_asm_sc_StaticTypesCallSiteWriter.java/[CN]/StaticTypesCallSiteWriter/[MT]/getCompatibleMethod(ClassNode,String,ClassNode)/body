@@ -1,0 +1,11 @@
+{
+  for (  MethodNode methodNode : current.getDeclaredMethods("getAt")) {
+    if (methodNode.getParameters().length == 1) {
+      ClassNode paramType=methodNode.getParameters()[0].getType();
+      if (aType.isDerivedFrom(paramType) || aType.declaresInterface(paramType)) {
+        return methodNode;
+      }
+    }
+  }
+  return null;
+}
