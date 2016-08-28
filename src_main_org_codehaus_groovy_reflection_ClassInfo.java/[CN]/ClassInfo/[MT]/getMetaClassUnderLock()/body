@@ -7,7 +7,7 @@
   if (isValidWeakMetaClass(answer,mccHandle)) {
     return answer;
   }
-  answer=mccHandle.create(klazz,metaClassRegistry);
+  answer=mccHandle.create(klazz.get(),metaClassRegistry);
   answer.initialize();
   if (GroovySystem.isKeepJavaMetaClasses()) {
     setStrongMetaClass(answer);

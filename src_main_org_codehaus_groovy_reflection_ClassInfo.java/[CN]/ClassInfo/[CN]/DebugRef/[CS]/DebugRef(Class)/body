@@ -1,5 +1,0 @@
-{
-  super(softBundle,klazz);
-  name=klazz == null ? "<null>" : klazz.getName();
-  count.incrementAndGet();
-}

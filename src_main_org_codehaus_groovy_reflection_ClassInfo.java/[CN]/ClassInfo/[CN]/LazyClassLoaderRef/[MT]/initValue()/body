@@ -1,3 +1,3 @@
 {
-  return new ClassLoaderForClassArtifacts(info.klazz);
+  return new ClassLoaderForClassArtifacts(info.klazz.get());
 }

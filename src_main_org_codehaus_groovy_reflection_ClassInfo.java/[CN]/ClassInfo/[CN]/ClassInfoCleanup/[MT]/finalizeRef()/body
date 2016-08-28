@@ -1,6 +1,0 @@
-{
-  ClassInfo classInfo=get();
-  classInfo.setStrongMetaClass(null);
-  classInfo.cachedClassRef.clear();
-  classInfo.artifactClassLoader.clear();
-}

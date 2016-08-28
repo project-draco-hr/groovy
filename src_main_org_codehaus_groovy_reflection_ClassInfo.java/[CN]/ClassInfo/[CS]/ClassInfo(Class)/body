@@ -1,7 +1,5 @@
 {
-  this.klazz=klazz;
-  if (ClassInfo.DebugRef.debug)   new DebugRef(klazz);
-  new ClassInfoCleanup(this);
+  this.klazz=new WeakReference<Class<?>>(klazz);
   cachedClassRef=new LazyCachedClassRef(softBundle,this);
   artifactClassLoader=new LazyClassLoaderRef(softBundle,this);
 }

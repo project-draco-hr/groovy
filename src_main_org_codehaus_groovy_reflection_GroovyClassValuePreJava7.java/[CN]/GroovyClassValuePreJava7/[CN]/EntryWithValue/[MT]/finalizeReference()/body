@@ -1,0 +1,7 @@
+{
+  T value=getValue();
+  if (value instanceof Finalizable) {
+    ((Finalizable)value).finalizeReference();
+  }
+  super.finalizeReference();
+}
