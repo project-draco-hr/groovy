@@ -19,6 +19,9 @@
       if (exp instanceof MethodCallExpression) {
         return transformMethodCallExpression(exp);
       }
+      if (exp instanceof ClosureExpression) {
+        return transformClosureExpression((ClosureExpression)exp);
+      }
       return super.transform(exp);
     }
     @Override public void visitClass(    ClassNode node){
@@ -33,6 +36,13 @@
         logNode=loggingStrategy.addLoggerFieldToClass(node,logFieldName,categoryName);
       }
       super.visitClass(node);
+    }
+    private Expression transformClosureExpression(    ClosureExpression exp){
+      if (exp.getCode() instanceof BlockStatement) {
+        BlockStatement code=(BlockStatement)exp.getCode();
+        super.visitBlockStatement(code);
+      }
+      return exp;
     }
     private Expression transformMethodCallExpression(    Expression exp){
       MethodCallExpression mce=(MethodCallExpression)exp;
