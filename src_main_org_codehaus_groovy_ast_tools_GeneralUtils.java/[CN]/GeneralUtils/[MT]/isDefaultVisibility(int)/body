@@ -1,0 +1,3 @@
+{
+  return (modifiers & (Modifier.PRIVATE | Modifier.PUBLIC | Modifier.PROTECTED)) == 0;
+}

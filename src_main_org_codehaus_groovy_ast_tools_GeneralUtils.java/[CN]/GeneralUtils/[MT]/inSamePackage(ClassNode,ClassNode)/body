@@ -1,0 +1,5 @@
+{
+  PackageNode firstPackage=first.getPackage();
+  PackageNode secondPackage=second.getPackage();
+  return ((firstPackage == null && secondPackage == null) || firstPackage != null && secondPackage != null && firstPackage.getName().equals(secondPackage.getName()));
+}
