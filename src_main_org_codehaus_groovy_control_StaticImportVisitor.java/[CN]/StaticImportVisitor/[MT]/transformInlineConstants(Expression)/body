@@ -5,7 +5,7 @@
       ClassExpression ce=(ClassExpression)pe.getObjectExpression();
       ClassNode type=ce.getType();
       if (type.isEnum())       return exp;
-      Expression constant=findConstant(type.getField(pe.getPropertyAsString()));
+      Expression constant=findConstant(getField(type,pe.getPropertyAsString()));
       if (constant != null)       return constant;
     }
   }

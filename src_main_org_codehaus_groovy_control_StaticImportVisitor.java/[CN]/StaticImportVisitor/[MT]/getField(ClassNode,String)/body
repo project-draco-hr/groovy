@@ -1,0 +1,17 @@
+{
+  ClassNode node=classNode;
+  Set<String> visited=new HashSet<String>();
+  while (node != null) {
+    FieldNode fn=node.getDeclaredField(fieldName);
+    if (fn != null)     return fn;
+    ClassNode[] interfaces=node.getInterfaces();
+    for (    ClassNode iNode : interfaces) {
+      if (visited.contains(iNode.getName()))       continue;
+      FieldNode ifn=getField(iNode,fieldName);
+      visited.add(iNode.getName());
+      if (ifn != null)       return ifn;
+    }
+    node=node.getSuperClass();
+  }
+  return null;
+}
