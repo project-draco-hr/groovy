@@ -1,19 +1,40 @@
 {
-  if (visit == OPENING_VISIT && !insideAnonymousInnerClass() && isFieldDefinition()) {
+  if (visit == OPENING_VISIT && !insideAnonymousInnerClass()) {
+    boolean validField=true;
     SimpleGroovyClassDoc currentClassDoc=getCurrentClassDoc();
-    if (currentClassDoc != null) {
-      String fieldName=getIdentFor(t);
-      currentFieldDoc=new SimpleGroovyFieldDoc(fieldName,currentClassDoc);
-      currentFieldDoc.setRawCommentText(getJavaDocCommentsBeforeNode(t));
-      boolean isProp=processModifiers(t,currentFieldDoc);
-      currentFieldDoc.setType(new SimpleGroovyType(getTypeOrDefault(t)));
-      processAnnotations(t,currentFieldDoc);
-      if (isProp) {
-        currentClassDoc.addProperty(currentFieldDoc);
+    if (currentClassDoc == null) {
+      if ("true".equals(properties.getProperty("processScripts","true"))) {
+        currentClassDoc=getOrMakeScriptClassDoc();
+        validField=false;
       }
  else {
-        currentClassDoc.add(currentFieldDoc);
+        return;
       }
+    }
+ else     if (!isFieldDefinition()) {
+      return;
+    }
+    String fieldName=getIdentFor(t);
+    if (fieldName.isEmpty())     return;
+    currentFieldDoc=new SimpleGroovyFieldDoc(fieldName,currentClassDoc);
+    currentFieldDoc.setRawCommentText(getJavaDocCommentsBeforeNode(t));
+    boolean isProp=processModifiers(t,currentFieldDoc);
+    currentFieldDoc.setType(new SimpleGroovyType(getTypeOrDefault(t)));
+    processAnnotations(t,currentFieldDoc);
+    if (!validField) {
+      for (      GroovyAnnotationRef ref : currentFieldDoc.annotations()) {
+        if ("Field".equals(ref.name()) || "groovy/transform/Field".equals(ref.name())) {
+          validField=true;
+          break;
+        }
+      }
+    }
+    if (!validField)     return;
+    if (isProp) {
+      currentClassDoc.addProperty(currentFieldDoc);
+    }
+ else {
+      currentClassDoc.add(currentFieldDoc);
     }
   }
 }

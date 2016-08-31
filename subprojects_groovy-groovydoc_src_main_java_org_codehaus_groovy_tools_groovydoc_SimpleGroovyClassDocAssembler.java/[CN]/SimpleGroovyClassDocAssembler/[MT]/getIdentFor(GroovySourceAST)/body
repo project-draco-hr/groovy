@@ -1,3 +1,4 @@
 {
-  return gpn.childOfType(IDENT).getText();
+  GroovySourceAST ident=gpn.childOfType(IDENT);
+  return ident == null ? "" : ident.getText();
 }

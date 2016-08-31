@@ -1,5 +1,5 @@
 {
-  GroovySourceAST classNode=t.childOfType(IDENT);
+  GroovySourceAST classNode=getPackageDotType(t);
   if (classNode != null) {
     node.addAnnotationRef(new SimpleGroovyAnnotationRef(extractName(classNode),getChildTextFromSource(t).trim()));
   }

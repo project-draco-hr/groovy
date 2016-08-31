@@ -3,20 +3,7 @@
     SimpleGroovyClassDoc currentClassDoc=getCurrentClassDoc();
     if (currentClassDoc == null) {
       if ("true".equals(properties.getProperty("processScripts","true"))) {
-        currentClassDoc=new SimpleGroovyClassDoc(importedClassesAndPackages,aliases,className,links);
-        currentClassDoc.setFullPathName(packagePath + FS + className);
-        currentClassDoc.setPublic(true);
-        currentClassDoc.setScript(true);
-        currentClassDoc.setGroovy(isGroovy);
-        currentClassDoc.setSuperClassName("groovy/lang/Script");
-        if ("true".equals(properties.getProperty("includeMainForScripts","true"))) {
-          currentClassDoc.add(createMainMethod(currentClassDoc));
-        }
-        classDocs.put(currentClassDoc.getFullPathName(),currentClassDoc);
-        if (foundClasses == null) {
-          foundClasses=new HashMap<String,SimpleGroovyClassDoc>();
-        }
-        foundClasses.put(className,currentClassDoc);
+        currentClassDoc=getOrMakeScriptClassDoc();
       }
  else {
         return;
