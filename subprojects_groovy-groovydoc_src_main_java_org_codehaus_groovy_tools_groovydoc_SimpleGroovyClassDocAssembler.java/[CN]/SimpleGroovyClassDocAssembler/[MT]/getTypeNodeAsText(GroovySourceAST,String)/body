@@ -19,7 +19,15 @@
     if (next.getType() == TYPE_LOWER_BOUNDS)     return "? super " + boundType;
   }
  else   if (typeNode.getType() == IDENT) {
-    return getAsTextCurrent(typeNode,defaultText);
+    String ident=getAsTextCurrent(typeNode,defaultText);
+    AST next=typeNode.getNextSibling();
+    if (next == null && typeNode.getFirstChild() != null) {
+      next=typeNode.getFirstChild();
+    }
+    if (next == null)     return ident;
+    String boundType=getTypeNodeAsText((GroovySourceAST)next.getFirstChild(),defaultText);
+    if (next.getType() == TYPE_UPPER_BOUNDS)     return ident + " extends " + boundType;
+    if (next.getType() == TYPE_LOWER_BOUNDS)     return ident + " super " + boundType;
   }
   return defaultText;
 }

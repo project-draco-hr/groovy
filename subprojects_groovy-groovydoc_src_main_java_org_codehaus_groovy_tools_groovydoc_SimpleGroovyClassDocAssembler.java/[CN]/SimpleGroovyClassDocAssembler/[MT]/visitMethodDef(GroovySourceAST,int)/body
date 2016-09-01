@@ -10,6 +10,9 @@
       }
     }
     SimpleGroovyMethodDoc currentMethodDoc=createMethod(t,currentClassDoc);
+    StringBuilder params=new StringBuilder();
+    getTypeParameters(t.childOfType(TYPE_PARAMETERS),params,"def");
+    currentMethodDoc.setTypeParameters(params.toString());
     currentClassDoc.add(currentMethodDoc);
   }
 }
