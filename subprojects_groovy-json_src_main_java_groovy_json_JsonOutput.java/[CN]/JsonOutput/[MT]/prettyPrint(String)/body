@@ -1,6 +1,6 @@
 {
   int indentSize=0;
-  final CharBuf output=CharBuf.create((int)(jsonPayload.length() * 0.2));
+  final CharBuf output=CharBuf.create((int)(jsonPayload.length() * 1.2));
   JsonLexer lexer=new JsonLexer(new StringReader(jsonPayload));
   Map<Integer,char[]> indentCache=new HashMap<Integer,char[]>();
   while (lexer.hasNext()) {
