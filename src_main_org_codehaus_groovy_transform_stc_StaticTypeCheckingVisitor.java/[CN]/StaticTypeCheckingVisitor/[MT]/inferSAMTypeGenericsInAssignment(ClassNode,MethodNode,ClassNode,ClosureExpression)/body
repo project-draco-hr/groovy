@@ -3,7 +3,7 @@
   GenericsType[] closureGt=closureType.getGenericsTypes();
   if (samGt == null || closureGt == null)   return samUsage;
   Map<String,GenericsType> connections=new HashMap<String,GenericsType>();
-  extractGenericsConnections(connections,closureType,sam.getReturnType());
+  extractGenericsConnections(connections,getInferredReturnType(closureExpression),sam.getReturnType());
   Parameter[] closureParams=closureExpression.getParameters();
   Parameter[] methodParams=sam.getParameters();
   for (int i=0; i < closureParams.length; i++) {
