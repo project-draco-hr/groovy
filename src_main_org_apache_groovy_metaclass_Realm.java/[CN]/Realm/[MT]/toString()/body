@@ -1,0 +1,3 @@
+{
+  return "Realm{" + "name='" + name + '\''+ ", parent="+ parent+ '}';
+}
