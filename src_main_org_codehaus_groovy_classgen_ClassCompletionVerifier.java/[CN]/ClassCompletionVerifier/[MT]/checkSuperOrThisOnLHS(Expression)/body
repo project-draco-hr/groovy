@@ -1,0 +1,10 @@
+{
+  if (!(expression instanceof VariableExpression))   return;
+  VariableExpression ve=(VariableExpression)expression;
+  if (ve.isThisExpression()) {
+    addError("cannot have 'this' as LHS of an assignment",expression);
+  }
+ else   if (ve.isSuperExpression()) {
+    addError("cannot have 'super' as LHS of an assignment",expression);
+  }
+}

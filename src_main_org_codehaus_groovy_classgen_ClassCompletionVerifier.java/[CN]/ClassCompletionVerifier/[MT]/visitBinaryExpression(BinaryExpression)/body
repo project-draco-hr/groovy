@@ -19,7 +19,8 @@ case Types.LEFT_SHIFT_EQUAL:
 case Types.RIGHT_SHIFT_EQUAL:
 case Types.RIGHT_SHIFT_UNSIGNED_EQUAL:
     checkFinalFieldAccess(expression.getLeftExpression());
-  break;
+  checkSuperOrThisOnLHS(expression.getLeftExpression());
+break;
 default :
 break;
 }
