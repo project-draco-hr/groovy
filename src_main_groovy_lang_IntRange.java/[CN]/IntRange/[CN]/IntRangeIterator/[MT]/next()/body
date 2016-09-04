@@ -1,6 +1,6 @@
 {
   if (!hasNext()) {
-    return null;
+    throw new NoSuchElementException();
   }
   if (index++ > 0) {
     if (isReverse()) {
