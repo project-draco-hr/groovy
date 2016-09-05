@@ -14,7 +14,7 @@
       }
     }
     if (parentToCompare == ClassHelper.OBJECT_TYPE)     return;
-    checkCyclicInheritence(originalNode,parentToCompare.getUnresolvedSuperClass(),null);
+    checkCyclicInheritance(originalNode,parentToCompare.getUnresolvedSuperClass(),null);
   }
  else {
     if (interfacesToCompare != null && interfacesToCompare.length > 0) {
@@ -25,7 +25,7 @@
         }
       }
       for (      ClassNode intf : interfacesToCompare) {
-        checkCyclicInheritence(originalNode,null,intf.getInterfaces());
+        checkCyclicInheritance(originalNode,null,intf.getInterfaces());
       }
     }
  else {

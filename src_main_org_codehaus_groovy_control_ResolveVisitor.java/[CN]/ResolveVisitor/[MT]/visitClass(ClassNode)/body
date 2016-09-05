@@ -50,7 +50,7 @@
   for (  ClassNode anInterface : node.getInterfaces()) {
     resolveOrFail(anInterface,node,true);
   }
-  checkCyclicInheritence(node,node.getUnresolvedSuperClass(),node.getInterfaces());
+  checkCyclicInheritance(node,node.getUnresolvedSuperClass(),node.getInterfaces());
   super.visitClass(node);
   currentClass=oldNode;
 }
