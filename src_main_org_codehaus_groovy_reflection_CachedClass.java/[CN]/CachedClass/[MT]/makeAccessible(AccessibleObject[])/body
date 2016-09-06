@@ -1,0 +1,18 @@
+{
+  try {
+    AccessibleObject.setAccessible(aoa,true);
+    return aoa;
+  }
+ catch (  Throwable outer) {
+    final ArrayList<AccessibleObject> ret=new ArrayList<>(aoa.length);
+    for (    final AccessibleObject ao : aoa) {
+      try {
+        ao.setAccessible(true);
+        ret.add(ao);
+      }
+ catch (      Throwable inner) {
+      }
+    }
+    return ret.toArray((AccessibleObject[])Array.newInstance(aoa.getClass().getComponentType(),ret.size()));
+  }
+}
