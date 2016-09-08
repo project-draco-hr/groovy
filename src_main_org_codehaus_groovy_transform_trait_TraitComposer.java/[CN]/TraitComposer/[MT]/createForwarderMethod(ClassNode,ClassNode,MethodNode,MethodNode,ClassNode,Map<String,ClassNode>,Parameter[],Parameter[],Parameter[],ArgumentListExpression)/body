@@ -4,7 +4,8 @@
   genericsSpec=GenericsUtils.addMethodGenerics(helperMethod,genericsSpec);
   ClassNode[] exceptionNodes=correctToGenericsSpecRecurse(genericsSpec,copyExceptions(helperMethod.getExceptions()));
   ClassNode fixedReturnType=correctToGenericsSpecRecurse(genericsSpec,helperMethod.getReturnType());
-  Expression forwardExpression=genericsSpec.isEmpty() ? mce : new CastExpression(fixedReturnType,mce);
+  boolean noCastRequired=genericsSpec.isEmpty() || fixedReturnType.getName().equals(ClassHelper.VOID_TYPE.getName());
+  Expression forwardExpression=noCastRequired ? mce : new CastExpression(fixedReturnType,mce);
   int access=helperMethod.getModifiers();
   boolean isHelperForStaticMethod=helperMethodParams[0].getOriginType().equals(ClassHelper.CLASS_Type);
   if (Modifier.isPrivate(access) && !isHelperForStaticMethod) {
