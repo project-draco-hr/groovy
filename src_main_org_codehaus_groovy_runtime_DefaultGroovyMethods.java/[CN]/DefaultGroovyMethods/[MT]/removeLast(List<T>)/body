@@ -2,5 +2,5 @@
   if (self.isEmpty()) {
     throw new NoSuchElementException("Cannot pop() an empty List");
   }
-  return self.remove(0);
+  return self.remove(self.size() - 1);
 }
