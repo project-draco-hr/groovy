@@ -1,0 +1,3 @@
+List<MethodNode> toBeRemoved
+MethodNode one
+MethodNode two

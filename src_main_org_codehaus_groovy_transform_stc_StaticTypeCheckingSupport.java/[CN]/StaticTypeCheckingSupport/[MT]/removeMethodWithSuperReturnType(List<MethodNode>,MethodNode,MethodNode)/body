@@ -1,0 +1,10 @@
+{
+  ClassNode oneRT=one.getReturnType();
+  ClassNode twoRT=two.getReturnType();
+  if (oneRT.isDerivedFrom(twoRT) || oneRT.implementsInterface(twoRT)) {
+    toBeRemoved.add(two);
+  }
+ else   if (twoRT.isDerivedFrom(oneRT) || twoRT.implementsInterface(oneRT)) {
+    toBeRemoved.add(one);
+  }
+}

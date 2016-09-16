@@ -1,0 +1,10 @@
+{
+  ClassNode oneDC=one.getDeclaringClass();
+  ClassNode twoDC=two.getDeclaringClass();
+  if (oneDC.implementsInterface(twoDC)) {
+    toBeRemoved.add(two);
+  }
+ else {
+    toBeRemoved.add(one);
+  }
+}

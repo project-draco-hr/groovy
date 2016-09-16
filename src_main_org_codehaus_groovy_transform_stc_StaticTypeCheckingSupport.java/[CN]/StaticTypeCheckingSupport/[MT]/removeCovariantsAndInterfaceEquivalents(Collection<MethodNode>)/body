@@ -1,0 +1,30 @@
+{
+  if (collection.size() <= 1)   return collection;
+  List<MethodNode> toBeRemoved=new LinkedList<MethodNode>();
+  List<MethodNode> list=new LinkedList<MethodNode>(new HashSet<MethodNode>(collection));
+  for (int i=0; i < list.size() - 1; i++) {
+    MethodNode one=list.get(i);
+    if (toBeRemoved.contains(one))     continue;
+    for (int j=i + 1; j < list.size(); j++) {
+      MethodNode two=list.get(j);
+      if (toBeRemoved.contains(two))       continue;
+      if (one.getParameters().length == two.getParameters().length) {
+        if (areOverloadMethodsInSameClass(one,two)) {
+          if (ParameterUtils.parametersEqual(one.getParameters(),two.getParameters())) {
+            removeMethodWithSuperReturnType(toBeRemoved,one,two);
+          }
+ else {
+            removeSyntheticMethodIfOne(toBeRemoved,one,two);
+          }
+        }
+ else         if (areEquivalentInterfaceMethods(one,two)) {
+          removeMethodInSuperInterface(toBeRemoved,one,two);
+        }
+      }
+    }
+  }
+  if (toBeRemoved.isEmpty())   return list;
+  List<MethodNode> result=new LinkedList<MethodNode>(list);
+  result.removeAll(toBeRemoved);
+  return result;
+}

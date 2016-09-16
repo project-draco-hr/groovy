@@ -6,7 +6,7 @@
   }
   List<MethodNode> bestChoices=new LinkedList<MethodNode>();
   int bestDist=Integer.MAX_VALUE;
-  Collection<MethodNode> choicesLeft=removeCovariants(methods);
+  Collection<MethodNode> choicesLeft=removeCovariantsAndInterfaceEquivalents(methods);
   for (  MethodNode candidateNode : choicesLeft) {
     ClassNode declaringClassForDistance=candidateNode.getDeclaringClass();
     ClassNode actualReceiverForDistance=receiver != null ? receiver : candidateNode.getDeclaringClass();

@@ -7,7 +7,7 @@
     final ClassNode anInterface=interfaces[i];
     int sub=getMaximumInterfaceDistance(anInterface,interfaceClass);
     if (sub != -1) {
-      sub+=(i + 1);
+      sub+=1;
     }
     max=Math.max(max,sub);
   }

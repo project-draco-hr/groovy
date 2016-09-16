@@ -1,0 +1,3 @@
+{
+  return one.getName().equals(two.getName()) && one.getDeclaringClass().isInterface() && two.getDeclaringClass().isInterface()&& ParameterUtils.parametersEqual(one.getParameters(),two.getParameters());
+}
