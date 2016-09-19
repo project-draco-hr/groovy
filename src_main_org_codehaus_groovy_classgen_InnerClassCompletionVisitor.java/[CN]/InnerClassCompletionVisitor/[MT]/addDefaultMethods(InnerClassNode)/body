@@ -38,7 +38,7 @@
   method=node.addSyntheticMethod(methodName,Opcodes.ACC_PUBLIC,ClassHelper.VOID_TYPE,parameters,ClassNode.EMPTY_ARRAY,null);
   block=new BlockStatement();
   if (isStatic) {
-    setPropertySetterDispatcher(block,new ClassExpression(node.getOuterClass()),parameters);
+    setPropertySetterDispatcher(block,new ClassExpression(outerClass),parameters);
   }
  else {
     block.addStatement(new BytecodeSequence(new BytecodeInstruction(){
@@ -53,13 +53,19 @@
 ));
   }
   method.setCode(block);
+  methodName="$static_propertyMissing";
+  if (isStatic)   addCompilationErrorOnCustomMethodNode(node,methodName,parameters);
+  method=node.addSyntheticMethod(methodName,Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC,ClassHelper.VOID_TYPE,parameters,ClassNode.EMPTY_ARRAY,null);
+  block=new BlockStatement();
+  setPropertySetterDispatcher(block,new ClassExpression(outerClass),parameters);
+  method.setCode(block);
   parameters=new Parameter[]{new Parameter(ClassHelper.STRING_TYPE,"name")};
   methodName="propertyMissing";
   if (isStatic)   addCompilationErrorOnCustomMethodNode(node,methodName,parameters);
   method=node.addSyntheticMethod(methodName,Opcodes.ACC_PUBLIC,ClassHelper.OBJECT_TYPE,parameters,ClassNode.EMPTY_ARRAY,null);
   block=new BlockStatement();
   if (isStatic) {
-    setPropertyGetterDispatcher(block,new ClassExpression(node.getOuterClass()),parameters);
+    setPropertyGetterDispatcher(block,new ClassExpression(outerClass),parameters);
   }
  else {
     block.addStatement(new BytecodeSequence(new BytecodeInstruction(){
@@ -72,5 +78,11 @@
     }
 ));
   }
+  method.setCode(block);
+  methodName="$static_propertyMissing";
+  if (isStatic)   addCompilationErrorOnCustomMethodNode(node,methodName,parameters);
+  method=node.addSyntheticMethod(methodName,Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC,ClassHelper.OBJECT_TYPE,parameters,ClassNode.EMPTY_ARRAY,null);
+  block=new BlockStatement();
+  setPropertyGetterDispatcher(block,new ClassExpression(outerClass),parameters);
   method.setCode(block);
 }
