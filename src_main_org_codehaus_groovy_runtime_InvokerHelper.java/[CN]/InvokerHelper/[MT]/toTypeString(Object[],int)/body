@@ -1,0 +1,19 @@
+{
+  if (arguments == null) {
+    return "null";
+  }
+  StringBuilder argBuf=new StringBuilder();
+  for (int i=0; i < arguments.length; i++) {
+    if (maxSize != -1 && argBuf.length() > maxSize) {
+      argBuf.append("...");
+      break;
+    }
+ else {
+      if (i > 0) {
+        argBuf.append(", ");
+      }
+      argBuf.append(arguments[i] != null ? typeName(arguments[i]) : "null");
+    }
+  }
+  return argBuf.toString();
+}

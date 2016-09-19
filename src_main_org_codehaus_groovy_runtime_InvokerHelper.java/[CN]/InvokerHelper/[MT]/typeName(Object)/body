@@ -1,0 +1,6 @@
+{
+  Class<?> aClass=argument.getClass();
+  String pkgName=aClass.getPackage() == null ? "" : aClass.getPackage().getName();
+  boolean useShort=DEFAULT_IMPORT_PKGS.contains(pkgName) || DEFAULT_IMPORT_CLASSES.contains(aClass.getName());
+  return useShort ? aClass.getSimpleName() : aClass.getName();
+}

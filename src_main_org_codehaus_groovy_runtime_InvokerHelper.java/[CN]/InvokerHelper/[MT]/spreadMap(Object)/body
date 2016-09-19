@@ -8,5 +8,5 @@
     }
     return new SpreadMap(values);
   }
-  throw new SpreadMapEvaluatingException("Cannot spread the map " + value.getClass().getName() + ", value "+ value);
+  throw new SpreadMapEvaluatingException("Cannot spread the map " + typeName(value) + ", value "+ value);
 }

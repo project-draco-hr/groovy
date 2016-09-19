@@ -6,5 +6,5 @@
  catch (  Exception ignored) {
     hash="????";
   }
-  return "<" + item.getClass().getName() + "@"+ hash+ ">";
+  return "<" + typeName(item) + "@"+ hash+ ">";
 }
