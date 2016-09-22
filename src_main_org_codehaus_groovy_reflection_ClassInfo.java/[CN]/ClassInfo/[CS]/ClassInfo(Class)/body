@@ -1,5 +1,5 @@
 {
-  this.klazz=new WeakReference<Class<?>>(klazz);
+  this.classRef=new WeakReference<Class<?>>(klazz);
   cachedClassRef=new LazyCachedClassRef(softBundle,this);
   artifactClassLoader=new LazyClassLoaderRef(softBundle,this);
 }
