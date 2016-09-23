@@ -9,6 +9,9 @@ case 1:
       if (value instanceof Closure) {
         call(name,(Closure)value);
       }
+ else       if (value instanceof Writable) {
+        call(name,(Writable)value);
+      }
  else {
         call(name,value);
       }

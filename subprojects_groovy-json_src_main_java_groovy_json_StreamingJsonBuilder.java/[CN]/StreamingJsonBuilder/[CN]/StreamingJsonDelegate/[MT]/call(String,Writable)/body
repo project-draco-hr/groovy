@@ -1,0 +1,10 @@
+{
+  writeName(name);
+  verifyValue();
+  if (json instanceof GString) {
+    writer.write(JsonOutput.toJson(json.toString()));
+  }
+ else {
+    json.writeTo(writer);
+  }
+}
