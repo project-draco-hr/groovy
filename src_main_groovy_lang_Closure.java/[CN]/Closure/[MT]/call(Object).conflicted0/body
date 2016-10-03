@@ -3,7 +3,7 @@
     return (V)getMetaClass().invokeMethod(this,"doCall",args);
   }
  catch (  InvokerInvocationException e) {
-    ExceptionUtils.sneakyThrow(e.getCause());
+    UncheckedThrow.rethrow(e.getCause());
     return null;
   }
 catch (  Exception e) {

@@ -6,7 +6,7 @@
     }
  catch (    Throwable e) {
       if (!AndroidSupport.isRunningAndroid()) {
-        ExceptionUtils.sneakyThrow(e);
+        UncheckedThrow.rethrow(e);
       }
     }
     initialized=true;

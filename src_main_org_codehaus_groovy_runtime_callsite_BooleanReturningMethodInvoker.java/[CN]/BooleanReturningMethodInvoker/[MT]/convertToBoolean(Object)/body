@@ -7,7 +7,7 @@
     arg=csa.array[1].call(arg,CallSiteArray.NOPARAM);
   }
  catch (  Throwable t) {
-    ExceptionUtils.sneakyThrow(t);
+    UncheckedThrow.rethrow(t);
   }
   return ((Boolean)arg).booleanValue();
 }

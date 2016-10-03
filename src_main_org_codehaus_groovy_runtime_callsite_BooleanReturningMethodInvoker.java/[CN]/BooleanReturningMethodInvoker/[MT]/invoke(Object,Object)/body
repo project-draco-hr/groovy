@@ -4,7 +4,7 @@
     return convertToBoolean(ret);
   }
  catch (  Throwable t) {
-    ExceptionUtils.sneakyThrow(t);
+    UncheckedThrow.rethrow(t);
     return false;
   }
 }

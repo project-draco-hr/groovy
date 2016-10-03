@@ -4,7 +4,7 @@
     writeTo(wrt);
   }
  catch (  IOException e) {
-    ExceptionUtils.sneakyThrow(e);
+    UncheckedThrow.rethrow(e);
   }
   return wrt.toString();
 }
