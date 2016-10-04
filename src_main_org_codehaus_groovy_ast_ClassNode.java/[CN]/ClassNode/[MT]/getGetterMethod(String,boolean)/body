@@ -1,7 +1,8 @@
 {
   MethodNode getterMethod=null;
+  boolean booleanReturnOnly=getterName.startsWith("is");
   for (  MethodNode method : getDeclaredMethods(getterName)) {
-    if (getterName.equals(method.getName()) && ClassHelper.VOID_TYPE != method.getReturnType() && method.getParameters().length == 0) {
+    if (getterName.equals(method.getName()) && ClassHelper.VOID_TYPE != method.getReturnType() && method.getParameters().length == 0 && (!booleanReturnOnly || ClassHelper.Boolean_TYPE.equals(ClassHelper.getWrapper(method.getReturnType())))) {
       if (getterMethod == null || getterMethod.isSynthetic()) {
         getterMethod=method;
       }
