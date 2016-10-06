@@ -1,0 +1,11 @@
+{
+  Iterator iter=createRange(1,2).iterator();
+  iter.next();
+  iter.next();
+  try {
+    iter.next();
+    fail("Should have thrown NoSuchElementException");
+  }
+ catch (  NoSuchElementException e) {
+  }
+}
