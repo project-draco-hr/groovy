@@ -13,6 +13,7 @@
     templateWithBindingApplied=t.make(binding).toString();
   }
  catch (  Exception e) {
+    System.out.println("Error processing class template for: " + classDoc.getFullPathName());
     e.printStackTrace();
   }
   return templateWithBindingApplied;

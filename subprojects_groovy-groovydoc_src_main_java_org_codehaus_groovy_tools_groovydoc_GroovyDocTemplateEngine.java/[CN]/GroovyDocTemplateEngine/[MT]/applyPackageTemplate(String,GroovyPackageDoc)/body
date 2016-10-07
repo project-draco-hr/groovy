@@ -12,6 +12,7 @@
     templateWithBindingApplied=t.make(binding).toString();
   }
  catch (  Exception e) {
+    System.out.println("Error processing package template for: " + packageDoc.name());
     e.printStackTrace();
   }
   return templateWithBindingApplied;

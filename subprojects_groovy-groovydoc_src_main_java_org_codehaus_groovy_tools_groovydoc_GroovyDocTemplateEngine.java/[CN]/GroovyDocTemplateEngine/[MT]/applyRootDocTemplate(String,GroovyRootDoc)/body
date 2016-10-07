@@ -12,6 +12,7 @@
     templateWithBindingApplied=t.make(binding).toString();
   }
  catch (  Exception e) {
+    System.out.println("Error processing root doc template");
     e.printStackTrace();
   }
   return templateWithBindingApplied;
