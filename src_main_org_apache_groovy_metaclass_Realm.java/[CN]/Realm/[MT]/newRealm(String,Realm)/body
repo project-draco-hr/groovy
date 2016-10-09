@@ -1,0 +1,9 @@
+{
+  Objects.requireNonNull(name,"missing realm name");
+  if (parent == null) {
+    return new Realm(name,ROOT);
+  }
+ else {
+    return new Realm(name,parent);
+  }
+}

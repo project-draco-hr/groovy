@@ -1,0 +1,16 @@
+{
+  Supplier<MetaClassConstant<T>> valueSupplier=new Supplier<MetaClassConstant<T>>(){
+    @Override @SuppressWarnings("unchecked") public MetaClassConstant<T> get(){
+      return (MetaClassConstant<T>)cv.get(theClass);
+    }
+  }
+;
+  Function<MetaClassConstant<T>,SwitchPoint> validationSupplier=new Function<MetaClassConstant<T>,SwitchPoint>(){
+    @Override public SwitchPoint apply(    MetaClassConstant<T> metaClassImpl){
+      return metaClassImpl.getSwitchPoint();
+    }
+  }
+;
+  ReevaluatingReference<MetaClassConstant<T>> ref=new ReevaluatingReference<>(MetaClassConstant.class,valueSupplier,validationSupplier);
+  return new MetaClass<>(ref);
+}

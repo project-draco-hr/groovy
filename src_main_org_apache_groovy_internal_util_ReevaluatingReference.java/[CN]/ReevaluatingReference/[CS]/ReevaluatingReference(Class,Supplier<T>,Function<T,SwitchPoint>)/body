@@ -1,0 +1,6 @@
+{
+  this.valueSupplier=valueSupplier;
+  this.validationSupplier=validationSupplier;
+  clazzRef=new WeakReference<Class<T>>(clazz);
+  replacePayLoad();
+}

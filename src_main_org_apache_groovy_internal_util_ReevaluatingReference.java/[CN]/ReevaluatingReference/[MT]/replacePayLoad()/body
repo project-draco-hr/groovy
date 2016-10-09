@@ -1,0 +1,7 @@
+{
+  T payload=valueSupplier.get();
+  MethodHandle ref=MethodHandles.constant(clazzRef.get(),payload);
+  SwitchPoint sp=validationSupplier.apply(payload);
+  returnRef=sp.guardWithTest(ref,FALLBACK_HANDLE);
+  return payload;
+}

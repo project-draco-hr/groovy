@@ -1,0 +1,10 @@
+{
+  T ref=null;
+  try {
+    ref=(T)returnRef.invokeExact();
+  }
+ catch (  Throwable throwable) {
+    UncheckedThrow.rethrow(throwable);
+  }
+  return ref;
+}
