@@ -1,5 +1,8 @@
 {
 synchronized (classCache) {
+    for (    Class cl : classCache.values()) {
+      InvokerHelper.removeClass(cl);
+    }
     classCache.clear();
   }
 synchronized (sourceCache) {
