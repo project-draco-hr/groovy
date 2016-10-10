@@ -1,0 +1,10 @@
+{
+  Expression leftExpression=expression.getLeftExpression();
+  Expression rightExpression=expression.getRightExpression();
+  if (leftExpression instanceof VariableExpression && rightExpression instanceof EmptyExpression) {
+    VariableExpression leftVariableExpression=(VariableExpression)leftExpression;
+    if (isPrimitiveType(leftVariableExpression.getOriginType()) && leftVariableExpression.isClosureSharedVariable()) {
+      expression.setRightExpression(new ConstantExpression(0));
+    }
+  }
+}
