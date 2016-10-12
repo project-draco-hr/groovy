@@ -7,8 +7,7 @@
     }
   }
 ;
-  for (Iterator iterator=init.iterator(); iterator.hasNext(); ) {
-    Statement stm=(Statement)iterator.next();
+  for (  Statement stm : init) {
     stm.visit(cvs);
   }
 }

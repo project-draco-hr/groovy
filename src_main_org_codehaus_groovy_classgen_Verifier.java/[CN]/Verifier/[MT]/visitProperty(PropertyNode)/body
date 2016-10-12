@@ -1,15 +1,9 @@
 {
   String name=node.getName();
   FieldNode field=node.getField();
-  int propNodeModifiers=node.getModifiers();
   String getterName="get" + capitalize(name);
   String setterName="set" + capitalize(name);
-  if ((propNodeModifiers & Modifier.VOLATILE) != 0) {
-    propNodeModifiers-=Modifier.VOLATILE;
-  }
-  if ((propNodeModifiers & Modifier.TRANSIENT) != 0) {
-    propNodeModifiers-=Modifier.TRANSIENT;
-  }
+  int accessorModifiers=PropertyNodeUtils.adjustPropertyModifiersForMethod(node);
   Statement getterBlock=node.getGetterBlock();
   if (getterBlock == null) {
     MethodNode getter=classNode.getGetterMethod(getterName,!node.isStatic());
@@ -24,13 +18,13 @@
   Statement setterBlock=node.getSetterBlock();
   if (setterBlock == null) {
     MethodNode setter=classNode.getSetterMethod(setterName,false);
-    if (!node.isPrivate() && (propNodeModifiers & ACC_FINAL) == 0 && methodNeedsReplacement(setter)) {
+    if (!node.isPrivate() && !isFinal(accessorModifiers) && methodNeedsReplacement(setter)) {
       setterBlock=createSetterBlock(node,field);
     }
   }
-  int getterModifiers=propNodeModifiers;
-  if (node.isStatic() && (propNodeModifiers & Modifier.FINAL) != 0) {
-    getterModifiers-=Modifier.FINAL;
+  int getterModifiers=accessorModifiers;
+  if (node.isStatic()) {
+    getterModifiers=~Modifier.FINAL & getterModifiers;
   }
   if (getterBlock != null) {
     MethodNode getter=new MethodNode(getterName,getterModifiers,node.getType(),Parameter.EMPTY_ARRAY,ClassNode.EMPTY_ARRAY,getterBlock);
@@ -47,7 +41,7 @@
   }
   if (setterBlock != null) {
     Parameter[] setterParameterTypes={new Parameter(node.getType(),"value")};
-    MethodNode setter=new MethodNode(setterName,propNodeModifiers,ClassHelper.VOID_TYPE,setterParameterTypes,ClassNode.EMPTY_ARRAY,setterBlock);
+    MethodNode setter=new MethodNode(setterName,accessorModifiers,ClassHelper.VOID_TYPE,setterParameterTypes,ClassNode.EMPTY_ARRAY,setterBlock);
     setter.setSynthetic(true);
     addPropertyMethod(setter);
     visitMethod(setter);

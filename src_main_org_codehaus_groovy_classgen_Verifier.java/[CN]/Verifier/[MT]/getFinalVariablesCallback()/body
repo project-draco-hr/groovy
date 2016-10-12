@@ -4,10 +4,10 @@
       if (var instanceof VariableExpression) {
         var=((VariableExpression)var).getAccessedVariable();
       }
-      if (var instanceof VariableExpression && Modifier.isFinal(var.getModifiers())) {
+      if (var instanceof VariableExpression && isFinal(var.getModifiers())) {
         throw new RuntimeParserException("The variable [" + var.getName() + "] is declared final but is reassigned",bexp);
       }
-      if (var instanceof Parameter && Modifier.isFinal(var.getModifiers())) {
+      if (var instanceof Parameter && isFinal(var.getModifiers())) {
         throw new RuntimeParserException("The parameter [" + var.getName() + "] is declared final but is reassigned",bexp);
       }
     }

@@ -1,0 +1,3 @@
+{
+  return ~(Modifier.TRANSIENT | Modifier.VOLATILE) & propNode.getModifiers();
+}

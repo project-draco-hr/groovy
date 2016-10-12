@@ -13,7 +13,7 @@
     if (current == null)     break;
     ret=current.getDeclaredField("metaClass");
     if (ret == null)     continue;
-    if (Modifier.isPrivate(ret.getModifiers()))     continue;
+    if (isPrivate(ret.getModifiers()))     continue;
     return ret;
   }
   return null;

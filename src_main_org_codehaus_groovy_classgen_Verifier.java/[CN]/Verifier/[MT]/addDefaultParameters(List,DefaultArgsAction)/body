@@ -1,6 +1,6 @@
 {
-  for (Iterator iter=methods.iterator(); iter.hasNext(); ) {
-    MethodNode method=(MethodNode)iter.next();
+  for (  Object next : methods) {
+    MethodNode method=(MethodNode)next;
     if (method.hasDefaultValue()) {
       addDefaultParameters(action,method);
     }

@@ -1,6 +1,6 @@
 {
   ClassNode[] exceptions={ClassHelper.make(PropertyVetoException.class)};
-  MethodNode setter=new MethodNode(setterName,propertyNode.getModifiers(),ClassHelper.VOID_TYPE,params(param(propertyNode.getType(),"value")),exceptions,setterBlock);
+  MethodNode setter=new MethodNode(setterName,PropertyNodeUtils.adjustPropertyModifiersForMethod(propertyNode),ClassHelper.VOID_TYPE,params(param(propertyNode.getType(),"value")),exceptions,setterBlock);
   setter.setSynthetic(true);
   declaringClass.addMethod(setter);
 }
