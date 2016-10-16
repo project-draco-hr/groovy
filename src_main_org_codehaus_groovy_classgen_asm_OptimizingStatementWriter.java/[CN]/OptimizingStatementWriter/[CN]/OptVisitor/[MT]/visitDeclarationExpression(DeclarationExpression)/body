@@ -1,12 +1,12 @@
 {
-  replaceEmptyToConstantZeroIfNecessary(expression);
-  Expression rightExpression=expression.getRightExpression();
-  rightExpression.visit(this);
+  Expression right=expression.getRightExpression();
+  right.visit(this);
   ClassNode leftType=typeChooser.resolveType(expression.getLeftExpression(),node);
+  Expression rightExpression=expression.getRightExpression();
   ClassNode rightType=optimizeDivWithIntOrLongTarget(rightExpression,leftType);
-  if (rightType == null)   rightType=typeChooser.resolveType(rightExpression,node);
+  if (rightType == null)   rightType=typeChooser.resolveType(expression.getRightExpression(),node);
   if (isPrimitiveType(leftType) && isPrimitiveType(rightType)) {
-    if (rightExpression instanceof ConstantExpression) {
+    if (right instanceof ConstantExpression) {
       opt.chainCanOptimize(true);
     }
  else {
