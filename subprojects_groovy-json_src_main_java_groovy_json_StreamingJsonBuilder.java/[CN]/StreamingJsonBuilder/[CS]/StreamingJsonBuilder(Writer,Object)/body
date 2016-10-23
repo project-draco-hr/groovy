@@ -1,6 +1,3 @@
 {
-  this(writer);
-  if (content != null) {
-    writer.write(JsonOutput.toJson(content));
-  }
+  this(writer,content,JsonOutput.DEFAULT_GENERATOR);
 }

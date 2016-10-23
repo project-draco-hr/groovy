@@ -1,4 +1,4 @@
 {
   verifyValue();
-  writer.write(JsonOutput.toJson(list));
+  writer.write(generator.toJson(list));
 }

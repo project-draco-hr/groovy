@@ -1,4 +1,7 @@
 {
+  if (generator.isExcludingValues(value)) {
+    return;
+  }
   verifyValue();
-  writer.write(JsonOutput.toJson(value));
+  writer.write(generator.toJson(value));
 }

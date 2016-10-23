@@ -1,3 +1,4 @@
 {
   this.writer=writer;
+  generator=JsonOutput.DEFAULT_GENERATOR;
 }

@@ -1,0 +1,5 @@
+{
+  this.writer=w;
+  this.first=first;
+  this.generator=(generator != null) ? generator : JsonOutput.DEFAULT_GENERATOR;
+}

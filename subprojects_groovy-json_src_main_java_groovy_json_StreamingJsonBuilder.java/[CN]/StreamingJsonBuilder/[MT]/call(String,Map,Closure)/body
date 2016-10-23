@@ -1,6 +1,6 @@
 {
   writer.write(JsonOutput.OPEN_BRACE);
-  writer.write(JsonOutput.toJson(name));
+  writer.write(generator.toJson(name));
   writer.write(COLON_WITH_OPEN_BRACE);
   boolean first=true;
   for (  Object it : map.entrySet()) {
@@ -11,10 +11,18 @@
       first=false;
     }
     Map.Entry entry=(Map.Entry)it;
-    writer.write(JsonOutput.toJson(entry.getKey()));
+    String key=entry.getKey().toString();
+    if (generator.isExcludingFieldsNamed(key)) {
+      continue;
+    }
+    Object value=entry.getValue();
+    if (generator.isExcludingValues(value)) {
+      return;
+    }
+    writer.write(generator.toJson(key));
     writer.write(JsonOutput.COLON);
-    writer.write(JsonOutput.toJson(entry.getValue()));
+    writer.write(generator.toJson(value));
   }
-  StreamingJsonDelegate.cloneDelegateAndGetContent(writer,callable,map.size() == 0);
+  StreamingJsonDelegate.cloneDelegateAndGetContent(writer,callable,map.size() == 0,generator);
   writer.write(DOUBLE_CLOSE_BRACKET);
 }

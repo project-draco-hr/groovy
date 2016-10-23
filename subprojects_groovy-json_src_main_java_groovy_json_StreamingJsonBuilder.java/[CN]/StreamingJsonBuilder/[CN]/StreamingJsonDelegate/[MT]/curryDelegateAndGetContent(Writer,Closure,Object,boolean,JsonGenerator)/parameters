@@ -1,0 +1,5 @@
+Writer w
+Closure c
+Object o
+boolean first
+JsonGenerator generator

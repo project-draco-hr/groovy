@@ -1,4 +1,4 @@
 {
   verifyValue();
-  writeCollectionWithClosure(writer,coll,c);
+  writeCollectionWithClosure(writer,coll,c,generator);
 }

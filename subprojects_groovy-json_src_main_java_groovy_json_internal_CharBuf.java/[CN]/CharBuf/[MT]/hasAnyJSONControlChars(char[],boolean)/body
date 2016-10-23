@@ -1,0 +1,11 @@
+{
+  int index=0;
+  char c;
+  while (true) {
+    c=charArray[index];
+    if (shouldEscape(c,disableUnicodeEscaping)) {
+      return true;
+    }
+    if (++index >= charArray.length)     return false;
+  }
+}

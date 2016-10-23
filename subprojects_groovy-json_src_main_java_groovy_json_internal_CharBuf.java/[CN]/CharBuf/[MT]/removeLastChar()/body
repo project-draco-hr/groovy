@@ -1,3 +1,5 @@
 {
-  location--;
+  if (location > 0) {
+    location--;
+  }
 }

@@ -1,4 +1,4 @@
 {
-  writer.write(JsonOutput.toJson(m));
+  writer.write(generator.toJson(m));
   return m;
 }

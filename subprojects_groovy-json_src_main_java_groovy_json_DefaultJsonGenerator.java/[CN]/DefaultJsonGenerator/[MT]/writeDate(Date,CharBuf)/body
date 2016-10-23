@@ -1,0 +1,5 @@
+{
+  SimpleDateFormat formatter=new SimpleDateFormat(dateFormat,dateLocale);
+  formatter.setTimeZone(timezone);
+  buffer.addQuoted(formatter.format(date));
+}

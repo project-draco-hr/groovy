@@ -1,4 +1,3 @@
 {
-  char[] charArray=FastStringUtils.toCharArray(jsonString);
-  return addJsonEscapedString(charArray);
+  return addJsonEscapedString(jsonString,false);
 }

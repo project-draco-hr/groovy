@@ -1,0 +1,5 @@
+{
+  if (seq != null) {
+    buffer.add(seq.toString());
+  }
+}

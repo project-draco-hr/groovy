@@ -1,4 +1,7 @@
 {
+  if (generator.isExcludingFieldsNamed(name)) {
+    return;
+  }
   writeName(name);
   verifyValue();
   writer.write(json.toString());

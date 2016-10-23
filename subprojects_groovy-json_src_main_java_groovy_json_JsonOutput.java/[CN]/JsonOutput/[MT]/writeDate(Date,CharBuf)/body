@@ -1,5 +1,0 @@
-{
-  SimpleDateFormat formatter=new SimpleDateFormat(JSON_DATE_FORMAT,Locale.US);
-  formatter.setTimeZone(TimeZone.getTimeZone(DEFAULT_TIMEZONE));
-  buffer.addQuoted(formatter.format(date));
-}

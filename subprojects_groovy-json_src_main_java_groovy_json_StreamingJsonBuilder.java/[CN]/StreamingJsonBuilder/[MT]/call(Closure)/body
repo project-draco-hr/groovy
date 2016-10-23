@@ -1,6 +1,6 @@
 {
   writer.write(JsonOutput.OPEN_BRACE);
-  StreamingJsonDelegate.cloneDelegateAndGetContent(writer,c);
+  StreamingJsonDelegate.cloneDelegateAndGetContent(writer,c,true,generator);
   writer.write(JsonOutput.CLOSE_BRACE);
   return null;
 }

@@ -1,0 +1,8 @@
+{
+  for (  Class<?> t : excludedFieldTypes) {
+    if (t.isAssignableFrom(type)) {
+      return true;
+    }
+  }
+  return false;
+}

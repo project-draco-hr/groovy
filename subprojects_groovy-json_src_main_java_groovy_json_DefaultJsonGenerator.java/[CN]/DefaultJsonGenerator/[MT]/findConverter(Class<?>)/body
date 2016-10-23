@@ -1,0 +1,8 @@
+{
+  for (  Converter c : converters) {
+    if (c.handles(type)) {
+      return c;
+    }
+  }
+  return null;
+}

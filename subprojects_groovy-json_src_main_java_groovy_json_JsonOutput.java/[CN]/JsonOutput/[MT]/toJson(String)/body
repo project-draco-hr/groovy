@@ -1,8 +1,3 @@
 {
-  if (s == null) {
-    return NULL_VALUE;
-  }
-  CharBuf buffer=CharBuf.create(s.length() + 2);
-  writeCharSequence(s,buffer);
-  return buffer.toString();
+  return DEFAULT_GENERATOR.toJson(s);
 }

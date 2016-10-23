@@ -1,0 +1,15 @@
+{
+  writer.write(JsonOutput.OPEN_BRACKET);
+  boolean first=true;
+  for (  Object it : coll) {
+    if (!first) {
+      writer.write(JsonOutput.COMMA);
+    }
+ else {
+      first=false;
+    }
+    writeObject(writer,it,closure,generator);
+  }
+  writer.write(JsonOutput.CLOSE_BRACKET);
+  return writer;
+}

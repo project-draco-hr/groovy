@@ -1,7 +1,3 @@
 {
-  StreamingJsonDelegate delegate=new StreamingJsonDelegate(w,first);
-  Closure curried=c.curry(o);
-  curried.setDelegate(delegate);
-  curried.setResolveStrategy(Closure.DELEGATE_FIRST);
-  curried.call();
+  curryDelegateAndGetContent(w,c,o,first,JsonOutput.DEFAULT_GENERATOR);
 }

@@ -1,0 +1,6 @@
+{
+  if (location == 0 || buffer[location - 1] != expect) {
+    return;
+  }
+  removeLastChar();
+}

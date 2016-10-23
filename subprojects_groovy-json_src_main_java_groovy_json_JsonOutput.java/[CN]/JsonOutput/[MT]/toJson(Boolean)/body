@@ -1,5 +1,3 @@
 {
-  CharBuf buffer=CharBuf.create(4);
-  writeObject(bool,buffer);
-  return buffer.toString();
+  return DEFAULT_GENERATOR.toJson(bool);
 }

@@ -1,0 +1,25 @@
+{
+  if (type == null) {
+    throw new NullPointerException("Type parameter must not be null");
+  }
+  if (closure == null) {
+    throw new NullPointerException("Closure parameter must not be null");
+  }
+  int paramCount=closure.getMaximumNumberOfParameters();
+  if (paramCount < 1) {
+    throw new IllegalArgumentException("Closure must accept at least one parameter");
+  }
+  Class<?> param1=closure.getParameterTypes()[0];
+  if (!param1.isAssignableFrom(type)) {
+    throw new IllegalArgumentException("Expected first parameter to be of type: " + type.toString());
+  }
+  if (paramCount > 1) {
+    Class<?> param2=closure.getParameterTypes()[1];
+    if (!param2.isAssignableFrom(String.class)) {
+      throw new IllegalArgumentException("Expected second parameter to be of type: " + String.class.toString());
+    }
+  }
+  this.type=type;
+  this.closure=closure;
+  this.paramCount=paramCount;
+}

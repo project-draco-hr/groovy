@@ -1,0 +1,4 @@
+{
+  buffer.addJsonFieldName(key,disableUnicodeEscaping);
+  writeObject(key,value,buffer);
+}

@@ -1,4 +1,7 @@
 {
+  if (generator.isExcludingFieldsNamed(name) || generator.isExcludingValues(value)) {
+    return;
+  }
   writeName(name);
   writeValue(value);
 }

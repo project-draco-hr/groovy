@@ -1,0 +1,10 @@
+{
+  if (chars.length > 0) {
+    addJsonEscapedString(chars,disableUnicodeEscaping);
+  }
+ else {
+    addChars(EMPTY_STRING_CHARS);
+  }
+  addChar(':');
+  return this;
+}

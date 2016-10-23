@@ -1,5 +1,8 @@
 {
+  if (generator.isExcludingFieldsNamed(name)) {
+    return;
+  }
   writeName(name);
   verifyValue();
-  writeObject(writer,value,callable);
+  writeObject(writer,value,callable,generator);
 }

@@ -1,7 +1,3 @@
 {
-  StreamingJsonDelegate delegate=new StreamingJsonDelegate(w,first);
-  Closure cloned=(Closure)c.clone();
-  cloned.setDelegate(delegate);
-  cloned.setResolveStrategy(Closure.DELEGATE_FIRST);
-  cloned.call();
+  cloneDelegateAndGetContent(w,c,first,JsonOutput.DEFAULT_GENERATOR);
 }

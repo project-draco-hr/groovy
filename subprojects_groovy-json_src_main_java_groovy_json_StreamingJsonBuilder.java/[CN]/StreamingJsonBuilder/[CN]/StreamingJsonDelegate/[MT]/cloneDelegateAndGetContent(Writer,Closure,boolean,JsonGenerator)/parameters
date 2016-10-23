@@ -1,0 +1,4 @@
+Writer w
+Closure c
+boolean first
+JsonGenerator generator

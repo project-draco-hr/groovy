@@ -1,0 +1,3 @@
+{
+  return (paramCount == 1) ? closure.call(value) : closure.call(value,key);
+}

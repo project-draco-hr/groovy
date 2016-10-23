@@ -1,0 +1,16 @@
+{
+  excludeNulls=options.excludeNulls;
+  disableUnicodeEscaping=options.disableUnicodeEscaping;
+  dateFormat=options.dateFormat;
+  dateLocale=options.dateLocale;
+  timezone=options.timezone;
+  if (!options.converters.isEmpty()) {
+    converters.addAll(options.converters);
+  }
+  if (!options.excludedFieldNames.isEmpty()) {
+    excludedFieldNames.addAll(options.excludedFieldNames);
+  }
+  if (!options.excludedFieldTypes.isEmpty()) {
+    excludedFieldTypes.addAll(options.excludedFieldTypes);
+  }
+}

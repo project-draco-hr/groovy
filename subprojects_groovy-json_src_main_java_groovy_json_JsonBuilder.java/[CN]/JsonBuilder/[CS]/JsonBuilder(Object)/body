@@ -1,3 +1,4 @@
 {
   this.content=content;
+  this.generator=JsonOutput.DEFAULT_GENERATOR;
 }

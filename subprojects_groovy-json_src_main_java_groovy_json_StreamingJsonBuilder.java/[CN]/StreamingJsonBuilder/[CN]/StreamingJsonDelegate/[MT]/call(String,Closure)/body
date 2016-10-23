@@ -1,7 +1,10 @@
 {
+  if (generator.isExcludingFieldsNamed(name)) {
+    return;
+  }
   writeName(name);
   verifyValue();
   writer.write(JsonOutput.OPEN_BRACE);
-  StreamingJsonDelegate.cloneDelegateAndGetContent(writer,value);
+  StreamingJsonDelegate.cloneDelegateAndGetContent(writer,value,true,generator);
   writer.write(JsonOutput.CLOSE_BRACE);
 }

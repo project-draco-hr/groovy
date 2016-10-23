@@ -1,4 +1,7 @@
 {
+  if (generator.isExcludingFieldsNamed(name)) {
+    return;
+  }
   writeName(name);
   writeArray(Arrays.asList(array));
 }

@@ -1,0 +1,16 @@
+{
+  if (!iterator.hasNext()) {
+    buffer.addChars(EMPTY_LIST_CHARS);
+    return;
+  }
+  buffer.addChar(OPEN_BRACKET);
+  while (iterator.hasNext()) {
+    Object it=iterator.next();
+    if (!isExcludingValues(it)) {
+      writeObject(it,buffer);
+      buffer.addChar(COMMA);
+    }
+  }
+  buffer.removeLastChar(COMMA);
+  buffer.addChar(CLOSE_BRACKET);
+}
